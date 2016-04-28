@@ -18,6 +18,11 @@ $(document).ready(function () {
         line.arrow();
       });
     },
+    right: function () {
+      this.lines.forEach(function (line) {
+        line.right();
+      });
+    },
     close: function () {
       this.lines.forEach(function (line) {
         line.close();
@@ -44,6 +49,13 @@ $(document).ready(function () {
   SidebarToggleLine.prototype.arrow = function () {
     this.transform('arrow');
   };
+/*
+	qsuron20160428
+	添加一个right的动画，包括下面所有right相关的
+*/
+  SidebarToggleLine.prototype.right = function () {
+    this.transform('right');
+  };
   SidebarToggleLine.prototype.close = function () {
     this.transform('close');
   };
@@ -51,17 +63,20 @@ $(document).ready(function () {
     this.el.velocity('stop').velocity(this.status[status]);
   };
 
+
   var sidebarToggleLine1st = new SidebarToggleLine({
     el: '.sidebar-toggle-line-first',
     status: {
       arrow: {width: '50%', rotateZ: '-45deg', top: '2px'},
-      close: {width: '100%', rotateZ: '-45deg', top: '5px'}
+      right: {width: '50%', rotateZ: '45deg', top: '2px',left:'7px'},
+      close: {width: '100%', rotateZ: '-45deg', top: '5px',left:'0px'}
     }
   });
   var sidebarToggleLine2nd = new SidebarToggleLine({
     el: '.sidebar-toggle-line-middle',
     status: {
       arrow: {width: '90%'},
+      right: {width: '90%',opacity:1},
       close: {opacity: 0}
     }
   });
@@ -69,7 +84,8 @@ $(document).ready(function () {
     el: '.sidebar-toggle-line-last',
     status: {
       arrow: {width: '50%', rotateZ: '45deg', top: '-2px'},
-      close: {width: '100%', rotateZ: '45deg', top: '-5px'}
+      right: {width: '50%', rotateZ: '-45deg', top: '-2px',left:'7px'},
+      close: {width: '100%', rotateZ: '45deg', top: '-5px',left:'0px'}
     }
   });
 
@@ -78,6 +94,7 @@ $(document).ready(function () {
   sidebarToggleLines.push(sidebarToggleLine3rd);
 
   var SIDEBAR_WIDTH = '320px';
+  var SIDEBAR_TOGGLE_RIGHT = '310px';
   var SIDEBAR_DISPLAY_DURATION = 200;
 
   var sidebarToggleMotion = {
@@ -91,10 +108,25 @@ $(document).ready(function () {
 
       $(document)
         .on('sidebar.isShowing', function () {
-          NexT.utils.isDesktop() && $('body').velocity('stop').velocity(
+
+/*	qsuron20160428
+	修改按钮和侧边栏同步滑出
+	NexT.utils.isDesktop() && $('body').velocity('stop').velocity(
             {paddingRight: SIDEBAR_WIDTH},
             SIDEBAR_DISPLAY_DURATION
           );
+*/
+
+          NexT.utils.isDesktop() && $('body').velocity('stop').velocity(
+            {paddingRight: SIDEBAR_WIDTH},
+            SIDEBAR_DISPLAY_DURATION
+          ) && $('.sidebar-toggle').velocity('stop').velocity(
+            {right: (SIDEBAR_TOGGLE_RIGHT)},
+            SIDEBAR_DISPLAY_DURATION
+          );
+
+          console.log(SIDEBAR_WIDTH);
+
         })
         .on('sidebar.isHiding', function () {
         });
@@ -105,12 +137,14 @@ $(document).ready(function () {
     },
     mouseEnterHandler: function () {
       if (this.isSidebarVisible) {
+      	sidebarToggleLines.right();
         return;
       }
       sidebarToggleLines.arrow();
     },
     mouseLeaveHandler: function () {
       if (this.isSidebarVisible) {
+        sidebarToggleLines.close();
         return;
       }
       sidebarToggleLines.init();
@@ -147,7 +181,18 @@ $(document).ready(function () {
       this.sidebarEl.trigger('sidebar.isShowing');
     },
     hideSidebar: function () {
+
+
+    	/*	qsuron20160428
+	修改按钮和侧边栏同步滑出
+	NexT.utils.isDesktop() && $('body').velocity('stop').velocity({paddingRight: 0});
+          );
+*/
+
+
       NexT.utils.isDesktop() && $('body').velocity('stop').velocity({paddingRight: 0});
+	NexT.utils.isDesktop() && $('.sidebar-toggle').velocity('stop').velocity({right: 0});
+
       this.sidebarEl.find('.motion-element').velocity('stop').css('display', 'none');
       this.sidebarEl.velocity('stop').velocity({width: 0}, {display: 'none'});
 

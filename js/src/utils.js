@@ -42,11 +42,29 @@ NexT.utils = NexT.$u = {
 
   registerBackToTop: function () {
     var THRESHOLD = 50;
-    var $top = $('.back-to-top');
 
+    var $top = $('.back-to-top');
+    var $sidebar = $('.sidebar');
     $(window).on('scroll', function () {
+      $sidebar.toggleClass('sidebar-on', window.pageYOffset > 90);
+      //if(window.pageYOffset<=90){
+      //$sidebar.css('box-shadow', 'inset 0 '+((1-(90-window.pageYOffset)/90)*document.body.clientHeight)+'px 0px #f5f5f5');
+		//  }else{
+		//  	$sidebar.css('box-shadow', 'inset 0 0px 0px #f5f5f5');
+		//  }
       $top.toggleClass('back-to-top-on', window.pageYOffset > THRESHOLD);
+      //console.log($sildbar);
     });
+/*	qsuron20160428 
+	修改主题2右边导航栏，在滚动的时候不要头部的颜色
+	需要添加一个 sildbar-on 样式
+	var $top = $('.back-to-top');
+	$(window).on('scroll', function () {
+	  $top.toggleClass('back-to-top-on', window.pageYOffset > THRESHOLD);
+	});
+  */
+
+
 
     $top.on('click', function () {
       $('body').velocity('scroll');
