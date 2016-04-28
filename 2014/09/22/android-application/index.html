@@ -1,0 +1,783 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Application,入口,全局," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="注：文章部分内容转载自renqingping(博客园)Android使用Google Dalvik VM，相对于传统Java VM而言有着很大的不同，在Sun的Java体系中入口点和标准c语言一样是main()，而每个Android程序都包含着一个Application实例，一个Application实例中有多个Activity、Service、ContentProvider或Broadcast">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android真正的入口：Application的用法介绍">
+<meta property="og:url" content="http://yoursite.com/2014/09/22/android-application/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="注：文章部分内容转载自renqingping(博客园)Android使用Google Dalvik VM，相对于传统Java VM而言有着很大的不同，在Sun的Java体系中入口点和标准c语言一样是main()，而每个Android程序都包含着一个Application实例，一个Application实例中有多个Activity、Service、ContentProvider或Broadcast">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.753Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android真正的入口：Application的用法介绍">
+<meta name="twitter:description" content="注：文章部分内容转载自renqingping(博客园)Android使用Google Dalvik VM，相对于传统Java VM而言有着很大的不同，在Sun的Java体系中入口点和标准c语言一样是main()，而每个Android程序都包含着一个Application实例，一个Application实例中有多个Activity、Service、ContentProvider或Broadcast">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> Android真正的入口：Application的用法介绍 | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android真正的入口：Application的用法介绍
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-09-22T16:09:59+08:00" content="2014-09-22">
+              2014-09-22
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 2,006</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 9分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Android开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/09/22/android-application/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/09/22/android-application/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>注：文章部分内容转载自renqingping(博客园)<br>Android使用Google <wbr>Dalvik <wbr>VM，相对于传统Java <wbr>VM而言有着很大的不同，在Sun的Java体系中入口点和标准c语言一样是main()，而每个Android程序都包含着一个Application实例，一个Application实例中有多个Activity、Service、ContentProvider或Broadcast <wbr>Receiver。因为大部分的应用都包含Activity所以，说很多网友认为是Activity的onCreate，但是你没有发现你的工程中有多个Activity吗? <wbr>你可能没有见过没有Activity的Android应用吧。</p>
+</blockquote>
+<p><span style="color: #3366ff;">其实在android.app.Application这个包的onCreate才是真正的Android入口点，只不过大多数开发者无需重写该类，他的继承关系如下图：</span></p>
+<p><span style="color: #3366ff;">java.lang.Object</span></p>
+<p><span style="color: #3366ff;"> <wbr> <wbr> <wbr>↳ <wbr>android.content.Context</span></p>
+<p><span style="color: #3366ff;"> <wbr> <wbr> <wbr> <wbr> <wbr>↳ <wbr>android.content.ContextWrapper</span></p>
+<p><span style="color: #3366ff;"> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr> <wbr>↳ <wbr>android.app.Application</span></p>
+<p> <wbr></p>
+<p>android.app.Application类包含了4个公开的方法</p>
+<p><pre class="lang:java decode:true ">void  onConfigurationChanged(Configuration newConfig)<br>void  onCreate()  //这里才是真正的入口点。<br>void  onLowMemory()<br>void  onTerminate()</pre><br><span style="color: #3366ff;">所以希望大家，记住真正的Android入口点是application的onCreate，不过通过源代码可以看出，application的onCreate函数什么事也没有做。你可以看下androidmanifest.xml的包含关系就清楚了，并不是每个应用都必须有Activity的。</span></p>
+<p>&nbsp;</p>
+<h1 id="Application-类"><a href="#Application-类" class="headerlink" title="Application**类**"></a><strong>Application**</strong>类**</h1><p>&nbsp;</p>
+<p>Application和Activity,Service一样是Android框架的一个系统组件，当Android程序启动时系统会创建一个Application对象，用来存储系统的一些信息。</p>
+<blockquote>
+<p>Android系统自动会为每个程序运行时创建一个Application类的对象且只创建一个，所以Application可以说是单例（singleton）模式的一个类。</p>
+<p>通常我们是不需要指定一个Application的，系统会自动帮我们创建，如果需要创建自己的Application，那也很简单！创建一个类继承Application并在AndroidManifest.xml文件中的application标签中进行注册（只需要给application标签增加name属性，并添加自己的 Application的名字即可）。</p>
+<p>启动Application时，系统会创建一个PID，即进程ID，所有的Activity都会在此进程上运行。那么我们在Application创建的时候初始化全局变量，同一个应用的所有Activity都可以取到这些全局变量的值，换句话说，我们在某一个Activity中改变了这些全局变量的值，那么在同一个应用的其他Activity中值就会改变。</p>
+<p>Application对象的生命周期是整个程序中最长的，它的生命周期就等于这个程序的生命周期。因为它是全局的单例的，所以在不同的Activity,Service中获得的对象都是同一个对象。所以可以通过Application来进行一些，如：数据传递、数据共享和数据缓存等操作。</p>
+</blockquote>
+<h2 id="1，应用场景："><a href="#1，应用场景：" class="headerlink" title="1，应用场景："></a><strong>1，应用场景：</strong></h2><p>&nbsp;</p>
+<p>在Android中，可以通过继承Application类来实现应用程序级的全局变量，这种全局变量方法相对静态类更有保障，直到应用的所有Activity全部被destory掉之后才会被释放掉。</p>
+<h2 id="2，实现步骤："><a href="#2，实现步骤：" class="headerlink" title="2，实现步骤："></a><strong>2，实现步骤：</strong></h2><p>&nbsp;</p>
+<h3 id="1-、继承-Application"><a href="#1-、继承-Application" class="headerlink" title="1**、继承**Application"></a><strong>1**</strong>、继承<strong>**Application</strong></h3><p>&nbsp;</p>
+<p><pre class="lang:java decode:true ">public class CustomApplication extends Application<br>{<br>    private static final String VALUE = “Harvey”;</pre></p>
+<pre><code>private String value;
+
+@Override
+public void onCreate()
+{
+    super.onCreate();
+    setValue(VALUE); // 初始化全局变量
+}
+
+public void setValue(String value)
+{
+    this.value = value;
+}
+
+public String getValue()
+{
+    return value;
+}
+</code></pre><p>}<br>&nbsp;</p>
+<p><span style="color: #3366ff;"><strong>注：继承**</strong>Application<strong><strong>类，主要重写里面的</strong></strong>onCreate<strong><strong>（）方法（</strong></strong>android.app.Application<strong><strong>包的</strong></strong>onCreate<strong><strong>（）才是真正的</strong></strong>Android<strong>**程序的入口点），就是创建的时候，初始化变量的值。然后在整个应用中的各个文件中就可以对该变量进行操作了。</strong></span></p>
+<h3 id="2-、在ApplicationManifest-xml文件中配置自定义的-Application"><a href="#2-、在ApplicationManifest-xml文件中配置自定义的-Application" class="headerlink" title="2**、在ApplicationManifest.xml文件中配置自定义的**Application"></a><strong>2**</strong>、在<strong><strong>ApplicationManifest.xml</strong></strong>文件中配置自定义的<strong>**Application</strong></h3><p>&nbsp;</p>
+<p><pre class="lang:java decode:true ">&lt;application<br>        android:name=”CustomApplication”&gt;<br>&lt;/application&gt;</pre><br>&nbsp;</p>
+<p><strong>实例代码：</strong></p>
+<h4 id="CustomApplication-java"><a href="#CustomApplication-java" class="headerlink" title="CustomApplication.java"></a><strong>CustomApplication.java</strong></h4><p>&nbsp;</p>
+<p><pre class="lang:java decode:true ">/**</pre></p>
+<ul>
+<li>继承Application</li>
+<li></li>
+<li>@author admin</li>
+<li><p>*/<br>public class CustomApplication extends Application<br>{<br> private static final String VALUE = “Harvey”;</p>
+<p> private String value;</p>
+<p> @Override<br> public void onCreate()<br> {</p>
+<pre><code>super.onCreate();
+setValue(VALUE); // 初始化全局变量
+</code></pre><p> }</p>
+<p> public void setValue(String value)<br> {</p>
+<pre><code>this.value = value;
+</code></pre><p> }</p>
+<p> public String getValue()<br> {</p>
+<pre><code>return value;
+</code></pre><p> }<br>}<br>&nbsp;</p>
+</li>
+</ul>
+<h4 id="FirstActivity-java"><a href="#FirstActivity-java" class="headerlink" title="FirstActivity.java"></a><strong>FirstActivity.java</strong></h4><p>&nbsp;</p>
+<p><pre class="lang:java decode:true ">public class FirstActivity extends Activity<br>{<br>    private CustomApplication app;</pre></p>
+<pre><code>@Override
+public void onCreate(Bundle savedInstanceState)
+{
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.main);
+
+    app = (CustomApplication) getApplication(); // 获得CustomApplication对象
+
+    Log.i(&quot;FirstActivity&quot;, &quot;初始值=====&quot; + app.getValue()); // 获取进程中的全局变量值，看是否是初始化值
+
+    app.setValue(&quot;Harvey Ren&quot;); // 重新设置值
+
+    Log.i(&quot;FirstActivity&quot;, &quot;修改后=====&quot; + app.getValue()); // 再次获取进程中的全局变量值，看是否被修改
+
+    Intent intent = new Intent();
+    intent.setClass(this, SecondActivity.class);
+    startActivity(intent);
+}
+</code></pre><p>}<br>&nbsp;</p>
+<p><strong>注：只需要调用**</strong>Context<strong><strong>的</strong></strong> getApplicationContext<strong><strong>或者</strong></strong>Activity<strong><strong>的</strong></strong>getApplication<strong><strong>方法来获得一个</strong></strong>Application<strong><strong>对象，然后再得到相应的成员变量即可。</strong></strong>它是代表我们的应用程序的类，使用它可以获得当前应用的主题和资源文件中的内容等，这个类更灵活的一个特性就是可以被我们继承，来添加我们自己的全局属性。**</p>
+<h4 id="SecondActivity-java"><a href="#SecondActivity-java" class="headerlink" title="SecondActivity.java"></a><strong>SecondActivity.java</strong></h4><p>&nbsp;</p>
+<p><pre class="lang:java decode:true ">public class SecondActivity extends Activity<br>{<br>    private CustomApplication app;</pre></p>
+<pre><code>@Override
+protected void onCreate(Bundle savedInstanceState)
+{
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.main);
+
+    app = (CustomApplication) getApplication(); // 获取应用程序
+
+   Log.i(&quot;SecondActivity&quot;, &quot;当前值=====&quot; + app.getValue()); // 获取全局值
+}
+</code></pre><p>}<br>&nbsp;</p>
+<h4 id="AndroidManifest-xml"><a href="#AndroidManifest-xml" class="headerlink" title="AndroidManifest.xml"></a><strong>AndroidManifest.xml</strong></h4><p>&nbsp;</p>
+<p><pre class="lang:java decode:true ">&lt;?xml version=”1.0” encoding=”utf-8”?&gt;<br>&lt;manifest<br>    xmlns:android=”<a href="http://schemas.android.com/apk/res/android" target="_blank" rel="external">http://schemas.android.com/apk/res/android</a>“<br>    package=”com.android.test”<br>    android:versionCode=”1”<br>    android:versionName=”1.0”&gt;<br>    &lt;uses-sdk<br>        android:minSdkVersion=”8” /&gt;</pre></p>
+<pre><code>&amp;lt;application
+    android:icon=&quot;@drawable/icon&quot;
+    android:label=&quot;@string/app_name&quot;
+    android:name=&quot;CustomApplication&quot;&amp;gt;
+    &amp;lt;!-- 将我们以前一直用的默认Application设置成自定义的CustomApplication --&amp;gt;
+    &amp;lt;activity
+        android:name=&quot;.FirstActivity&quot;
+        android:label=&quot;@string/app_name&quot;&amp;gt;
+        &amp;lt;intent-filter&amp;gt;
+            &amp;lt;action
+                android:name=&quot;android.intent.action.MAIN&quot; /&amp;gt;
+            &amp;lt;category
+                android:name=&quot;android.intent.category.LAUNCHER&quot; /&amp;gt;
+        &amp;lt;/intent-filter&amp;gt;
+    &amp;lt;/activity&amp;gt;
+
+    &amp;lt;activity
+        android:name=&quot;.SecondActivity&quot;
+        android:label=&quot;@string/app_name&quot;&amp;gt;
+    &amp;lt;/activity&amp;gt;
+&amp;lt;/application&amp;gt;
+</code></pre><p>&lt;/manifest&gt;<br>&nbsp;</p>
+<p>注：<br><span style="color: #3366ff;">在某些情况下可能会遇到getApplication返回null的情况，有可能是调用getApplication的时机不对，如果是在类未定义完成的地方（比如变量定义部分），此时无法得到实例，所以就会出现空指针</span></p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Application/" rel="tag">#Application</a>
+          
+            <a href="/tags/入口/" rel="tag">#入口</a>
+          
+            <a href="/tags/全局/" rel="tag">#全局</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/09/17/ibm-jts-qm-import/" rel="next" title="IBM-JazzTeamServer-rqm中EXCEL测试用例的导入">
+                <i class="fa fa-chevron-left"></i> IBM-JazzTeamServer-rqm中EXCEL测试用例的导入
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/09/22/android-annotations-introduce/" rel="prev" title="AndroidAnnotations注解框架之介绍+配置(一)">
+                AndroidAnnotations注解框架之介绍+配置(一) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/09/22/android-application/"
+     data-title="Android真正的入口：Application的用法介绍"
+     data-content=""
+     data-url="http://yoursite.com/2014/09/22/android-application/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/09/22/android-application/"
+           data-title="Android真正的入口：Application的用法介绍" data-url="http://yoursite.com/2014/09/22/android-application/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Application-类"><span class="nav-number">1.</span> <span class="nav-text">Application**类**</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1，应用场景："><span class="nav-number">1.1.</span> <span class="nav-text">1，应用场景：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2，实现步骤："><span class="nav-number">1.2.</span> <span class="nav-text">2，实现步骤：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-、继承-Application"><span class="nav-number">1.2.1.</span> <span class="nav-text">1**、继承**Application</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-、在ApplicationManifest-xml文件中配置自定义的-Application"><span class="nav-number">1.2.2.</span> <span class="nav-text">2**、在ApplicationManifest.xml文件中配置自定义的**Application</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CustomApplication-java"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">CustomApplication.java</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FirstActivity-java"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">FirstActivity.java</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SecondActivity-java"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">SecondActivity.java</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AndroidManifest-xml"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">AndroidManifest.xml</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

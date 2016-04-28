@@ -1,0 +1,712 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="插件,分页," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="不用插件完美实现WordPress长文章分页&amp;nbsp;
+Wordpress博客本身是有文章分页这个功能的，只不过默认给隐藏了。我们需要将这个功能激活，才能使用默认的文章分页功能。
+
+标签 &amp;lt;!-–nextpage-–&amp;gt; 来对文章内容进行分页的如果你在文章中已经添加了&amp;lt;!–nextpage–&amp;gt;却没有显示出分页来，那么你就需要在相关的模板文件中加入一个函数。
+
+在主题中找到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不用插件完美实现WordPress长文章分页">
+<meta property="og:url" content="http://yoursite.com/2014/02/18/wordpress-paging/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="不用插件完美实现WordPress长文章分页&amp;nbsp;
+Wordpress博客本身是有文章分页这个功能的，只不过默认给隐藏了。我们需要将这个功能激活，才能使用默认的文章分页功能。
+
+标签 &amp;lt;!-–nextpage-–&amp;gt; 来对文章内容进行分页的如果你在文章中已经添加了&amp;lt;!–nextpage–&amp;gt;却没有显示出分页来，那么你就需要在相关的模板文件中加入一个函数。
+
+在主题中找到">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/02/TM截图20140218144337.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/02/TM截图20140218144330.jpg">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.749Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不用插件完美实现WordPress长文章分页">
+<meta name="twitter:description" content="不用插件完美实现WordPress长文章分页&amp;nbsp;
+Wordpress博客本身是有文章分页这个功能的，只不过默认给隐藏了。我们需要将这个功能激活，才能使用默认的文章分页功能。
+
+标签 &amp;lt;!-–nextpage-–&amp;gt; 来对文章内容进行分页的如果你在文章中已经添加了&amp;lt;!–nextpage–&amp;gt;却没有显示出分页来，那么你就需要在相关的模板文件中加入一个函数。
+
+在主题中找到">
+<meta name="twitter:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/02/TM截图20140218144337.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> 不用插件完美实现WordPress长文章分页 | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                不用插件完美实现WordPress长文章分页
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-02-18T14:51:06+08:00" content="2014-02-18">
+              2014-02-18
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 570</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 3分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/网站动态/" itemprop="url" rel="index">
+                    <span itemprop="name">网站动态</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/02/18/wordpress-paging/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/02/18/wordpress-paging/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="不用插件完美实现WordPress长文章分页"><a href="#不用插件完美实现WordPress长文章分页" class="headerlink" title=" 不用插件完美实现WordPress长文章分页"></a><span style="font-size: x-large;"> 不用插件完美实现WordPress长文章分页</span></h1><p>&nbsp;</p>
+<p>Wordpress博客本身是有文章分页这个功能的，只不过默认给隐藏了。我们需要将这个功能激活，才能使用默认的文章分页功能。</p>
+<blockquote>
+<p>标签 &lt;!-–nextpage-–&gt; 来对文章内容进行<strong>分页</strong>的<br>如果你在文章中已经添加了&lt;!–nextpage–&gt;却没有显示出分页来，那么你就需要在相关的模板文件中加入一个函数。</p>
+</blockquote>
+<p>在主题中找到文件 <strong>single.php</strong> ,找到类似下面的代码：</p>
+<p><img src="http://www.qiushurong.cn/wp-content/uploads/2014/02/TM截图20140218144337.jpg" alt="" title="TM截图20140218144337"></p>
+<p>&nbsp;</p>
+<p>然后在后面加上:</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/02/TM截图20140218144330.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/02/TM截图20140218144330.jpg" alt="" title="TM截图20140218144330"></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>这样就可以显示默认的分页效果了。</p>
+<p>如果对默认的不满意，可以使用下面：</p>
+<pre class="brush:java">
+<?php wp_link_pages('link_before=<span>&link_after=&before=<div id="single-navi"><div>
+
+<span>页面:</span>&after=&next_or_number=number'); ?>
+<?php wp_link_pages('before=&after=
+<div></div></div>&next_or_number=next&previouspagelink=上一页&nextpagelink=下一页'); ?>
+</pre>
+
+<p>如果你觉得还不够美观，可以自己修改CSS，下面是本博客使用的代码跟CSS。如果你喜欢，可以直接拿去使用。</p>
+<pre class="brush:java">
+<div><?php wp_link_pages(array('before' => '<div class="fenye">分页阅读：', 'after' => '', 'next_or_number' => 'next', 'previouspagelink' => '上一页', 'nextpagelink' => "")); ?>   <?php wp_link_pages(array('before' => '', 'after' => '', 'next_or_number' => 'number', 'link_before' =>'<span>', 'link_after'=>'</span>')); ?>   <?php wp_link_pages(array('before' => '', 'after' => '</div>', 'next_or_number' => 'next', 'previouspagelink' => '', 'nextpagelink' => "下一页")); ?></div>
+</pre>
+
+<p>&nbsp;</p>
+<pre class="brush:java">
+/**页面分页**/
+.fenye{text-align:center;margin:0px auto 10px;font-weight:bold}
+.fenye span{background-color:#DDDDDD;color:#fff;font-weight: bold;margin:0px 1px;padding:1px 6px;display:inline-block;text-decoration:none;border:1px solid #e0e0e0;}
+.fenye a{text-decoration:none;}
+.fenye a span{background-color:#F6F6E8;font-weight: normal;color: #000;text-decoration: none;}
+.fenye a:hover span{background-color:#DDDDDD;color: #fff;}
+</pre>
+
+<p>效果如下：</p>
+<p>分页内容被标签截断了abcd<br><!--nextpage--><br>efghi</p>
+<p>jklnm</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/插件/" rel="tag">#插件</a>
+          
+            <a href="/tags/分页/" rel="tag">#分页</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/02/17/about-me/" rel="next" title="关于">
+                <i class="fa fa-chevron-left"></i> 关于
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/02/18/wp-syntax/" rel="prev" title="修改wp-syntax代码自动换行">
+                修改wp-syntax代码自动换行 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/02/18/wordpress-paging/"
+     data-title="不用插件完美实现WordPress长文章分页"
+     data-content=""
+     data-url="http://yoursite.com/2014/02/18/wordpress-paging/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/02/18/wordpress-paging/"
+           data-title="不用插件完美实现WordPress长文章分页" data-url="http://yoursite.com/2014/02/18/wordpress-paging/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#不用插件完美实现WordPress长文章分页"><span class="nav-number">1.</span> <span class="nav-text"> 不用插件完美实现WordPress长文章分页</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

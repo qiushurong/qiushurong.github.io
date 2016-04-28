@@ -1,0 +1,818 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="jmock,junit,mock测试,单元测试," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp;
+简单说下Jmock，Jmock - HelloWorld&amp;nbsp;
+&amp;nbsp;
+由于软件项目包测试课程老师要求我去学习一下JMock并总结分享给其他同学，没办法，既然老师这么看得起我，怎么说也不能让她失望是吧！
+&amp;nbsp;
+1.什么是**Mock**测试mock测试：就是在测试过程中，对于某些不容易构造或者 不容易获取的对象，用一个虚拟的对象来创建以便测试的测试方法。
+比喻">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mock测试之JUnit+JMock双剑合璧">
+<meta property="og:url" content="http://yoursite.com/2014/06/10/jmock/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="&amp;nbsp;
+简单说下Jmock，Jmock - HelloWorld&amp;nbsp;
+&amp;nbsp;
+由于软件项目包测试课程老师要求我去学习一下JMock并总结分享给其他同学，没办法，既然老师这么看得起我，怎么说也不能让她失望是吧！
+&amp;nbsp;
+1.什么是**Mock**测试mock测试：就是在测试过程中，对于某些不容易构造或者 不容易获取的对象，用一个虚拟的对象来创建以便测试的测试方法。
+比喻">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/06/JMock配置1-300x256.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/06/mock3-300x176.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/06/mock4-300x94.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/06/Jmock参数约束with-300x100.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/06/方法调用返回情况的约束条件will1-300x57.jpg">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.753Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mock测试之JUnit+JMock双剑合璧">
+<meta name="twitter:description" content="&amp;nbsp;
+简单说下Jmock，Jmock - HelloWorld&amp;nbsp;
+&amp;nbsp;
+由于软件项目包测试课程老师要求我去学习一下JMock并总结分享给其他同学，没办法，既然老师这么看得起我，怎么说也不能让她失望是吧！
+&amp;nbsp;
+1.什么是**Mock**测试mock测试：就是在测试过程中，对于某些不容易构造或者 不容易获取的对象，用一个虚拟的对象来创建以便测试的测试方法。
+比喻">
+<meta name="twitter:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/06/JMock配置1-300x256.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> Mock测试之JUnit+JMock双剑合璧 | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Mock测试之JUnit+JMock双剑合璧
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-06-10T23:24:49+08:00" content="2014-06-10">
+              2014-06-10
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 2,656</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 12分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java-SE/" itemprop="url" rel="index">
+                    <span itemprop="name">Java SE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java-SE/软件测试/" itemprop="url" rel="index">
+                    <span itemprop="name">软件测试</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/06/10/jmock/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/06/10/jmock/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;</p>
+<h1 id="简单说下Jmock，Jmock-HelloWorld"><a href="#简单说下Jmock，Jmock-HelloWorld" class="headerlink" title="简单说下Jmock，Jmock - HelloWorld"></a>简单说下Jmock，Jmock - HelloWorld</h1><p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>由于软件项目包测试课程老师要求我去学习一下JMock并总结分享给其他同学，没办法，既然老师这么看得起我，怎么说也不能让她失望是吧！</p>
+<p>&nbsp;</p>
+<h1 id="1-什么是-Mock-测试"><a href="#1-什么是-Mock-测试" class="headerlink" title="1.什么是**Mock**测试"></a><strong>1.什么是**</strong>Mock<strong>**测试</strong></h1><p>mock测试：就是在测试过程中，对于某些不容易构造或者 不容易获取的对象，用一个虚拟的对象来创建以便测试的测试方法。</p>
+<p>比喻举例：你要测试一个人的吃饭功能是否正常，你还得去帮他建立一个呼吸系统，循环系统，新陈代谢系统甚至建立一张脸，一个身体等等。待会要测试他的说话功能，又得重新为这个人建立这一些系统，麻烦！</p>
+<p>而Mock（虚拟对象）则是为了解决这一系列与测试内容不相关的事情。</p>
+<p>现实中很多运行中的对象（比如股票行情，天气预报）都很难预测，难以被创建，所以Mock的用武之地就在这里！</p>
+<h1 id="2-邻于-Mock-测试"><a href="#2-邻于-Mock-测试" class="headerlink" title="2.邻于**Mock**测试"></a>2.<strong>邻于**</strong>Mock<strong>**测试</strong></h1><p>我们主要是讲用Jmock工具来实现Mock测试，Jmock官网下载地址：<a href="http://www.jmock.org/download.html" target="_blank" rel="external">链接</a></p>
+<p>官网wiki目录：<a href="http://jmock.org/cookbook.html" title="jomck目录" target="_blank" rel="external">链接</a></p>
+<p>Mock 是基于java<span style="color: #ff0000;">反射</span>机制的，关于java反射机制：<a href="http://www.baidu.com/" target="_blank" rel="external">百度一下</a>或者看<a href="http://www.qiushurong.cn/2014/06/03/java-reflection/" target="_blank" rel="external">我的博客</a>文章</p>
+<p><span style="color: #000000;"><span style="color: #ff0000;">测试先行</span>：传统上的测试总是在代码编写完进行的，多数人也会觉得这很正常，但是新的思想是在需求分析时测试工作就已经进入了，甚至比代码人员参与项目更早。会提前于代码阶段把测试计划、用例等工作完成，可见测试介入的越早，项目就越有保证。</span></p>
+<h1 id="3-配置-JMock"><a href="#3-配置-JMock" class="headerlink" title="3.配置**JMock**"></a>3.<strong>配置**</strong>JMock**</h1><p>java项目引用下面四个jar 包：</p>
+<p>· jmock-*.jar</p>
+<p>· hamcrest-core-*.jar</p>
+<p>· hamcrest-library-*.jar</p>
+<p>· jmock-junit4-*.jar</p>
+<p>如图所示：也可以把jmock添加到classpath</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/06/JMock配置1.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/06/JMock配置1-300x256.jpg" alt="JMock配置1"></a></p>
+<h1 id="4-例子-Jmock的HelloWord"><a href="#4-例子-Jmock的HelloWord" class="headerlink" title="4.例子**(Jmock的HelloWord)**"></a>4.<strong>例子**</strong>(Jmock<strong><strong>的</strong></strong>HelloWord)**</h1><p>类：UserDAO，UserService。</p>
+<p><span style="color: #ff0000;">我们的目的是测试UserService，然而UserService中调用了UserDAO，所以我们需要虚拟出一个UserDAO对象来给我们的测试用例调用。</span></p>
+<p>UserDAO负责与数据库打交道，通过数据库保存、获取User的信息。</p>
+<p><pre class="lang:java decode:true" title="UserDao接口">public interface UserDAO {&amp;nbsp;&amp;nbsp;&amp;nbsp;<br> public void saveUser(User user);<br> public User getUser(Long id);<br>}</pre><br>UserService存有UserDAO的引用，通过其对外提供应用级的服务。</p>
+<p><pre class="lang:java decode:true" title="UserService 类"> public class UserService {<br>     private UserDAO dao; </pre></p>
+<pre><code>public UserService(UserDAO dao){ 
+    this.dao = dao; 
+} 
+
+public String getUser(int num){ 
+    return &quot;得到的用户是：&quot;+dao.getUser(num);
+} 
+</code></pre><p> }<br>单元测试类 (<span style="color: #ff0000;">Junit4</span>+jmock)</p>
+<p>利用jmock虚拟出一个UserDAO接口的对象，给UserService类调用！</p>
+<p><pre class="lang:java mark:26-27 decode:true" title="UserServiceTest 测试类">import junit.framework.TestCase;<br>import org.jmock.Expectations;<br>import org.jmock.Mockery;<br>import org.jmock.integration.junit4.JUnit4Mockery;<br>import org.junit.Before;<br>import org.junit.Test;</pre></p>
+<p>public class UserServiceTest extends TestCase {<br>    //Mockery：Mock对象上下文： 代表着所测试对象与之交互的测试环境<br>    private Mockery context = new JUnit4Mockery();<br>    private UserDAO dao = null;<br>    private UserService service = null;</p>
+<pre><code>//setUp会在测试用例执行前调用
+@Before
+public void setUp() throws Exception {
+    super.setUp();
+    //利用Mockery上下文对象来模拟出一个虚拟UserDAO对象
+    dao = context.mock(UserDAO.class);
+    //把模拟出来的虚拟对象传入UserService的构造方法，实例化出一个Service对象
+    service = new UserService(dao);
+    //对虚拟对象的交互环境进行配置
+    context.checking(new Expectations() {
+        {
+            //将虚拟对象dao的getUser方法设定一个返回值
+            exactly(1).of(dao).getUser(10);
+            will(returnValue(&quot;用户10&quot;));
+        }
+    });
+}
+
+@Test
+public void test1() {
+    assertEquals(&quot;得到的用户是：用户10&quot;, service.getUser(10));
+}
+
+@Test
+public void test2() {
+    assertEquals(&quot;得到的用户期望是错的&quot;, service.getUser(10));
+}
+
+@Test
+public void test3() {
+    assertEquals(service.getUser(10), service.getUser(10));
+    //按道理应该是一样的，但结果报错的
+    //原因就是上面模拟对象的次数约束是 exactly(1)，而下面调用了2次
+}
+</code></pre><p>}<br><br>测试结果:</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/06/mock3.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/06/mock3-300x176.jpg" alt="mock3"></a></p>
+<p><span style="color: #ff0000;">test2 这个测试用例是我故意写错的。</span></p>
+<p>有上述代码可以看出，<span style="color: #ff0000;">利用mock，可以再不对UserDAO进行实现的情况下进行UserService类的测试！</span></p>
+<p>可以实现目前大公司的思想：先进行测试代码的开发，再进行实现代码的编写。即：<span style="color: #ff0000;">先准备测试，再进行开发。</span></p>
+<p>&nbsp;</p>
+<blockquote>
+<p><span style="color: #000000;">上面的代码中有几个需要注意地方：</span><br><span style="color: #000000;">1. 测试类继承了 TestCase（junit4）</span></p>
+</blockquote>
+<p><span style="color: #000000;">2. 创建了 Mockery 的对象 context</span></p>
+<p><span style="color: #000000;">3 利用 context 对象来 mock (模拟)  接口的实例及对应的方法。<span style="color: #ff0000;">代码中高亮部分</span>。</span></p>
+<p><span style="color: #000000;">在这个简单的例子中我们 mock 了 UserDAO及其方法getUser()，这样程序在运行的时候就不会去执行真正 UserDAO实现类的代码，</span></p>
+<p><span style="color: #000000;">而转到 line12 的地方。给定数值 10，直接返回 “ 用户10”。</span></p>
+<p>&nbsp;</p>
+<blockquote>
+<p>所以我们mock对象的重点就是在对模拟对象的期望设定上！</p>
+<p>其中包含5种设定：</p>
+<p><strong>invocation-count(mock-object).method(argument-constraints);   **</strong>调用的次数约束（次数）.对应的方法（参数约束）；**</p>
+<p><strong>inSequence(sequence-name);</strong></p>
+<p><strong>when(state-machine.is(state-name));<strong>mockery</strong> <strong>的状态机</strong></strong></p>
+<p><strong>will(action);方法触发的动作</strong></p>
+<p><strong>then(state-machine.is(new-state-name)); <strong>方法触发后设置</strong> <strong>mockery</strong> <strong>的状态</strong></strong></p>
+<p><div class="O1" style="color: #000000;"></div></p>
+<div class="O1" style="color: #000000;">
+
+</div></blockquote>
+<p><span style="color: #ff0000;">调用次数约束</span>  invocation-count 主要包括以下几种：</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/06/mock4.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/06/mock4-300x94.jpg" alt="mock4"></a></p>
+<p>&nbsp;</p>
+<p><span style="color: #ff0000;">参数次数约束with</span></p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/06/Jmock参数约束with.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/06/Jmock参数约束with-300x100.jpg" alt="Jmock参数约束with"></a></p>
+<p><span style="color: #ff0000;">方法调用返回情况的约束条件</span></p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/06/方法调用返回情况的约束条件will1.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/06/方法调用返回情况的约束条件will1-300x57.jpg" alt="方法调用返回情况的约束条件will"></a></p>
+<p><span style="color: #ff0000;">when和then操作</span></p>
+<p><pre class="lang:java decode:true ">用于定义方法仅当某些条件为true 的时候才调用执行，从而进一步对Mock 对象的调用情况进行约束。在jMock 中，这种约束是通过状态机的形式来达成的。首先，我们需要定义一个状态机实例，其中的初始状态（initial-state）是可选的：<br>final States state-machine-name =<br>context.states(“state-machine-name”).startsAs(“initialstate”);</pre><br>&nbsp;</p>
+<p><pre class="lang:java decode:true ">我们可以利用when 子句来定义当处于某状态时方法被调用执行，利用then 来定义当某方法被调用执行后，状态的迁移情况。举例如下：<br>final States pen = context.states(“pen”).startsAs(“up”);<br>one (turtle).penDown(); then(pen.is(“down”));<br>one (turtle).forward(10); when(pen.is(“down”));<br>one (turtle).turn(90); when(pen.is(“down”));<br>one (turtle).forward(10); when(pen.is(“down”));<br>one (turtle).penUp(); then(pen.is(“up”));</pre><br>&nbsp;</p>
+<p><span style="color: #ff0000;">具体例子：</span></p>
+<p></p>
+<p><div class="O1" style="color: #000000;"></div></p>
+<p><pre class="lang:java decode:true ">//具体相等<br>allowing(dao).sayHello(“ok”);<br>//具体相等<br>allowing(dao).sayHello(with(equal(“ok”)));<br>//字符串包含<br>allowing(dao).sayHello(with(new StringContains(“ok”)));<br>//==判断<br>allowing(dao).sayHello(with(same(“ok”)));<br>//String类型的null<br>allowing(dao).sayHello(with(aNull(String.class)));<br>//String类型，但是不是null<br>allowing(dao).sayHello(with(aNonNull(String.class)));<br>//String类型的任何东西，可以包含null<br>allowing(dao).sayHello(with(any(String.class)));<br>返回值：oneOf (anObject).doSomething(); will(returnValue(10));<br>       在连续调用中返回不同值  ：<br>oneOf (anObject).doSomething(); will(returnValue(10));<br>oneOf (anObject).doSomething(); will(returnValue(20));<br>oneOf (anObject).doSomething(); will(returnValue(30));<br>第一次调用 doSomething 会返回 10,第二次返回 20,第三次返回30.<br>       从模拟方法抛出异常：<br>allowing (bank).withdraw(with(any(Money.class)));    will(throwException(new WithdrawalLimitReachedException());<br>       不同参数值返回不同结果：<br>allowing (calculator).add(1,1); will(returnValue(3));<br>allowing (calculator).add(2,2); will(returnValue(5));<br>allowing (calculator).sqrt(-1); will(throwException(new Exception());</pre><br>&nbsp;</p>
+<p></p>
+<p><div class="O1" style="color: #000000;"></div></p>
+<p><div class="O1" style="color: #000000;">如上述代码中的：</div></p>
+<p><pre class="lang:java decode:true">exactly(1).of(dao).getUser(10);<br>will(returnValue(“用户10”));</pre><br>意思是：dao这个模拟对象，的getUser方法，如果传进来的是 10，那么将会返回 “用户10”，并且能且只能且必须调用一次！</p>
+<p></p>
+<p><div class="O1" style="color: #000000;"></div></p>
+<div class="O">
+
+<p>&nbsp;</p>
+<p></p></div><br><br>&nbsp;<p></p>
+<p><span style="color: #000000;">更多关于 JMock 的知识请参阅 <a href="http://www.jmock.org/cookbook.html" target="_blank" rel="external">http://www.jmock.org/cookbook.html</a>.</span></p>
+<p>&nbsp;</p>
+<p><span style="color: #ff0000;">未完待续…后面会总结一下覆盖分析。</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jmock/" rel="tag">#jmock</a>
+          
+            <a href="/tags/junit/" rel="tag">#junit</a>
+          
+            <a href="/tags/mock测试/" rel="tag">#mock测试</a>
+          
+            <a href="/tags/单元测试/" rel="tag">#单元测试</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/06/08/reflect-on-myself/" rel="next" title="【反省】做了个梦，这个礼拜的我很颓废！">
+                <i class="fa fa-chevron-left"></i> 【反省】做了个梦，这个礼拜的我很颓废！
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/06/22/e8-af-9d-e8-af-b4-e4-b8-8d-e7-9f-a5-e4-b8-8d-e8-a7-89-e9-83-bd2-e4-b8-aa-e6-98-9f-e6-9c-9f-e6-b2-a1-e6-9b-b4-e6-96-b0-e4-ba-86/" rel="prev" title="话说不知不觉都2个星期没更新了">
+                话说不知不觉都2个星期没更新了 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/06/10/jmock/"
+     data-title="Mock测试之JUnit+JMock双剑合璧"
+     data-content=""
+     data-url="http://yoursite.com/2014/06/10/jmock/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/06/10/jmock/"
+           data-title="Mock测试之JUnit+JMock双剑合璧" data-url="http://yoursite.com/2014/06/10/jmock/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简单说下Jmock，Jmock-HelloWorld"><span class="nav-number">1.</span> <span class="nav-text">简单说下Jmock，Jmock - HelloWorld</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是-Mock-测试"><span class="nav-number">2.</span> <span class="nav-text">1.什么是**Mock**测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-邻于-Mock-测试"><span class="nav-number">3.</span> <span class="nav-text">2.邻于**Mock**测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-配置-JMock"><span class="nav-number">4.</span> <span class="nav-text">3.配置**JMock**</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-例子-Jmock的HelloWord"><span class="nav-number">5.</span> <span class="nav-text">4.例子**(Jmock的HelloWord)**</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

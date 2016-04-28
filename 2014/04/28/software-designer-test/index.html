@@ -1,0 +1,1023 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="软件设计师,知识点," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="鉴于下个月参加软考（软件设计师），特开此贴，用来记录一下必考的知识点，和一些经常错误的题目，不定时更新，[大部分内容复制自互联网]&amp;nbsp;
+
+
+1.知识点：原码、反码、补码、移码原码：如果机器字长为n，那么一个数的原码就是用一个n位的二进制数，
+其中最高位为符号位：正数为0，负数为1。剩下的n-1位表示概数的绝对值。
+
+例如： 
+X=+101011 , [X]原= 00101011 
+X=">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件设计师考证-必考知识&常错题目-整理">
+<meta property="og:url" content="http://yoursite.com/2014/04/28/software-designer-test/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="鉴于下个月参加软考（软件设计师），特开此贴，用来记录一下必考的知识点，和一些经常错误的题目，不定时更新，[大部分内容复制自互联网]&amp;nbsp;
+
+
+1.知识点：原码、反码、补码、移码原码：如果机器字长为n，那么一个数的原码就是用一个n位的二进制数，
+其中最高位为符号位：正数为0，负数为1。剩下的n-1位表示概数的绝对值。
+
+例如： 
+X=+101011 , [X]原= 00101011 
+X=">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/04/归并排序.gif">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/04/dfa-300x80.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/04/gante-300x168.png">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.752Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件设计师考证-必考知识&常错题目-整理">
+<meta name="twitter:description" content="鉴于下个月参加软考（软件设计师），特开此贴，用来记录一下必考的知识点，和一些经常错误的题目，不定时更新，[大部分内容复制自互联网]&amp;nbsp;
+
+
+1.知识点：原码、反码、补码、移码原码：如果机器字长为n，那么一个数的原码就是用一个n位的二进制数，
+其中最高位为符号位：正数为0，负数为1。剩下的n-1位表示概数的绝对值。
+
+例如： 
+X=+101011 , [X]原= 00101011 
+X=">
+<meta name="twitter:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/04/归并排序.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> 软件设计师考证-必考知识&常错题目-整理 | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                软件设计师考证-必考知识&常错题目-整理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-04-28T11:36:25+08:00" content="2014-04-28">
+              2014-04-28
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 6,991</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 28分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/竞赛考证/" itemprop="url" rel="index">
+                    <span itemprop="name">竞赛考证</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/04/28/software-designer-test/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/04/28/software-designer-test/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<blockquote>
+<p>鉴于下个月参加软考（软件设计师），特开此贴，用来记录一下必考的知识点，和一些经常错误的题目，不定时更新，[大部分内容复制自互联网]<br>&nbsp;</p>
+</blockquote>
+</blockquote>
+<h2 id="1-知识点：原码、反码、补码、移码"><a href="#1-知识点：原码、反码、补码、移码" class="headerlink" title="1.知识点：原码、反码、补码、移码"></a>1.知识点：原码、反码、补码、移码</h2><pre class="lang:java decode:true" title="四种机器码的计算">原码：如果机器字长为n，那么一个数的原码就是用一个n位的二进制数，
+其中最高位为符号位：正数为0，负数为1。剩下的n-1位表示概数的绝对值。
+
+例如： 
+X=+101011 , [X]原= 00101011 
+X=-101011 , [X]原= 10101011 位数不够的用0补全。
+PS：正数的原、反、补码都一样：0的原码跟反码都有两个，因为这里0被分为+0和-0。
+
+反码：在原码的基础上，符号位不变其他位按位取反(就是0变1，1变0)。
+例如： [X]原= 10101011 ，[X]反=11010100
+
+补码：在反码的基础上按照正常的加法运算加1。
+例如：[X]反=11010100，[X]补=11010101
+PS：0的补码是唯一的，如果机器字长为8那么[0]补=00000000。
+
+移码：不管正负数，只要将其补码的符号位取反即可。
+例如：[X]补=11010101，[X]移=01010101</pre>
+
+<h2 id="2-错题：流水线结构"><a href="#2-错题：流水线结构" class="headerlink" title="2.错题：流水线结构"></a>2.错题：流水线结构</h2><pre class="lang:java decode:true" title="流水线结构">流水线结构的计算机中，条件转移指令会严重影响计算机的效率。
+他的中断请求包含：精确和不精确断点法。
+精确断点法：立即中断指令响应中断，不影响中断响应，但影响指令执行。
+不精确断点法：暂时不响应中断，执行完流水线所有指令后再响应中断，即影响指令执行又影响中断响应。</pre>
+
+<h2 id="3-错题：Flynn分类，计算机系统结构的分类方法之一"><a href="#3-错题：Flynn分类，计算机系统结构的分类方法之一" class="headerlink" title="3.错题：Flynn分类，计算机系统结构的分类方法之一"></a>3.错题：Flynn分类，计算机系统结构的分类方法之一</h2><pre class="lang:java decode:true" title="Flynn分类">单指令单数据流SISD
+单指令多数据流SIMD
+多指令单数据流MISD
+多指令多数据流MIMD
+
+S - 单 - Single
+M - 多 - Multiplicity
+I - 指令 - Instruction
+D - 数据 - Data
+
+由多个独立的计算机组成的多处理机：属于MIMD</pre>
+
+<h2 id="4-错题：cache容量算cache地址位数"><a href="#4-错题：cache容量算cache地址位数" class="headerlink" title="4.错题：cache容量算cache地址位数"></a>4.错题：cache容量算cache地址位数</h2><pre class="lang:java decode:true" title="cache地址位数">对于这样的题目，直接把cache容量换算成2的n次方，n就是地址位数
+如：容量2KB，地址位数=11位</pre>
+
+<h2 id="5-错题：软件维护"><a href="#5-错题：软件维护" class="headerlink" title="5.错题：软件维护"></a>5.错题：软件维护</h2><pre class="lang:java decode:true" title="软件维护">软件维护是软件生命周期中占用时间最长的一个阶段，占60%-80%</pre>
+
+<h2 id="6-错题：DNS服务是双向的"><a href="#6-错题：DNS服务是双向的" class="headerlink" title="6.错题：DNS服务是双向的"></a>6.错题：DNS服务是双向的</h2><pre class="lang:java decode:true" title="DNS服务是双向的">IP    -&gt;    域名
+域名  -&gt;    IP</pre>
+
+<h2 id="7-错题：标准的代号"><a href="#7-错题：标准的代号" class="headerlink" title="7.错题：标准的代号"></a>7.错题：标准的代号</h2><pre class="lang:java decode:true">强制性国家标准：GB
+行业标准：行业拼音大字字母：金融JR
+地方标准：DB+区号
+企业标准：Q/+企业代号
+所有推荐性都是在强制性后面加：/T
+如国推荐性家标准：GB/T</pre>
+
+<h2 id="8-错题：页-段式存储管理的区别"><a href="#8-错题：页-段式存储管理的区别" class="headerlink" title="8.错题：页/段式存储管理的区别"></a>8.错题：页/段式存储管理的区别</h2><pre class="lang:java decode:true" title="页/段式存储管理">页 可以占用不连续空间
+段 必须占用连续空间
+
+段 长度不等，可动态增长，有利于新数据增长。
+页 大小相同，位置不能动态增长。
+
+页 一维地址空间
+段 二维地址空间
+
+页 段 的划分都是系统确定和进行的和用户无关
+页 段 都是动态重定位
+</pre>
+
+<h2 id="9-错题：PV操作的定义"><a href="#9-错题：PV操作的定义" class="headerlink" title="9.错题：PV操作的定义"></a>9.错题：PV操作的定义</h2><pre class="lang:java decode:true" title="p操作">procedure p(var s:samephore);
+{
+s.value=s.value-1;
+if (s.value&lt;0) asleep(s.queue);
+}</pre>
+<pre class="lang:java decode:true" title="v操作">procedure v(var s:samephore);
+{
+s.value=s.value+1;
+if (s.value&lt;=0) wakeup(s.queue);
+}</pre>
+
+<h2 id="10-错题：归并排序"><a href="#10-错题：归并排序" class="headerlink" title="10.错题：归并排序"></a>10.错题：归并排序</h2><p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/04/归并排序.gif" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/04/归并排序.gif" alt="归并排序"></a></p>
+<h2 id="11-错题：公钥体系"><a href="#11-错题：公钥体系" class="headerlink" title="11.错题：公钥体系"></a>11.错题：公钥体系</h2><pre class="lang:java decode:true" title="公钥体系">在公钥体系中，公钥：加密和验证。私钥：解密和签名。</pre>
+
+<h2 id="12-知识点：CA数字证书"><a href="#12-知识点：CA数字证书" class="headerlink" title="12.知识点：CA数字证书"></a>12.知识点：CA数字证书</h2><pre class="lang:java decode:true" title="CA数字证书">CA的私钥：签名。CA的公钥：验证签名的真伪。
+用户的私钥：解密对方发来的消息。用户的公钥：加密自己发出的消息。
+用户A获取到用户B带CA签名的消息M，从CA获取B的数字证书并利用CA的公钥验证证书的真伪，然后从B的数字证书中获取B的公钥，利用B的公钥验证消息M的真实性，最后利用A自己的私钥来解密消息M。</pre>
+
+<h2 id="13-错题：汇编语言"><a href="#13-错题：汇编语言" class="headerlink" title="13.错题：汇编语言"></a>13.错题：汇编语言</h2><pre class="lang:java decode:true" title="汇编语言">汇编程序的功能：将用汇编语言写的源程序翻译成机器指令程序。
+汇编语句分为：
+1 指令语句（汇编后产生对应的机器代码）
+2 伪指令语句（在汇编时指示汇编程序完成某些操作，汇编后不产生机器代码）
+3 宏指令语句。
+汇编程序的工作过程：词法，语法，语义，中间代码生成，优化，目标代码生成</pre>
+
+<h2 id="14-知识点：数据库"><a href="#14-知识点：数据库" class="headerlink" title="14.知识点：数据库"></a>14.知识点：数据库</h2><pre class="lang:java decode:true" title="数据库知识">关系：表
+元组：记录：一行
+元：属性：字段：一列
+候选码：表中所有可以唯一确定一条记录的字段和字段组
+主码：表中可以唯一确定一条记录的字段或字段组
+外码：另一个表中的主码相对应的字段
+域：字段的取值范围
+元数：表中属性/字段/列的个数
+基数：表中元组/记录/行的个数
+
+三范式：
+1NF 任何属性不可再分解（不能能是复合的属性）
+例子：学生编号(主码)，学生信息（不满足，应该再分解）
+
+2NF 任何属性后必须依赖于主码
+例子：学生编号（主码1），课程编号（主码2），课程成绩（满足），学生姓名（不满足，不依赖于主码课程编号）
+
+3NF 任何属性都不能存在非主属性的传递（2非主码的属性间不能有关联）
+例子：班级编号（主码），班级名称（满足），所属系部编号（满足），系部名称（不满足，与所属系部编号存在传递）
+
+内连接
+SELECT * FROM 表1，表2 WHERE 连接条件 and 查询条件
+
+外连接
+SELECT * FROM 表1 LEFT OUTER JOIN 表2 ON 连接条件 WHERE 查询条件
+左外 LEFT OUTER JOIN：前面的表所有数据都在结果集中出现，某些字段在后表中不存在关联的话为null。
+右外 RIGHT OUTER JOIN：后面的表所有数据都在结果集中出现，某些字段在前表中不存在关联的话为null。
+全外 FULL OUTER JOIN：2表所有数据都在结果集中出现，某些字段不存在关联的话为null。
+
+自连接
+SELECT * FROM 表1 INNER JOIN 表2 ON 连接条件 WHERE 查询条件
+
+子连接
+SELECT * FROM 表1 WHERE 查询条件=(SELECT * FROM 表1 WHERE 查询条件)
+查询条件还包括 
+IN / NOT IN 
+如：教室号 IN (查询教室号)
+ALL / ANY
+如：比全部人都小的年龄 &lt; ALL （查询所有学生的年龄）  ANY 就是一个都没
+EXIST / NOT EXIST 
+判断子查询中是否存在记录，存在则TRUE否则FALSE
+
+∏ ：投影：取列
+o ：选择运算：选择列运算
+
+要注意看算式中的是 X 还是 ∝</pre>
+
+<h2 id="15-快速排序"><a href="#15-快速排序" class="headerlink" title="15.快速排序"></a>15.快速排序</h2><pre class="lang:java decode:true" title="快速排序算法">一趟快速排序的算法是：
+1）设置两个变量i、j，排序开始的时候：i=0，j=N-1；
+2）以第一个数组元素作为关键数据，赋值给key，即key=A[0]；
+3）从j开始向前搜索，即由后开始向前搜索(j--)，找到第一个小于key的值A[j]，将A[j]赋给A[i]；
+4）从i开始向后搜索，即由前开始向后搜索(i++)，找到第一个大于key的A[i]，将A[i]赋给A[j]；
+5）重复第3、4步，直到i=j； (3,4步中，没找到符合条件的值，即3中A[j]不小于key,4中A[j]不大于key的时候改变j、i的值，使得j=j-1，i=i+1，直至找到为止。找到符合条件的值，进行交换的时候i， j指针位置不变。另外，i==j这一过程一定正好是i+或j-完成的时候，此时令循环结束）。
+
+形象化：你可以想象一下i和j是两个机器人，数据就是大小不一的石头，先取走i前面的石头留出回旋的空间，然后他们轮流分别挑选比k大和比k小的石头扔给对面，最后在他们中间把取走的那块石头放回去，于是比这块石头大的全扔给了j那一边，小的全扔给了i那一边。只是这次运气好，扔完一次刚好排整齐。
+
+注意：快速排序不会直接得到最终结果，只会把比k大和比k小的数分到k的两边。为了得到最后结果，需要再次对下标2两边的数组分别执行此步骤，然后再分解数组，直到数组不能再分解为止（只有一个数据），才能得到正确结果。
+
+例如：360254
+第一次快速排序：
+360254，K = 3，j-- ，找到 2 &lt; 3
+260354，i++，找到 6 &gt; 3 
+230654，j--，找到 0 &lt; 3
+203654，i++，i = j，结束于 K = 3
+因为将 20(3)654  分为20  654 两个快速排序
+20:02
+645:456
+排序完成 02 3 456
+</pre>
+
+<h2 id="16-设计模式："><a href="#16-设计模式：" class="headerlink" title="16.设计模式："></a>16.设计模式：</h2><pre class="lang:java decode:true">设计模式主要分三个类型:创建型、结构型和行为型。 
+
+创建型:
+    Singleton，单例模式：保证一个类只有一个实例 
+    Abstract Factory，抽象工厂：提供无须指定具体类便可创建相关对象的接口。 
+    Factory Method，工厂方法：让子类决定实例化哪一个类，使一个类的实例化延迟到了子类。 
+    Builder，建造模式：将构建与表示相分离。 
+    Prototype，原型模式：通过拷贝原型来创建新的对象。 
+
+行为型： 
+    Iterator，迭代器模式：提供一个方法顺序访问一个聚合对象的各个元素，而又不需要暴露该对象的内部表示。 
+    Observer，观察者模式：我改变，他人得知自动改变
+    Template Method，模板方法：定义一个操作中的算法的骨架，而将一些步骤延迟到子类中，TemplateMethod使得子类可以不改变一个算法的结构即可以重定义该算法得某些特定步骤。 
+    Command，命令模式：将请求封装为对象，。 
+    State，状态模式：允许在其状态改变时改变行为。似乎对象改变了类。 
+    Strategy，策略模式：定义一系列的算法，把他们一个个封装起来，并使他们可以互相替换，本模式使得算法可以独立于使用它们的客户。 
+    China of Responsibility，职责链模式：使多个对象都有机会处理请求，从而避免请求的送发者和接收者之间的耦合关系 
+    Mediator，中介者模式：使多对多变成一对多，只需要关心Mediator即可，降低复杂性，提高扩展性。 
+    Visitor，访问者模式：表示一个作用于某对象结构中的各元素的操作，它使你可以在不改变各元素类的前提下定义作用于这个元素的新操作。 
+    Interpreter，解释器模式：给定一个语言，定义他的文法的一个表示，并定义一个解释器，这个解释器使用该表示来解释语言中的句子。 
+    Memento，备忘录模式：在不破坏对象的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。 
+
+结构型： 
+    Composite，组合模式：类层次结构化
+    Facade，外观模式：子系统多接口提供一致的界面接口
+    Proxy，代理模式：代理提供相同的接口访问对象
+    Adapter,适配器模式：接口的兼容转换。 
+    Decrator，装饰模式：动态增加职责。 
+    Bridge，桥模式：将抽象与实现相分离。 
+    Flyweight，享元模式：共享对象</pre>
+
+<h2 id="17-UML中-include-于-extend-简单区分"><a href="#17-UML中-include-于-extend-简单区分" class="headerlink" title="17.UML中 include 于 extend 简单区分"></a>17.UML中 include 于 extend 简单区分</h2><pre class="lang:java decode:true" title="include and extend">用例图中
+&lt;&lt;include&gt;&gt; 用于包含关系
+如：创建订单 include   提交订单
+&lt;&lt;extend&gt;&gt;  用于扩展关系
+当一个函数执行他的扩展关系用例后会返回来的，即使
+如：提交订单 extend 登录  (需要登录完才回来继续提交)</pre>
+
+<h2 id="18-芯片数、地址线计算"><a href="#18-芯片数、地址线计算" class="headerlink" title="18.芯片数、地址线计算"></a>18.芯片数、地址线计算</h2><pre class="lang:java decode:true" title="芯片数、地址线计算">芯片数目 = 欲组成的芯片总容量 / 芯片单容量
+地址线数目 = log2(芯片数) + log2(芯片容量)</pre>
+
+<h2 id="19-流水线结构"><a href="#19-流水线结构" class="headerlink" title="19.流水线结构"></a>19.流水线结构</h2><pre class="lang:java decode:true" title="流水线结构">流水线的周期取决于最长的一个
+流水线总时间的计算一般是：20个任务总时间 = 第一个任务时间+（19*周期时间）</pre>
+
+<h2 id="20-cache的地址映射"><a href="#20-cache的地址映射" class="headerlink" title="20.cache的地址映射"></a>20.cache的地址映射</h2><pre class="lang:java decode:true" title="cache的地址映射">全相联映射:对应的位置是任意的，按内容访问
+直接映射：对应的位置是固定的
+组相联映射：全相联和直接的综合</pre>
+
+<h2 id="21-需求分析阶段不产生软件测试计划"><a href="#21-需求分析阶段不产生软件测试计划" class="headerlink" title="21.需求分析阶段不产生软件测试计划"></a>21.需求分析阶段不产生软件测试计划</h2><h2 id="22-结构化分析方法"><a href="#22-结构化分析方法" class="headerlink" title="22.结构化分析方法"></a>22.结构化分析方法</h2><pre class="lang:java decode:true" title="结构化分析方法">结构化分析方法建立的系统模型：数据流图，数据字典，小说明
+结构化设计：把数据流图转换成模块结构图</pre>
+
+<h2 id="23-Dfa状态转换图"><a href="#23-Dfa状态转换图" class="headerlink" title="23.Dfa状态转换图"></a>23.Dfa状态转换图</h2><p>如图：<a href="http://www.qiushurong.cn/wp-content/uploads/2014/04/dfa.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/04/dfa-300x80.jpg" alt="dfa"></a></p>
+<p>可以转换为状态转换矩阵</p>
+<p><table width="148"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td>a</td></p>
+<p><td>b</td><br></p>
+<p><tr></tr></p>
+<p><td>0</td></p>
+<p><td>0</td></p>
+<p><td>1</td><br></p>
+<p><tr></tr></p>
+<p><td>1</td></p>
+<p><td>0</td></p>
+<p><td>2</td><br></p>
+<p><tr></tr></p>
+<p><td>2</td></p>
+<p><td>3</td></p>
+<p><td>2</td><br></p>
+<p><tr></tr></p>
+<p><td>3</td></p>
+<p><td>3</td></p>
+<p><td>2</td><br><br><br><br>意思是 状态0，如果是a，那么转向0，如果是b，那么转向1</p>
+<p>据此可以判断2个状态是否可以合并(如图 2和3 可以合并)</p>
+<h2 id="24-面向对象中的类属机制"><a href="#24-面向对象中的类属机制" class="headerlink" title="24.面向对象中的类属机制"></a>24.面向对象中的类属机制</h2><pre class="lang:java decode:true" title="类属机制">在面向对象技术中,类属是一种 (参数多态) 机制.一个类属类是关于一组类的一个特性抽象,
+它强调的是这些类的成员特征中与 (具体类型无关) 的那些部分,而用变元来表示与 (具体类型相关) 的那些部分.</pre>
+
+<h2 id="25-广义表的Head和Tail操作"><a href="#25-广义表的Head和Tail操作" class="headerlink" title="25.广义表的Head和Tail操作"></a>25.广义表的Head和Tail操作</h2><pre class="lang:java decode:true" title="Head是取元素，Tail是取表">Head是取元素，Tail是永远是取表.
+多说无用，直接看例子。
+(a,b,c) 取 head = a
+(a,b,c) 取 tail = (b,c)
+
+例：LS=(a,(b,c,d))
+head(LS)=a
+tail(LS)=((b,c,d))
+head(tail(LS))=(b,c,d)
+tail(tail(LS))=()
+head(head(tail(LS)))=b
+tail(head(tail(LS)))=(c,d)
+head(tail(head(tail(LS))))=c
+tail(tail(head(tail(LS))))=(d)
+head(tail(tail(head(tail(LS)))))=d
+tail(tail(tail(head(tail(LS)))))=()</pre>
+
+<h2 id="26-声音的数据量计算"><a href="#26-声音的数据量计算" class="headerlink" title="26.声音的数据量计算"></a>26.声音的数据量计算</h2><pre class="lang:java decode:true" title="声音的数据量计算">采样频率 = 每秒钟多少个数据
+量化精度 = 一个数据多少位
+8位 = 1字节
+双声道 = 数据量 * double
+
+数据量(kb) = 采样频率(HZ) * 量化精度(byte) * 双声道 * 时间(s) / 8 / 1024</pre>
+
+<h2 id="27-关系模式的候选码计算"><a href="#27-关系模式的候选码计算" class="headerlink" title="27.关系模式的候选码计算"></a>27.关系模式的候选码计算</h2><pre class="lang:java decode:true" title="关系模式的候选码计算">在学习数据库的时候，经常要碰到候选键的求取，但是一开始的时候，根本搞不清楚怎么去求，最近看了一些文章和资料，终于搞明白了。
+首先来看候选键的定义：若关系中的某一属性组的值能唯一地标识一个元组，则称该属性组为候选键。
+若W是候选键，则必须满足两个条件：W的闭包是U；W没有冗余。
+设关系模式R中U=ABC.......等N个属性，U中的属性在FD中有四种范围：
+(1)左右出现;
+(2)只在左部出现;
+(3)只在右部出现;
+(4)不在左右出现;
+算法：按以下步骤求候选键：
+1.只在FD右部出现的属性，不属于候选码;
+2.只在FD左部出现的属性，一定存在于某候选码当中;
+3.外部属性一定存在于任何候选码当中;
+4.其他属性逐个与2,3的属性组合，求属性闭包，直至X的闭包等于U,若等于U,则X为候选码。
+例1：R&lt;U,F&gt;,U=(A,B,C,D,E,G),F={AB--&gt;C,CD--&gt;E,E--&gt;A.A--&gt;G},求候选码。
+  因G只在右边出现,所以G一定不属于候选码;而B,D只在左边出现,所以B,D一定属于候选码;BD的闭包还是BD,则对BD进行组合,除了G以外,BD可以跟A,C,E进行组合
+  先看ABD
+  ABD本身自包ABD,而AB--&gt;C,CD--&gt;E,A--&gt;G,所以ABD的闭包为ABDCEG=U
+  再看BDC
+  CD--&gt;E,E--&gt;A,A--&gt;G,BDC本身自包,所以BDC的闭包为BDCEAG=U
+  最后看BDE
+  E--&gt;A,A--&gt;G,AB--&gt;C,BDE本身自包,所以BDE的闭包为BDEAGC=U
+  因为(ABD)、(BCD)、(BDE)的闭包都是ABCDEG所以本问题的候选码有3个分别是ABC、BCD和BDE
+
+例2：R&lt;U,F&gt;,U=(A,B,C),F={AB--&gt;C,C--&gt;B},求候选码。
+因为A只出现在左边，所以A一定是候选键。A的闭包还是A，则对A进行组合，可以和B,C进行组合。
+首先看AB，AB本身自包AB，而AB--&gt;C，所以AB的闭包是ABC=U。
+再看AC，AC本身自包AC，而C--&gt;B，所以AC的闭包是ABC=U。
+因为AB,AC的闭包都是ABC，也就是U，所以候选键是AB，AC。
+</pre>
+
+<h2 id="28-关系模式的分解是否存在依赖的判断、"><a href="#28-关系模式的分解是否存在依赖的判断、" class="headerlink" title="28.关系模式的分解是否存在依赖的判断、"></a>28.关系模式的分解是否存在依赖的判断、</h2><pre class="lang:java decode:true" title="依赖的判断">对于每一个函数关系，在分解后的集合中都必须能找到，否则不存在函数依赖，如
+R(U,F),U={A,B,C},F={A-C,B-C}
+那么分解{R1(BC),R1(AC)}存在依赖
+而分解{R1(AB),R2(BC)}不存在依赖</pre>
+
+<h2 id="29-chche地址直接映射"><a href="#29-chche地址直接映射" class="headerlink" title="29.chche地址直接映射"></a>29.chche地址直接映射</h2><pre class="lang:java decode:true" title="直接映射">去掉前面N位，后面的判断即可。
+16进制转2进制的方法：16进制中1位=2进制中的4位
+如 E8F8 = 1110 1000 1111 1000</pre>
+
+<h2 id="30-软件开发-结构化方法"><a href="#30-软件开发-结构化方法" class="headerlink" title="30.软件开发-结构化方法"></a>30.软件开发-结构化方法</h2><pre class="lang:java decode:true" title="结构化方法">把软件的开发分为多个阶段：
+只有一个阶段获得认可， 才能进行下一个阶段的工作</pre>
+
+<h2 id="31-模块间的耦合和内聚"><a href="#31-模块间的耦合和内聚" class="headerlink" title="31.模块间的耦合和内聚"></a>31.模块间的耦合和内聚</h2><pre class="lang:java decode:true" title="内聚/耦合">耦合：最高：内容。最低：数据。
+内聚：最高：功能。最低：偶然。</pre>
+
+<h2 id="32-委托开发署名权"><a href="#32-委托开发署名权" class="headerlink" title="32.委托开发署名权"></a>32.委托开发署名权</h2><pre class="lang:java decode:true" title="署名权">有书面协议的按书面协议，
+没有书面协议的归被委托者所有</pre>
+
+<h2 id="33-消费者模式PV操作需要2个信号量"><a href="#33-消费者模式PV操作需要2个信号量" class="headerlink" title="33.消费者模式PV操作需要2个信号量"></a>33.消费者模式PV操作需要2个信号量</h2><pre class="lang:java decode:true" title="信号量">一个：判断管道是否满，是否可写
+另一个：判断管道中是否有东西，是否可读</pre>
+
+<h2 id="34-shell编程"><a href="#34-shell编程" class="headerlink" title="34.shell编程"></a>34.shell编程</h2><pre class="lang:java decode:true" title="shell $">$$ 进程标识号
+$# 命令行参数个数
+$* 命令汗所有参数值
+$@ 用双引号包括所有参数值
+$0 表示命令本身
+$1-$9 表示命令行的9个参数</pre>
+
+<h2 id="35-知识点：树的遍历"><a href="#35-知识点：树的遍历" class="headerlink" title="35.知识点：树的遍历"></a>35.知识点：树的遍历</h2><pre class="lang:java decode:true" title="树的遍历">前序：根左右
+中序：左根右
+后序：左右根</pre>
+
+<h2 id="36-错题：FTP协议"><a href="#36-错题：FTP协议" class="headerlink" title="36.错题：FTP协议"></a>36.错题：FTP协议</h2><pre class="lang:java decode:true " title="FTP">传输层使用的是：TCP协议
+使用的端口是：21</pre>
+
+<h2 id="37-错题：无向图中顶点的度"><a href="#37-错题：无向图中顶点的度" class="headerlink" title="37.错题：无向图中顶点的度"></a>37.错题：<span style="color: rgb(0, 0, 0);">无向图中顶点的度</span></h2><p><span style="color: rgb(0, 0, 0);">无向图中顶点的度是指与该顶点相邻的顶点数</span></p>
+<h2 id="38-cache于主存之间的操作是由硬件完成"><a href="#38-cache于主存之间的操作是由硬件完成" class="headerlink" title="38.cache于主存之间的操作是由硬件完成"></a>38.cache于主存之间的操作是由硬件完成</h2><h2 id="39-脉冲编码调制技术-PCM"><a href="#39-脉冲编码调制技术-PCM" class="headerlink" title="39.脉冲编码调制技术(PCM)"></a>39.脉冲编码调制技术(PCM)</h2><pre class="lang:java decode:true" title="脉冲编码调制技术(PCM)">MIC(话筒)输出的是音频模拟信号，声卡从MIC获取音频模拟信号后，通过模数转换器(ADC)，
+将声波振幅信号采样转换成一串数字信号并存储到计算机中。重放时，这些数字信号送到数模转换器(DAC)，
+以同样的采样速度还原为模拟波形，放大后送到扬声器发声，这一技术称为脉冲编码调制技术(PCM)。</pre>
+
+<h2 id="40-甘特图：不利于表示任务的相互依赖"><a href="#40-甘特图：不利于表示任务的相互依赖" class="headerlink" title="40.甘特图：不利于表示任务的相互依赖"></a>40.甘特图：不利于表示任务的相互依赖</h2><p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/04/gante.png" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/04/gante-300x168.png" alt="gante"></a></p>
+<h2 id="41-软件生存周期模型"><a href="#41-软件生存周期模型" class="headerlink" title=" 41.软件生存周期模型"></a><span style="color: #000000;"> 41.软件生存周期模型</span></h2><pre class="lang:java decode:true" title="软件生存周期模型"><span style="color: #000000;">瀑布模型:需求很明确</span>
+<span style="color: #000000;">演化模型:快速分析构造出该软件的一个初始可运行版本，然后逐步演化成为最终软件产品。
+原型模型:快速构造软件的原型，在此基础上开发最终软件产品。
+针对需求不确定
+螺旋模型:增加风险分析。</span></pre>
+
+<h2 id="42软件安全性归于功能性中"><a href="#42软件安全性归于功能性中" class="headerlink" title="42软件安全性归于功能性中"></a>42软件安全性归于功能性中</h2><p>&nbsp;</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/软件设计师/" rel="tag">#软件设计师</a>
+          
+            <a href="/tags/知识点/" rel="tag">#知识点</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/04/24/libgdx-action/" rel="next" title="LibGDX游戏引擎-12-动作Action类的运用">
+                <i class="fa fa-chevron-left"></i> LibGDX游戏引擎-12-动作Action类的运用
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/05/01/51-music/" rel="prev" title="51空寂没人陪，放置个背景音乐盒自己聆听">
+                51空寂没人陪，放置个背景音乐盒自己聆听 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/04/28/software-designer-test/"
+     data-title="软件设计师考证-必考知识&常错题目-整理"
+     data-content=""
+     data-url="http://yoursite.com/2014/04/28/software-designer-test/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/04/28/software-designer-test/"
+           data-title="软件设计师考证-必考知识&常错题目-整理" data-url="http://yoursite.com/2014/04/28/software-designer-test/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-知识点：原码、反码、补码、移码"><span class="nav-number">1.</span> <span class="nav-text">1.知识点：原码、反码、补码、移码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-错题：流水线结构"><span class="nav-number">2.</span> <span class="nav-text">2.错题：流水线结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-错题：Flynn分类，计算机系统结构的分类方法之一"><span class="nav-number">3.</span> <span class="nav-text">3.错题：Flynn分类，计算机系统结构的分类方法之一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-错题：cache容量算cache地址位数"><span class="nav-number">4.</span> <span class="nav-text">4.错题：cache容量算cache地址位数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-错题：软件维护"><span class="nav-number">5.</span> <span class="nav-text">5.错题：软件维护</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-错题：DNS服务是双向的"><span class="nav-number">6.</span> <span class="nav-text">6.错题：DNS服务是双向的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-错题：标准的代号"><span class="nav-number">7.</span> <span class="nav-text">7.错题：标准的代号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-错题：页-段式存储管理的区别"><span class="nav-number">8.</span> <span class="nav-text">8.错题：页/段式存储管理的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-错题：PV操作的定义"><span class="nav-number">9.</span> <span class="nav-text">9.错题：PV操作的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-错题：归并排序"><span class="nav-number">10.</span> <span class="nav-text">10.错题：归并排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-错题：公钥体系"><span class="nav-number">11.</span> <span class="nav-text">11.错题：公钥体系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-知识点：CA数字证书"><span class="nav-number">12.</span> <span class="nav-text">12.知识点：CA数字证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-错题：汇编语言"><span class="nav-number">13.</span> <span class="nav-text">13.错题：汇编语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-知识点：数据库"><span class="nav-number">14.</span> <span class="nav-text">14.知识点：数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-快速排序"><span class="nav-number">15.</span> <span class="nav-text">15.快速排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-设计模式："><span class="nav-number">16.</span> <span class="nav-text">16.设计模式：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-UML中-include-于-extend-简单区分"><span class="nav-number">17.</span> <span class="nav-text">17.UML中 include 于 extend 简单区分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-芯片数、地址线计算"><span class="nav-number">18.</span> <span class="nav-text">18.芯片数、地址线计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-流水线结构"><span class="nav-number">19.</span> <span class="nav-text">19.流水线结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-cache的地址映射"><span class="nav-number">20.</span> <span class="nav-text">20.cache的地址映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21-需求分析阶段不产生软件测试计划"><span class="nav-number">21.</span> <span class="nav-text">21.需求分析阶段不产生软件测试计划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-结构化分析方法"><span class="nav-number">22.</span> <span class="nav-text">22.结构化分析方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#23-Dfa状态转换图"><span class="nav-number">23.</span> <span class="nav-text">23.Dfa状态转换图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24-面向对象中的类属机制"><span class="nav-number">24.</span> <span class="nav-text">24.面向对象中的类属机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#25-广义表的Head和Tail操作"><span class="nav-number">25.</span> <span class="nav-text">25.广义表的Head和Tail操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#26-声音的数据量计算"><span class="nav-number">26.</span> <span class="nav-text">26.声音的数据量计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#27-关系模式的候选码计算"><span class="nav-number">27.</span> <span class="nav-text">27.关系模式的候选码计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#28-关系模式的分解是否存在依赖的判断、"><span class="nav-number">28.</span> <span class="nav-text">28.关系模式的分解是否存在依赖的判断、</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#29-chche地址直接映射"><span class="nav-number">29.</span> <span class="nav-text">29.chche地址直接映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#30-软件开发-结构化方法"><span class="nav-number">30.</span> <span class="nav-text">30.软件开发-结构化方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#31-模块间的耦合和内聚"><span class="nav-number">31.</span> <span class="nav-text">31.模块间的耦合和内聚</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#32-委托开发署名权"><span class="nav-number">32.</span> <span class="nav-text">32.委托开发署名权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#33-消费者模式PV操作需要2个信号量"><span class="nav-number">33.</span> <span class="nav-text">33.消费者模式PV操作需要2个信号量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#34-shell编程"><span class="nav-number">34.</span> <span class="nav-text">34.shell编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#35-知识点：树的遍历"><span class="nav-number">35.</span> <span class="nav-text">35.知识点：树的遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#36-错题：FTP协议"><span class="nav-number">36.</span> <span class="nav-text">36.错题：FTP协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#37-错题：无向图中顶点的度"><span class="nav-number">37.</span> <span class="nav-text">37.错题：无向图中顶点的度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#38-cache于主存之间的操作是由硬件完成"><span class="nav-number">38.</span> <span class="nav-text">38.cache于主存之间的操作是由硬件完成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#39-脉冲编码调制技术-PCM"><span class="nav-number">39.</span> <span class="nav-text">39.脉冲编码调制技术(PCM)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#40-甘特图：不利于表示任务的相互依赖"><span class="nav-number">40.</span> <span class="nav-text">40.甘特图：不利于表示任务的相互依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#41-软件生存周期模型"><span class="nav-number">41.</span> <span class="nav-text"> 41.软件生存周期模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#42软件安全性归于功能性中"><span class="nav-number">42.</span> <span class="nav-text">42软件安全性归于功能性中</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

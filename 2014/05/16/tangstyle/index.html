@@ -1,0 +1,699 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="优化,主题,tangstyle," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在基础主题：在基于原主题tangstyle的基础上，结合开源主题 contango 和 amativeness，重新修改了站点的页面展示，并将【搜索】【目录】【标签】【归档】的文章读取PHP源码进行统一，提取为单一的PHP源文件，降低PHP源码的冗余度。
+并添加对浏览器的检测：
+
+
+
+
+
+
+
+   Do not block Safari   Safari 3  or lower   Safari">
+<meta property="og:type" content="article">
+<meta property="og:title" content="修改主题，优化CSS并优化PHP源码的冗余。">
+<meta property="og:url" content="http://yoursite.com/2014/05/16/tangstyle/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="在基础主题：在基于原主题tangstyle的基础上，结合开源主题 contango 和 amativeness，重新修改了站点的页面展示，并将【搜索】【目录】【标签】【归档】的文章读取PHP源码进行统一，提取为单一的PHP源文件，降低PHP源码的冗余度。
+并添加对浏览器的检测：
+
+
+
+
+
+
+
+   Do not block Safari   Safari 3  or lower   Safari">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/05/alert-300x136.png">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.752Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="修改主题，优化CSS并优化PHP源码的冗余。">
+<meta name="twitter:description" content="在基础主题：在基于原主题tangstyle的基础上，结合开源主题 contango 和 amativeness，重新修改了站点的页面展示，并将【搜索】【目录】【标签】【归档】的文章读取PHP源码进行统一，提取为单一的PHP源文件，降低PHP源码的冗余度。
+并添加对浏览器的检测：
+
+
+
+
+
+
+
+   Do not block Safari   Safari 3  or lower   Safari">
+<meta name="twitter:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/05/alert-300x136.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> 修改主题，优化CSS并优化PHP源码的冗余。 | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                修改主题，优化CSS并优化PHP源码的冗余。
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-05-16T16:17:20+08:00" content="2014-05-16">
+              2014-05-16
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 790</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 5分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/网站动态/" itemprop="url" rel="index">
+                    <span itemprop="name">网站动态</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/05/16/tangstyle/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/16/tangstyle/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在基础主题：在基于原主题tangstyle的基础上，结合开源主题 contango 和 amativeness，重新修改了站点的页面展示，并将【搜索】【目录】【标签】【归档】的文章读取PHP源码进行统一，提取为单一的PHP源文件，降低PHP源码的冗余度。</p>
+<p>并添加对浏览器的检测：</p>
+<p><table class="form-table abc-settings" style="color: #444444;"></table></p>
+<p><tbody></tbody></p>
+<p><tr valign="top"></tr></p>
+<p><th style="color: #222222;" scope="row"></th></p>
+<td style="font-weight: inherit;">
+
+<ul>
+<li><select style="font-weight: inherit;" name="abc_check[safari]"> <option value="0">  Do not block Safari</option> <option value="3">  Safari 3  or lower</option> <option selected="selected" value="4">  Safari 4  or lower</option> <option value="5">  Safari 5  or lower</option> <option value="6">  Safari 6  or lower</option> <option value="7">  Safari 7  or lower</option> <option value="8">  Safari 8  or lower</option> <option value="9">  Safari 9  or lower</option> <option value="10">  Safari 10  or lower</option> </select></li>
+<li><select style="font-weight: inherit;" name="abc_check[opera]"> <option value="0">  Do not block Opera</option> <option selected="selected" value="7">  Opera 7  or lower</option> <option value="8">  Opera 8  or lower</option> <option value="9">  Opera 9  or lower</option> <option value="10">  Opera 10  or lower</option> <option value="11">  Opera 11  or lower</option> <option value="12">  Opera 12  or lower</option> <option value="13">  Opera 13  or lower</option> <option value="14">  Opera 14  or lower</option> <option value="15">  Opera 15  or lower</option> <option value="16">  Opera 16  or lower</option> <option value="17">  Opera 17  or lower</option> <option value="18">  Opera 18  or lower</option> <option value="19">  Opera 19  or lower</option> <option value="20">  Opera 20  or lower</option> </select></li>
+<li><select style="font-weight: inherit;" name="abc_check[ff]"> <option value="0">  Do not block Firefox</option> <option value="10">  Firefox 10  or lower</option> <option value="11">  Firefox 11  or lower</option> <option selected="selected" value="12">  Firefox 12  or lower</option> <option value="13">  Firefox 13  or lower</option> <option value="14">  Firefox 14  or lower</option> <option value="15">  Firefox 15  or lower</option> <option value="16">  Firefox 16  or lower</option> <option value="17">  Firefox 17  or lower</option> <option value="18">  Firefox 18  or lower</option> <option value="19">  Firefox 19  or lower</option> <option value="20">  Firefox 20  or lower</option> <option value="21">  Firefox 21  or lower</option> <option value="22">  Firefox 22  or lower</option> <option value="23">  Firefox 23  or lower</option> <option value="24">  Firefox 24  or lower</option> <option value="25">  Firefox 25  or lower</option> <option value="26">  Firefox 26  or lower</option> <option value="27">  Firefox 27  or lower</option> <option value="28">  Firefox 28  or lower</option> <option value="29">  Firefox 29  or lower</option> <option value="30">  Firefox 30  or lower</option> </select></li>
+<li><select style="font-weight: inherit;" name="abc_check[chrome]"> <option value="0">  Do not block Chrome</option> <option value="17">  Chrome 17  or lower</option> <option value="18">  Chrome 18  or lower</option> <option value="19">  Chrome 19  or lower</option> <option selected="selected" value="20">  Chrome 20  or lower</option> <option value="21">  Chrome 21  or lower</option> <option value="22">  Chrome 22  or lower</option> <option value="23">  Chrome 23  or lower</option> <option value="24">  Chrome 24  or lower</option> <option value="25">  Chrome 25  or lower</option> <option value="26">  Chrome 26  or lower</option> <option value="27">  Chrome 27  or lower</option> <option value="28">  Chrome 28  or lower</option> <option value="29">  Chrome 29  or lower</option> <option value="30">  Chrome 30  or lower</option> <option value="31">  Chrome 31  or lower</option> <option value="32">  Chrome 32  or lower</option> <option value="33">  Chrome 33  or lower</option> <option value="34">  Chrome 34  or lower</option> <option value="35">  Chrome 35  or lower</option> </select></li>
+<li><select style="font-weight: inherit;" name="abc_check[ie]"> <option value="0">  Do not block Internet Explorer</option> <option value="5">  Internet Explorer 5  or lower</option> <option value="6">  Internet Explorer 6  or lower</option> <option value="7">  Internet Explorer 7  or lower</option> <option value="8">  Internet Explorer 8  or lower</option> <option value="9">  Internet Explorer 9  or lower</option> <option value="10">  Internet Explorer 10  or lower</option> <option value="11">  Internet Explorer 11  or lower</option> <option value="12">  Internet Explorer 12  or lower</option> <option value="13">  Internet Explorer 13  or lower</option> <option selected="selected" value="14">  Internet Explorer 14  or lower</option> </select><br></li></ul></td><br><br><br><br>凡是低于以上版本的，将弹出提示框。
+
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/05/alert.png" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/05/alert-300x136.png" alt="alert"></a></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/优化/" rel="tag">#优化</a>
+          
+            <a href="/tags/主题/" rel="tag">#主题</a>
+          
+            <a href="/tags/tangstyle/" rel="tag">#tangstyle</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/05/14/github-wiki/" rel="next" title="初次使用GitHub,作个入门记录Wiki">
+                <i class="fa fa-chevron-left"></i> 初次使用GitHub,作个入门记录Wiki
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/05/20/my-state/" rel="prev" title="周六考软件设计师，所有其他不想关的暂且挂起。">
+                周六考软件设计师，所有其他不想关的暂且挂起。 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/05/16/tangstyle/"
+     data-title="修改主题，优化CSS并优化PHP源码的冗余。"
+     data-content=""
+     data-url="http://yoursite.com/2014/05/16/tangstyle/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/05/16/tangstyle/"
+           data-title="修改主题，优化CSS并优化PHP源码的冗余。" data-url="http://yoursite.com/2014/05/16/tangstyle/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

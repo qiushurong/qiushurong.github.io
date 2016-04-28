@@ -1,0 +1,727 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="eclipse,cordova,CrossWalk,phonegap,xwalk,插件,集成," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="CrossWalk 是什么？它是一个基于 Chromium 的浏览器组件，用来取代 Android4.x 中的 WebView 。
+它的优势
+
+1 大幅度提升 Web 程序性能
+2 支持最新的 HTML5 特性
+3 解决不同设备的兼容性问题支持最新的HTML5 API，提升页面的滑动流畅度，对页面的加载及渲染非常好。【目前明显体现出来的，针对Android下面的页面加载很好】
+
+&amp;nbsp;
+它的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Phonegap 不通过命令行手工集成CrossWalk插件">
+<meta property="og:url" content="http://yoursite.com/2015/09/09/phonegap-crosswalk/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="CrossWalk 是什么？它是一个基于 Chromium 的浏览器组件，用来取代 Android4.x 中的 WebView 。
+它的优势
+
+1 大幅度提升 Web 程序性能
+2 支持最新的 HTML5 特性
+3 解决不同设备的兼容性问题支持最新的HTML5 API，提升页面的滑动流畅度，对页面的加载及渲染非常好。【目前明显体现出来的，针对Android下面的页面加载很好】
+
+&amp;nbsp;
+它的">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.756Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Phonegap 不通过命令行手工集成CrossWalk插件">
+<meta name="twitter:description" content="CrossWalk 是什么？它是一个基于 Chromium 的浏览器组件，用来取代 Android4.x 中的 WebView 。
+它的优势
+
+1 大幅度提升 Web 程序性能
+2 支持最新的 HTML5 特性
+3 解决不同设备的兼容性问题支持最新的HTML5 API，提升页面的滑动流畅度，对页面的加载及渲染非常好。【目前明显体现出来的，针对Android下面的页面加载很好】
+
+&amp;nbsp;
+它的">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> Phonegap 不通过命令行手工集成CrossWalk插件 | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Phonegap 不通过命令行手工集成CrossWalk插件
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-09T10:53:21+08:00" content="2015-09-09">
+              2015-09-09
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 861</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 4分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/PhoneGap-Angular-Ionic/" itemprop="url" rel="index">
+                    <span itemprop="name">PhoneGap+Angular+Ionic</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/09/phonegap-crosswalk/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/09/phonegap-crosswalk/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>CrossWalk 是什么？它是一个基于 Chromium 的浏览器组件，用来取代 Android4.x 中的 WebView 。</p>
+<p>它的优势</p>
+<blockquote>
+<p>1 大幅度提升 Web 程序性能</p>
+<p>2 支持最新的 HTML5 特性</p>
+<p>3 解决不同设备的兼容性问题<br>支持最新的HTML5 API，提升页面的滑动流畅度，对页面的加载及渲染非常好。【目前明显体现出来的，针对Android下面的页面加载很好】</p>
+</blockquote>
+<p>&nbsp;</p>
+<p>它的缺点：</p>
+<blockquote>
+<p>1 不支持 iOS ，也不支持 Android4.0 以下的版本</p>
+<p>2 打包后的 apk 文件将增加近20M<br>只支持Android系统（ios其实不需要，ios下面效果很不错的），Crosswalk仅支持Android4.0+，打包后apk大小增加10几M，对phonegap的一些插件支持度不好【目前我没有发现，有人这么说】。</p>
+</blockquote>
+<p>&nbsp;</p>
+<p>可以根据实际情况决定是否使用。</p>
+<p>下面介绍如何将CrossWalk整合到一个普通的PhoneGap应用中。</p>
+<p>&nbsp;</p>
+<p>废话很多了。开始集成。</p>
+<h2 id="一、下载适配-PhoneGap-Cordova-的-CrossWalk-SDK-。"><a href="#一、下载适配-PhoneGap-Cordova-的-CrossWalk-SDK-。" class="headerlink" title="一、下载适配 PhoneGap/Cordova 的 CrossWalk SDK 。"></a>一、下载适配 PhoneGap/Cordova 的 CrossWalk SDK 。</h2><p>下载地址：<a href="https://crosswalk-project.org/documentation/downloads.html" target="_blank" rel="external">地址1</a>  <a href="https://download.01.org/crosswalk/releases/crosswalk/android/" target="_blank" rel="external">地址2</a></p>
+<p>如果手机 CPU 是 Intel 平台请下载 Cordova Android(x86) ，其他请下载 Cordova Android(ARM) 。</p>
+<h2 id="二、将下载的SDK解压到硬盘，并将其中的-framework-文件夹导入-Eclipse-中。"><a href="#二、将下载的SDK解压到硬盘，并将其中的-framework-文件夹导入-Eclipse-中。" class="headerlink" title="二、将下载的SDK解压到硬盘，并将其中的 framework 文件夹导入 Eclipse 中。"></a>二、将下载的SDK解压到硬盘，并将其中的 framework 文件夹导入 Eclipse 中。</h2><p>在 Eclipse 的项目列表中将会出现：</p>
+<blockquote>
+<p>framework</p>
+<p>xwalk_core_library<br>提示：如果有一个styles.xml文件报错，可以将该文件删除，不会有影响。</p>
+</blockquote>
+<h2 id="三、修改项目依赖"><a href="#三、修改项目依赖" class="headerlink" title="三、修改项目依赖"></a>三、修改项目依赖</h2><p>在你的 PhoneGap 项目上点击右键-&gt;属性（property），在弹出的窗口中切换到 Android 标签页，找到下方的 Library 区域。</p>
+<p>配置为如下：</p>
+<blockquote>
+<p>CordovaLib</p>
+<p>xwalk_core_library<br>添加到列表中，点击确定。</p>
+</blockquote>
+<h2 id="四、为-PhoneGap-项目添加下面的权限："><a href="#四、为-PhoneGap-项目添加下面的权限：" class="headerlink" title="四、为 PhoneGap 项目添加下面的权限："></a>四、为 PhoneGap 项目添加下面的权限：</h2><pre class="prettyprint lang-js">&lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /&gt;
+&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;</pre>
+
+<h2 id="五、按下面的顺序依次-build-项目："><a href="#五、按下面的顺序依次-build-项目：" class="headerlink" title="五、按下面的顺序依次 build 项目："></a>五、按下面的顺序依次 build 项目：</h2><blockquote>
+<p>xwalk_core_library</p>
+<p>cordovalib</p>
+<p>your application project<br>提示：如何 build 项目？选中项目，点击右键并选择build pro ject。</p>
+</blockquote>
+<p>整合完成，再次打包 App ，你会发现 CrossWalk 已经整合到 App 中。</p>
+<h2 id="六、完成"><a href="#六、完成" class="headerlink" title="六、完成"></a>六、完成</h2><p>你会发现特别长的文章内容及页面滑动会变的非常流畅。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/eclipse/" rel="tag">#eclipse</a>
+          
+            <a href="/tags/cordova/" rel="tag">#cordova</a>
+          
+            <a href="/tags/CrossWalk/" rel="tag">#CrossWalk</a>
+          
+            <a href="/tags/phonegap/" rel="tag">#phonegap</a>
+          
+            <a href="/tags/xwalk/" rel="tag">#xwalk</a>
+          
+            <a href="/tags/插件/" rel="tag">#插件</a>
+          
+            <a href="/tags/集成/" rel="tag">#集成</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/08/10/phonegap-e5-b0-8f-e7-9f-a5-e8-af-86-e9-97-ae-e9-a2-98-e9-9b-86-e9-94-a6/" rel="next" title="Phonegap 小知识&问题集锦">
+                <i class="fa fa-chevron-left"></i> Phonegap 小知识&问题集锦
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/09/e5-ae-89-e5-8d-93adb-e7-ab-af-e5-8f-a3-e8-a2-ab-e5-8d-a0-e7-94-a8adb-e6-97-a0-e6-b3-95-e4-bd-bf-e7-94-a8-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95/" rel="prev" title="安卓ADB端口被占用/ADB无法使用解决办法">
+                安卓ADB端口被占用/ADB无法使用解决办法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/09/09/phonegap-crosswalk/"
+     data-title="Phonegap 不通过命令行手工集成CrossWalk插件"
+     data-content=""
+     data-url="http://yoursite.com/2015/09/09/phonegap-crosswalk/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/09/09/phonegap-crosswalk/"
+           data-title="Phonegap 不通过命令行手工集成CrossWalk插件" data-url="http://yoursite.com/2015/09/09/phonegap-crosswalk/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、下载适配-PhoneGap-Cordova-的-CrossWalk-SDK-。"><span class="nav-number">1.</span> <span class="nav-text">一、下载适配 PhoneGap/Cordova 的 CrossWalk SDK 。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、将下载的SDK解压到硬盘，并将其中的-framework-文件夹导入-Eclipse-中。"><span class="nav-number">2.</span> <span class="nav-text">二、将下载的SDK解压到硬盘，并将其中的 framework 文件夹导入 Eclipse 中。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、修改项目依赖"><span class="nav-number">3.</span> <span class="nav-text">三、修改项目依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、为-PhoneGap-项目添加下面的权限："><span class="nav-number">4.</span> <span class="nav-text">四、为 PhoneGap 项目添加下面的权限：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、按下面的顺序依次-build-项目："><span class="nav-number">5.</span> <span class="nav-text">五、按下面的顺序依次 build 项目：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、完成"><span class="nav-number">6.</span> <span class="nav-text">六、完成</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

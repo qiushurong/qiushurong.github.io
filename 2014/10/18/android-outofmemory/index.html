@@ -1,0 +1,726 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="OutOfMemory,内存," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="内存泄漏也称作“存储渗漏”，用动态存储分配函数动态开辟的空间，在使用完毕后未释放，结果导致一直占据该内存单元。直到程序结束。（其实说白了就是该内存空间使用完毕之后未回收）即所谓内存泄漏。经常表现为：OutOfMemory等等。&amp;nbsp;
+
+下面列出常见的5种内存泄漏：
+&amp;nbsp;
+1.万恶的staticstatic是Java中的一个关键字，当用它来修饰成员变量时，那么该变量就属于该类，而不是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android中常见的内存泄漏&解决方法">
+<meta property="og:url" content="http://yoursite.com/2014/10/18/android-outofmemory/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="内存泄漏也称作“存储渗漏”，用动态存储分配函数动态开辟的空间，在使用完毕后未释放，结果导致一直占据该内存单元。直到程序结束。（其实说白了就是该内存空间使用完毕之后未回收）即所谓内存泄漏。经常表现为：OutOfMemory等等。&amp;nbsp;
+
+下面列出常见的5种内存泄漏：
+&amp;nbsp;
+1.万恶的staticstatic是Java中的一个关键字，当用它来修饰成员变量时，那么该变量就属于该类，而不是">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.754Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android中常见的内存泄漏&解决方法">
+<meta name="twitter:description" content="内存泄漏也称作“存储渗漏”，用动态存储分配函数动态开辟的空间，在使用完毕后未释放，结果导致一直占据该内存单元。直到程序结束。（其实说白了就是该内存空间使用完毕之后未回收）即所谓内存泄漏。经常表现为：OutOfMemory等等。&amp;nbsp;
+
+下面列出常见的5种内存泄漏：
+&amp;nbsp;
+1.万恶的staticstatic是Java中的一个关键字，当用它来修饰成员变量时，那么该变量就属于该类，而不是">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> Android中常见的内存泄漏&解决方法 | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android中常见的内存泄漏&解决方法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-10-18T12:21:42+08:00" content="2014-10-18">
+              2014-10-18
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 2,224</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 9分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Android开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/10/18/android-outofmemory/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/18/android-outofmemory/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>内存泄漏也称作“存储渗漏”，用<a href="http://baike.baidu.com/view/589359.htm" target="_blank" rel="external">动态存储</a>分配函数动态开辟的空间，在使用完毕后未释放，结果导致一直占据该内存单元。直到程序结束。（其实说白了就是该内存空间使用完毕之后未回收）即所谓内存泄漏。经常表现为：OutOfMemory等等。<br>&nbsp;</p>
+</blockquote>
+<p><span style="color: #008080;">下面列出常见的5种内存泄漏：</span></p>
+<p>&nbsp;</p>
+<h1 id="1-万恶的static"><a href="#1-万恶的static" class="headerlink" title="1.万恶的static"></a>1.万恶的static</h1><p>static是Java中的一个关键字，当用它来修饰成员变量时，那么该变量就属于该类，而不是该类的实例。所以用static修饰的变量，它的生命周期是很长的，如果用它来引用一些资源耗费过多的实例（Context的情况最多），这时就要谨慎对待了。</p>
+<p><pre class="lang:java decode:true">public class ClassName {<br>private static Context mContext; //省略<br>}</pre><br>以上的代码是很危险的，如果将Activity赋值到么mContext的话。那么即使该Activity已经onDestroy，但是由于仍有对象保存它的引用，因此该Activity依然不会被释放.</p>
+<p><strong>如何才能有效的避免这种引用的发生呢？</strong></p>
+<ol>
+<li>第一，应该尽量避免static成员变量引用资源耗费过多的实例，比如Context。</li>
+<li>第二、Context尽量使用Application Context，因为Application的Context的生命周期比较长，引用它不会出现内存泄露的问题。</li>
+<li>第三、使用WeakReference代替强引用。比如可以使用WeakReference&lt;Context&gt; mContextRef;</li>
+</ol>
+<h1 id="2-线程惹的祸"><a href="#2-线程惹的祸" class="headerlink" title="2.线程惹的祸"></a>2.线程惹的祸</h1><p>线程也是造成内存泄露的一个重要的源头。线程产生内存泄露的主要原因在于线程生命周期的不可控。我们来考虑下面一段代码。</p>
+<p><pre class="lang:java decode:true">public class MyActivity extends Activity {<br>    @Override<br>    public void onCreate(Bundle savedInstanceState) {<br>        super.onCreate(savedInstanceState);<br>        setContentView(R.layout.main);<br>        new MyThread().start();<br>    }</pre></p>
+<pre><code>private class MyThread extends Thread {
+    @Override
+    public void run() {
+        super.run();
+
+        //do somthing 
+    }
+}
+</code></pre><p>}<br>这段代码很平常也很简单，是我们经常使用的形式。我们思考一个问题：</p>
+<p>假设MyThread的run函数是一个很费时的操作，当我们开启该线程后，将设备的 横屏变为了竖屏，一般情况下当屏幕转换时会重新创建Activity，按照我们的想法，老的Activity应该会被销毁才对，然而事实上并非如此。</p>
+<p>由于我们的线程是Activity的内部类，所以MyThread中保存了Activity的一个引用，当MyThread的run函数没有结束 时，MyThread是不会被销毁的，因此它所引用的老的Activity也不会被销毁，因此就出现了内存泄露的问题。</p>
+<p><strong>这种线程导致的内存泄露问题应该如何解决呢？</strong></p>
+<ul>
+<li>第一、将线程的内部类，改为静态内部类。</li>
+<li>第二、在线程内部采用弱引用保存Context引用。<br>另外，我们都知道Hanlder是线程与Activity通信的桥梁，我们在开发好多应用中会用到线程，有些人处理不当，会导致当程序结束时，线程并没有 被销毁，而是一直在后台运行着，当我们重新启动应用时，又会重新启动一个线程，周而复始，你启动应用次数越多，开启的线程数就越多，你的机器就会变得越慢。<br><pre class="lang:java decode:true ">package com.tutor.thread;</pre></li>
+</ul>
+<p>import android.app.Activity;</p>
+<p>import android.os.Bundle;<br>import android.os.Handler;</p>
+<p>import android.util.Log;</p>
+<p>public class ThreadDemo extends Activity {<br>    private static final String TAG = “ThreadDemo”;<br>    private int count = 0;<br>    private Handler mHandler = new Handler();<br>    private Runnable mRunnable = new Runnable() {<br>            public void run() {<br>                //为了方便 查看，我们用Log打印出来<br>                Log.e(TAG, Thread.currentThread().getName() + “ “ + count);<br>                count++;<br>                setTitle(“” + count);<br>                //每2秒执行一次<br>                mHandler.postDelayed(mRunnable, 2000);<br>            }<br>        };</p>
+<pre><code>@Override
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.main);
+    //通过Handler启动线程 
+    mHandler.post(mRunnable);
+}
+</code></pre><p>}<br><br>&nbsp;</p>
+<p>所以我们在应用退出时，要将线程销毁，我们只要在Activity中的，onDestory()方法处理一下就OK了，如下代码所示:</p>
+<p><pre class="lang:java decode:true ">@Override<br>protected void onDestroy() {<br>mHandler.removeCallbacks(mRunnable);<br>super.onDestroy();<br>}</pre><br>&nbsp;</p>
+<h1 id="3-超级大胖子Bitmap"><a href="#3-超级大胖子Bitmap" class="headerlink" title="3.超级大胖子Bitmap"></a>3.超级大胖子Bitmap</h1><p>可以说出现OutOfMemory问题的绝大多数人，都是因为Bitmap的问题。因为Bitmap占用的内存实在是太多了，它是一个“超级大胖子”，特别是分辨率大的图片，如果要显示多张那问题就更显著了。</p>
+<p><strong>如何解决Bitmap带给我们的内存问题？</strong></p>
+<ul>
+<li><p>第一、及时的销毁。<br>虽然，系统能够确认Bitmap分配的内存最终会被销毁，但是由于它占用的内存过多，所以很可能会超过java堆的限制。因此，在用完Bitmap时，要 及时的recycle掉。recycle并不能确定立即就会将Bitmap释放掉，但是会给虚拟机一个暗示：“该图片可以释放了”。</p>
+</li>
+<li><p>第二、设置一定的采样率。<br>有时候，我们要显示的区域很小，没有必要将整个图片都加载出来，而只需要记载一个缩小过的图片，这时候可以设置一定的采样率，那么就可以大大减小占用的内存。如下面的代码：<br>private ImageView preview;<br>BitmapFactory.Options options = new BitmapFactory.Options();<br>options.inSampleSize = 2;//图片宽高都为原来的二分之一，即图片为原来的四分之一<br>Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri), null, options); preview.setImageBitmap(bitmap);</p>
+</li>
+<li><p>第三、巧妙的运用软引用（SoftRefrence）<br>有些时候，我们使用Bitmap后没有保留对它的引用，因此就无法调用Recycle函数。这时候巧妙的运用软引用，可以使Bitmap在内存快不足时得到有效的释放。</p>
+</li>
+</ul>
+<h1 id="4-行踪诡异的Cursor"><a href="#4-行踪诡异的Cursor" class="headerlink" title="4.行踪诡异的Cursor"></a>4.行踪诡异的Cursor</h1><p>Cursor是Android查询数据后得到的一个管理数据集合的类，正常情况下，如果查询得到的数据量较小时不会有内存问题，而且虚拟机能够保证Cusor最终会被释放掉。<br>然而如果Cursor的数据量特表大，特别是如果里面有Blob信息时，应该保证Cursor占用的内存被及时的释放掉，而不是等待GC来处理。并且Android明显是倾向于编程者手动的将Cursor close掉</p>
+<p>#<br>5.构造Adapter时，没有使用缓存的 convertView</p>
+<p>描述：<br>以构造ListView的BaseAdapter为例，在BaseAdapter中提高了方法：</p>
+<p><pre class="lang:java decode:true">public View getView(int position, View convertView, ViewGroup parent)</pre><br>来向ListView提供每一个item所需要的view对象。初始时ListView会从BaseAdapter中根据当前的屏幕布局实例化一定数量的 view对象，同时ListView会将这些view对象缓存起来。当向上滚动ListView时，原先位于最上面的list item的view对象会被回收，然后被用来构造新出现的最下面的list item。这个构造过程就是由getView()方法完成的，getView()的第二个形参 View convertView就是被缓存起来的list item的view对象(初始化时缓存中没有view对象则convertView是null)。<br>由此可以看出，如果我们不去使用convertView，而是每次都在getView()中重新实例化一个View对象的话，即浪费资源也浪费时间，也会使得内存占用越来越大。ListView回收list item的view对象的过程可以查看:<br>android.widget.AbsListView.java –&gt; void addScrapView(View scrap) 方法。<br>示例代码：</p>
+<p><pre class="lang:java decode:true ">public View getView(int position, View convertView, ViewGroup parent) {<br>    View view = new Xxx(…);<br>    //… …<br>    return view;<br>}</pre><br>修正示例代码：</p>
+<p><pre class="lang:java decode:true ">public View getView(int position, View convertView, ViewGroup parent) {<br>    View view = null;<br>    if (convertView != null) {<br>        view = convertView;<br>        populate(view, getItem(position));<br>        //…<br>    } else {<br>        view = new Xxx(…);<br>        //…<br>    }<br>    return view;<br>}</pre><br>&nbsp;</p>
+<p><strong>小结: </strong><br>static:引用了大对象如context<br>线程：切屏时Activity因为线程引用而没有如期被销毁；handler有关，Activity意外终止但线程还在<br>Bitmap:要及时recycle,降低采样率<br>Cursor:要及时关闭<br>Adapter:没有使用缓存的convertView</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OutOfMemory/" rel="tag">#OutOfMemory</a>
+          
+            <a href="/tags/内存/" rel="tag">#内存</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/10/09/simplehome/" rel="next" title="换个博客主题,换个好心情！">
+                <i class="fa fa-chevron-left"></i> 换个博客主题,换个好心情！
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/10/22/business-trip/" rel="prev" title="小日记-霜降时节南海出差之旅">
+                小日记-霜降时节南海出差之旅 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/10/18/android-outofmemory/"
+     data-title="Android中常见的内存泄漏&解决方法"
+     data-content=""
+     data-url="http://yoursite.com/2014/10/18/android-outofmemory/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/10/18/android-outofmemory/"
+           data-title="Android中常见的内存泄漏&解决方法" data-url="http://yoursite.com/2014/10/18/android-outofmemory/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-万恶的static"><span class="nav-number">1.</span> <span class="nav-text">1.万恶的static</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-线程惹的祸"><span class="nav-number">2.</span> <span class="nav-text">2.线程惹的祸</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-超级大胖子Bitmap"><span class="nav-number">3.</span> <span class="nav-text">3.超级大胖子Bitmap</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-行踪诡异的Cursor"><span class="nav-number">4.</span> <span class="nav-text">4.行踪诡异的Cursor</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

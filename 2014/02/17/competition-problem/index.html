@@ -1,0 +1,959 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="竞赛,蓝桥杯,题目," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp;
+
+不知不觉离决赛都过去一个月了，一直忙于各种事情，都忘记整理一份试题。当作回忆也好。
+
+1\.  
+
+标题：好好学习  
+
+    汤姆跟爷爷来中国旅游。一天，他帮助中国的小朋友贴标语。他负责贴的标语是分别写在四块红纸上的四个大字：“好、好、学、习”。但是汤姆不认识汉字，他就想胡乱地贴成一行。  
+
+    请你替小汤姆算一下，他这样乱贴，恰好贴对的概率是多少？  
+
+    答案是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第四届蓝桥杯决赛Java高职高专组题目以及解法">
+<meta property="og:url" content="http://yoursite.com/2014/02/17/competition-problem/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="&amp;nbsp;
+
+不知不觉离决赛都过去一个月了，一直忙于各种事情，都忘记整理一份试题。当作回忆也好。
+
+1\.  
+
+标题：好好学习  
+
+    汤姆跟爷爷来中国旅游。一天，他帮助中国的小朋友贴标语。他负责贴的标语是分别写在四块红纸上的四个大字：“好、好、学、习”。但是汤姆不认识汉字，他就想胡乱地贴成一行。  
+
+    请你替小汤姆算一下，他这样乱贴，恰好贴对的概率是多少？  
+
+    答案是">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/02/1-300x250.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/02/2-300x92.jpg">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.749Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第四届蓝桥杯决赛Java高职高专组题目以及解法">
+<meta name="twitter:description" content="&amp;nbsp;
+
+不知不觉离决赛都过去一个月了，一直忙于各种事情，都忘记整理一份试题。当作回忆也好。
+
+1\.  
+
+标题：好好学习  
+
+    汤姆跟爷爷来中国旅游。一天，他帮助中国的小朋友贴标语。他负责贴的标语是分别写在四块红纸上的四个大字：“好、好、学、习”。但是汤姆不认识汉字，他就想胡乱地贴成一行。  
+
+    请你替小汤姆算一下，他这样乱贴，恰好贴对的概率是多少？  
+
+    答案是">
+<meta name="twitter:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/02/1-300x250.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> 第四届蓝桥杯决赛Java高职高专组题目以及解法 | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第四届蓝桥杯决赛Java高职高专组题目以及解法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-02-17T21:02:46+08:00" content="2014-02-17">
+              2014-02-17
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 2,243</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 9分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java-SE/" itemprop="url" rel="index">
+                    <span itemprop="name">Java SE</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/02/17/competition-problem/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/02/17/competition-problem/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;</p>
+<p><span style="color: #362e2b; font-family: Arial; font-size: 14px; line-height: 26px;"></span></p>
+<p>不知不觉离决赛都过去一个月了，一直忙于各种事情，都忘记整理一份试题。当作回忆也好。</p>
+<p></p>
+<pre class="brush:java">1\.  
+
+标题：好好学习  
+
+    汤姆跟爷爷来中国旅游。一天，他帮助中国的小朋友贴标语。他负责贴的标语是分别写在四块红纸上的四个大字：“好、好、学、习”。但是汤姆不认识汉字，他就想胡乱地贴成一行。  
+
+    请你替小汤姆算一下，他这样乱贴，恰好贴对的概率是多少？  
+
+    答案是一个分数，请表示为两个整数比值的形式。例如：1/3 或 2/15 等。  
+    如果能够约分，请输出约分后的结果。</pre>
+> 这道题很简单，我当时是直接列出来，送分题。
+<pre class="brush:java">2.
+
+标题：埃及分数
+
+    古埃及曾经创造出灿烂的人类文明，他们的分数表示却很令人不解。古埃及喜欢把一个分数分解为类似： 1/a + 1/b 的格式。
+
+    这里，a 和 b 必须是不同的两个整数，分子必须为 1
+
+    比如，2/15 一共有 4 种不同的分解法（姑且称为埃及分解法）：
+
+1/8 + 1/120
+1/9 + 1/45
+1/10 + 1/30
+1/12 + 1/20
+
+    那么， 2/45 一共有多少个不同的埃及分解呢（满足加法交换律的算同种分解）？ 请直接提交该整数（千万不要提交详细的分解式！）。
+
+    请严格按照要求，通过浏览器提交答案。
+    注意：只提交分解的种类数，不要写其它附加内容，比如：说明性的文字
+</pre>
+
+<blockquote>
+<p>用FOR循环嵌套即可，但是要注意浮点数在计算机系统的表示方式，不能用=号来判定，应该用NUM1 - NUM2 &lt; 0.000000001 || NUM1 - NUM2 &gt; -0.00000000001来判断 没什么难度</p>
+</blockquote>
+<pre class="brush:java">3.
+
+标题：金蝉素数
+
+    考古发现某古墓石碑上刻着一个数字：13597，后研究发现：
+
+    这是一个素数！
+
+    并且，去掉首尾数字仍是素数！
+
+    并且，最中间的数字也是素数！
+
+    这样特征的数字还有哪些呢？通过以下程序的帮助可以轻松解决。请仔细阅读代码，并填写划线部分缺失的代码。
+
+public class A
+{
+    static boolean isPrime(int n)
+    {
+        if(n&lt;=1) return false;
+        for(int i=2; i*i&lt;=n; i++){
+            if(n%i==0) return false;
+        }
+        return true;
+    }
+
+    static void f(int[] x, int k)
+    {
+        if(_____________________________){  // 填空位置
+            if(isPrime(x[0]*10000 + x[1]*1000 + x[2]*100 + x[3]*10 + x[4]) &amp;&amp;
+                isPrime(x[1]*100 + x[2]*10 + x[3]) &amp;&amp;
+                isPrime(x[2]))
+                System.out.println(""+x[0]+x[1]+x[2]+x[3]+x[4]);
+            return;
+        }
+
+        for(int i=k; i
+
+</pre>
+
+<blockquote>
+<p>看看有那个变量没用到，然后带入数值推测即可。</p>
+</blockquote>
+<pre class="brush:java">
+4.
+
+标题：横向打印二叉树
+
+    二叉树可以用于排序。其原理很简单：对于一个排序二叉树添加新节点时，先与根节点比较，若小则交给左子树继续处理，否则交给右子树。
+
+    当遇到空子树时，则把该节点放入那个位置。 
+
+    比如，10 8 5 7 12 4 的输入顺序，应该建成二叉树如图1所示。 
+
+    本题目要求：根据已知的数字，建立排序二叉树，并在标准输出中横向打印该二叉树。 
+
+    输入数据为一行空格分开的N个整数。 N&lt;100，每个数字不超过10000。
+    输入数据中没有重复的数字。 
+
+    输出该排序二叉树的横向表示。 对应上例中的数据，应输出：
+
+   |-12
+10-|
+   |-8-|
+       |   |-7
+       |-5-|
+           |-4
+
+    为了便于评卷程序比对空格的数目，请把空格用句点代替：
+...|-12
+10-|
+...|-8-|
+.......|...|-7
+.......|-5-|
+...........|-4
+
+例如：
+用户输入：
+10 5 20
+则程序输出：
+...|-20
+10-|
+...|-5
+
+再例如：
+用户输入：
+5 10 20 8 4 7
+则程序输出：
+.......|-20
+..|-10-|
+..|....|-8-|
+..|........|-7
+5-|
+..|-4
+
+资源约定：
+峰值内存消耗（含虚拟机） &lt; 64M
+CPU消耗  &lt; 1000ms
+
+请严格按要求输出，不要画蛇添足地打印类似：“请您输入...” 的多余内容。
+
+所有代码放在同一个源文件中，调试通过后，拷贝提交该源码。
+注意：不要使用package语句。不要使用jdk1.6及以上版本的特性。
+注意：主类的名字必须是：Main，否则按无效代码处理。</pre>
+
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/02/1.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/02/1-300x250.jpg" alt="" title="1"></a></p>
+<blockquote>
+<p>首先写一个二叉树类，然后把输入的数据添加到类中，然后按顺序输出出来。主要是要输出目录结构，用递归，（有左节点，有右节点，无节点，两个节点都有）各种情况都要考虑。这道题浪费了我不少时间，最终还是拿下了~！！</p>
+</blockquote>
+<pre class="brush:java">
+5.
+
+标题：危险系数
+
+    抗日战争时期，冀中平原的地道战曾发挥重要作用。
+
+    地道的多个站点间有通道连接，形成了庞大的网络。但也有隐患，当敌人发现了某个站点后，其它站点间可能因此会失去联系。
+
+    我们来定义一个危险系数DF(x,y)：
+    对于两个站点x和y (x != y), 如果能找到一个站点z，当z被敌人破坏后，x和y不连通，那么我们称z为关于x,y的关键点。相应的，对于任意一对站点x和y，危险系数DF(x,y)就表示为这两点之间的关键点个数。
+
+    本题的任务是：已知网络结构，求两站点之间的危险系数。
+
+    输入数据第一行包含2个整数n(2 &lt;= n &lt;= 1000), m(0 &lt;= m &lt;= 2000),分别代表站点数，通道数；
+    接下来m行，每行两个整数 u,v (1 &lt;= u, v &lt;= n; u != v)代表一条通道；
+    最后1行，两个数u,v，代表询问两点之间的危险系数DF(u, v)。
+
+    输出：一个整数，如果询问的两点不连通则输出-1.
+
+例如：
+用户输入：
+7 6
+1 3
+2 3
+3 4
+3 5
+4 5
+5 6
+1 6
+则程序应该输出：
+2
+
+资源约定：
+峰值内存消耗（含虚拟机） &lt; 64M
+CPU消耗  &lt; 2000ms</pre>
+> 当时数据结构没学好 ，，，这道题没思路，直接跳过了~！！！郁闷。
+
+<pre class="brush:java">
+
+6.
+
+标题：公式求值
+
+输入n, m, k，输出图1所示的公式的值。其中C_n^m是组合数，表示在n个人的集合中选出m个人组成一个集合的方案数。组合数的计算公式如图2所示。
+
+输入的第一行包含一个整数n；第二行包含一个整数m，第三行包含一个整数k。
+
+计算图1所示的公式的值，由于答案非常大，请输出这个值除以999101的余数。
+
+【样例输入1】
+
+3
+
+1
+
+3
+
+【样例输出1】
+
+162
+
+【样例输入2】
+
+20
+
+10
+
+10
+
+【样例输出2】
+
+359316
+
+【数据规模与约定】
+
+对于10%的数据，n≤10，k≤3；
+
+对于20%的数据，n≤20，k≤3；
+
+对于30%的数据，n≤1000，k≤5；
+
+对于40%的数据，n≤10^7，k≤10；
+
+对于60%的数据，n≤10^15，k ≤100；
+
+对于70%的数据，n≤10^100，k≤200；
+
+对于80%的数据，n≤10^500，k ≤500；
+
+对于100%的数据，n在十进制下不超过1000位，即1≤n&lt;10^1000，1≤k≤1000，同时0≤m≤n，k≤n。
+
+【提示】
+
+999101是一个质数；
+
+当n位数比较多时，绝大多数情况下答案都是0，但评测的时候会选取一些答案不是0的数据；
+
+资源约定：
+
+峰值内存消耗（含虚拟机） &lt; 128M
+
+CPU消耗 &lt; 2000ms
+
+请严格按要求输出，不要画蛇添足地打印类似：“请您输入...” 的多余内容。
+
+所有代码放在同一个源文件中，调试通过后，拷贝提交该源码。
+
+注意：不要使用package语句。不要使用jdk1.6及以上版本的特性。
+
+注意：主类的名字必须是：Main，否则按无效代码处理。
+</pre>
+
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/02/2.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/02/2-300x92.jpg" alt="" title="2"></a></p>
+<blockquote>
+<p>这道题主要是考算法优化。思路逻辑基本没什么难度。我最终的优化大概能拿67成的分，再高的就拿不了。idea有限。 对于重复算的数值只计算一次，对于重复算的公式就尽量优化计算速度，还有计算的数值按大小分类计算，提高效率。</p>
+</blockquote>
+<p>6道题全做了，但是其中第5道题是不会的，写了个HelloWorld上去，也表现了我对HelloWorld的热衷吧！</p>
+<p>比赛结果 ： 一等奖，至少没白去北京一趟，也算给导师一个交代吧！</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/竞赛/" rel="tag">#竞赛</a>
+          
+            <a href="/tags/蓝桥杯/" rel="tag">#蓝桥杯</a>
+          
+            <a href="/tags/题目/" rel="tag">#题目</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/02/17/movie/" rel="next" title="程序员必看的十大电影">
+                <i class="fa fa-chevron-left"></i> 程序员必看的十大电影
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/02/17/regular-expressions/" rel="prev" title="常用万能正则表达式整理">
+                常用万能正则表达式整理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/02/17/competition-problem/"
+     data-title="第四届蓝桥杯决赛Java高职高专组题目以及解法"
+     data-content=""
+     data-url="http://yoursite.com/2014/02/17/competition-problem/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/02/17/competition-problem/"
+           data-title="第四届蓝桥杯决赛Java高职高专组题目以及解法" data-url="http://yoursite.com/2014/02/17/competition-problem/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

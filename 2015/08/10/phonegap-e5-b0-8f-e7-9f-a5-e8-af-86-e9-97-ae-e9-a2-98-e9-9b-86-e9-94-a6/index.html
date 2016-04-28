@@ -1,0 +1,673 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="问题,集锦," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="收集一下phonegap路上的坑和坎(ng-if)等组件或指令本身会产生子scope，会继承重写页面scope。解决1：需要在controller中定义一个对象，使用对象的属性，才能进行跨scope数据传递。解决2：通过$parent访问上层scope
+
+phonegap 打包APP后无网络 404 错误1，检查是否有cordova-plugin-whitelist插件ionic plugin l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Phonegap 小知识&问题集锦">
+<meta property="og:url" content="http://yoursite.com/2015/08/10/phonegap-e5-b0-8f-e7-9f-a5-e8-af-86-e9-97-ae-e9-a2-98-e9-9b-86-e9-94-a6/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="收集一下phonegap路上的坑和坎(ng-if)等组件或指令本身会产生子scope，会继承重写页面scope。解决1：需要在controller中定义一个对象，使用对象的属性，才能进行跨scope数据传递。解决2：通过$parent访问上层scope
+
+phonegap 打包APP后无网络 404 错误1，检查是否有cordova-plugin-whitelist插件ionic plugin l">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.756Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Phonegap 小知识&问题集锦">
+<meta name="twitter:description" content="收集一下phonegap路上的坑和坎(ng-if)等组件或指令本身会产生子scope，会继承重写页面scope。解决1：需要在controller中定义一个对象，使用对象的属性，才能进行跨scope数据传递。解决2：通过$parent访问上层scope
+
+phonegap 打包APP后无网络 404 错误1，检查是否有cordova-plugin-whitelist插件ionic plugin l">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> Phonegap 小知识&问题集锦 | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Phonegap 小知识&问题集锦
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-08-10T13:34:27+08:00" content="2015-08-10">
+              2015-08-10
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 448</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 2分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/PhoneGap-Angular-Ionic/" itemprop="url" rel="index">
+                    <span itemprop="name">PhoneGap+Angular+Ionic</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/10/phonegap-e5-b0-8f-e7-9f-a5-e8-af-86-e9-97-ae-e9-a2-98-e9-9b-86-e9-94-a6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/10/phonegap-e5-b0-8f-e7-9f-a5-e8-af-86-e9-97-ae-e9-a2-98-e9-9b-86-e9-94-a6/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="收集一下phonegap路上的坑和坎"><a href="#收集一下phonegap路上的坑和坎" class="headerlink" title="收集一下phonegap路上的坑和坎"></a>收集一下phonegap路上的坑和坎</h1><div class="sc_notice"><br><ion-item>(ng-if)等组件或指令本身会产生子scope，会继承重写页面scope。<br><br>解决1：需要在controller中定义一个对象，使用对象的属性，才能进行跨scope数据传递。<br><br>解决2：通过$parent访问上层scope<br></ion-item></div>
+
+<div class="sc_notice"><br>phonegap 打包APP后无网络 404 错误<br><br>1，检查是否有cordova-plugin-whitelist插件<br>ionic plugin list<br>2，如果有，检查config.xml是否有access配置，一般配置为<em>就行了<br>&lt;access origin=”</em>“/&gt;<br>3，如果没有cordova-plugin-whitelist插件，安装它<br>cordova plugin add cordova-plugin-whitelist<br>4，然后配置access网络白名单<br></div>
+
+<div class="sc_notice"><br>分离Controller需要注意<br><br>var myApp = angular.module(‘myApp’,[]);<br>会创建一个Module，如果分controllers.js分件，只有第一个加载的js文件中需要创建，后面的不需要再次创建，否则会丢失上一个加载的module。<br>var myApp = angular.module(‘myApp’);<br>不会创建新的module对象<br></div>
+
+<div class="sc_notice"><br>问：angular-ui-router，$state.go如何带参数?<br><br>1.在App.js的状态机定义中，添加params项，写上要传递的参数名和默认值<br>//用户中心 我的订单<br><code>.state(&#39;tab.user-myOrders&#39;, {
+url: &#39;/user/myOrders&#39;,
+views: {
+&#39;tab-usercenter&#39;: {
+templateUrl: &#39;templates/user/myOrders.html&#39;,
+controller: &#39;UserOrderCtrl&#39;,
+},
+},
+params: {param:0}
+})</code><br>2.在$state.go函数中添加要传递的参数值<br>$state.go(“tab.user-myOrders”,{param:288});<br>3.在新页面的controller中，定义$stateParams，获取参数<br>$stateParams.param;<br><br></div>
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/问题/" rel="tag">#问题</a>
+          
+            <a href="/tags/集锦/" rel="tag">#集锦</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/06/29/wpdls/" rel="next" title="新主题WP-dls正式上线，数据和样式逐渐完善中。">
+                <i class="fa fa-chevron-left"></i> 新主题WP-dls正式上线，数据和样式逐渐完善中。
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/09/phonegap-crosswalk/" rel="prev" title="Phonegap 不通过命令行手工集成CrossWalk插件">
+                Phonegap 不通过命令行手工集成CrossWalk插件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/08/10/phonegap-e5-b0-8f-e7-9f-a5-e8-af-86-e9-97-ae-e9-a2-98-e9-9b-86-e9-94-a6/"
+     data-title="Phonegap 小知识&问题集锦"
+     data-content=""
+     data-url="http://yoursite.com/2015/08/10/phonegap-e5-b0-8f-e7-9f-a5-e8-af-86-e9-97-ae-e9-a2-98-e9-9b-86-e9-94-a6/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/08/10/phonegap-e5-b0-8f-e7-9f-a5-e8-af-86-e9-97-ae-e9-a2-98-e9-9b-86-e9-94-a6/"
+           data-title="Phonegap 小知识&问题集锦" data-url="http://yoursite.com/2015/08/10/phonegap-e5-b0-8f-e7-9f-a5-e8-af-86-e9-97-ae-e9-a2-98-e9-9b-86-e9-94-a6/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#收集一下phonegap路上的坑和坎"><span class="nav-number">1.</span> <span class="nav-text">收集一下phonegap路上的坑和坎</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,741 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="AngularJS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="世界你好！HelloWorld！&amp;nbsp;
+一、新手入门
+集成开发工具 ：WebStorm 8.0.3  下载地址
+Angular JS ：1.4.1   中文官网
+
+1、AngularJs的安装具体安装就不多叙述了，建议先到Node.js下载并安装到本地，添加到path中，使在CMD中可以正常使用npm命令，通过npm install angular安装。或者直接到上文给出的官网下载js包亦可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AngularJS [1] 世界你好！HelloWorld！">
+<meta property="og:url" content="http://yoursite.com/2015/06/25/angularjs-helloworld/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="世界你好！HelloWorld！&amp;nbsp;
+一、新手入门
+集成开发工具 ：WebStorm 8.0.3  下载地址
+Angular JS ：1.4.1   中文官网
+
+1、AngularJs的安装具体安装就不多叙述了，建议先到Node.js下载并安装到本地，添加到path中，使在CMD中可以正常使用npm命令，通过npm install angular安装。或者直接到上文给出的官网下载js包亦可">
+<meta property="og:updated_time" content="2016-04-28T14:10:15.817Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AngularJS [1] 世界你好！HelloWorld！">
+<meta name="twitter:description" content="世界你好！HelloWorld！&amp;nbsp;
+一、新手入门
+集成开发工具 ：WebStorm 8.0.3  下载地址
+Angular JS ：1.4.1   中文官网
+
+1、AngularJs的安装具体安装就不多叙述了，建议先到Node.js下载并安装到本地，添加到path中，使在CMD中可以正常使用npm命令，通过npm install angular安装。或者直接到上文给出的官网下载js包亦可">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> AngularJS [1] 世界你好！HelloWorld！ | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                AngularJS [1] 世界你好！HelloWorld！
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-06-25T23:58:52+08:00" content="2015-06-25">
+              2015-06-25
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 1,522</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 6分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/PhoneGap-Angular-Ionic/" itemprop="url" rel="index">
+                    <span itemprop="name">PhoneGap+Angular+Ionic</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/06/25/angularjs-helloworld/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/25/angularjs-helloworld/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="世界你好！HelloWorld！"><a href="#世界你好！HelloWorld！" class="headerlink" title="世界你好！HelloWorld！"></a>世界你好！HelloWorld！</h1><p>&nbsp;</p>
+<h2 id="一、新手入门"><a href="#一、新手入门" class="headerlink" title="一、新手入门"></a>一、新手入门</h2><blockquote>
+<p>集成开发工具 ：WebStorm 8.0.3  <a href="http://www.jb51.net/softs/171905.html" target="_blank" rel="external">下载地址</a></p>
+<p>Angular JS ：1.4.1   <a href="http://www.apjs.net/" target="_blank" rel="external">中文官网</a></p>
+</blockquote>
+<h3 id="1、AngularJs的安装"><a href="#1、AngularJs的安装" class="headerlink" title="1、AngularJs的安装"></a>1、AngularJs的安装</h3><p>具体安装就不多叙述了，建议先到Node.js下载并安装到本地，添加到path中，使在CMD中可以正常使用npm命令，通过npm install angular安装。或者直接到上文给出的官网下载js包亦可。</p>
+<h3 id="2、HelloWorld"><a href="#2、HelloWorld" class="headerlink" title="2、HelloWorld"></a>2、HelloWorld</h3><p>开始学习AngularJS的一个好方法是创建经典应用程序“Hello World!”：</p>
+<ol>
+<li>使用您喜爱的文本编辑器，创建一个HTML文件，例如：helloworld.html。</li>
+<li>将下面的源代码复制到您的HTML文件。</li>
+<li>在web浏览器中打开这个HTML文件。<pre class="lang:java decode:true" title="AngluarJS">&lt;!doctype html&gt;
+&lt;html ng-app&gt;
+&lt;head&gt;
+&lt;script src="../angular.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+Hello {  { 'World' } }!
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+</li>
+</ol>
+<h3 id="3、详解"><a href="#3、详解" class="headerlink" title="3、详解"></a>3、详解</h3><p>现在让我们仔细看看代码，看看到底怎么回事。</p>
+<p>当加载该页时，标记<span style="color: #ff0000;"><code>ng-app</code></span>告诉AngularJS处理整个HTML页并引导应用：</p>
+<pre class="lang:java decode:true" title="AngluarJS">&lt;html ng-app&gt;</pre>
+这行载入AngularJS脚本：
+<pre class="lang:java decode:true" title="AngularJS">&lt;script src="../angular-1.0.1.min.js"&gt;&lt;/script&gt;</pre>
+最后，标签中的正文是应用的模板，在UI中显示我们的问候语：
+<pre class="lang:java decode:true" title="AngularJS">Hello  { {'World' } }!</pre>
+注意，使用双大括号标记的内容是问候语中绑定的表达式，这个表达式是一个简单的字符串‘World’。
+
+&nbsp;
+
+下面，让我们看一个更有趣的例子：使用AngularJS对我们的问候语文本绑定一个动态表达式。
+
+## 
+
+## 二、Hello AngularJS World!
+
+### 1、双向数据绑定
+
+本示例演示AngularJS的双向数据绑定（bi-directional data binding）：
+
+&nbsp;
+<pre class="lang:java decode:true">&lt;!doctype html&gt;
+&lt;html ng-app&gt;
+&lt;head&gt;
+    &lt;script src="../angular.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+Your name: &lt;input type="text" ng-model="yourname" placeholder="World"&gt;
+&lt;hr&gt;
+Hello  { { yourname || 'World' } } !
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+<h3 id="2、详解"><a href="#2、详解" class="headerlink" title="2、详解"></a>2、详解</h3><p>该示例有一下几点重要的注意事项：</p>
+<ul>
+<li>文本输入指令<code>&amp;lt;input ng-model=&quot;yourname&quot; /&amp;gt;</code>绑定到一个叫<code>yourname</code>的模型变量。</li>
+<li>双大括号标记将<code>yourname</code>模型变量添加到问候语文本。</li>
+<li>你不需要为该应用另外注册一个事件侦听器或添加事件处理程序！<br>现在试着在输入框中键入您的名称，您键入的名称将立即更新显示在问候语中。 这就是AngularJS双向数据绑定的概念。 输入框的任何更改会立即反映到模型变量（一个方向），模型变量的任何更改都会立即反映到问候语文本中（另一方向）。</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2 id="三、AngularJS应用的解析"><a href="#三、AngularJS应用的解析" class="headerlink" title="三、AngularJS应用的解析"></a>三、AngularJS应用的解析</h2><p>本节描述AngularJS应用程序的三个组成部分，并解释它们如何映射到模型-视图-控制器设计模式：</p>
+<h3 id="1、模板（Templates）"><a href="#1、模板（Templates）" class="headerlink" title="1、模板（Templates）"></a>1、模板（Templates）</h3><p>模板是您用HTML和CSS编写的文件，展现应用的视图。 您可给HTML添加新的元素、属性标记，作为AngularJS编译器的指令。 AngularJS编译器是完全可扩展的，这意味着通过AngularJS您可以在HTML中构建您自己的HTML标记！</p>
+<h3 id="2、应用程序逻辑（Logic）和行为（Behavior）"><a href="#2、应用程序逻辑（Logic）和行为（Behavior）" class="headerlink" title="2、应用程序逻辑（Logic）和行为（Behavior）"></a>2、应用程序逻辑（Logic）和行为（Behavior）</h3><p>应用程序逻辑和行为是您用JavaScript定义的控制器。AngularJS与标准AJAX应用程序不同，您不需要另外编写侦听器或DOM控制器，因为它们已经内置到AngularJS中了。这些功能使您的应用程序逻辑很容易编写、测试、维护和理解。</p>
+<h3 id="3、模型数据（Data）"><a href="#3、模型数据（Data）" class="headerlink" title="3、模型数据（Data）"></a>3、模型数据（Data）</h3><p>模型是从AngularJS作用域对象的属性引申的。模型中的数据可能是Javascript对象、数组或基本类型，这都不重要，重要的是，他们都属于AngularJS作用域对象。</p>
+<p>AngularJS通过作用域来保持数据模型与视图界面UI的双向同步。一旦模型状态发生改变，AngularJS会立即刷新反映在视图界面中，反之亦然。</p>
+<h3 id="4、PS"><a href="#4、PS" class="headerlink" title="4、PS"></a>4、PS</h3><p>此外，AngularJS还提供了一些非常有用的服务特性：</p>
+<ol>
+<li>底层服务包括依赖注入，XHR、缓存、URL路由和浏览器抽象服务。</li>
+<li>您还可以扩展和添加自己特定的应用服务。</li>
+<li>这些服务可以让您非常方便的编写WEB应用。<br>&nbsp;</li>
+</ol>
+<h2 id="四、备注"><a href="#四、备注" class="headerlink" title="四、备注"></a>四、备注</h2><p>文章大体转载自“图灵社区”，所有例子都在小树最新版本下调试运行通过并修正部分代码解释后发布的，特此说明，不定期更新。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AngularJS/" rel="tag">#AngularJS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/05/08/nxph/" rel="next" title="形象说明为什么麦当劳旁边一般会有一个肯德基？">
+                <i class="fa fa-chevron-left"></i> 形象说明为什么麦当劳旁边一般会有一个肯德基？
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/06/29/wpdls/" rel="prev" title="新主题WP-dls正式上线，数据和样式逐渐完善中。">
+                新主题WP-dls正式上线，数据和样式逐渐完善中。 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/06/25/angularjs-helloworld/"
+     data-title="AngularJS [1] 世界你好！HelloWorld！"
+     data-content=""
+     data-url="http://yoursite.com/2015/06/25/angularjs-helloworld/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/06/25/angularjs-helloworld/"
+           data-title="AngularJS [1] 世界你好！HelloWorld！" data-url="http://yoursite.com/2015/06/25/angularjs-helloworld/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#世界你好！HelloWorld！"><span class="nav-number">1.</span> <span class="nav-text">世界你好！HelloWorld！</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、新手入门"><span class="nav-number">1.1.</span> <span class="nav-text">一、新手入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、AngularJs的安装"><span class="nav-number">1.1.1.</span> <span class="nav-text">1、AngularJs的安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、HelloWorld"><span class="nav-number">1.1.2.</span> <span class="nav-text">2、HelloWorld</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、详解"><span class="nav-number">1.1.3.</span> <span class="nav-text">3、详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、详解"><span class="nav-number">1.1.4.</span> <span class="nav-text">2、详解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、AngularJS应用的解析"><span class="nav-number">1.2.</span> <span class="nav-text">三、AngularJS应用的解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、模板（Templates）"><span class="nav-number">1.2.1.</span> <span class="nav-text">1、模板（Templates）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、应用程序逻辑（Logic）和行为（Behavior）"><span class="nav-number">1.2.2.</span> <span class="nav-text">2、应用程序逻辑（Logic）和行为（Behavior）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、模型数据（Data）"><span class="nav-number">1.2.3.</span> <span class="nav-text">3、模型数据（Data）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、PS"><span class="nav-number">1.2.4.</span> <span class="nav-text">4、PS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、备注"><span class="nav-number">1.3.</span> <span class="nav-text">四、备注</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

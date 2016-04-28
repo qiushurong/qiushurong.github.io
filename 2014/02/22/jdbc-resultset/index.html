@@ -1,0 +1,687 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="jdbc,ResultSet," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="一、Statement类可用于执行SQL语句，不同类型的SQL语句，需要使用不同的方法，执行结果存放于ResultSet中具体如下:
+ResultSet  executeQuery(String sql)//用于执行select语句,返回结果集int  executeUpdate(String sql)//用于执行insert、delete和update语句，返回intboolean  execu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="详解JDBC之ResultSet对象的使用">
+<meta property="og:url" content="http://yoursite.com/2014/02/22/jdbc-resultset/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="一、Statement类可用于执行SQL语句，不同类型的SQL语句，需要使用不同的方法，执行结果存放于ResultSet中具体如下:
+ResultSet  executeQuery(String sql)//用于执行select语句,返回结果集int  executeUpdate(String sql)//用于执行insert、delete和update语句，返回intboolean  execu">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.750Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="详解JDBC之ResultSet对象的使用">
+<meta name="twitter:description" content="一、Statement类可用于执行SQL语句，不同类型的SQL语句，需要使用不同的方法，执行结果存放于ResultSet中具体如下:
+ResultSet  executeQuery(String sql)//用于执行select语句,返回结果集int  executeUpdate(String sql)//用于执行insert、delete和update语句，返回intboolean  execu">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> 详解JDBC之ResultSet对象的使用 | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                详解JDBC之ResultSet对象的使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-02-22T21:22:21+08:00" content="2014-02-22">
+              2014-02-22
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 1,146</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 5分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java-SE/" itemprop="url" rel="index">
+                    <span itemprop="name">Java SE</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/02/22/jdbc-resultset/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/02/22/jdbc-resultset/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、Statement类"><a href="#一、Statement类" class="headerlink" title="一、Statement类"></a>一、Statement类</h2><p>可用于执行SQL语句，不同类型的SQL语句，需要使用不同的方法，执行结果存放于<strong>ResultSet</strong>中<br>具体如下:</p>
+<p><pre class="lang:java decode:true " title="Statement类">ResultSet  executeQuery(String sql)<br>//用于执行select语句,返回结果集<br>int  executeUpdate(String sql)<br>//用于执行insert、delete和update语句，返回int<br>boolean  execute(String sql)<br>//用于执行create和drop等语句,返回boolean</pre><br>&nbsp;</p>
+<h2 id="二、ResultSet类"><a href="#二、ResultSet类" class="headerlink" title="二、ResultSet类"></a>二、ResultSet类</h2><h3 id="1-next-方法"><a href="#1-next-方法" class="headerlink" title="1.next()方法"></a><a name="t2"></a>1.next()方法</h3><p>表示select语句的查询结果集。ResultSet对象具有指向其当前数据行的指针，最初，指针被置于第一行记录之前，通过next()方法可以将指针移动到下一行记录。<br>next()方法在ResultSet对象没有一行记录时返回false,因此可以在while循环中使用它来遍历结果集，也可以利用该方法判断结果集是否为空。<br>示例代码如下:</p>
+<p>&nbsp;</p>
+<p><pre class="lang:java decode:true " title="ResultSet类 next()方法">//此处省略连接数据库的代码…<br>Statement stmt =conn.createStatement();<br>ResultSet  rs     =stmr.executeQuery(“select  *  from  Test”);<br>if(rs.next()){<br>  System.out.println(“结果集不为空!”);<br>}<br>else{<br>  System.out.println(“结果集为空!”);<br>}</pre><br>&nbsp;</p>
+<h3 id="2-ResultSet指针"><a href="#2-ResultSet指针" class="headerlink" title="2.ResultSet指针"></a>2.ResultSet指针</h3><p>Java的ResultSet对象，默认是不可更新的，仅有一个向前移动的指针，因此，只能遍历它一次，并且只能按从第一行到最后一行的顺序进行。</p>
+<p>如果需要ResultSet指针具有移动和可更新的特性，可以在使用createStatement()方法获取Statement对象时指定一些参数。</p>
+<p>&nbsp;</p>
+<p>//实例，获取ResultSet中含有的记录数量。</p>
+<p>在已获取ResultSet结果集的情况下，可以使用该对象的last()和getRow()方法取得记录数量。</p>
+<p>&nbsp;</p>
+<p>last()方法用于将指针指向最后一行记录。</p>
+<p>getRow()方法用于返回当前指针所在的位置。</p>
+<p>&nbsp;</p>
+<p>ResultSet默认情况下，只能使用next()方法向前逐行移动指针，不支持last()、first()、<br>以及absolute()等方法，如果要使用last()、absolute()等方法，必须在由Connection生成<br>Statement时指定相应的参数，格式如下:</p>
+<p><pre class="lang:java decode:true ">Statement stmt =conn.ctrateStatement(游标类型，记录更新权限);</pre><br>&nbsp;</p>
+<h3 id="3-createStatement-的参数"><a href="#3-createStatement-的参数" class="headerlink" title="3.createStatement()的参数"></a>3.createStatement()的参数</h3><h3 id=""><a href="#" class="headerlink" title=""></a><a name="t5"></a></h3><p>游标类型参数有以下几种:</p>
+<p><pre class="lang:java decode:true" title="3.createStatement()的参数">ResultSet.TYPE_FORWORD_ONLY<br>//指针只可以向前移动<br>ResultSet.TYPE_SCORLL_INSENSITIVE<br>//指针可滚动，但是不受其他用户<br>//对数据库更改的影响<br>ResultSet.TYPE_SCORLL_SENSITIVE<br>//指针可滚动，当其它用户更改数据<br>//库时这个记录也会改变<br>//记录更新权限有以下几种:</pre></p>
+<p>ResultSet.CONCUR_READ_ONLY//只读<br>ResultSet.CONCUR_UPDATABLE//可更新<br>createStatement()<br>//缺省参数等价于:<br>&nbsp;</p>
+<h3 id="4-获取ResultSet记录数量"><a href="#4-获取ResultSet记录数量" class="headerlink" title="4.获取ResultSet记录数量"></a>4.获取ResultSet记录数量</h3><p>代码如下:<br>//此处省略连接数据库的代码和变量的定义!…</p>
+<p><pre class="lang:java decode:true ">Statement stmt =conn.createStatement(ResultSet.TYPE_SCOLL_INSENSITIVE,<br>    ResultSet.CONCUR_READ_ONLY);  </pre></p>
+<p>ResultSet rs =stmt.executeQuery(“select * from Test”);  </p>
+<p>if(rs.last()){<br>count =rs.getRow();//返回当前指针所在的位置<br>}  </p>
+<p>System.out.println(“记录数量为:”+count);<br>&nbsp;</p>
+<p>注：使用上述方法查询记录数量，在数据量很大时会出现内存溢出异常，因此不推荐使用。<br>要以使用SQL统计函数获取符合查询条件的记录数量，示例代码如下:</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><pre class="lang:java decode:true ">//此处省略连接数据库的代码和变量的定义!…  </pre></p>
+<p>//注:此处假设数据库中第一列数据类型为:自动编号<br>Statement stmt =conn.createStatement();<br>ResultSet rs   =stmt.executeQuery(“select * from Test”);<br>if(rs.next()){<br>count =rs.getInt(1);  </p>
+<p>}<br>System.out.println(“记录数量为:”+count);  </p>
+<p>//或者使用 select count(*) from Test group by id 之类的查询语句<br>&nbsp;</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jdbc/" rel="tag">#jdbc</a>
+          
+            <a href="/tags/ResultSet/" rel="tag">#ResultSet</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/02/21/java5-enumeration/" rel="next" title="Java5枚举类型高级用法之抽象函数">
+                <i class="fa fa-chevron-left"></i> Java5枚举类型高级用法之抽象函数
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/02/23/java-route/" rel="prev" title="Java获取程序或项目路径的常用方法">
+                Java获取程序或项目路径的常用方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/02/22/jdbc-resultset/"
+     data-title="详解JDBC之ResultSet对象的使用"
+     data-content=""
+     data-url="http://yoursite.com/2014/02/22/jdbc-resultset/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/02/22/jdbc-resultset/"
+           data-title="详解JDBC之ResultSet对象的使用" data-url="http://yoursite.com/2014/02/22/jdbc-resultset/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Statement类"><span class="nav-number">1.</span> <span class="nav-text">一、Statement类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、ResultSet类"><span class="nav-number">2.</span> <span class="nav-text">二、ResultSet类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-next-方法"><span class="nav-number">2.1.</span> <span class="nav-text">1.next()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-ResultSet指针"><span class="nav-number">2.2.</span> <span class="nav-text">2.ResultSet指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-createStatement-的参数"><span class="nav-number">2.3.</span> <span class="nav-text">3.createStatement()的参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">2.4.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-获取ResultSet记录数量"><span class="nav-number">2.5.</span> <span class="nav-text">4.获取ResultSet记录数量</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

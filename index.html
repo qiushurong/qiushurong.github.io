@@ -247,8 +247,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/04/28/hello-world/" itemprop="url">
-                  Hello World
+                <a class="post-title-link" href="/2016/03/07/git-ssh/" itemprop="url">
+                  window下配置GIT@OSC/Github等的SSH连接
                 </a>
               
             
@@ -261,12 +261,174 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-28T21:10:04+08:00" content="2016-04-28">
-              2016-04-28
+            <time itemprop="dateCreated" datetime="2016-03-07T11:02:07+08:00" content="2016-03-07">
+              2016-03-07
             </time>
           </span>
 
-<span class="post-count">&nbsp; | &nbsp;字数 376</span>
+<span class="post-count">&nbsp; | &nbsp;字数 1,245</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 6分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/通用开发技术/" itemprop="url" rel="index">
+                    <span itemprop="name">通用开发技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/07/git-ssh/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/07/git-ssh/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>我们放在GIT库的项目,遇到pull或者push等操作的时候,经常需要输密码</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2016/03/git-shh-1.png" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2016/03/git-shh-1-300x34.png" alt="git-shh-1"></a></p>
+<p>这未免太过繁琐,而配置SHH链接可以免除这样的烦恼,可谓不可不配,过程也非常的简单,几个命令即可<br>开源中国和Github的配置方式其实都是一样的,没什么区别,这里以开源中国为例</p>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>首先你必须要有一个可以运行git命令的工具</p>
+<ol>
+<li>android studio自带的Terminal</li>
+<li>windows下的Git Bash</li>
+<li>其他能响应Git命令的命令行<br><a href="http://git-scm.com/download/" target="_blank" rel="external"><span class="file_title">Git For Windows</span>2.7.2 - 29.4MB</a></li>
+</ol>
+<h2 id="检查本机ssh-key"><a href="#检查本机ssh-key" class="headerlink" title="检查本机ssh key"></a>检查本机ssh key</h2><p>先看下你本机的ssh key有没有</p>
+<p><code>$ cd ~/.ssh
+如果没有则提示： No such file or directory
+如果有则会进入~/.ssh路径下</code></p>
+<p>如果存在即可以用rm命令删除掉,我们重新生成一个<br><code>ls #查看当前路径文件
+rm * #删除所有文件</code></p>
+<h2 id="生成本地shh-key"><a href="#生成本地shh-key" class="headerlink" title="生成本地shh key"></a>生成本地shh key</h2><p>切回去根目录（~）<br>`$ cd ~  </p>
+<p>#保证当前路径在”~”下<br>`</p>
+<p>生成rsa-key<br>`$ ssh-keygen -t rsa -C “xxxxxx@yy.com”  </p>
+<p>#建议填写自己真实有效的邮箱地址</p>
+<p>#操作结果：<br>Generating public/private rsa key pair.<br>Enter file in which to save the key (/c/Users/xxxx_000/.ssh/id_rsa):   </p>
+<p>#不填直接回车<br>Enter passphrase (empty for no passphrase):   </p>
+<p>#输入密码（可以为空，建议为空）<br>Enter same passphrase again:   </p>
+<p>#再次确认密码（可以为空，建议为空）<br>Your identification has been saved in /c/Users/xxxx_000/.ssh/id_rsa.   #生成的密钥<br>Your public key has been saved in /c/Users/xxxx_000/.ssh/id_rsa.pub.  #生成的公钥<br>The key fingerprint is:<br>e3:51:33:xx:xx:xx:xx:xxx:61:28:83:e2:81 xxxxxx@yy.com<br>`</p>
+<p>*本机已完成ssh key设置，其存放路径为：c:/Users/xxxx_000/.ssh/下。<br>注释：可生成ssh key自定义名称的密钥，默认id_rsa。<br>$ ssh-keygen -t rsa -C “邮箱地址” -f ~/.ssh/githug_blog_keys #生成ssh key的名称为githug_blog_keys，慎用容易出现其它异常。</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2016/03/git-shh-2.png" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2016/03/git-shh-2-300x172.png" alt="git-shh-2"></a></p>
+<h2 id="到网站上添加这个key"><a href="#到网站上添加这个key" class="headerlink" title="到网站上添加这个key"></a>到网站上添加这个key</h2><p>打开刚刚生成的id_rsa.pub,复制所有内容,到git.oschina.net,个人设置,SSH公钥中,粘贴进去<br><code>$ cd .ssh #切换到.ssh目录下
+start . #用文件管理器打开当前目录</code></p>
+<h2 id="配置账户"><a href="#配置账户" class="headerlink" title="配置账户"></a>配置账户</h2><p><code>$ git config --global user.name “your_username”  #设置用户名
+$ git config --global user.email “your_Email”  #设置邮箱地址</code></p>
+<h2 id="测试ssh-keys"><a href="#测试ssh-keys" class="headerlink" title="测试ssh keys"></a>测试ssh keys</h2><p>`#开源中国<br>$ ssh -T git@git.oschina.net</p>
+<p>#github<br>$ ssh -T git@github.com</p>
+<p>#操作结果：<br>The authenticity of host ‘xxxxxxxx (xxxxx)’ can’t be established.<br>RSA key fingerprint is 16:27:xx:xx:xx:xx:xx:4d:eb:df:a6:48.<br>Are you sure you want to continue connecting (yes/no)? yes </p>
+<p>#确认你是否继续联系，输入yes，回车<br>Warning: Permanently added ‘xxxxxx’ (RSA) to the list of known hosts.<br>Enter passphrase for key ‘/c/Users/xxxx/.ssh/id_rsa’:  </p>
+<p>#生成ssh kye是密码为空则无此项，若设置有密码则有此项且，输入生成ssh key时设置的密码即可。<br>Hi xxx! </p>
+<p>#出现词句话，说明设置成功。<br>`</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2016/03/git-shh-3.png" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2016/03/git-shh-3-300x68.png" alt="git-shh-3"></a></p>
+<p>至此，SSH KEYS 配置完成，然后就是使用 SSH URL 来导出项目，这个属于GIT就不多讲了</p>
+<p>但是还要补充一个，就是之前的项目使用的是https，是不会自动使用ssh key的，如何切换到现在的ssh方式呢？</p>
+<h2 id="切换分支URL为ssh方式"><a href="#切换分支URL为ssh方式" class="headerlink" title="切换分支URL为ssh方式"></a>切换分支URL为ssh方式</h2><p>使用 git remote 命令</p>
+<p><code>git remote set-url origin 你的项目ssh地址</code></p>
+<h2 id="Complete-Have-A-Nice-Day"><a href="#Complete-Have-A-Nice-Day" class="headerlink" title="Complete ,Have A Nice Day!"></a>Complete ,Have A Nice Day!</h2>
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/11/scrollview-e5-b5-8c-e5-a5-97viewpager-e5-b5-8c-e5-a5-97listview-e4-b8-89-e8-80-85-e5-85-b1-e5-ad-98-e5-86-b2-e7-aa-81-e8-a7-a3-e5-86-b3-e6-96-b9-e6-a1-88/" itemprop="url">
+                  ScrollView嵌套ViewPager嵌套ListView三者共存&冲突解决方案
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-11T10:29:49+08:00" content="2016-01-11">
+              2016-01-11
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 410</span>
 <span class="post-count">&nbsp; | &nbsp;预计阅读 2分钟</span>
 
           
@@ -278,8 +440,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/网站/" itemprop="url" rel="index">
-                    <span itemprop="name">网站</span>
+                  <a href="/categories/Android开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Android开发</span>
                   </a>
                 </span>
 
@@ -294,8 +456,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/28/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/28/hello-world/" itemprop="commentsCount"></span>
+                <a href="/2016/01/11/scrollview-e5-b5-8c-e5-a5-97viewpager-e5-b5-8c-e5-a5-97listview-e4-b8-89-e8-80-85-e5-85-b1-e5-ad-98-e5-86-b2-e7-aa-81-e8-a7-a3-e5-86-b3-e6-96-b9-e6-a1-88/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/11/scrollview-e5-b5-8c-e5-a5-97viewpager-e5-b5-8c-e5-a5-97listview-e4-b8-89-e8-80-85-e5-85-b1-e5-ad-98-e5-86-b2-e7-aa-81-e8-a7-a3-e5-86-b3-e6-96-b9-e6-a1-88/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,15 +482,53 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+            <p>在实际开发中，经常会需要需要在ScrollView下，嵌套一个ViewPager，整体可以上下滑动。ViewPager中是一些Fragment，可以进行左右滑动切换。Fragment中嵌套ListView，实现数据的列表显示，同理也是随着整个ScrollView上下滑动。效果图如下：</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2016/01/QQ图片20160111095955.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2016/01/QQ图片20160111095955-168x300.jpg" alt="QQ图片20160111095955"></a>  <a href="http://www.qiushurong.cn/wp-content/uploads/2016/01/QQ图片20160111100401.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2016/01/QQ图片20160111100401-168x300.jpg" alt="QQ图片20160111100401"></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>首先要解决的就是scrollview下viewpager大小自适应的问题</p>
+<p>最有效的方法肯定是 自定义一个viewpager并重写它的onMeasure方法</p>
+<p>相关注释如下，如果有不对的请指正</p>
+<p>`<br>@Override<br>    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {</p>
+<pre><code>    //如果 ViewPager 的上层是 ScrollView
+    //按照viewpager的高度，决定父元素scrollview的高度
+    if(viewInScrollView) {
+        int height = 0;
+        for (int i = 0; i &lt; getChildCount(); i++) {
+            View child = getChildAt(i);
+            child.measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+            int h = child.getMeasuredHeight();
+            if (h &gt; height)
+                height = h;
+        }
+
+        heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
+    }
+
+    //如果 ViewPager 的下层有 ListView
+    //遍历所有子View，设置每个子View的大小，并找出高度最大的listview，设置为父元素viewpager的高度
+    if(viewWithListView) {
+        int maxHeight = 0;
+        for (int i = 0; i &lt; getChildCount(); i++) {
+            View child = getChildAt(i);
+            child.measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+            if (child.getMeasuredHeight() &gt; maxHeight) {
+                maxHeight = child.getMeasuredHeight();
+            }
+        }
+
+        if (maxHeight &gt; 0) {
+            setMeasuredDimension(getMeasuredWidth(), maxHeight);
+        }
+    }
+
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+}
+</code></pre><p>`</p>
+<p>代码中用到了两个变量</p>
+<p><code>private boolean viewInScrollView = false;
+    private boolean viewWithListView = false;</code></p>
+<p>默认为false，根据需要去set它们就好了</p>
 
           
         
@@ -378,8 +578,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/04/28/测试TAGS/" itemprop="url">
-                  测试TAGS
+                <a class="post-title-link" href="/2015/11/25/e8-8b-b9-e6-9e-9c-e8-af-81-e4-b9-a6-e3-80-81appid-e3-80-81provisioning-profiles-e9-85-8d-e7-bd-ae-e8-af-b4-e6-98-8e-e5-8f-8a-e5-88-b6-e4-bd-9c-e5-9b-be-e6-96-87-e6-95-99-e7-a8-8b/" itemprop="url">
+                  苹果证书、appID、Provisioning Profiles配置说明及制作图文教程
                 </a>
               
             
@@ -392,13 +592,13 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-28T21:10:04+08:00" content="2016-04-28">
-              2016-04-28
+            <time itemprop="dateCreated" datetime="2015-11-25T14:17:15+08:00" content="2015-11-25">
+              2015-11-25
             </time>
           </span>
 
-<span class="post-count">&nbsp; | &nbsp;字数 0</span>
-<span class="post-count">&nbsp; | &nbsp;预计阅读 0分钟</span>
+<span class="post-count">&nbsp; | &nbsp;字数 1,960</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 8分钟</span>
 
           
             <span class="post-category" >
@@ -409,8 +609,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/测试/" itemprop="url" rel="index">
-                    <span itemprop="name">测试</span>
+                  <a href="/categories/PhoneGap-Angular-Ionic/" itemprop="url" rel="index">
+                    <span itemprop="name">PhoneGap+Angular+Ionic</span>
                   </a>
                 </span>
 
@@ -425,8 +625,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/28/测试TAGS/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/28/测试TAGS/" itemprop="commentsCount"></span>
+                <a href="/2015/11/25/e8-8b-b9-e6-9e-9c-e8-af-81-e4-b9-a6-e3-80-81appid-e3-80-81provisioning-profiles-e9-85-8d-e7-bd-ae-e8-af-b4-e6-98-8e-e5-8f-8a-e5-88-b6-e4-bd-9c-e5-9b-be-e6-96-87-e6-95-99-e7-a8-8b/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/25/e8-8b-b9-e6-9e-9c-e8-af-81-e4-b9-a6-e3-80-81appid-e3-80-81provisioning-profiles-e9-85-8d-e7-bd-ae-e8-af-b4-e6-98-8e-e5-8f-8a-e5-88-b6-e4-bd-9c-e5-9b-be-e6-96-87-e6-95-99-e7-a8-8b/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -451,7 +651,48 @@
       
         
           
-            
+            <p><strong>holydancer原创，如需转载，请在显要位置注明：</strong></p>
+<p><strong>转自holydancer的CSDN专栏，原文地址：<a href="http://blog.csdn.net/holydancer/article/details/9219333" target="_blank" rel="external">http://blog.csdn.net/holydancer/article/details/9219333</a></strong></p>
+<p>&nbsp;</p>
+<p>概述：</p>
+<p>苹果的证书繁锁复杂，制作管理相当麻烦，今天决定重置一个游戏项目中的所有证书，做了这么多次还是感觉很纠结，索性直接记录下来，日后你我他查阅都方便；</p>
+<p>首先得描述一下各个证书的定位，作用，这样在制作的时候心中有谱，对整个流程的把握也会准确一些；</p>
+<p>1、开发者证书（分为开发和发布两种，类型为ios Development,ios Distribution），这个是最基础的，不论是真机调试，还是上传到appstore都是需要的，是一个基证书，用来证明自己开发者身份的；</p>
+<p>2、appID,这是每一个应用的独立标识，在设置项中可以配置该应用的权限，比如是否用到了PassBook,GameCenter,以及更常见的push服务，如果选中了push服务，那么就可以创建生成下面第3条所提到的推送证书，所以，在所有和推送相关的配置中，首先要做的就是先开通支持推送服务的appID;</p>
+<p>3、推送证书（分为开发和发布两种，类型分别为APNs Development ios,APNs Distribution ios）,该证书在appID配置中创建生成，和开发者证书一样，安装到开发电脑上；</p>
+<p>4、Provisioning Profiles,这个东西是很有苹果特色的一个东西，我一般称之为PP文件，该文件将appID,开发者证书，硬件Device绑定到一块儿，在开发者中心配置好后可以添加到Xcode上，也可以直接在Xcode上连接开发者中心生成，真机调试时需要在PP文件中添加真机的udid；是真机调试和必架必备之珍品；</p>
+<p>平常我们的制作流程一般都是按以上序列进行，先利用开发者帐号登陆开发者中心，创建开发者证书，appID,在appID中开通推送服务，在开通推送服务的选项下面创建推送证书（服务器端的推送证书见下文），之后在PP文件中绑定所有的证书id,添加调试真机等；</p>
+<p>具体操作流程如下：</p>
+<p>1、开发者证书的制作，首先登陆到开发者中心，找到证书配置的版块，<a href="https://developer.apple.com/account/ios/certificate/certificateList.action" target="_blank" rel="external">猛戳进入</a>，点进证书，会显示如下界面，点击右上角的加号<img src="http://img.blog.csdn.net/20130701203155046?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaG9seWRhbmNlcg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>会出现以下界面，该操作重复两次，分别创建开发测试证书和发布证书，开发测试证书用于真机调试，发布证书用于提交到appStore,我们<img src="http://img.blog.csdn.net/20130701203638765?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaG9seWRhbmNlcg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>以开发测试证书为例，选择第一个红框中的内容；<br>然后下一步，会提示创建CSR文件，也就是证书签名请求文件，会有很详细的操作说明，如果英文不太好，可以参考下图；在程序面板中搜索打开钥匙串访问</p>
+<p><img src="http://img.blog.csdn.net/20130701203947078?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaG9seWRhbmNlcg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://img.blog.csdn.net/20130701204012078?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaG9seWRhbmNlcg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>之后将该CSR文件保存到一处；</p>
+<p>备注：CSR文件尽量每个证书都制作一次，将常用名称区分开来，因为该常用名称是证书中的密钥的名字；</p>
+<p><img src="http://img.blog.csdn.net/20130701204202421?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaG9seWRhbmNlcg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>之后在开发者中心将该CSR文件提交；</p>
+<p>提交上去后就会生成一个cer证书，如图所示，有效期为一年；</p>
+<p><img src="http://img.blog.csdn.net/20130701204343750?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaG9seWRhbmNlcg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>利用同样的方法配置一下Distribution发布证书，下载保存，双击安装；在钥题串登陆证书中可以查看，其中专用密钥的名字即为CSR请求文件中的常用名称；</p>
+<p>2、以上开发者证书的配置完成了，下面我们来配置appID和推送证书；在左边栏中选择appID,勾选右边的push可选项，为该appID所对应的应用添加推送功能，下面会看到创建证书的按钮，分别为开发证书和发布证书，下面的流程就和上述1中创建证书一样了，都是先建立证书请求文件，然后提交生成就行了，需要注意的是，虽然在左边栏证书栏中也可以直接创建推送证书，但是还是建议在appID中，勾选了push服务后在此处创建，这样会避免因为忘了开通push服务而导致推送不可用的情况发生；</p>
+<p><img src="http://img.blog.csdn.net/20130701205824796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaG9seWRhbmNlcg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>证书创建完成后，下载保存，双击安装即可；</p>
+<p>3、最后我们来进行PP文件的制作</p>
+<p><img src="http://img.blog.csdn.net/20130701212132640?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaG9seWRhbmNlcg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>该流程进行两次，分别创建开发测试用PP文件和发布PP文件，前者用于真机测试，后者用于提交发布；Ad Hoc格式一般用于企业帐号，此处我们忽略；</p>
+<p>选择后提交</p>
+<p><img src="http://img.blog.csdn.net/20130701212312703?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaG9seWRhbmNlcg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>会自动检测匹配appID,另外下拉项中还可以选择wildCard格式，该格式为自动生成，使用*通配符，适用于批量的，没有推送，PassCard等服务的应用；我们选择我们刚刚创建的appID,之后下一步选择证书；</p>
+<p><img src="http://img.blog.csdn.net/20130701212501078?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaG9seWRhbmNlcg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>继续，这里有一个区别，因为PP文件的开发测试版需要真机调试，所以我们需要绑定真机，这里因为之前我添加过一些设备，所以这里就可以直接全选添加，如果没有的话，需要将真机的udid复制出来在此添加，在发布PP文件中，是没有这一步的；</p>
+<p><img src="http://img.blog.csdn.net/20130701212737265?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaG9seWRhbmNlcg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>之后就是输入一个PP文件的名字了，然后生成，下载保存，双击添加到Xcode库中，这样在真机调试或者发布时，就可以分别有不同的PP文件与其对应；</p>
+<p><img src="http://img.blog.csdn.net/20130701213031265?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaG9seWRhbmNlcg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>添加到Xcode中的效果如下：</p>
+<p><img src="http://img.blog.csdn.net/20130701213056453?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaG9seWRhbmNlcg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>到目前为止，客户端开发和上架所需要的证书文件配置都已经配齐了，天色已晚，明天再配置服务端所用到的推送证书吧，到时候另起一章，将ios诡异的推送流程也捋一捋，本来想写到一篇里的，没想到整了这么长，下班回家开黑去喽！</p>
+
           
         
       
@@ -500,8 +741,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/04/28/categories/" itemprop="url">
-                  categories
+                <a class="post-title-link" href="/2015/11/09/e5-ae-89-e5-8d-93adb-e7-ab-af-e5-8f-a3-e8-a2-ab-e5-8d-a0-e7-94-a8adb-e6-97-a0-e6-b3-95-e4-bd-bf-e7-94-a8-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95/" itemprop="url">
+                  安卓ADB端口被占用/ADB无法使用解决办法
                 </a>
               
             
@@ -514,116 +755,13 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-28T16:22:25+08:00" content="2016-04-28">
-              2016-04-28
+            <time itemprop="dateCreated" datetime="2015-11-09T13:00:19+08:00" content="2015-11-09">
+              2015-11-09
             </time>
           </span>
 
-<span class="post-count">&nbsp; | &nbsp;字数 0</span>
-<span class="post-count">&nbsp; | &nbsp;预计阅读 0分钟</span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/28/categories/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/28/categories/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/27/你好世界/" itemprop="url">
-                  你好世界
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-27T11:15:10+08:00" content="2016-04-27">
-              2016-04-27
-            </time>
-          </span>
-
-<span class="post-count">&nbsp; | &nbsp;字数 25</span>
-<span class="post-count">&nbsp; | &nbsp;预计阅读 0分钟</span>
+<span class="post-count">&nbsp; | &nbsp;字数 142</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 1分钟</span>
 
           
             <span class="post-category" >
@@ -634,8 +772,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/测试/" itemprop="url" rel="index">
-                    <span itemprop="name">测试</span>
+                  <a href="/categories/Android开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Android开发</span>
                   </a>
                 </span>
 
@@ -650,8 +788,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/27/你好世界/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/27/你好世界/" itemprop="commentsCount"></span>
+                <a href="/2015/11/09/e5-ae-89-e5-8d-93adb-e7-ab-af-e5-8f-a3-e8-a2-ab-e5-8d-a0-e7-94-a8adb-e6-97-a0-e6-b3-95-e4-bd-bf-e7-94-a8-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/09/e5-ae-89-e5-8d-93adb-e7-ab-af-e5-8f-a3-e8-a2-ab-e5-8d-a0-e7-94-a8adb-e6-97-a0-e6-b3-95-e4-bd-bf-e7-94-a8-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -676,12 +814,1056 @@
       
         
           
-            <p>随便写几句试一下</p>
+            <p>首先在使用ADB前所有手机辅助类软件</p>
+<p><strong>1、CMD命令窗口输入：adb nodaemon server 。然后就会提示你哪个端口被占用了。</strong></p>
+<p><strong>2、输入netstat -ano | findstr “5037” 。然后会弹出提示告诉你哪些进程占用了该端口，记住非0地址的后面的数字</strong></p>
+<p><strong>3、打开任务管理器，点击“进程“，“查看”-“选择列”，勾选PID</strong></p>
+<p><strong>4、查找第2步中看到的数字PID，然后结束相关进程，即可</strong></p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/09/phonegap-crosswalk/" itemprop="url">
+                  Phonegap 不通过命令行手工集成CrossWalk插件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-09T10:53:21+08:00" content="2015-09-09">
+              2015-09-09
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 861</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 4分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/PhoneGap-Angular-Ionic/" itemprop="url" rel="index">
+                    <span itemprop="name">PhoneGap+Angular+Ionic</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/09/phonegap-crosswalk/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/09/phonegap-crosswalk/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>CrossWalk 是什么？它是一个基于 Chromium 的浏览器组件，用来取代 Android4.x 中的 WebView 。</p>
+<p>它的优势</p>
+<blockquote>
+<p>1 大幅度提升 Web 程序性能</p>
+<p>2 支持最新的 HTML5 特性</p>
+<p>3 解决不同设备的兼容性问题<br>支持最新的HTML5 API，提升页面的滑动流畅度，对页面的加载及渲染非常好。【目前明显体现出来的，针对Android下面的页面加载很好】</p>
+</blockquote>
+<p>&nbsp;</p>
+<p>它的缺点：</p>
+<blockquote>
+<p>1 不支持 iOS ，也不支持 Android4.0 以下的版本</p>
+<p>2 打包后的 apk 文件将增加近20M<br>只支持Android系统（ios其实不需要，ios下面效果很不错的），Crosswalk仅支持Android4.0+，打包后apk大小增加10几M，对phonegap的一些插件支持度不好【目前我没有发现，有人这么说】。</p>
+</blockquote>
+<p>&nbsp;</p>
+<p>可以根据实际情况决定是否使用。</p>
+<p>下面介绍如何将CrossWalk整合到一个普通的PhoneGap应用中。</p>
+<p>&nbsp;</p>
+<p>废话很多了。开始集成。</p>
+<h2 id="一、下载适配-PhoneGap-Cordova-的-CrossWalk-SDK-。"><a href="#一、下载适配-PhoneGap-Cordova-的-CrossWalk-SDK-。" class="headerlink" title="一、下载适配 PhoneGap/Cordova 的 CrossWalk SDK 。"></a>一、下载适配 PhoneGap/Cordova 的 CrossWalk SDK 。</h2><p>下载地址：<a href="https://crosswalk-project.org/documentation/downloads.html" target="_blank" rel="external">地址1</a>  <a href="https://download.01.org/crosswalk/releases/crosswalk/android/" target="_blank" rel="external">地址2</a></p>
+<p>如果手机 CPU 是 Intel 平台请下载 Cordova Android(x86) ，其他请下载 Cordova Android(ARM) 。</p>
+<h2 id="二、将下载的SDK解压到硬盘，并将其中的-framework-文件夹导入-Eclipse-中。"><a href="#二、将下载的SDK解压到硬盘，并将其中的-framework-文件夹导入-Eclipse-中。" class="headerlink" title="二、将下载的SDK解压到硬盘，并将其中的 framework 文件夹导入 Eclipse 中。"></a>二、将下载的SDK解压到硬盘，并将其中的 framework 文件夹导入 Eclipse 中。</h2><p>在 Eclipse 的项目列表中将会出现：</p>
+<blockquote>
+<p>framework</p>
+<p>xwalk_core_library<br>提示：如果有一个styles.xml文件报错，可以将该文件删除，不会有影响。</p>
+</blockquote>
+<h2 id="三、修改项目依赖"><a href="#三、修改项目依赖" class="headerlink" title="三、修改项目依赖"></a>三、修改项目依赖</h2><p>在你的 PhoneGap 项目上点击右键-&gt;属性（property），在弹出的窗口中切换到 Android 标签页，找到下方的 Library 区域。</p>
+<p>配置为如下：</p>
+<blockquote>
+<p>CordovaLib</p>
+<p>xwalk_core_library<br>添加到列表中，点击确定。</p>
+</blockquote>
+<h2 id="四、为-PhoneGap-项目添加下面的权限："><a href="#四、为-PhoneGap-项目添加下面的权限：" class="headerlink" title="四、为 PhoneGap 项目添加下面的权限："></a>四、为 PhoneGap 项目添加下面的权限：</h2><pre class="prettyprint lang-js">&lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /&gt;
+&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;</pre>
+
+<h2 id="五、按下面的顺序依次-build-项目："><a href="#五、按下面的顺序依次-build-项目：" class="headerlink" title="五、按下面的顺序依次 build 项目："></a>五、按下面的顺序依次 build 项目：</h2><blockquote>
+<p>xwalk_core_library</p>
+<p>cordovalib</p>
+<p>your application project<br>提示：如何 build 项目？选中项目，点击右键并选择build pro ject。</p>
+</blockquote>
+<p>整合完成，再次打包 App ，你会发现 CrossWalk 已经整合到 App 中。</p>
+<h2 id="六、完成"><a href="#六、完成" class="headerlink" title="六、完成"></a>六、完成</h2><p>你会发现特别长的文章内容及页面滑动会变的非常流畅。</p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/08/10/phonegap-e5-b0-8f-e7-9f-a5-e8-af-86-e9-97-ae-e9-a2-98-e9-9b-86-e9-94-a6/" itemprop="url">
+                  Phonegap 小知识&问题集锦
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-08-10T13:34:27+08:00" content="2015-08-10">
+              2015-08-10
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 448</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 2分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/PhoneGap-Angular-Ionic/" itemprop="url" rel="index">
+                    <span itemprop="name">PhoneGap+Angular+Ionic</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/10/phonegap-e5-b0-8f-e7-9f-a5-e8-af-86-e9-97-ae-e9-a2-98-e9-9b-86-e9-94-a6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/10/phonegap-e5-b0-8f-e7-9f-a5-e8-af-86-e9-97-ae-e9-a2-98-e9-9b-86-e9-94-a6/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="收集一下phonegap路上的坑和坎"><a href="#收集一下phonegap路上的坑和坎" class="headerlink" title="收集一下phonegap路上的坑和坎"></a>收集一下phonegap路上的坑和坎</h1><div class="sc_notice"><br><ion-item>(ng-if)等组件或指令本身会产生子scope，会继承重写页面scope。<br><br>解决1：需要在controller中定义一个对象，使用对象的属性，才能进行跨scope数据传递。<br><br>解决2：通过$parent访问上层scope<br></ion-item></div>
+
+<div class="sc_notice"><br>phonegap 打包APP后无网络 404 错误<br><br>1，检查是否有cordova-plugin-whitelist插件<br>ionic plugin list<br>2，如果有，检查config.xml是否有access配置，一般配置为<em>就行了<br>&lt;access origin=”</em>“/&gt;<br>3，如果没有cordova-plugin-whitelist插件，安装它<br>cordova plugin add cordova-plugin-whitelist<br>4，然后配置access网络白名单<br></div>
+
+<div class="sc_notice"><br>分离Controller需要注意<br><br>var myApp = angular.module(‘myApp’,[]);<br>会创建一个Module，如果分controllers.js分件，只有第一个加载的js文件中需要创建，后面的不需要再次创建，否则会丢失上一个加载的module。<br>var myApp = angular.module(‘myApp’);<br>不会创建新的module对象<br></div>
+
+<div class="sc_notice"><br>问：angular-ui-router，$state.go如何带参数?<br><br>1.在App.js的状态机定义中，添加params项，写上要传递的参数名和默认值<br>//用户中心 我的订单<br><code>.state(&#39;tab.user-myOrders&#39;, {
+url: &#39;/user/myOrders&#39;,
+views: {
+&#39;tab-usercenter&#39;: {
+templateUrl: &#39;templates/user/myOrders.html&#39;,
+controller: &#39;UserOrderCtrl&#39;,
+},
+},
+params: {param:0}
+})</code><br>2.在$state.go函数中添加要传递的参数值<br>$state.go(“tab.user-myOrders”,{param:288});<br>3.在新页面的controller中，定义$stateParams，获取参数<br>$stateParams.param;<br><br></div>
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/06/29/wpdls/" itemprop="url">
+                  新主题WP-dls正式上线，数据和样式逐渐完善中。
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-06-29T10:30:54+08:00" content="2015-06-29">
+              2015-06-29
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 340</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 1分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/网站动态/" itemprop="url" rel="index">
+                    <span itemprop="name">网站动态</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/06/29/wpdls/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/29/wpdls/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&nbsp;</p>
+<div class="sc_notice">好消息，新主题WP-dls正式上线啦！ 细节还在完善中，自我感觉挺好的~，最大的特色就是全站Ajax无刷新加载，音乐无中断。感觉美美哒，加油！</div>
+
 <ul>
-<li>你好</li>
-<li>我好</li>
-<li>大家好</li>
+<li>关于博客</li>
 </ul>
+<p>我本为追回自身的青春活力而出游，而一落笔却比过去写的任何文章都显得苍老。<br>我写博客，不为何，只为了心中那一丝丝萌动。*   关于博主</p>
+<p>我从事IT技术研发运营工作，就是每天撰写英文那种，心情好的时候也会加点中文翻译，说白了就是“程序猿”；</p>
+<p>单身男、爱好女：同性可选择仰慕、崇拜或暗恋，但请不要做出无谓的牺牲，我的立场很坚定；</p>
+<p>为何写博客：代码敲的累了，换个中文悠闲悠闲，但请不要以为我是闲的蛋疼；</p>
+<p>我是好人，但好人也是人！*   背景</p>
+<p><span style="font-size: 18pt;">:smile:回复有福利哦~</span><br><!--wpgo_hide_start--><a href="http://www.qiushurong.cn/wp-content/uploads/2015/06/gril.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2015/06/gril-300x200.jpg" alt="gril"></a>&lt;<!--wpgo_hide_end--></p>
+<p>主题下载地址：</p>
+<p><a href="javascript:void(0" target="_blank" rel="external"><span class="file_title">WPdls主题</span>2015年6月29日 - 1.43MB</a>;)</p>
+<p>&nbsp;</p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/06/25/angularjs-helloworld/" itemprop="url">
+                  AngularJS [1] 世界你好！HelloWorld！
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-06-25T23:58:52+08:00" content="2015-06-25">
+              2015-06-25
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 1,522</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 6分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/PhoneGap-Angular-Ionic/" itemprop="url" rel="index">
+                    <span itemprop="name">PhoneGap+Angular+Ionic</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/06/25/angularjs-helloworld/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/25/angularjs-helloworld/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="世界你好！HelloWorld！"><a href="#世界你好！HelloWorld！" class="headerlink" title="世界你好！HelloWorld！"></a>世界你好！HelloWorld！</h1><p>&nbsp;</p>
+<h2 id="一、新手入门"><a href="#一、新手入门" class="headerlink" title="一、新手入门"></a>一、新手入门</h2><blockquote>
+<p>集成开发工具 ：WebStorm 8.0.3  <a href="http://www.jb51.net/softs/171905.html" target="_blank" rel="external">下载地址</a></p>
+<p>Angular JS ：1.4.1   <a href="http://www.apjs.net/" target="_blank" rel="external">中文官网</a></p>
+</blockquote>
+<h3 id="1、AngularJs的安装"><a href="#1、AngularJs的安装" class="headerlink" title="1、AngularJs的安装"></a>1、AngularJs的安装</h3><p>具体安装就不多叙述了，建议先到Node.js下载并安装到本地，添加到path中，使在CMD中可以正常使用npm命令，通过npm install angular安装。或者直接到上文给出的官网下载js包亦可。</p>
+<h3 id="2、HelloWorld"><a href="#2、HelloWorld" class="headerlink" title="2、HelloWorld"></a>2、HelloWorld</h3><p>开始学习AngularJS的一个好方法是创建经典应用程序“Hello World!”：</p>
+<ol>
+<li>使用您喜爱的文本编辑器，创建一个HTML文件，例如：helloworld.html。</li>
+<li>将下面的源代码复制到您的HTML文件。</li>
+<li>在web浏览器中打开这个HTML文件。<pre class="lang:java decode:true" title="AngluarJS">&lt;!doctype html&gt;
+&lt;html ng-app&gt;
+&lt;head&gt;
+&lt;script src="../angular.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+Hello {  { 'World' } }!
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+</li>
+</ol>
+<h3 id="3、详解"><a href="#3、详解" class="headerlink" title="3、详解"></a>3、详解</h3><p>现在让我们仔细看看代码，看看到底怎么回事。</p>
+<p>当加载该页时，标记<span style="color: #ff0000;"><code>ng-app</code></span>告诉AngularJS处理整个HTML页并引导应用：</p>
+<pre class="lang:java decode:true" title="AngluarJS">&lt;html ng-app&gt;</pre>
+这行载入AngularJS脚本：
+<pre class="lang:java decode:true" title="AngularJS">&lt;script src="../angular-1.0.1.min.js"&gt;&lt;/script&gt;</pre>
+最后，标签中的正文是应用的模板，在UI中显示我们的问候语：
+<pre class="lang:java decode:true" title="AngularJS">Hello  { {'World' } }!</pre>
+注意，使用双大括号标记的内容是问候语中绑定的表达式，这个表达式是一个简单的字符串‘World’。
+
+&nbsp;
+
+下面，让我们看一个更有趣的例子：使用AngularJS对我们的问候语文本绑定一个动态表达式。
+
+## 
+
+## 二、Hello AngularJS World!
+
+### 1、双向数据绑定
+
+本示例演示AngularJS的双向数据绑定（bi-directional data binding）：
+
+&nbsp;
+<pre class="lang:java decode:true">&lt;!doctype html&gt;
+&lt;html ng-app&gt;
+&lt;head&gt;
+    &lt;script src="../angular.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+Your name: &lt;input type="text" ng-model="yourname" placeholder="World"&gt;
+&lt;hr&gt;
+Hello  { { yourname || 'World' } } !
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+<h3 id="2、详解"><a href="#2、详解" class="headerlink" title="2、详解"></a>2、详解</h3><p>该示例有一下几点重要的注意事项：</p>
+<ul>
+<li>文本输入指令<code>&amp;lt;input ng-model=&quot;yourname&quot; /&amp;gt;</code>绑定到一个叫<code>yourname</code>的模型变量。</li>
+<li>双大括号标记将<code>yourname</code>模型变量添加到问候语文本。</li>
+<li>你不需要为该应用另外注册一个事件侦听器或添加事件处理程序！<br>现在试着在输入框中键入您的名称，您键入的名称将立即更新显示在问候语中。 这就是AngularJS双向数据绑定的概念。 输入框的任何更改会立即反映到模型变量（一个方向），模型变量的任何更改都会立即反映到问候语文本中（另一方向）。</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2 id="三、AngularJS应用的解析"><a href="#三、AngularJS应用的解析" class="headerlink" title="三、AngularJS应用的解析"></a>三、AngularJS应用的解析</h2><p>本节描述AngularJS应用程序的三个组成部分，并解释它们如何映射到模型-视图-控制器设计模式：</p>
+<h3 id="1、模板（Templates）"><a href="#1、模板（Templates）" class="headerlink" title="1、模板（Templates）"></a>1、模板（Templates）</h3><p>模板是您用HTML和CSS编写的文件，展现应用的视图。 您可给HTML添加新的元素、属性标记，作为AngularJS编译器的指令。 AngularJS编译器是完全可扩展的，这意味着通过AngularJS您可以在HTML中构建您自己的HTML标记！</p>
+<h3 id="2、应用程序逻辑（Logic）和行为（Behavior）"><a href="#2、应用程序逻辑（Logic）和行为（Behavior）" class="headerlink" title="2、应用程序逻辑（Logic）和行为（Behavior）"></a>2、应用程序逻辑（Logic）和行为（Behavior）</h3><p>应用程序逻辑和行为是您用JavaScript定义的控制器。AngularJS与标准AJAX应用程序不同，您不需要另外编写侦听器或DOM控制器，因为它们已经内置到AngularJS中了。这些功能使您的应用程序逻辑很容易编写、测试、维护和理解。</p>
+<h3 id="3、模型数据（Data）"><a href="#3、模型数据（Data）" class="headerlink" title="3、模型数据（Data）"></a>3、模型数据（Data）</h3><p>模型是从AngularJS作用域对象的属性引申的。模型中的数据可能是Javascript对象、数组或基本类型，这都不重要，重要的是，他们都属于AngularJS作用域对象。</p>
+<p>AngularJS通过作用域来保持数据模型与视图界面UI的双向同步。一旦模型状态发生改变，AngularJS会立即刷新反映在视图界面中，反之亦然。</p>
+<h3 id="4、PS"><a href="#4、PS" class="headerlink" title="4、PS"></a>4、PS</h3><p>此外，AngularJS还提供了一些非常有用的服务特性：</p>
+<ol>
+<li>底层服务包括依赖注入，XHR、缓存、URL路由和浏览器抽象服务。</li>
+<li>您还可以扩展和添加自己特定的应用服务。</li>
+<li>这些服务可以让您非常方便的编写WEB应用。<br>&nbsp;</li>
+</ol>
+<h2 id="四、备注"><a href="#四、备注" class="headerlink" title="四、备注"></a>四、备注</h2><p>文章大体转载自“图灵社区”，所有例子都在小树最新版本下调试运行通过并修正部分代码解释后发布的，特此说明，不定期更新。</p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/05/08/nxph/" itemprop="url">
+                  形象说明为什么麦当劳旁边一般会有一个肯德基？
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-05-08T20:13:23+08:00" content="2015-05-08">
+              2015-05-08
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 1,160</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 5分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/心情杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">心情杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/05/08/nxph/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/08/nxph/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>為什麼油站總是建在另一家旁呢?</p>
+<p>為什麼會走了一里路也找不到一家咖啡店，卻在一個角落找到三家呢?</p>
+<p>為什麼便利店、餐廳等總是一群一群的出現，而非在社區中平均分佈呢?<br><img src="http://pic2.zhimg.com/ed68d0080515b2c52c6bde6fcea62299_b.jpg" alt=""></p>
+<p>&nbsp;</p>
+<p>&nbsp;<br>縱使在選擇開店位置時有眾多考量，一個很簡單的故事便能解釋以上現象：</p>
+<p>&nbsp;<br><strong>「霍特林的空間競爭模型」</strong></p>
+<p>&nbsp;<br>(<strong>Hotelling’s Model of Spacial Competition</strong>)<br><img src="http://pic4.zhimg.com/e2f3c97ad319ed9569bbb468b6c4eac3_b.jpg" alt=""><br>請想像你在一個沙灘裡賣雪糕，<br><img src="http://pic1.zhimg.com/f3593ec421f7f080c6ccac239eca94f4_b.jpg" alt=""><br>沙灘長一里，而且你並沒有競爭(沒有其他雪糕車)，</p>
+<p>你在哪裡擺放雪糕車才能夠賣出最多雪糕呢?</p>
+<p>在<strong>中間</strong>。<br><img src="http://pic4.zhimg.com/88fd3c791e8f97c8dd3552f166a18cd3_b.jpg" alt=""><br>雖然對在沙灘兩邊盡頭的人來說可能太遠了(要走½里路)，但你的雪糕車所能惠顧的人是最多的。<br><img src="http://pic1.zhimg.com/2ca95e33c0640d2584cabef5cd8cf444_b.jpg" alt=""><br>有一天， 你去賣雪糕的時候發現你的堂兄Teddy也來了。<br><img src="http://pic2.zhimg.com/670172fe5a1ca1d5633b5f560aa39d1d_b.jpg" alt=""><br>Teddy也推著雪糕車，竟然跟你賣一模一樣的雪糕!<br>你們協議了各人得到沙灘的一半，<br><img src="http://pic4.zhimg.com/6efa604894d96f09957a5952a1ec6d77_b.jpg" alt=""><br>為了方便顧客，讓他們少走，</p>
+<p>你在沙灘中央的往下¼里處設店，正在你地盤的中央；</p>
+<p>而Teddy則在沙灘中央的往上¼里處設店，正在他地盤的中央。<br><img src="http://pic1.zhimg.com/4f8f1aa9584690f4768cecb29c7596e8_b.jpg" alt=""><br>由此，所有在你店南方的人都往你店買雪糕，</p>
+<p>所有在Teddy北方的人都往他店買雪糕，</p>
+<p>而在中央的顧客則往最近的店走，從而平分，各得50%。</p>
+<p><strong>沒有人需要走多於¼里便有雪糕吃，而各店也得到沙灘50%的顧客</strong>：<br><img src="http://pic3.zhimg.com/4a4684eb1f33d8eac707f8aa8f06401e_b.jpg" alt=""><br>這是<strong>對社會最好的結果</strong>，</p>
+<p>它使顧客要走的路最少化。</p>
+<p>第二天，你推著雪糕車到沙灘，卻發現Teddy把雪糕車置於沙灘正中央了!<br><img src="http://pic4.zhimg.com/5f1617f4380efd3d5b0af18d8d4295a3_b.jpg" alt=""><br>你回到你以往的¼里處，得到南方25%的顧客。</p>
+<p>而Teddy不但還有本來北方的顧客，更與你平分你們之間(本來屬於你)的顧客!</p>
+<p>憤憤不平的你第三天特早到沙灘，在Teddy北面的地盤正中開店，期望得到你南方的75%顧客；而Teddy只得其餘25%。<br><img src="http://pic1.zhimg.com/db44afffaf638997941c2ba61b5c3078_b.jpg" alt=""><br>可惜如意算盤打不響… Teddy輕鬆的在你南面設店，搶奪了所有在南面的顧客，而你只得上方少量的顧客。<br><img src="http://pic2.zhimg.com/311900623bd2a12e4797581ec8c9e341_b.jpg" alt=""><br>氣了，你把雪糕車推到Teddy南方10步，從而重奪你的顧客。</p>
+<p>你中午休息時，Teddy又次遷移至你南方10步，又奪取南方所有的顧客了!</p>
+<p>你們整天就在你追我趕，不斷向南移吸納顧客。</p>
+<p>最終，你們倆便停在沙灘的中央了，背對背，各自服務自己一方50%的顧客。<br><img src="http://pic1.zhimg.com/4875ce5fcf3920d82519475da10f8160_b.jpg" alt=""><br>這時，你們達到了<strong>納西平衡</strong>(Nash Equilibrium) ——你們倆都沒辦法通過移動位置而獲得更高利益。</p>
+<p>你們本來各分沙灘一半的方案失敗了，正是因為那不是納西平衡：你們都可以往中間移動而獲得更多顧客。</p>
+<p>而現在你們倆都在沙灘中央，你們<strong>不可能在不流失顧客的情況下移位</strong>。<br><img src="http://pic4.zhimg.com/15081296e3df648a25654bec6b4deee7_b.jpg" alt=""><br>然而，這<strong>不再是對社會最好的結果了</strong>：</p>
+<p>因為在沙灘盡頭的顧客要走不必要遠的路。</p>
+<p>現在想想商場裡的所有連鎖式快餐店(題主的麥當勞與肯德基)、服裝店、手機專門店…</p>
+<p>雖然若各類型店鋪平均分佈，顧客會獲得更好的服務，但這卻導致激烈的競爭。</p>
+<blockquote>
+<p>在真實世界，顧客是來自於對於一方的，而且商舖也有市場策略，如產品多樣化、促銷等。但在這些策略的核心，商店還是著重於保持競爭力。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/04/16/php-timer/" itemprop="url">
+                  [PHP]详谈可控制的定时器(附源码)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-04-16T10:03:44+08:00" content="2015-04-16">
+              2015-04-16
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 1,416</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 7分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/04/16/php-timer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/16/php-timer/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h2><p>恰逢公司的项目需要用到定时器，在网上搜了许多的资料，虽说PHP本身是无状态的语言，用来做定时器非常的麻烦和耗资源，但是实际应用上还是少不了的。方法有几个：</p>
+<blockquote>
+<p>1，利用计算机系统本身的计划任务</p>
+<p>2，利用js前台刷新页面定时访问PHP文件</p>
+<p>3，利用PHP死循环长连接<br>由于1,2两种办法都没办法很好地对定时器进行很好的控制，而本篇主要讲的是可控制的定时器，因此我们来详看第三种方法。</p>
+</blockquote>
+<h2 id="二、思路"><a href="#二、思路" class="headerlink" title="二、思路"></a>二、思路</h2><p>思路其实不复杂，利用 while(true)死循环让PHP脚本一直处于执行的状态。但是！要注意的是，PHP本身是有一个机制会中断无响应的脚本的，因此，我们要加上。</p>
+<p><div class="line alt2">ignore_user_abort(false);//当用户关闭页面时服务停止<br>set_time_limit(0);  //设置执行时间，单位是秒。0表示不限制。</div><br>先给出一个基本的范式，其中有个人的测试程序：</p>
+<p><pre class="lang:java decode:true ">&lt;?php<br>ignore_user_abort(); // run script. in background<br>set_time_limit(0); // run script. forever<br>$interval=30; // do every 15 minutes…<br>do{<br>$fp = fopen(‘text3.txt’,’a’);<br>fwrite($fp,’test’);<br>fclose($fp);<br>sleep($interval); // wait 15 minutes<br>}while(true);<br>?&gt;</pre><br>&nbsp;</p>
+<p>首先运行该程序，然后关闭该页面，程序仍然运行中，test会每隔30秒的填补到text3.txt文件。</p>
+<p>至此一个简单的定时器算是OK了，但是它是不可控制的，因为程序处于死循环中，是无法接受外界的数据的。</p>
+<p>那么我们要实现可控制，怎么办呢？解决办法是有的，这里很多种办法，比如读数据库，读文件，我带来的方法也简单，就是用PHP本身的INCLUDE，这样效率也不会太低，消耗的资源也不会太过于大！</p>
+<p>即：在死循环中，加一个  if();，判断的条件，就是  $flag = include ‘路径/配置文件.php’;</p>
+<p>而这个   [配置文件.php] 的内容很简单，就一句：&lt;?php return true; ?&gt;</p>
+<p>当你需要这个定时器停下来的时候，用文件函数fopen打开这个配置文件，然后替换true为false就可以了，这就是基本的思路！</p>
+<h2 id="三、源码例子"><a href="#三、源码例子" class="headerlink" title="三、源码例子"></a>三、源码例子</h2><p>&nbsp;</p>
+<p><pre class="lang:php decode:true ">&lt;?php</pre></p>
+<p>ignore_user_abort (); // 即使Client断开(如关掉浏览器)，PHP脚本也可以继续执行.<br>set_time_limit ( 0 ); // 执行时间为无限制，php默认的执行时间是30秒，通过set_time_limit(0)可以让程序无限制的执行下去</p>
+<p>class money extends admin {</p>
+<pre><code>public $timer_switch;            //定时器-开关-文件
+public $timer_h;                //定时器-时-文件
+public $timer_m;                //定时器-分-文件
+public $timer_delay;            //定时器-间隔时间(秒)-文件
+public $timer_value;            //利息利率
+
+public function __construct(){
+    parent::__construct();
+    $this-&amp;gt;db = System::load_sys_class(&quot;model&quot;);
+    $this-&amp;gt;timer_switch = dirname(__FILE__).&quot;\\timer_switch.php&quot;;
+    $this-&amp;gt;timer_h = dirname(__FILE__).&quot;\\timer_h.php&quot;;
+    $this-&amp;gt;timer_m = dirname(__FILE__).&quot;\\timer_m.php&quot;;
+    $this-&amp;gt;timer_delay = dirname(__FILE__).&quot;\\timer_delay.php&quot;;
+    $this-&amp;gt;timer_value = dirname(__FILE__).&quot;\\timer_value.php&quot;;
+}
+
+public function index(){
+    if(isset($_POST[&apos;submit&apos;])){
+        $this-&amp;gt;h($_POST[&apos;h&apos;]);
+        $this-&amp;gt;m($_POST[&apos;m&apos;]);
+        $this-&amp;gt;delay($_POST[&apos;delay&apos;]);
+        $this-&amp;gt;value($_POST[&apos;value&apos;]);
+        $msg = &apos;【保存成功】&apos;;
+    }
+    $switch = include $this-&amp;gt;timer_switch;
+    $h = include $this-&amp;gt;timer_h;
+    $m = include $this-&amp;gt;timer_m;
+    $delay = include $this-&amp;gt;timer_delay;
+    $value = include $this-&amp;gt;timer_value;
+    include $this-&amp;gt;tpl(ROUTE_M,&apos;money_index&apos;);
+}
+
+public function h($s){
+    $string = &apos;&amp;lt;?php return &quot;&apos;.$s.&apos;&quot;;?&amp;gt;&apos;;
+    write_inc($this-&amp;gt;timer_h,$string,true);
+}
+
+public function m($s){
+    $string = &apos;&amp;lt;?php return &quot;&apos;.$s.&apos;&quot;;?&amp;gt;&apos;;
+    write_inc($this-&amp;gt;timer_m,$string,true);
+}
+
+public function delay($s){
+    $string = &apos;&amp;lt;?php return &quot;&apos;.$s.&apos;&quot;;?&amp;gt;&apos;;
+    write_inc($this-&amp;gt;timer_delay,$string,true);
+}
+
+public function value($s){
+    $string = &apos;&amp;lt;?php return &quot;&apos;.$s.&apos;&quot;;?&amp;gt;&apos;;
+    write_inc($this-&amp;gt;timer_value,$string,true);
+}
+
+public function stop(){
+    $string = &apos;&amp;lt;?php return &quot;stop&quot;;?&amp;gt;&apos;;
+    write_inc($this-&amp;gt;timer_switch,$string,true);
+    $this-&amp;gt;index();
+}
+
+public function start(){
+    //必须为暂停状态才可以开始
+    $timer_switch = include $this-&amp;gt;timer_switch;
+    if($timer_switch!=&apos;stop&apos;){
+        $fp = fopen(&apos;c:/func.txt&apos;,&apos;a&apos;);
+        fwrite($fp,date(&quot;Y-m-d TH:i:s Z&quot;).&quot;.结束定时器.\r\n&quot;);
+        fclose($fp);
+        die();
+    }else{
+        $fp = fopen(&apos;c:/func.txt&apos;,&apos;a&apos;);
+        fwrite($fp,date(&quot;Y-m-d TH:i:s Z&quot;).&quot;.启动定时器.\r\n&quot;);
+        fclose($fp);
+        $string = &apos;&amp;lt;?php return &quot;start&quot;;?&amp;gt;&apos;;
+        write_inc($this-&amp;gt;timer_switch,$string,true);
+    }
+    //进入定时器
+    do{
+        $timer_switch = include $this-&amp;gt;timer_switch;
+        $timer_h = include $this-&amp;gt;timer_h;
+        $timer_m = include $this-&amp;gt;timer_m;
+        $timer_delay = include $this-&amp;gt;timer_delay;
+        $h = intval(date(&quot;H&quot;));
+        $m = intval(date(&quot;i&quot;));
+        //判断时间
+        if ($h ==$timer_h &amp;amp;&amp;amp; $m == $timer_m) {
+            $fp = fopen(&apos;c:/func.txt&apos;,&apos;a&apos;);
+            fwrite($fp,date(&quot;Y-m-d TH:i:s Z&quot;).&quot;.执行任务了.\r\n&quot;);
+            fclose($fp);
+            $this-&amp;gt;calc();
+        } else {
+            $fp = fopen(&apos;c:/func.txt&apos;,&apos;a&apos;);
+            fwrite($fp,date(&quot;Y-m-d TH:i:s Z&quot;).&quot;.距离执行时间还有&quot;.((($timer_h-$h)%24)*60+($timer_m-$m)%60).&quot;分钟.\r\n&quot;);
+            fclose($fp);
+        }
+        //延迟
+        sleep($timer_delay);
+        //判断是否关闭
+        if($timer_switch==&quot;stop&quot;){
+            $fp = fopen(&apos;c:/func.txt&apos;,&apos;a&apos;);
+            fwrite($fp,date(&quot;Y-m-d TH:i:s Z&quot;).&quot;.终止.\r\n&quot;);
+            fclose($fp);
+            $this-&amp;gt;ing_off();
+            die();
+        }
+    }while(true);
+
+}
+
+public function calc(){
+
+}
+</code></pre><p>}</p>
+<pre><code>function write_inc($path,$strings,$type=false){
+    if ($type==false)
+        file_put_contents($path,$strings,FILE_APPEND);
+    else
+        file_put_contents($path,$strings);
+}
+</code></pre><p>?&gt;<br>&nbsp;</p>
+<p>&nbsp;</p>
 
           
         
@@ -713,6 +1895,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -751,7 +1937,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">110</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -759,7 +1945,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -768,7 +1954,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">195</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

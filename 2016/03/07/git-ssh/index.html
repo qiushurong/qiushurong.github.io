@@ -1,0 +1,715 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="git,ssh,环境配置," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="引言我们放在GIT库的项目,遇到pull或者push等操作的时候,经常需要输密码
+
+这未免太过繁琐,而配置SHH链接可以免除这样的烦恼,可谓不可不配,过程也非常的简单,几个命令即可开源中国和Github的配置方式其实都是一样的,没什么区别,这里以开源中国为例
+环境首先你必须要有一个可以运行git命令的工具
+
+android studio自带的Terminal
+windows下的Git Bash
+其">
+<meta property="og:type" content="article">
+<meta property="og:title" content="window下配置GIT@OSC/Github等的SSH连接">
+<meta property="og:url" content="http://yoursite.com/2016/03/07/git-ssh/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="引言我们放在GIT库的项目,遇到pull或者push等操作的时候,经常需要输密码
+
+这未免太过繁琐,而配置SHH链接可以免除这样的烦恼,可谓不可不配,过程也非常的简单,几个命令即可开源中国和Github的配置方式其实都是一样的,没什么区别,这里以开源中国为例
+环境首先你必须要有一个可以运行git命令的工具
+
+android studio自带的Terminal
+windows下的Git Bash
+其">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2016/03/git-shh-1-300x34.png">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2016/03/git-shh-2-300x172.png">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2016/03/git-shh-3-300x68.png">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.861Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="window下配置GIT@OSC/Github等的SSH连接">
+<meta name="twitter:description" content="引言我们放在GIT库的项目,遇到pull或者push等操作的时候,经常需要输密码
+
+这未免太过繁琐,而配置SHH链接可以免除这样的烦恼,可谓不可不配,过程也非常的简单,几个命令即可开源中国和Github的配置方式其实都是一样的,没什么区别,这里以开源中国为例
+环境首先你必须要有一个可以运行git命令的工具
+
+android studio自带的Terminal
+windows下的Git Bash
+其">
+<meta name="twitter:image" content="http://www.qiushurong.cn/wp-content/uploads/2016/03/git-shh-1-300x34.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> window下配置GIT@OSC/Github等的SSH连接 | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                window下配置GIT@OSC/Github等的SSH连接
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-07T11:02:07+08:00" content="2016-03-07">
+              2016-03-07
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 1,245</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 6分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/通用开发技术/" itemprop="url" rel="index">
+                    <span itemprop="name">通用开发技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/07/git-ssh/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/07/git-ssh/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>我们放在GIT库的项目,遇到pull或者push等操作的时候,经常需要输密码</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2016/03/git-shh-1.png" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2016/03/git-shh-1-300x34.png" alt="git-shh-1"></a></p>
+<p>这未免太过繁琐,而配置SHH链接可以免除这样的烦恼,可谓不可不配,过程也非常的简单,几个命令即可<br>开源中国和Github的配置方式其实都是一样的,没什么区别,这里以开源中国为例</p>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>首先你必须要有一个可以运行git命令的工具</p>
+<ol>
+<li>android studio自带的Terminal</li>
+<li>windows下的Git Bash</li>
+<li>其他能响应Git命令的命令行<br><a href="http://git-scm.com/download/" target="_blank" rel="external"><span class="file_title">Git For Windows</span>2.7.2 - 29.4MB</a></li>
+</ol>
+<h2 id="检查本机ssh-key"><a href="#检查本机ssh-key" class="headerlink" title="检查本机ssh key"></a>检查本机ssh key</h2><p>先看下你本机的ssh key有没有</p>
+<p><code>$ cd ~/.ssh
+如果没有则提示： No such file or directory
+如果有则会进入~/.ssh路径下</code></p>
+<p>如果存在即可以用rm命令删除掉,我们重新生成一个<br><code>ls #查看当前路径文件
+rm * #删除所有文件</code></p>
+<h2 id="生成本地shh-key"><a href="#生成本地shh-key" class="headerlink" title="生成本地shh key"></a>生成本地shh key</h2><p>切回去根目录（~）<br>`$ cd ~  </p>
+<p>#保证当前路径在”~”下<br>`</p>
+<p>生成rsa-key<br>`$ ssh-keygen -t rsa -C “xxxxxx@yy.com”  </p>
+<p>#建议填写自己真实有效的邮箱地址</p>
+<p>#操作结果：<br>Generating public/private rsa key pair.<br>Enter file in which to save the key (/c/Users/xxxx_000/.ssh/id_rsa):   </p>
+<p>#不填直接回车<br>Enter passphrase (empty for no passphrase):   </p>
+<p>#输入密码（可以为空，建议为空）<br>Enter same passphrase again:   </p>
+<p>#再次确认密码（可以为空，建议为空）<br>Your identification has been saved in /c/Users/xxxx_000/.ssh/id_rsa.   #生成的密钥<br>Your public key has been saved in /c/Users/xxxx_000/.ssh/id_rsa.pub.  #生成的公钥<br>The key fingerprint is:<br>e3:51:33:xx:xx:xx:xx:xxx:61:28:83:e2:81 xxxxxx@yy.com<br>`</p>
+<p>*本机已完成ssh key设置，其存放路径为：c:/Users/xxxx_000/.ssh/下。<br>注释：可生成ssh key自定义名称的密钥，默认id_rsa。<br>$ ssh-keygen -t rsa -C “邮箱地址” -f ~/.ssh/githug_blog_keys #生成ssh key的名称为githug_blog_keys，慎用容易出现其它异常。</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2016/03/git-shh-2.png" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2016/03/git-shh-2-300x172.png" alt="git-shh-2"></a></p>
+<h2 id="到网站上添加这个key"><a href="#到网站上添加这个key" class="headerlink" title="到网站上添加这个key"></a>到网站上添加这个key</h2><p>打开刚刚生成的id_rsa.pub,复制所有内容,到git.oschina.net,个人设置,SSH公钥中,粘贴进去<br><code>$ cd .ssh #切换到.ssh目录下
+start . #用文件管理器打开当前目录</code></p>
+<h2 id="配置账户"><a href="#配置账户" class="headerlink" title="配置账户"></a>配置账户</h2><p><code>$ git config --global user.name “your_username”  #设置用户名
+$ git config --global user.email “your_Email”  #设置邮箱地址</code></p>
+<h2 id="测试ssh-keys"><a href="#测试ssh-keys" class="headerlink" title="测试ssh keys"></a>测试ssh keys</h2><p>`#开源中国<br>$ ssh -T git@git.oschina.net</p>
+<p>#github<br>$ ssh -T git@github.com</p>
+<p>#操作结果：<br>The authenticity of host ‘xxxxxxxx (xxxxx)’ can’t be established.<br>RSA key fingerprint is 16:27:xx:xx:xx:xx:xx:4d:eb:df:a6:48.<br>Are you sure you want to continue connecting (yes/no)? yes </p>
+<p>#确认你是否继续联系，输入yes，回车<br>Warning: Permanently added ‘xxxxxx’ (RSA) to the list of known hosts.<br>Enter passphrase for key ‘/c/Users/xxxx/.ssh/id_rsa’:  </p>
+<p>#生成ssh kye是密码为空则无此项，若设置有密码则有此项且，输入生成ssh key时设置的密码即可。<br>Hi xxx! </p>
+<p>#出现词句话，说明设置成功。<br>`</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2016/03/git-shh-3.png" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2016/03/git-shh-3-300x68.png" alt="git-shh-3"></a></p>
+<p>至此，SSH KEYS 配置完成，然后就是使用 SSH URL 来导出项目，这个属于GIT就不多讲了</p>
+<p>但是还要补充一个，就是之前的项目使用的是https，是不会自动使用ssh key的，如何切换到现在的ssh方式呢？</p>
+<h2 id="切换分支URL为ssh方式"><a href="#切换分支URL为ssh方式" class="headerlink" title="切换分支URL为ssh方式"></a>切换分支URL为ssh方式</h2><p>使用 git remote 命令</p>
+<p><code>git remote set-url origin 你的项目ssh地址</code></p>
+<h2 id="Complete-Have-A-Nice-Day"><a href="#Complete-Have-A-Nice-Day" class="headerlink" title="Complete ,Have A Nice Day!"></a>Complete ,Have A Nice Day!</h2>
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag">#git</a>
+          
+            <a href="/tags/ssh/" rel="tag">#ssh</a>
+          
+            <a href="/tags/环境配置/" rel="tag">#环境配置</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/11/scrollview-e5-b5-8c-e5-a5-97viewpager-e5-b5-8c-e5-a5-97listview-e4-b8-89-e8-80-85-e5-85-b1-e5-ad-98-e5-86-b2-e7-aa-81-e8-a7-a3-e5-86-b3-e6-96-b9-e6-a1-88/" rel="next" title="ScrollView嵌套ViewPager嵌套ListView三者共存&冲突解决方案">
+                <i class="fa fa-chevron-left"></i> ScrollView嵌套ViewPager嵌套ListView三者共存&冲突解决方案
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/03/07/git-ssh/"
+     data-title="window下配置GIT@OSC/Github等的SSH连接"
+     data-content=""
+     data-url="http://yoursite.com/2016/03/07/git-ssh/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/07/git-ssh/"
+           data-title="window下配置GIT@OSC/Github等的SSH连接" data-url="http://yoursite.com/2016/03/07/git-ssh/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">2.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查本机ssh-key"><span class="nav-number">3.</span> <span class="nav-text">检查本机ssh key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成本地shh-key"><span class="nav-number">4.</span> <span class="nav-text">生成本地shh key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#到网站上添加这个key"><span class="nav-number">5.</span> <span class="nav-text">到网站上添加这个key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置账户"><span class="nav-number">6.</span> <span class="nav-text">配置账户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试ssh-keys"><span class="nav-number">7.</span> <span class="nav-text">测试ssh keys</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#切换分支URL为ssh方式"><span class="nav-number">8.</span> <span class="nav-text">切换分支URL为ssh方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Complete-Have-A-Nice-Day"><span class="nav-number">9.</span> <span class="nav-text">Complete ,Have A Nice Day!</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,726 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="github,wiki,入门,指南," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="1 什么是GitHub?GitHub，是全球最大的社交编程及代码托管网站，GitHub可以托管各种git库，并提供一个web界面，但与其它像SourceForge或Google Code这样的服务不同，GitHub的独特卖点在于从另外一个项目进行分支的简易性。
+2 什么是Git？Git是一个分布式的版本控制系统，最初由Linus Torvalds编写，用作Linux内核代码的管理。在推出后，Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初次使用GitHub,作个入门记录Wiki">
+<meta property="og:url" content="http://yoursite.com/2014/05/14/github-wiki/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="1 什么是GitHub?GitHub，是全球最大的社交编程及代码托管网站，GitHub可以托管各种git库，并提供一个web界面，但与其它像SourceForge或Google Code这样的服务不同，GitHub的独特卖点在于从另外一个项目进行分支的简易性。
+2 什么是Git？Git是一个分布式的版本控制系统，最初由Linus Torvalds编写，用作Linux内核代码的管理。在推出后，Git">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.753Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初次使用GitHub,作个入门记录Wiki">
+<meta name="twitter:description" content="1 什么是GitHub?GitHub，是全球最大的社交编程及代码托管网站，GitHub可以托管各种git库，并提供一个web界面，但与其它像SourceForge或Google Code这样的服务不同，GitHub的独特卖点在于从另外一个项目进行分支的简易性。
+2 什么是Git？Git是一个分布式的版本控制系统，最初由Linus Torvalds编写，用作Linux内核代码的管理。在推出后，Git">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> 初次使用GitHub,作个入门记录Wiki | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                初次使用GitHub,作个入门记录Wiki
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-05-14T17:57:20+08:00" content="2014-05-14">
+              2014-05-14
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 2,340</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 12分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/通用开发技术/" itemprop="url" rel="index">
+                    <span itemprop="name">通用开发技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/05/14/github-wiki/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/14/github-wiki/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-什么是GitHub"><a href="#1-什么是GitHub" class="headerlink" title="1 什么是GitHub?"></a>1 什么是GitHub?</h1><p><span style="color: #000000;"><a href="https://www.github.com" title="github官网" target="_blank" rel="external">GitHub</a>，是全球最大的社交</span>编程<span style="color: #000000;">及代码托管网站，GitHub可以托管各种git库，并提供一个web界面，但与其它像SourceForge或Google Code这样的服务不同，GitHub的独特卖点在于从另外一个项目进行分支的</span>简易<span style="color: #000000;">性。</span></p>
+<h1 id="2-什么是Git？"><a href="#2-什么是Git？" class="headerlink" title="2 什么是Git？"></a>2 什么是Git？</h1><p><a href="https://git-scm.com" title="Git官网" target="_blank" rel="external">Git</a>是一个分布式的版本控制系统，最初由Linus Torvalds编写，用作Linux内核代码的管理。在推出后，Git在其它项目中也取得了很大成功，尤其是在Ruby社区中。目前，包括Rubinius和Merb在内的很多知名项目都使用了Git。Git同样可以被诸如Capistrano和Vlad the Deployer这样的部署工具所使用。</p>
+<h1 id="3-下载部署本地-Git"><a href="#3-下载部署本地-Git" class="headerlink" title="3 下载部署本地 Git"></a>3 下载部署本地 Git</h1><p>下载GitHub的APP for window ，<a href="https://windows.github.com/" target="_blank" rel="external">链接</a>，并安装。</p>
+<h2 id="3-1-配置设置"><a href="#3-1-配置设置" class="headerlink" title="3.1 配置设置"></a>3.1 配置设置</h2><p>打开Git Bash (非  Windows command line)</p>
+<h4 id="3-1-1-Username"><a href="#3-1-1-Username" class="headerlink" title="3.1.1 Username"></a>3.1.1 Username</h4><pre class="lang:java decode:true">git config --global user.name "Your Name Here"
+# Sets the default name for Git to use when you commit</pre>
+
+<h4 id="3-1-2-Email"><a href="#3-1-2-Email" class="headerlink" title="3.1.2 Email"></a><a href="https://help.github.com/articles/set-up-git#email" target="_blank" rel="external"></a>3.1.2 Email</h4><pre class="lang:java decode:true">git config --global user.email "your_email@example.com"
+# Sets the default email for git to use when you commit</pre>
+
+<h4 id="3-1-3-Password-caching"><a href="#3-1-3-Password-caching" class="headerlink" title="3.1.3 Password caching"></a><a href="https://help.github.com/articles/set-up-git#password-caching" target="_blank" rel="external"></a>3.1.3 Password caching</h4><p>The last option you set will tell Git that you don’t want to type your username and password every time your computer talks to GitHub.恭喜，GitHub已经成功部署。</p>
+<h1 id="4-创建一个repository-资料库-or-存储库"><a href="#4-创建一个repository-资料库-or-存储库" class="headerlink" title="4 创建一个repository(资料库 or 存储库)"></a>4 创建一个repository(<span style="color: #000000;">资料库 or </span><span style="color: #000000;">存储库</span>)</h1><p><span style="color: #000000;">你每一个提交都会被存储在一个存储库里（又名“repo” ） </span>要<span style="color: #000000;">把你的项目上github上，你需要有一个GitHub的资料库为它居住。</span></p>
+<h2 id="4-1-创建Repo"><a href="#4-1-创建Repo" class="headerlink" title="4.1 创建Repo"></a>4.1 创建Repo</h2><p>登入GitHub，点击 New Repository 新建存储库，填写此页上需要的信息 and create it。</p>
+<blockquote>
+<p>my account 747555359@qq.com and pwd is w5d7 nick qiushurong<br>你最好勾选上一个Readme文档并完善它，尽管它不是必须的部分。但可以让来访的人快速了解你的项目。</p>
+</blockquote>
+<h2 id="4-2-本地与GitHub的连接"><a href="#4-2-本地与GitHub的连接" class="headerlink" title="4.2 本地与GitHub的连接"></a>4.2 本地与GitHub的连接</h2><p>到此为止，你所做的一切项目代码依旧是在你的本地仓库，这意味着你还没有做在github进行任何代码同步。你需要把这个远程github的存储库设置并链接到本地。</p>
+<pre class="lang:java decode:true">$ git remote add origin https://github.com/username/Hello-World.git
+# Creates a remote named "origin" pointing at your GitHub repository
+
+$ git push origin master
+# Sends your commits in the "master" branch to GitHub</pre>
+<span style="color: #000000;">现在，如果你看看你在github版本库，你会看到你的readme</span>已被添加新信息。
+
+# 5 Fork A Repo 分叉一个存储库
+
+在某些时候，你可能会发现自己想促成别人的项目，或想用别人的项目为起点，修改为你自己的。这被称为“<span style="color: #222222;">forking</span>”。在本教程中，我们将使用托管在GitHub.com[<span style="color: #222222;">Spoon-Knife</span>](https://github.com/octocat/Spoon-Knife)项目。
+
+## 5.1 Setp 1 <span style="color: #222222;"> Fork the "Spoon-Knife" </span>
+
+<span style="color: #222222;">To fork this project, click the "Fork" button in the GitHub.com repository.</span>在这个SpoonKnife项目上点击Fork按钮！
+
+## <span style="color: #222222;">5.2 Step 2: Clone your fork 克隆</span>
+
+克隆它。因为您已经成功地fork了这个repo中，但是到目前为止，只存在于GitHub上。为了能够工作的项目，你需要将它复制到本地机器。
+<pre class="lang:java decode:true">$ git clone https://github.com/username/Spoon-Knife.git
+# Clones your fork of the repository into the current directory in terminal</pre>
+
+<h2 id="5-3-Step-3-Configure-remotes-部署"><a href="#5-3-Step-3-Configure-remotes-部署" class="headerlink" title="5.3 Step 3: Configure remotes 部署"></a>5.3 <span style="color: #222222;">Step 3: Configure remotes 部署</span></h2><p>当一个存储库被克隆，在GitHub上它有一个称为<code>原点的</code>默认的远程指向你的fork，而不是原来的存储库。为了跟踪原有的资源库，您需要添加另一个远程命名为<code>上游</code>：</p>
+<pre class="lang:java decode:true">cd Spoon-Knife
+# Changes the active directory in the prompt to the newly cloned "Spoon-Knife" directory
+git remote add upstream https://github.com/octocat/Spoon-Knife.git
+# Assigns the original repository to a remote called "upstream"
+git fetch upstream
+# Pulls in changes not present in your local repository, without modifying your files</pre>
+
+<h2 id="5-4-More-Things-You-Can-Do"><a href="#5-4-More-Things-You-Can-Do" class="headerlink" title="5.4 More Things You Can Do"></a>5.4 More Things You Can Do</h2><h3 id="5-4-1Push-commits-提交"><a href="#5-4-1Push-commits-提交" class="headerlink" title="5.4.1Push commits 提交"></a>5.4.1Push commits 提交</h3><p><span style="color: #000000;">一旦你做了一些提交到一个分叉库，希望把它推到你的分叉项目，那么你可以做同样的方式提交到定期的存储库中：</span></p>
+<pre class="lang:java decode:true">git push origin master
+# Pushes commits to your remote repository stored on GitHub</pre>
+
+<h3 id="5-4-2-Pull-in-upstream-changes-更新FORK"><a href="#5-4-2-Pull-in-upstream-changes-更新FORK" class="headerlink" title="5.4.2 Pull in upstream changes 更新FORK"></a><a href="https://help.github.com/articles/fork-a-repo#pull-in-upstream-changes" target="_blank" rel="external"></a>5.4.2 Pull in upstream changes 更新FORK</h3><p><span style="color: #000000;">如果您从得到被fork项目的更新，你可以通过运行下面的代码添加这些更新到你的fork中</span></p>
+<p><pre class="lang:java decode:true">git fetch upstream</pre></p>
+<h1 id="Fetches-any-new-changes-from-the-original-repository"><a href="#Fetches-any-new-changes-from-the-original-repository" class="headerlink" title="Fetches any new changes from the original repository"></a>Fetches any new changes from the original repository</h1><p>git merge upstream/master</p>
+<h1 id="Merges-any-changes-fetched-into-your-working-files"><a href="#Merges-any-changes-fetched-into-your-working-files" class="headerlink" title="Merges any changes fetched into your working files"></a>Merges any changes fetched into your working files</h1><div class="helper closed"><br><br>#### <a href="https://help.github.com/articles/fork-a-repo#what-is-the-difference-between-fetch-and-pull" target="_blank" rel="external"></a>5.4.2.1 <a href="https://help.github.com/articles/fork-a-repo#" target="_blank" rel="external"> fetch 和 pull 的区别?</a><br><br></div>
+
+<h3 id="5-4-3-Create-branches-建立分支"><a href="#5-4-3-Create-branches-建立分支" class="headerlink" title="5.4.3 Create branches 建立分支"></a><a href="https://help.github.com/articles/fork-a-repo#create-branches" target="_blank" rel="external"></a>5.4.3 Create branches 建立分支</h3><p>分支允许你建立新的功能或测试出的想法没有把你的主要项目有风险。在Git中，分支是一种书签的引用最后一次提交的分支进行。这使得分支机构非常小，易于使用。</p>
+<div class="helper closed"><br><br>#### <a href="https://help.github.com/articles/fork-a-repo#how-do-i-use-branches" target="_blank" rel="external"></a>5.4.3.1 <a href="https://help.github.com/articles/fork-a-repo#" target="_blank" rel="external">How do I use branches?</a><br><br></div>
+
+<h3 id="5-4-4-Pull-requests"><a href="#5-4-4-Pull-requests" class="headerlink" title="5.4.4 Pull requests"></a><a href="https://help.github.com/articles/fork-a-repo#pull-requests" target="_blank" rel="external"></a>5.4.4 Pull requests</h3><p><span style="color: #000000;">如果你希望能够回馈到原来的fork，您可以发送pull请求给原作者。</span> <a href="https://help.github.com/articles/using-pull-requests" target="_blank" rel="external">pull request</a>.</p>
+<h3 id="5-4-5-Unwatch-the-main-repository-不关注更新"><a href="#5-4-5-Unwatch-the-main-repository-不关注更新" class="headerlink" title="5.4.5 Unwatch the main repository 不关注更新"></a><a href="https://help.github.com/articles/fork-a-repo#unwatch-the-main-repository" target="_blank" rel="external"></a>5.4.5 Unwatch the main repository 不关注更新</h3><p>当你fork一个特别受欢迎的资源库，你会发现自己有很多关于它不需要更新。从更新到主存储库中取消订阅，点击主存储库中的“unwatch”按钮，选择“不看”。</p>
+<h3 id="5-4-6-Delete-your-fork-删除分支"><a href="#5-4-6-Delete-your-fork-删除分支" class="headerlink" title="5.4.6 Delete your fork 删除分支"></a><a href="https://help.github.com/articles/fork-a-repo#delete-your-fork" target="_blank" rel="external"></a>5.4.6 Delete your fork 删除分支</h3><p>导航至您要删除的存储库的操作栏，单击设置Setting。单击 Delete the repository，确认您要删除的存储库，键入要存删除的存储库，点击I’m sure! 删除该存储库。</p>
+<p>&nbsp;</p>
+<h1 id="6-Be-Social"><a href="#6-Be-Social" class="headerlink" title="6 Be Social"></a>6 Be Social</h1><blockquote>
+<p>暂且用不到，先不写。<br>&nbsp;</p>
+</blockquote>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github/" rel="tag">#github</a>
+          
+            <a href="/tags/wiki/" rel="tag">#wiki</a>
+          
+            <a href="/tags/入门/" rel="tag">#入门</a>
+          
+            <a href="/tags/指南/" rel="tag">#指南</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/05/06/software-test-knowledge/" rel="next" title="软件测试基础知识点整理">
+                <i class="fa fa-chevron-left"></i> 软件测试基础知识点整理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/05/16/tangstyle/" rel="prev" title="修改主题，优化CSS并优化PHP源码的冗余。">
+                修改主题，优化CSS并优化PHP源码的冗余。 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/05/14/github-wiki/"
+     data-title="初次使用GitHub,作个入门记录Wiki"
+     data-content=""
+     data-url="http://yoursite.com/2014/05/14/github-wiki/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/05/14/github-wiki/"
+           data-title="初次使用GitHub,作个入门记录Wiki" data-url="http://yoursite.com/2014/05/14/github-wiki/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是GitHub"><span class="nav-number">1.</span> <span class="nav-text">1 什么是GitHub?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-什么是Git？"><span class="nav-number">2.</span> <span class="nav-text">2 什么是Git？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-下载部署本地-Git"><span class="nav-number">3.</span> <span class="nav-text">3 下载部署本地 Git</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-配置设置"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 配置设置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-1-Username"><span class="nav-number">3.1.0.1.</span> <span class="nav-text">3.1.1 Username</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-2-Email"><span class="nav-number">3.1.0.2.</span> <span class="nav-text">3.1.2 Email</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-3-Password-caching"><span class="nav-number">3.1.0.3.</span> <span class="nav-text">3.1.3 Password caching</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-创建一个repository-资料库-or-存储库"><span class="nav-number">4.</span> <span class="nav-text">4 创建一个repository(资料库 or 存储库)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-创建Repo"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 创建Repo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-本地与GitHub的连接"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 本地与GitHub的连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-Step-3-Configure-remotes-部署"><span class="nav-number">4.3.</span> <span class="nav-text">5.3 Step 3: Configure remotes 部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-More-Things-You-Can-Do"><span class="nav-number">4.4.</span> <span class="nav-text">5.4 More Things You Can Do</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-1Push-commits-提交"><span class="nav-number">4.4.1.</span> <span class="nav-text">5.4.1Push commits 提交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-2-Pull-in-upstream-changes-更新FORK"><span class="nav-number">4.4.2.</span> <span class="nav-text">5.4.2 Pull in upstream changes 更新FORK</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fetches-any-new-changes-from-the-original-repository"><span class="nav-number">5.</span> <span class="nav-text">Fetches any new changes from the original repository</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Merges-any-changes-fetched-into-your-working-files"><span class="nav-number">6.</span> <span class="nav-text">Merges any changes fetched into your working files</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-3-Create-branches-建立分支"><span class="nav-number">6.0.1.</span> <span class="nav-text">5.4.3 Create branches 建立分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-4-Pull-requests"><span class="nav-number">6.0.2.</span> <span class="nav-text">5.4.4 Pull requests</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-5-Unwatch-the-main-repository-不关注更新"><span class="nav-number">6.0.3.</span> <span class="nav-text">5.4.5 Unwatch the main repository 不关注更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-6-Delete-your-fork-删除分支"><span class="nav-number">6.0.4.</span> <span class="nav-text">5.4.6 Delete your fork 删除分支</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-Be-Social"><span class="nav-number">7.</span> <span class="nav-text">6 Be Social</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,714 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="eclipse,skin,theme,皮肤,编辑器," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="编程是一个体力活啊，又很枯燥乏味，给自己的eclipse加点料吧，这样多少还能看着新鲜点，不行过两天再换一个皮肤~还能保护眼睛，一举多得啊~
+
+  1 自制主题分享小树自己制作了一个主题 - qsuron，顺带上传上来，喜欢大家喜欢！
+下载地址：百度网盘 ， 皮肤预览：(点击放大)
+
+&amp;nbsp;
+使用方法看下面 第2点 安装主题插件(没有装插件是不可以使用任何主题的)，以及第3点 主题导入。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Eclipse-编辑器皮肤设置方法&自制主题分享">
+<meta property="og:url" content="http://yoursite.com/2014/07/14/eclipse-skin/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="编程是一个体力活啊，又很枯燥乏味，给自己的eclipse加点料吧，这样多少还能看着新鲜点，不行过两天再换一个皮肤~还能保护眼睛，一举多得啊~
+
+  1 自制主题分享小树自己制作了一个主题 - qsuron，顺带上传上来，喜欢大家喜欢！
+下载地址：百度网盘 ， 皮肤预览：(点击放大)
+
+&amp;nbsp;
+使用方法看下面 第2点 安装主题插件(没有装插件是不可以使用任何主题的)，以及第3点 主题导入。">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/02/eclipse-qsuron-theme-300x259.png">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/02/s1-300x253.png">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/02/s2-300x272.png">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.752Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Eclipse-编辑器皮肤设置方法&自制主题分享">
+<meta name="twitter:description" content="编程是一个体力活啊，又很枯燥乏味，给自己的eclipse加点料吧，这样多少还能看着新鲜点，不行过两天再换一个皮肤~还能保护眼睛，一举多得啊~
+
+  1 自制主题分享小树自己制作了一个主题 - qsuron，顺带上传上来，喜欢大家喜欢！
+下载地址：百度网盘 ， 皮肤预览：(点击放大)
+
+&amp;nbsp;
+使用方法看下面 第2点 安装主题插件(没有装插件是不可以使用任何主题的)，以及第3点 主题导入。">
+<meta name="twitter:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/02/eclipse-qsuron-theme-300x259.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> Eclipse-编辑器皮肤设置方法&自制主题分享 | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Eclipse-编辑器皮肤设置方法&自制主题分享
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-07-14T21:20:17+08:00" content="2014-07-14">
+              2014-07-14
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 893</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 4分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/通用开发技术/" itemprop="url" rel="index">
+                    <span itemprop="name">通用开发技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/07/14/eclipse-skin/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/07/14/eclipse-skin/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>编程是一个体力活啊，又很枯燥乏味，给自己的eclipse加点料吧，这样多少还能看着新鲜点，不行过两天再换一个皮肤~还能保护眼睛，一举多得啊~</p>
+</blockquote>
+<h2 id=""><a href="#" class="headerlink" title=" "></a> </h2><h2 id="-1"><a href="#-1" class="headerlink" title=" "></a> </h2><h2 id="1-自制主题分享"><a href="#1-自制主题分享" class="headerlink" title="1 自制主题分享"></a>1 自制主题分享</h2><p><span style="color: #000000;">小树自己制作了一个主题 - qsuron，顺带上传上来，喜欢大家喜欢！</span></p>
+<p>下载地址：<a href="http://pan.baidu.com/s/1sjK1Iwt" target="_blank" rel="external">百度网盘</a> ， 皮肤预览：(点击放大)</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/02/eclipse-qsuron-theme.png" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/02/eclipse-qsuron-theme-300x259.png" alt="eclipse-qsuron-theme"></a></p>
+<p>&nbsp;</p>
+<p>使用方法看下面 第2点 安装主题插件(没有装插件是不可以使用任何主题的)，以及第3点 主题导入。</p>
+<p>&nbsp;</p>
+<h2 id="2-主题插件的安装"><a href="#2-主题插件的安装" class="headerlink" title="2 主题插件的安装"></a>2 主题插件的安装</h2><p>其实很简单，现在一起来：</p>
+<p>步骤：</p>
+<p>-&gt; 在<span style="color: #ff0000;">菜单栏</span>点击<span style="color: #ff0000;">Help</span>，选择<span style="color: #ff0000;">Install New Software</span>，点击 <span style="color: #ff0000;">add</span>，输入插件信息</p>
+<p>-&gt; <span style="color: #ff0000;">name </span>:  <span style="color: #ff0000;">随便输入</span></p>
+<p>-&gt; <span style="color: #ff0000;">Location</span>  :  <span style="color: #ff0000;"><a href="http://eclipse-color-theme.github.com/update" target="_blank" rel="external">http://eclipse-color-theme.github.com/update</a> </span></p>
+<p>点击ok之后，出现这样的画面</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/02/s1.png" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/02/s1-300x253.png" alt="" title="s1"></a></p>
+<p>如果提示找不到，请下载：<a href="http://eclipse-color-theme.github.io/update/eclipse-color-theme-update-site.zip" target="_blank" rel="external">http://eclipse-color-theme.github.io/update/eclipse-color-theme-update-site.zip</a>，然后在上一步中，点击attach手动添加。</p>
+<p><span style="color: #ff0000;"> 注意</span>：这里有一个<span style="color: #ff0000;">复选框：Contact all update sites …  </span>，建议不要勾选！勾选了要耗费大量时间！</p>
+<p>&nbsp;</p>
+<p>点击 <span style="color: #ff0000;">Select All</span> ,<span style="color: #ff0000;"> next</span> , <span style="color: #ff0000;">next</span> 。然后Eclipse会<span style="color: #ff0000;">提示是否重启（选择YES）</span>。待<span style="color: #ff0000;">重启完成</span>之后：打开<span style="color: #ff0000;">菜单</span>：<span style="color: #ff0000;">Windows</span> -&gt;<span style="color: #ff0000;">Perferences</span> -&gt;<span style="color: #ff0000;">General</span>-&gt; <span style="color: #ff0000;">Appearence</span> -&gt;<span style="color: #ff0000;">Color Theme </span></p>
+<p>就可以选择喜欢的皮肤了。</p>
+<p>这么多皮肤，随便挑吧，这里我就挑了一个颜色比较花哨的。</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/02/s2.png" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/02/s2-300x272.png" alt="" title="s2"></a></p>
+<p>&nbsp;</p>
+<h2 id="3-自制皮肤的导入"><a href="#3-自制皮肤的导入" class="headerlink" title="3.自制皮肤的导入"></a>3.自制皮肤的导入</h2><p>&nbsp;</p>
+<p><span style="color: #ff0000;">导入皮肤</span>：</p>
+<p>除了这些插件自带的皮肤，网上还有许多网友制作的皮肤，我们可以下载下来之后导入到eclipse中，导入方法</p>
+<p><span style="color: #ff0000;">步骤：</span></p>
+<p>同上面的选择皮肤，到达 <span style="color: #ff0000;">Color Theme  </span>设置页面后，点击下面的 <span style="color: #ff0000;"> Import theme</span> 即可导入皮肤！</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/eclipse/" rel="tag">#eclipse</a>
+          
+            <a href="/tags/skin/" rel="tag">#skin</a>
+          
+            <a href="/tags/theme/" rel="tag">#theme</a>
+          
+            <a href="/tags/皮肤/" rel="tag">#皮肤</a>
+          
+            <a href="/tags/编辑器/" rel="tag">#编辑器</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/07/14/eclipse-key/" rel="next" title="Eclipse-资深程序员必用快捷键集合">
+                <i class="fa fa-chevron-left"></i> Eclipse-资深程序员必用快捷键集合
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/07/15/softdesign/" rel="prev" title="软件设计师-51,56有惊无险，终于成功拿下了">
+                软件设计师-51,56有惊无险，终于成功拿下了 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/07/14/eclipse-skin/"
+     data-title="Eclipse-编辑器皮肤设置方法&自制主题分享"
+     data-content=""
+     data-url="http://yoursite.com/2014/07/14/eclipse-skin/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/07/14/eclipse-skin/"
+           data-title="Eclipse-编辑器皮肤设置方法&自制主题分享" data-url="http://yoursite.com/2014/07/14/eclipse-skin/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"> </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-1"><span class="nav-number">2.</span> <span class="nav-text"> </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-自制主题分享"><span class="nav-number">3.</span> <span class="nav-text">1 自制主题分享</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-主题插件的安装"><span class="nav-number">4.</span> <span class="nav-text">2 主题插件的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-自制皮肤的导入"><span class="nav-number">5.</span> <span class="nav-text">3.自制皮肤的导入</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

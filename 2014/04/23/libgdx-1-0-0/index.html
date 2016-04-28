@@ -1,0 +1,746 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="项目创建,gradle,libgdx 1.0,更新," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="LibGDX游戏引擎-11-版本更新至1.0.0&amp;nbsp;
+许久没有用LibGDX了，发现交流群里面的版本发生了变化，从我学习以来的经验，libGdx每一次的更新都会有十分之大的变化，因此特地在此记录下来，以免之前的文章会有一些内容会因为版本问题而无法正常运行
+本次libgdx 1.0更新的内容简介：
+更新了基于 Gradle 项目的安装，不需要更多的 jars，支持所有平台的简单打包！移除了对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LibGDX游戏引擎-11-新版本libgdx 1.0的指导">
+<meta property="og:url" content="http://yoursite.com/2014/04/23/libgdx-1-0-0/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="LibGDX游戏引擎-11-版本更新至1.0.0&amp;nbsp;
+许久没有用LibGDX了，发现交流群里面的版本发生了变化，从我学习以来的经验，libGdx每一次的更新都会有十分之大的变化，因此特地在此记录下来，以免之前的文章会有一些内容会因为版本问题而无法正常运行
+本次libgdx 1.0更新的内容简介：
+更新了基于 Gradle 项目的安装，不需要更多的 jars，支持所有平台的简单打包！移除了对">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/04/libgdx-1.0.0.4-300x218.png">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/04/libgdx-1.0.0.2-257x300.png">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.752Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LibGDX游戏引擎-11-新版本libgdx 1.0的指导">
+<meta name="twitter:description" content="LibGDX游戏引擎-11-版本更新至1.0.0&amp;nbsp;
+许久没有用LibGDX了，发现交流群里面的版本发生了变化，从我学习以来的经验，libGdx每一次的更新都会有十分之大的变化，因此特地在此记录下来，以免之前的文章会有一些内容会因为版本问题而无法正常运行
+本次libgdx 1.0更新的内容简介：
+更新了基于 Gradle 项目的安装，不需要更多的 jars，支持所有平台的简单打包！移除了对">
+<meta name="twitter:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/04/libgdx-1.0.0.4-300x218.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> LibGDX游戏引擎-11-新版本libgdx 1.0的指导 | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                LibGDX游戏引擎-11-新版本libgdx 1.0的指导
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-04-23T08:50:42+08:00" content="2014-04-23">
+              2014-04-23
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 2,115</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 10分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/libGDX框架/" itemprop="url" rel="index">
+                    <span itemprop="name">libGDX框架</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/04/23/libgdx-1-0-0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/04/23/libgdx-1-0-0/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="LibGDX游戏引擎-11-版本更新至1-0-0"><a href="#LibGDX游戏引擎-11-版本更新至1-0-0" class="headerlink" title="LibGDX游戏引擎-11-版本更新至1.0.0"></a><span style="color: #008000;">LibGDX游戏引擎-11-版本更新至1.0.0</span></h1><p>&nbsp;</p>
+<p><span style="color: #000000;">许久没有用LibGDX了，发现交流群里面的版本发生了变化，从我学习以来的经验，libGdx每一次的更新都会有十分之大的变化，因此特地在此记录下来，以免之前的文章会有一些内容会因为版本问题而无法正常运行</span></p>
+<p>本次libgdx 1.0更新的内容简介：</p>
+<p><pre class="lang:java decode:true">更新了基于 Gradle 项目的安装，不需要更多的 jars，支持所有平台的简单打包！<br>移除了对 OpenGL ES 1.x 的支持，支持 OpenGL ES 3.0<br>移除了大量 Android 后端的集群，要求最低 Android 版本是Android 2.2<br>Box2D 转移到了扩展中<br>大幅度的改进了 Scene2D，比如 viewport enhancement<br>更新了 libGDX repo，网站和 wiki；移除了旧的setup UI ,<br>移除了音频和图像扩展和demos have been gradelized and put into their own repositories。<br>用户可以直接在浏览器（桌面或者Android设备）上测试。</pre><br>&nbsp;</p>
+<p><span style="color: #000000;">最新版下载地址：</span><a href="https://github.com/libgdx/libgdx/releases" target="_blank" rel="external">https://github.com/libgdx/libgdx/releases</a></p>
+<p>libGdx是一个跨平台的2D/3D的游戏开发框架，它由Java/C/C++语言编写而成。</p>
+<p><span style="color: #ff0000;"><strong>关于本次LibGDX相关的内容将不定时更新到这篇文章中</strong></span></p>
+<p>&nbsp;</p>
+<h2 id="一、项目的创建-new"><a href="#一、项目的创建-new" class="headerlink" title="一、项目的创建 new "></a><strong><span style="color: #339966;">一、项目的创建 new </span></strong></h2><p>新版本的项目创建引入了Gradle，这是为了更好地对多个平台的项目进行安装和打包。关于Gradle这里仅做一个简单的链接和简介。</p>
+<h3 id="一、Gradle-官网：www-gradle-org"><a href="#一、Gradle-官网：www-gradle-org" class="headerlink" title="一、Gradle 官网：www.gradle.org"></a>一、Gradle 官网：www.gradle.org</h3><h3 id="二、Gradle-介绍："><a href="#二、Gradle-介绍：" class="headerlink" title="二、Gradle 介绍："></a>二、Gradle 介绍：</h3><p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/04/libgdx-1.0.0.4.png" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/04/libgdx-1.0.0.4-300x218.png" alt="libgdx-1.0.0.4"></a></p>
+<h3 id="三、项目创建-UI工具：gdx-setup-jar"><a href="#三、项目创建-UI工具：gdx-setup-jar" class="headerlink" title="三、项目创建 UI工具：gdx-setup.jar"></a>三、项目创建 UI工具：<a href="https://bitly.com/1i3C7i3" target="_blank" rel="external">gdx-setup.jar</a></h3><p><span style="color: #ff0000;">请确保您已安装了所需要的环境：详情见本文章 第五段。</span></p>
+<p>首先在<a href="https://github.com/libgdx/libgdx/releases" target="_blank" rel="external">官网</a>下载 libgdx 1.0 的项目包 ，解压，到安装目录里打开 gdx-setup.jar</p>
+<p><span style="color: #ff0000;">问题1：打不开提示找不到JVM或者MIan类</span></p>
+<p>请确保你已经安装了jdk，并可以使用命令行尝试：CMD，命令 java -jar gdx-setup.jar，如果还不行，请根据提示内容进行百度搜索</p>
+<blockquote>
+<p>Libgdx comes with a file called <code>gdx-setup.j``ar</code> which is an executable UI and command line tool.</p>
+</blockquote>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/04/libgdx-1.0.0.2.png" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/04/libgdx-1.0.0.2-257x300.png" alt="libgdx-1.0.0.2"></a></p>
+<p>这里需要对项目进行一些设置，相信用过libgdx低版本的应该都能看得懂，我就做一个简单的解释。</p>
+<blockquote>
+<div id="crayon-537e938fe66c3719409261-2" class="crayon-line crayon-striped-line" style="color: #000000;">项目名称</div>
+
+<div class="crayon-line crayon-striped-line" style="color: #000000;">包名</div>
+
+<div class="crayon-line crayon-striped-line" style="color: #000000;">主类</div>
+
+<div class="crayon-line crayon-striped-line" style="color: #000000;">项目生成路径</div>
+
+<div class="crayon-line crayon-striped-line" style="color: #000000;">android SDK路径</div>
+
+<div class="crayon-line crayon-striped-line" style="color: #000000;">应用平台(desktop主要是用来实时调试看效果的，其他平台需要则勾上)</div>
+
+<div class="crayon-line crayon-striped-line" style="color: #000000;">扩展功能（需要则勾上，需要说的是：libgdx 1.0版本把box2d也放到扩展中来了）</div>
+
+</blockquote>
+<p>填写好相关信息后，点击Generate生成，需要等待一段时间，coffee time, <span style="color: #ff0000;">如果期间出现网络错误</span><span style="color: #000000;">，请根据错误原因百度搜索即可，一般都会有前人遇到过</span>。</p>
+<p>也可以通过命令行来完成项目的创建.</p>
+<blockquote>
+<pre class="lang:java decode:true" title="命令行方式">java -jar gdx-setup.jar --dir mygame --name mygame --package com.badlogic.mygame --mainClass MyGame --sdkLocation mySdkLocation</pre>
+
+<p>&nbsp;</p>
+</blockquote>
+<h3 id="四、导入项目到IDE中"><a href="#四、导入项目到IDE中" class="headerlink" title="四、导入项目到IDE中"></a>四、导入项目到IDE中</h3><p>项目创建后，通过IDE工具(举例是 eclipse)，导入Gradle项目：官方Wiki如下：</p>
+<p><span style="color: #ff0000;">导入项目前请确保您的开发环境已经搭建，需要的环境已经在下面给出了(很多导入不了的问题都是环境问题)</span>，然后<span style="color: #000000;">点击菜单栏 </span><span style="color: #ff6600;"><code>File -&amp;gt; Import -&amp;gt; Gradle -&amp;gt; Gradle Project</code></span>，打开项目所在目录，点击 <span style="color: #ff6600;"><code>Build Model 开始建立</code>. <span style="color: #000000;">需要等待很长的一段时间，coffee time，<span style="color: #ff0000;">如果期间出现网络错误</span>，请根据错误原因百度搜索即可，一般都会有前人遇到过 ,建立完成后选择对应的版本，</span>点击 </span><span style="color: #ff6600;"><code>Finish 即可</code></span>.</p>
+<h3 id="五、环境的安装"><a href="#五、环境的安装" class="headerlink" title="五、环境的安装"></a>五、环境的安装</h3><p>首先确保你的IDE和环境正常运行，否则先安装环境, （这里以eclipse为例）包括</p>
+<ul>
+<li><blockquote>
+<p>1.JDK环境：<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">Java Development Kit 7+ (JDK) (6 will not work!)</a></p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>2.开发工具：<a href="http://www.eclipse.org/downloads/" target="_blank" rel="external">Eclipse</a>.</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>3.android环境：<a href="http://developer.android.com/sdk/installing.html" target="_blank" rel="external">Android SDK</a>, 只需要安装SDK即可， ADT 可以不要（如果你不用到的话）</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>4.eclipse的android开发插件：<a href="http://developer.android.com/tools/sdk/eclipse-adt.html" target="_blank" rel="external">Android Development Tools for Eclipse</a>, 点击菜单栏最后一栏下面的install software，名字随便，地址为: <span style="color: #993300;"><a href="https://dl-ssl.google.com/android/eclipse/" target="_blank" rel="external">https://dl-ssl.google.com/android/eclipse/</a></span>，然后下一步，勾选上安装即可！</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>5.eclipse的gradle插件：<a href="https://github.com/spring-projects/eclipse-integration-gradle/" target="_blank" rel="external">Eclipse Integration Gradle</a>, 点击菜单栏最后一栏下面的install software，名字随便，地址为::<span style="color: #993300;"><a href="http://dist.springsource.com/release/TOOLS/gradle" target="_blank" rel="external">http://dist.springsource.com/release/TOOLS/gradle</a></span> ，然后下一步，勾选上安装即可！没有安装此插件的话，打开File,Import不会找到Gradle,反之便是可行的。<span style="color: #ff0000;">需要最低版本是版本 1.0.0。</span><br>&nbsp;</p>
+</blockquote>
+</li>
+</ul>
+<p><span style="color: #ff0000;">成功导入后，其中的android项目或许会发生错误</span>（原因是你安装的androidSDK版本可能太低不符合默认的项目需求），解决方法：修改项目中所有的androidSDK-version=19为10或其他你已经安装的版本。详情请见LibGDX分类第一篇文章。</p>
+<p><span style="color: #ff0000;">AndroidManifest.xml文件亦可能会报错</span></p>
+<blockquote>
+<p>主要原因是转屏的原因，只要将</p>
+<p>android:configChanges=”keyboard|keyboardHidden|orientation|screenSize”</p>
+<p>修改android:configChanges=”keyboardHidden|orientation”，这是一个转屏的基本问题，</p>
+<p>这里就不赘述了。这样XML文件的报错就消失了。</p>
+<p>&nbsp;<br>如果对您有用，请友情回复。谢谢您的到来！</p>
+</blockquote>
+<h2 id="二、未完待续"><a href="#二、未完待续" class="headerlink" title="二、未完待续"></a><span style="color: #008000;">二、未完待续</span></h2><p>最近忙于考证，更多的libgdx 1.0并没有整理上来，过一段时间会进行更新，</p>
+<p>如果要实时阅读我的博文，请在主页进行邮箱订阅，每周会有一次邮件推送。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/项目创建/" rel="tag">#项目创建</a>
+          
+            <a href="/tags/gradle/" rel="tag">#gradle</a>
+          
+            <a href="/tags/libgdx-1-0/" rel="tag">#libgdx 1.0</a>
+          
+            <a href="/tags/更新/" rel="tag">#更新</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/04/16/vicious-cycle/" rel="next" title="[无聊纯扯淡]深谈程序员的恶性循环">
+                <i class="fa fa-chevron-left"></i> [无聊纯扯淡]深谈程序员的恶性循环
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/04/23/loadrunner-install/" rel="prev" title="性能测试工具LoadRunner 9.5安装及破解">
+                性能测试工具LoadRunner 9.5安装及破解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/04/23/libgdx-1-0-0/"
+     data-title="LibGDX游戏引擎-11-新版本libgdx 1.0的指导"
+     data-content=""
+     data-url="http://yoursite.com/2014/04/23/libgdx-1-0-0/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/04/23/libgdx-1-0-0/"
+           data-title="LibGDX游戏引擎-11-新版本libgdx 1.0的指导" data-url="http://yoursite.com/2014/04/23/libgdx-1-0-0/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LibGDX游戏引擎-11-版本更新至1-0-0"><span class="nav-number">1.</span> <span class="nav-text">LibGDX游戏引擎-11-版本更新至1.0.0</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、项目的创建-new"><span class="nav-number">1.1.</span> <span class="nav-text">一、项目的创建 new </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、Gradle-官网：www-gradle-org"><span class="nav-number">1.1.1.</span> <span class="nav-text">一、Gradle 官网：www.gradle.org</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、Gradle-介绍："><span class="nav-number">1.1.2.</span> <span class="nav-text">二、Gradle 介绍：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、项目创建-UI工具：gdx-setup-jar"><span class="nav-number">1.1.3.</span> <span class="nav-text">三、项目创建 UI工具：gdx-setup.jar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、导入项目到IDE中"><span class="nav-number">1.1.4.</span> <span class="nav-text">四、导入项目到IDE中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、环境的安装"><span class="nav-number">1.1.5.</span> <span class="nav-text">五、环境的安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、未完待续"><span class="nav-number">1.2.</span> <span class="nav-text">二、未完待续</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

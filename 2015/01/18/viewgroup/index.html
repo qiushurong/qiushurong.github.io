@@ -1,0 +1,698 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="AndroidAnnotations,开源,框架," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="AndroidAnnotations是一个能够让你快速进行Android开发的开源框架，它能让你专注于真正重要的地方。使代码更加精简，使项目更加容易维护，它的目标就是“Fast Android Development.Easy maintainance”.&amp;nbsp;
+
+&amp;nbsp;
+希望此篇能帮到大家，本系列教程目录：转载请链接并注明：转自 小树技术博客 .
+
+AndroidAnnotatio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AndroidAnnotations注解框架之@EViewGroup(五)">
+<meta property="og:url" content="http://yoursite.com/2015/01/18/viewgroup/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="AndroidAnnotations是一个能够让你快速进行Android开发的开源框架，它能让你专注于真正重要的地方。使代码更加精简，使项目更加容易维护，它的目标就是“Fast Android Development.Easy maintainance”.&amp;nbsp;
+
+&amp;nbsp;
+希望此篇能帮到大家，本系列教程目录：转载请链接并注明：转自 小树技术博客 .
+
+AndroidAnnotatio">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.754Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AndroidAnnotations注解框架之@EViewGroup(五)">
+<meta name="twitter:description" content="AndroidAnnotations是一个能够让你快速进行Android开发的开源框架，它能让你专注于真正重要的地方。使代码更加精简，使项目更加容易维护，它的目标就是“Fast Android Development.Easy maintainance”.&amp;nbsp;
+
+&amp;nbsp;
+希望此篇能帮到大家，本系列教程目录：转载请链接并注明：转自 小树技术博客 .
+
+AndroidAnnotatio">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> AndroidAnnotations注解框架之@EViewGroup(五) | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                AndroidAnnotations注解框架之@EViewGroup(五)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-01-18T20:16:56+08:00" content="2015-01-18">
+              2015-01-18
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 566</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 3分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Android开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/01/18/viewgroup/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/01/18/viewgroup/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>AndroidAnnotations是一个能够让你快速进行Android开发的开源框架，它能让你专注于真正重要的地方。使代码更加精简，使项目更加容易维护，它的目标就是“Fast Android Development.Easy maintainance”.<br>&nbsp;</p>
+</blockquote>
+<p>&nbsp;</p>
+<p>希望此篇能帮到大家，本系列教程目录：转载请链接并注明：转自 <a href="http://www.qiushurong.cn" title="小树技术博客" target="_blank" rel="external">小树技术博客</a> .</p>
+<blockquote>
+<p>AndroidAnnotations注解框架之介绍+配置(一)：   <a href="http://www.qiushurong.cn/2014/09/22/android-annotations-introduce/" title="AndroidAnnotations注解框架之介绍+配置(一)" target="_blank" rel="external">(飞机票)</a><br>&nbsp;</p>
+</blockquote>
+<p>@ViewGroup是AndroidAnnotations中比较特殊灵活的一个View注解，主要用于各种AA没涉及到的View的处理。例如Dialog，PopWindow，之类等等！（AA中没有@EDialog，但是使用@ViewGroup可以实现@EDialog的功能）</p>
+<p>由于正好写项目用到了，所以顺便写一下教程。这里以写一个AA框架的Dialog为例子。</p>
+<p>首先，将原有的dialog布局文件配置到@ViewGroup中，在ViewGroup中进行AA框架的功能应用，如@findByid等等。</p>
+<p><pre class="lang:java decode:true">@EViewGroup(R.layout.add_user_dialog)<br>public class AddUserDialog extends LinearLayout {</pre></p>
+<pre><code>@ViewById(R.id.exit)
+Button btn_exit;
+
+public AddUserDialog(Context context, AttributeSet attrs) {
+    super(context, attrs);
+}
+</code></pre><p>}<br>&nbsp;</p>
+<p>照常创建Dialog对象，将之前的ViewGroup_对象作为视图设置到dialog中，最后显示dialog</p>
+<p><pre class="lang:java decode:true">Context mContext = getApplicationContext();<br>Dialog dialog = new Dialog(mContext);</pre></p>
+<p>YourDialogViewGroup<em> viewGroup = new YourDialogViewGroup</em>(mContext);<br>// We working on this, but for the moment you have to manually call onFinishInflate()<br>// when you programmatically instantiate custom components<br>viewGroup.onFinishInflate();</p>
+<p>// You set the content view as your own custom component<br>dialog.setContentView(viewGroup);<br>// You still have to define the title here<br>dialog.setTitle(“Custom Dialog”);<br>注意</p>
+<p><pre class="lang:java decode:true">viewGroup.onFinishInflate();</pre><br>必须完成视图的加载后才能进行Dialog的显示，否则会出现视图为空的问题。</p>
+<p>&nbsp;</p>
+<p>由于时间关系就不详细写了，具体文档或解释见官网Wiki和Docs</p>
+<p>地址：</p>
+<p>Enhance-custom-views : <a href="https://github.com/excilys/androidannotations/wiki/Enhance-custom-views" target="_blank" rel="external">飞机票</a></p>
+<p>F&amp;Q：<a href="https://github.com/excilys/androidannotations/issues/122" target="_blank" rel="external">飞机票</a></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AndroidAnnotations/" rel="tag">#AndroidAnnotations</a>
+          
+            <a href="/tags/开源/" rel="tag">#开源</a>
+          
+            <a href="/tags/框架/" rel="tag">#框架</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/12/20/e6-96-b9-e6-b3-95apmserv5-2-6-e5-8d-87-e7-ba-a7php-e7-89-88-e6-9c-ac-e5-88-b0-e9-ab-98-e7-89-88-e6-9c-ac5-3/" rel="next" title="[方法]APMServ5.2.6升级PHP版本到高版本5.3+">
+                <i class="fa fa-chevron-left"></i> [方法]APMServ5.2.6升级PHP版本到高版本5.3+
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/02/06/experience-article/" rel="prev" title="互联网招聘求职&人生经营经历汇总">
+                互联网招聘求职&人生经营经历汇总 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/01/18/viewgroup/"
+     data-title="AndroidAnnotations注解框架之@EViewGroup(五)"
+     data-content=""
+     data-url="http://yoursite.com/2015/01/18/viewgroup/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/01/18/viewgroup/"
+           data-title="AndroidAnnotations注解框架之@EViewGroup(五)" data-url="http://yoursite.com/2015/01/18/viewgroup/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

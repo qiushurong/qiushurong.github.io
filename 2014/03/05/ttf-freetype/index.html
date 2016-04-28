@@ -1,0 +1,725 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="文字," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="回执文字也有第二种方式，使用TTF字体，但是需要外加扩展包，因为如果你通过step-ui建立项目，默认是不加入这个包的
+需要手动导入,导入方法：
+（1）打开解压好的0.9.9版的包，extensions文件夹，gdx-freetype文件夹，
+找到 gdx-freetype.jar 和 gdx-freetype-natives.jar。
+（2）扩展包导入
+首先，核心代码项目，将 gdx-freet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LibGDX游戏引擎-4-文字绘制(TTF-FreeType)">
+<meta property="og:url" content="http://yoursite.com/2014/03/05/ttf-freetype/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="回执文字也有第二种方式，使用TTF字体，但是需要外加扩展包，因为如果你通过step-ui建立项目，默认是不加入这个包的
+需要手动导入,导入方法：
+（1）打开解压好的0.9.9版的包，extensions文件夹，gdx-freetype文件夹，
+找到 gdx-freetype.jar 和 gdx-freetype-natives.jar。
+（2）扩展包导入
+首先，核心代码项目，将 gdx-freet">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.750Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LibGDX游戏引擎-4-文字绘制(TTF-FreeType)">
+<meta name="twitter:description" content="回执文字也有第二种方式，使用TTF字体，但是需要外加扩展包，因为如果你通过step-ui建立项目，默认是不加入这个包的
+需要手动导入,导入方法：
+（1）打开解压好的0.9.9版的包，extensions文件夹，gdx-freetype文件夹，
+找到 gdx-freetype.jar 和 gdx-freetype-natives.jar。
+（2）扩展包导入
+首先，核心代码项目，将 gdx-freet">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> LibGDX游戏引擎-4-文字绘制(TTF-FreeType) | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                LibGDX游戏引擎-4-文字绘制(TTF-FreeType)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-03-05T00:03:58+08:00" content="2014-03-05">
+              2014-03-05
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 1,094</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 5分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/libGDX框架/" itemprop="url" rel="index">
+                    <span itemprop="name">libGDX框架</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/03/05/ttf-freetype/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/05/ttf-freetype/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>回执文字也有第二种方式，使用TTF字体，但是需要外加扩展包，因为如果你通过step-ui建立项目，默认是不加入这个包的</p>
+<p>需要手动导入,导入方法：</p>
+<p>（1）打开解压好的0.9.9版的包，extensions文件夹，gdx-freetype文件夹，</p>
+<p>找到 gdx-freetype.jar 和 gdx-freetype-natives.jar。</p>
+<p>（2）扩展包导入</p>
+<p>首先，核心代码项目，将 gdx-freetype.jar 复制并粘贴到核心代码项目的lib文件夹，</p>
+<p>然后将其添加到Referenced Libraries 库中。</p>
+<p>其次，安卓项目，将 gdx-freetype.jar 复制并粘贴到 -android 项目的lib文件夹，</p>
+<p>然后将其添加到Referenced Libraries 库中。</p>
+<p>最后，桌面项目，将 gdx-freetype-natives.jar 复制、粘贴到 -desktop 项目的lib文件夹中，</p>
+<p>然后加入到Referenced Libraries中。</p>
+<p>（3）将 gdx-freetype 文件夹中，armeabi 和 armeabi-v7a 两个文件夹复制到 -android 项目中，</p>
+<p>位于libs/,替换掉原有的armeabi和armeabi-v7a文件夹。</p>
+<p>使用方法：</p>
+<p><pre class="lang:java decode:true">import com.badlogic.gdx.ApplicationListener;<br>import com.badlogic.gdx.Gdx;<br>import com.badlogic.gdx.graphics.Color;<br>import com.badlogic.gdx.graphics.GL10;<br>import com.badlogic.gdx.graphics.g2d.BitmapFont;<br>import com.badlogic.gdx.graphics.g2d.SpriteBatch;<br>import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;<br>import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeBitmapFontData;</pre></p>
+<p>public class MyGdxGame implements ApplicationListener{<br>private SpriteBatch batch;<br>private BitmapFont font;<br>private FreeTypeFontGenerator generator;//字体生产者<br>private FreeTypeBitmapFontData fontData;//字体加工者</p>
+<p>@Override<br>public void create() {<br>batch = new SpriteBatch();<br>generator = new FreeTypeFontGenerator(Gdx.files.internal(“data/MyFont.ttf”));<br>fontData = generator.generateData(25,”bBdDfFgGiIlLnNtTxX 小树游戏引擎字体测试程序!”,false);<br>font = new BitmapFont(fontData,fontData.getTextureRegions(),false);<br>}</p>
+<p>@Override<br>public void dispose() {<br>batch.dispose();<br>}</p>
+<p>@Override<br>public void render() {<br>Gdx.gl.glClearColor(0,0,0, 0);<br>Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);<br>batch.begin();<br>font.draw(batch,”LibGDX游戏引擎Fnt字体测试程序”, 20, 280);//普通绘制<br>font.draw(batch,”LibGDX游戏引擎Fnt字体测试程序”, 20, 300,0,10);//截取绘制<br>font.drawMultiLine(batch,”小树n引擎测试”, 330, 230);//换行绘制,可识别n换行符号<br>batch.end();<br>}</p>
+<p>@Override<br>public void resize(int width, int height) {<br>}</p>
+<p>@Override<br>public void pause() {<br>}</p>
+<p>@Override<br>public void resume() {<br>}</p>
+<p>}<br><br>PS：libgdx.so文件</p>
+<blockquote>
+<p>答：一般来说.so文件就是常说的动态链接库, 是C或C++编译出来的，在可执行文件装载时或运行时，</p>
+<p>由Android操作系统的程序来加载库。作为加载过程的一部分它负责解析外部引用（比如库）。</p>
+<p>在不同的系统上，可执行文件包含一个叫做import directory的表，该表的每一项包含一个库的名字。</p>
+<p>根据表中记录的名字，装载程序所需要的库，然后将其加载到内存中，之后根据加载库后确定的库的地址</p>
+<p>更新可执行程序，更新后调用库中的函数或引用库中的数据。这就是.so文件的原理作用。<br>FreeTypeFontGenerator 类<br>TTF字体生产者</p>
+</blockquote>
+<hr>
+<p>API定义：TTF字体的发生器（生产者）其实 FreeTypeFontGenerator 和 Texture 是一样的，</p>
+<p>都只是一个容器，负责盛装“.ttf”的文件然后备用。</p>
+<hr>
+<p>功能用途：负责保存和解析“.ttf”格式文件这个和Texture类是一样的。</p>
+<hr>
+<p>使用方法：FreeTypeFontGenerator 一般都配合 FreeTypeBitmapFontData 来使用。</p>
+<hr>
+<p>PS:这里特别声明一下，TTF文件一定要用英文名.</p>
+<hr>
+<blockquote>
+<p>FreeTypeBitmapFontData 类<br>TTF字体加工者</p>
+</blockquote>
+<hr>
+<p>API定义：负责处理FreeTypeBitmapFontData的数据的 （加工者）</p>
+<hr>
+<p>功能用途：负责处理FreeTypeGenerator的数据 和 BitmapFontData 类似</p>
+<hr>
+<p>使用方法：</p>
+<p>FreeTypeBitmapFontData fontData = freetypeGenerator.generateData(</p>
+<p>int Size, some Chinese String, false);</p>
+<hr>
+<p>类的几个参数和重要的成员变量，第一个是字号的大小，</p>
+<p>第二个是中文的字符串（即汉字，需要加引号），第三个翻转状态。</p>
+<hr>
+<p>DEFAULT_CHARS:</p>
+<p>FreeTypeBitmapFontData 有一个重要成员变量 DEFAULT_CHARS ，</p>
+<p>它是作者Mario给我们封装好的基本英文字符打开FreeTypeBitmapFontData</p>
+<p>你会看见如下图的变量赋值，这样即使”.TTF”字库中没有英文字符，我们也可以输出英文字符的，</p>
+<p>因为作者已经给我们打包了。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/文字/" rel="tag">#文字</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/03/02/candy-box-2/" rel="next" title="ASCII版RPG冒险游戏-Candy Box 2">
+                <i class="fa fa-chevron-left"></i> ASCII版RPG冒险游戏-Candy Box 2
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/03/08/reverse/" rel="prev" title="今天再难苦再委屈的事情，一周之后都不是事情！">
+                今天再难苦再委屈的事情，一周之后都不是事情！ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/03/05/ttf-freetype/"
+     data-title="LibGDX游戏引擎-4-文字绘制(TTF-FreeType)"
+     data-content=""
+     data-url="http://yoursite.com/2014/03/05/ttf-freetype/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/03/05/ttf-freetype/"
+           data-title="LibGDX游戏引擎-4-文字绘制(TTF-FreeType)" data-url="http://yoursite.com/2014/03/05/ttf-freetype/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

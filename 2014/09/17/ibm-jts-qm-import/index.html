@@ -1,0 +1,737 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="excel,ibm,import,jts,qm," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="IBM JTS RQM中EXCEL测试用例的导入&amp;nbsp;
+
+在IBM公司的软件管理平台JTS上，从EXCEL文件导入测试用例到RQM中是十分之重要和实用的，很多客户也是要求必须要有如此的功能，本篇文档主要是一个工具的指南，因为RQM本身并不可以导入EXCEL，但是IBM公司提供了这么一个工具：RQMExcelWordImporter，that’s Amazing!本文内容大部分参考IBM官网的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IBM-JazzTeamServer-rqm中EXCEL测试用例的导入">
+<meta property="og:url" content="http://yoursite.com/2014/09/17/ibm-jts-qm-import/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="IBM JTS RQM中EXCEL测试用例的导入&amp;nbsp;
+
+在IBM公司的软件管理平台JTS上，从EXCEL文件导入测试用例到RQM中是十分之重要和实用的，很多客户也是要求必须要有如此的功能，本篇文档主要是一个工具的指南，因为RQM本身并不可以导入EXCEL，但是IBM公司提供了这么一个工具：RQMExcelWordImporter，that’s Amazing!本文内容大部分参考IBM官网的">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/09/jts-rqm-5.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/09/jts-rqm-1-279x300.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/09/jts-rqm-2-300x243.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/09/jts-rqm-3-300x62.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/09/jts-rqm-4-300x37.jpg">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.753Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IBM-JazzTeamServer-rqm中EXCEL测试用例的导入">
+<meta name="twitter:description" content="IBM JTS RQM中EXCEL测试用例的导入&amp;nbsp;
+
+在IBM公司的软件管理平台JTS上，从EXCEL文件导入测试用例到RQM中是十分之重要和实用的，很多客户也是要求必须要有如此的功能，本篇文档主要是一个工具的指南，因为RQM本身并不可以导入EXCEL，但是IBM公司提供了这么一个工具：RQMExcelWordImporter，that’s Amazing!本文内容大部分参考IBM官网的">
+<meta name="twitter:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/09/jts-rqm-5.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> IBM-JazzTeamServer-rqm中EXCEL测试用例的导入 | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                IBM-JazzTeamServer-rqm中EXCEL测试用例的导入
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-09-17T15:40:52+08:00" content="2014-09-17">
+              2014-09-17
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 2,075</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 10分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/软件测试/" itemprop="url" rel="index">
+                    <span itemprop="name">软件测试</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/09/17/ibm-jts-qm-import/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/09/17/ibm-jts-qm-import/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="IBM-JTS-RQM中EXCEL测试用例的导入"><a href="#IBM-JTS-RQM中EXCEL测试用例的导入" class="headerlink" title="IBM JTS RQM中EXCEL测试用例的导入"></a>IBM JTS RQM中EXCEL测试用例的导入</h1><p>&nbsp;</p>
+<blockquote>
+<p>在IBM公司的软件管理平台JTS上，从EXCEL文件导入测试用例到RQM中是十分之重要和实用的，很多客户也是要求必须要有如此的功能，本篇文档主要是一个工具的指南，因为RQM本身并不可以导入EXCEL，但是IBM公司提供了这么一个工具：RQMExcelWordImporter，that’s Amazing!本文内容大部分参考IBM官网的帮助，写得可能不好，请见谅！<br>本文档版本：4.0，和5.0应该差不多</p>
+</blockquote>
+<p>实际基于质量管理平台：IBM JazzTeamServer Rational Quality Manager 5.0</p>
+<p>修订人：小树 admin@qiushurong.cn # 2014-09-17 @guangzhou Changeman</p>
+<h1 id="1-需要用到的工具："><a href="#1-需要用到的工具：" class="headerlink" title="1.   需要用到的工具："></a>1.   需要用到的工具：</h1><p>&nbsp;</p>
+<p>RQM-Extras-RQMExcelWordImporter</p>
+<h2 id="1-1-下载地址："><a href="#1-1-下载地址：" class="headerlink" title="1.1.  下载地址："></a>1.1.  下载地址：</h2><p>&nbsp;</p>
+<p><a href="https://jazz.net" target="_blank" rel="external">https://jazz.net</a></p>
+<h2 id="1-2-下载步骤："><a href="#1-2-下载步骤：" class="headerlink" title="1.2.  下载步骤："></a>1.2.  下载步骤：</h2><p>&nbsp;</p>
+<p>打开网页后，点击download，选择qm，点击all download，找到RQM-Extras-RQMExcelWordImporter，需要登录，没有用户的话需要注册，登录后进行下载。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1 id="2-工具的使用："><a href="#2-工具的使用：" class="headerlink" title="2.   工具的使用："></a>2.   工具的使用：</h1><p>&nbsp;</p>
+<p><a href="http://www.ibm.com/developerworks/cn/rational/1312_zhangjin_rqmbestpractice/" target="_blank" rel="external">http://www.ibm.com/developerworks/cn/rational/1312_zhangjin_rqmbestpractice/</a></p>
+<h2 id="2-1-安装并打开importer"><a href="#2-1-安装并打开importer" class="headerlink" title="2.1.  安装并打开importer"></a>2.1.  安装并打开importer</h2><p>注意：</p>
+<blockquote>
+<p>安装需要MicroSoft office 2003 sp3 以上版本，推荐2003或2007.</p>
+<p>安装需要.net FramWork 2.0.以上支持.</p>
+<p>由于修改了office的菜单和加载项，所以需要杀毒软件的放行.<br>下载 RQM-Extras-RQMExcelWordImporter-5.0.zip，解压后执行RQMExcelImporterX64setup.exe</p>
+</blockquote>
+<p>安装完成后，启动 Excel，可以看到在 Add-Ins（加载项） 下的 RQM 项。</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/09/jts-rqm-5.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/09/jts-rqm-5.jpg" alt="jts-rqm-5"></a></p>
+<blockquote>
+<p>注意：如果你是X64系统，请使用X64的安装包，如果使用X64的安装包后发现并没有找到这个选项，请直接使用默认安装包即可。（因为有可能你的系统虽然是64位的，但是你的office软件确实X86或者说是32位的）<br>&nbsp;</p>
+</blockquote>
+<p>在 RQM 下，选择 Export to Repository，可以看到如图 10 所示窗口：</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/09/jts-rqm-1.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/09/jts-rqm-1-279x300.jpg" alt="jts-rqm-1"></a></p>
+<p>图 10. Export to RQM</p>
+<p>&nbsp;</p>
+<h2 id="2-2-连接到RQM"><a href="#2-2-连接到RQM" class="headerlink" title="2.2.  连接到RQM"></a>2.2.  连接到RQM</h2><p>&nbsp;</p>
+<p>输入 RQM Server, Username, Password，连接好 RQM Server 之后，选择 Project。这里需要注意的是使用 RQM Excel Importer 连接 RQM 的用户必须有 Data Migration 的角色，如图 11 所示：</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/09/jts-rqm-2.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/09/jts-rqm-2-300x243.jpg" alt="jts-rqm-2"></a></p>
+<p>图 11. RQM Excel Importer 用户所需要的角色</p>
+<p>&nbsp;</p>
+<h2 id="2-3-测试用例配置文件"><a href="#2-3-测试用例配置文件" class="headerlink" title="2.3.  测试用例配置文件"></a>2.3.  测试用例配置文件</h2><p>&nbsp;</p>
+<p>如图 10 中所示，导入 Test Cases 时我们需要一个配置文件（TestCases.cfg）。在这个文件中我们会配置在 Excel 中的行和列对应到 Test Cases 的各个组成部分，配置文件如清单 5 所示：</p>
+<p>&nbsp;</p>
+<h3 id="2-3-1-Test-Case配置文件"><a href="#2-3-1-Test-Case配置文件" class="headerlink" title="2.3.1.   Test Case配置文件"></a>2.3.1.   Test Case配置文件</h3><p>&nbsp;</p>
+<p><pre class="lang:java decode:true " title="cfg">testcase.XLSStartRow=2<br>testcase.dc:title=B<br>testcase.dc:description=E<br>testcase.jzalm:owner=C<br>testcase.Section(“myns:com.ibm.rqm.planning.editor.section.testCaseDesign”,\”RQM-KEY-TC-DESIGN-TITLE”)=F<br>testcase.Section(“myns:com.ibm.rqm.planning.editor.section.testCasePreCondition”,\”RQM-KEY-TC-PRE-COND-TITLE”)=K</pre><br>&nbsp;</p>
+<p>&nbsp;</p>
+<h3 id="2-3-2-Test-Case-配置文件的解析"><a href="#2-3-2-Test-Case-配置文件的解析" class="headerlink" title="2.3.2.   Test Case 配置文件的解析"></a>2.3.2.   Test Case 配置文件的解析</h3><p>&nbsp;</p>
+<p>在清单 5 中，</p>
+<p>第一行表示导入到 RQM 中的 test case 是从 Excel 文档中的第2行开始。</p>
+<p>第二行表示 test case 的 title 对应的是 Excel 文件中的 B 列。</p>
+<p>第三行表示 test case 的 description 对应的是 Excel 文件中的 E 列。</p>
+<p>第四行表示 test case 的 owner 对应的是 Excel 文件中的 C 列。</p>
+<p>第五行分别表示 test case 的 Design 对应的是Excel 文件中的 F 列。</p>
+<p>第六行分别表示 test case 的 Precondition 对应的是Excel 文件中的和 K 列。</p>
+<p>&nbsp;</p>
+<p><pre class="lang:java decode:true" title="自己编写的测试用例模版cfg">//业务域<br>testcase.category term=”业务域”.value=”01 登记”<br>//模块<br>testcase.category term=”模块”.value=”011001_设立税务登记”<br>//指定工作表<br>testcase.XLSWorksheetID=”测试用例汇总”<br>//从第*行开始读取<br>testcase.XLSStartRow=2<br>//测试用例-B<br>testcase.customAttributes identifier=”js_attr_csylbh2”.name=B1.type=”SMALL_STRING”.value=B<br>//测试用例-标题C<br>testcase.dc:title=C<br>//测试用例-优先级D<br>testcase.priority=D<br>//测试用例-前置条件E<br>testcase.Section(“myns:js_section_qztj”,”前置条件”)=RichText(E)<br>//测试用例-测试操作步骤及内容F<br>testcase.Section(“myns:js_section_csczbzjnr”,”测试操作步骤及内容”)=RichText(F)<br>//测试用例-关键点G<br>testcase.Section(“myns:js_section_gjd”,”关键点”)=RichText(G)<br>//测试用例-测试数据要求H<br>testcase.Section(“myns:js_section_cssjyq”,”测试数据要求”)=RichText(H)<br>//测试用例-关键点预期效果I<br>testcase.Section(“myns:js_section_gjdyqxg”,”关键点预期效果”)=RichText(I)<br>//测试用例-用例预期效果J<br>testcase.Section(“myns:js_section_ylyqxg”,”用例预期效果”)=RichText(J)<br>//测试用例-关联流程测试用例编号K<br>testcase.customAttributes identifier=”js_attr_gllccsylbh2”.name=K1.value=RichText(K)<br>//测试用例-编写人L<br>testcase.customAttributes identifier=”js_attr_bxr2”.name=L1.type=”SMALL_STRING”.value=L<br>//测试用例-审核意见M<br>testcase.customAttributes identifier=”js_attr_shyj2”.name=M1.type=”SMALL_STRING”.value=M<br>//测试用例-审核人N<br>testcase.customAttributes identifier=”js_attr_shr2”.name=N1.type=”SMALL_STRING”.value=N<br>//测试用例-备注O<br>testcase.Section(“myns:js_section_bz”,”备注”)=RichText(O)<br>//测试用例-所有者<br>testcase.alm:owner=”jazzadmin”<br>//测试用例-权重<br>testcase.weight=”100”</pre></p>
+<p><br>&nbsp;</p>
+<h2 id="2-4-具体的Excel"><a href="#2-4-具体的Excel" class="headerlink" title="2.4.  具体的Excel"></a>2.4.  具体的Excel</h2><p>&nbsp;</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/09/jts-rqm-3.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/09/jts-rqm-3-300x62.jpg" alt="jts-rqm-3"></a></p>
+<h2 id="2-5-导入成功"><a href="#2-5-导入成功" class="headerlink" title="2.5.  导入成功"></a>2.5.  导入成功</h2><p>&nbsp;</p>
+<p>当 Export To Repoitory 执行成功后，可以在 RQM 查看导入的 Test Cases，如下：</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/09/jts-rqm-4.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/09/jts-rqm-4-300x37.jpg" alt="jts-rqm-4"></a></p>
+<p>&nbsp;</p>
+<h2 id="2-6-总结"><a href="#2-6-总结" class="headerlink" title="2.6.  总结"></a>2.6.  总结</h2><p>&nbsp;</p>
+<p>通过上述介绍对比我们可以看到，RQM中，测试用例的导入的重心就是测试用例EXCEL的配置文件。</p>
+<p>&nbsp;</p>
+<p>附上RQM-importer 的英文官方文档</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/09/RQM-importer-doc.pdf" target="_blank" rel="external">RQM-importer-doc</a></p>
+<p>附上测试用例导入的例子(国税局测试用例)</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/09/testcase导入demo.zip" target="_blank" rel="external">testcase导入demo</a></p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/excel/" rel="tag">#excel</a>
+          
+            <a href="/tags/ibm/" rel="tag">#ibm</a>
+          
+            <a href="/tags/import/" rel="tag">#import</a>
+          
+            <a href="/tags/jts/" rel="tag">#jts</a>
+          
+            <a href="/tags/qm/" rel="tag">#qm</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/08/28/struts-i18n/" rel="next" title="J2EE-网页语言切换之国际化i18n">
+                <i class="fa fa-chevron-left"></i> J2EE-网页语言切换之国际化i18n
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/09/22/android-application/" rel="prev" title="Android真正的入口：Application的用法介绍">
+                Android真正的入口：Application的用法介绍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/09/17/ibm-jts-qm-import/"
+     data-title="IBM-JazzTeamServer-rqm中EXCEL测试用例的导入"
+     data-content=""
+     data-url="http://yoursite.com/2014/09/17/ibm-jts-qm-import/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/09/17/ibm-jts-qm-import/"
+           data-title="IBM-JazzTeamServer-rqm中EXCEL测试用例的导入" data-url="http://yoursite.com/2014/09/17/ibm-jts-qm-import/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IBM-JTS-RQM中EXCEL测试用例的导入"><span class="nav-number">1.</span> <span class="nav-text">IBM JTS RQM中EXCEL测试用例的导入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-需要用到的工具："><span class="nav-number">2.</span> <span class="nav-text">1.   需要用到的工具：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-下载地址："><span class="nav-number">2.1.</span> <span class="nav-text">1.1.  下载地址：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-下载步骤："><span class="nav-number">2.2.</span> <span class="nav-text">1.2.  下载步骤：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-工具的使用："><span class="nav-number">3.</span> <span class="nav-text">2.   工具的使用：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-安装并打开importer"><span class="nav-number">3.1.</span> <span class="nav-text">2.1.  安装并打开importer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-连接到RQM"><span class="nav-number">3.2.</span> <span class="nav-text">2.2.  连接到RQM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-测试用例配置文件"><span class="nav-number">3.3.</span> <span class="nav-text">2.3.  测试用例配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-Test-Case配置文件"><span class="nav-number">3.3.1.</span> <span class="nav-text">2.3.1.   Test Case配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-Test-Case-配置文件的解析"><span class="nav-number">3.3.2.</span> <span class="nav-text">2.3.2.   Test Case 配置文件的解析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-具体的Excel"><span class="nav-number">3.4.</span> <span class="nav-text">2.4.  具体的Excel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-导入成功"><span class="nav-number">3.5.</span> <span class="nav-text">2.5.  导入成功</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-总结"><span class="nav-number">3.6.</span> <span class="nav-text">2.6.  总结</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,735 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="stage,舞台," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="舞台类相比于演员类来说，更容易理解，它其实从功能的角度来说就是负责管理演员和Group类的平台，他本身的存在就是为了管理，而不是去负责演出，他就像一个导演一样，只负责管理，具体如何表演，那不是舞台所负责的事情。我们通过实现一个游戏中常见的商店系统来学习舞台类Stage类API定义：
+
+包含拥有层次结构的一个二维场景，场景中有许多演员。处理视图和分配的输入事件。舞台负责操作视角，和处理分配输入事件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LibGDX游戏引擎-8舞台类的使用(Stage)">
+<meta property="og:url" content="http://yoursite.com/2014/03/19/stage/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="舞台类相比于演员类来说，更容易理解，它其实从功能的角度来说就是负责管理演员和Group类的平台，他本身的存在就是为了管理，而不是去负责演出，他就像一个导演一样，只负责管理，具体如何表演，那不是舞台所负责的事情。我们通过实现一个游戏中常见的商店系统来学习舞台类Stage类API定义：
+
+包含拥有层次结构的一个二维场景，场景中有许多演员。处理视图和分配的输入事件。舞台负责操作视角，和处理分配输入事件">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.751Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LibGDX游戏引擎-8舞台类的使用(Stage)">
+<meta name="twitter:description" content="舞台类相比于演员类来说，更容易理解，它其实从功能的角度来说就是负责管理演员和Group类的平台，他本身的存在就是为了管理，而不是去负责演出，他就像一个导演一样，只负责管理，具体如何表演，那不是舞台所负责的事情。我们通过实现一个游戏中常见的商店系统来学习舞台类Stage类API定义：
+
+包含拥有层次结构的一个二维场景，场景中有许多演员。处理视图和分配的输入事件。舞台负责操作视角，和处理分配输入事件">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> LibGDX游戏引擎-8舞台类的使用(Stage) | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                LibGDX游戏引擎-8舞台类的使用(Stage)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-03-19T08:13:45+08:00" content="2014-03-19">
+              2014-03-19
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 2,577</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 13分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/libGDX框架/" itemprop="url" rel="index">
+                    <span itemprop="name">libGDX框架</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/03/19/stage/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/19/stage/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>舞台类相比于演员类来说，更容易理解，它其实从功能的角度来说就是负责管理演员和Group类的平台，他本身的存在就是为了管理，而不是去负责演出，他就像一个导演一样，只负责管理，具体如何表演，那不是舞台所负责的事情。我们通过实现一个游戏中常见的商店系统来学习舞台类<br><span style="color: #ff0000;">Stage类</span><br><span style="color: #3366ff;">API定义：</span></p>
+</blockquote>
+<p>包含拥有层次结构的一个二维场景，场景中有许多演员。处理视图和分配的输入事件。舞台负责操作视角，和处理分配输入事件。</p>
+<p>&nbsp;</p>
+<p><span style="color: #3366ff;">功能作用：</span></p>
+<ul>
+<li>1 充满整个屏幕。</li>
+<li>2 设置视角和使用的相机，调配 Actor、Group 与 Screen 之间的关系转换（包括坐标）。</li>
+<li>3 接收输入事件，并将它分配给演员。(通过gdx.input.setinputprocessor(Stage)来实现)</li>
+<li>4 处理输入事件的不同阶段，即之前或之后。(inputmultiplexer)如果一个演员通过返回TRUE从输入的方法中处理一个事件，那么Stage的输入方法也会返回true，导致随后的inputprocessors不接收事件。<br><span style="color: #3366ff;">使用方法：</span></li>
+</ul>
+<p>Stage(float width, float height, boolean keepAspectRatio, SpriteBatch batch)</p>
+<ul>
+<li>（1）第一个参数：设置舞台的宽度。</li>
+<li>（2）第二个参数：设置舞台的高度。</li>
+<li>（3）第三个参数：是负责是否让舞台铺满屏幕，如果这个值是假的话，舞台的尺寸就是你设置的大小。如果是真的话，就铺满屏幕。</li>
+<li><p>（4）第四个参数：就是传入你所声明的Spirtibatch。</p>
+<blockquote>
+<p>常用：</p>
+<p>stage = new Stage(800, 480, false, batch);</p>
+<p>stage.addActor(image_stage_background);</p>
+<p>Gdx.input.setInputProcessor(stage);</p>
+<p>stage.act();</p>
+<p>stage.draw();<br><span style="color: #3366ff;">功能分析:</span><br><span style="color: #3366ff;">这次我们通过一个游戏中的商店系统来实现多舞台的使用，同时了解舞台是如何切换的。一个简单的游戏商店需要有4个元素：</span></p>
+</blockquote>
+</li>
+<li><p>（1）商店按钮，按钮应该在游戏的画面内部。</p>
+</li>
+<li>（2）商店货架，陈列出售的物品。</li>
+<li>（3）商品，出售的商品，点击商品需要有返回效果。</li>
+<li>（4）购买结束状态，这里就弹出“购买成功”作为结束状态。<br><span style="color: #3366ff;">编码步骤:</span></li>
+</ul>
+<p>我们还是使用上次教程的超级玛丽的例子，这次我们加入一个开始界面，和一个商店系统。</p>
+<p><span style="color: #800000;">（1）首先加入一个开始画面，这里我们使用Image控件，将它铺满屏幕。同时我们再使用一个image控件，作为新游戏按钮</span></p>
+<p><pre class="lang:java decode:true">openStage = new Stage(800, 480, false, batch);<br>//开始游戏舞台<br>Texture texture_open = new Texture(Gdx.files.internal(“data/open.png”));<br>Texture texture_button = new Texture(Gdx.files.internal(“data/btn_newgame.png”));<br>Texture texture_button2 = new Texture(Gdx.files.internal(“data/btn_shop.png”));<br>image_openStage_background = new Image(new TextureRegion(texture_open,800,480));<br>image_openStage_background.setPosition(0,0);<br>image_openStage_btn_newGame = new Image(texture_button);<br>image_openStage_btn_newGame.setPosition(80,380);<br>image_openStage_btn_shop = new Image(texture_button2);<br>image_openStage_btn_shop.setPosition(80,80);<br>openStage.addActor(image_openStage_background);<br>openStage.addActor(image_openStage_btn_newGame);<br>openStage.addActor(image_openStage_btn_shop);</pre><br><span style="color: #800000;">（2）使用一个布尔类型的变量来控制舞台的切换，这里我们就使用GameIsRunning。为了是开始界面的舞台</span><br><span style="color: #800000;">能启动，我们重写button的touchdown方法，将GameIsRunning赋值为真。</span></p>
+<p><pre class="lang:java decode:true">public static boolean GameIsRunning = false;<br>public static boolean ShopIsRunning = false;<br>public static boolean SuccessIsRunning = false;</pre><br><span style="color: #800000;"> （3）在render（）方法中进行判断，然后将openStage画出来。</span></p>
+<p><span style="color: #800000;">（4）通过上面的办法，我们就初步的实现了一个双舞台的切换，首先是在开始舞台上，</span><br><span style="color: #800000;">随后通过点击“新游戏”进入主游戏界面。</span></p>
+<blockquote>
+<p><span style="color: #3366ff;">我们要做的游戏商店，上面也提到了，并不是仅仅有2个舞台，他有3个舞台以上，所以我们需要在主游戏舞台上面，</span></p>
+<p><span style="color: #3366ff;">再引入变量，来控制第二、第三个舞台的切换。其实原理是一样的。这里我们引入ShopIsRunning和SuccessIsRunning</span></p>
+<p><span style="color: #3366ff;">分别来控制shop舞台和success舞台。</span></p>
+<p><pre class="lang:java decode:true">//重置舞台监听<br>public void setStage(){<br>if(GameIsRunning){<br>Gdx.input.setInputProcessor(stage);<br>}else{<br>Gdx.input.setInputProcessor(openStage);<br>if(ShopIsRunning){<br>Gdx.input.setInputProcessor(shopStage);<br>if(SuccessIsRunning){<br>Gdx.input.setInputProcessor(successStage);<br>}<br>}<br>}<br>}<br>//重置舞台绘制<br>public void stageRender(){<br>if(GameIsRunning){<br>stage.act();<br>stage.draw();<br>}else{<br>openStage.act();<br>openStage.draw();<br>if(ShopIsRunning){<br>shopStage.act();<br>shopStage.draw();<br>if(SuccessIsRunning){<br>successStage.act();<br>successStage.draw();<br>}<br>}<br>}<br>}</pre><br><span style="color: #800000;"> （5）加入监听，同时通过重写touchdown方法来修改变量，从而控制舞台切换。</span></p>
+<p><pre class="lang:java decode:true">image_openStage_btn_newGame.addListener(new InputListener(){<br>@Override<br>public boolean touchDown(InputEvent event, float x, float y,<br>int pointer, int button) {<br>GameIsRunning = true;<br>return true;<br>}<br>});</pre><br><span style="color: #800000;">（6）游戏初始化和设置图片位置。</span></p>
+<p><pre class="lang:java decode:true">batch = new SpriteBatch();<br>stage = new Stage(800, 480, false, batch);<br>openStage = new Stage(800, 480, false, batch);<br>shopStage = new Stage(800, 480, false, batch);<br>successStage = new Stage(800, 480, false, batch);</pre></p>
+</blockquote>
+<p>//开始游戏舞台<br>Texture texture_open = new Texture(Gdx.files.internal(“data/open.png”));<br>Texture texture_button = new Texture(Gdx.files.internal(“data/btn_newgame.png”));<br>Texture texture_button2 = new Texture(Gdx.files.internal(“data/btn_shop.png”));<br>image_openStage_background = new Image(new TextureRegion(texture_open,800,480));<br>image_openStage_background.setPosition(0,0);<br>image_openStage_btn_newGame = new Image(texture_button);<br>image_openStage_btn_newGame.setPosition(80,380);<br>image_openStage_btn_shop = new Image(texture_button2);<br>image_openStage_btn_shop.setPosition(80,80);<br>openStage.addActor(image_openStage_background);<br>openStage.addActor(image_openStage_btn_newGame);<br>openStage.addActor(image_openStage_btn_shop);</p>
+<p>//商店舞台<br>Texture texture_shop = new Texture(Gdx.files.internal(“data/shop.png”));<br>image_shopStage_background = new Image(new TextureRegion(texture_shop,0,85,512,350));<br>image_shopStage_btn_heart = new Image(new TextureRegion(texture_shop,0,0,102,85));<br>image_shopStage_btn_coin = new Image(new TextureRegion(texture_shop,102,0,102,85));<br>image_shopStage_btn_close = new Image(new TextureRegion(texture_shop,300,10,50,40));<br>image_shopStage_background.setPosition(0, 0);<br>image_shopStage_background.setSize(480,320);<br>image_shopStage_btn_heart.setPosition(190,50);<br>image_shopStage_btn_coin.setPosition(50,50);<br>image_shopStage_btn_close.setPosition(400,275);<br>shopStage.addActor(image_shopStage_background);<br>shopStage.addActor(image_shopStage_btn_heart);<br>shopStage.addActor(image_shopStage_btn_coin);<br>shopStage.addActor(image_shopStage_btn_close);</p>
+<p>//购买舞台<br>image_successStage_success = new Image(new TextureRegion(texture_shop,512,0,255,255));<br>image_successStage_success.setPosition(100,100);<br>successStage.addActor(image_successStage_success);</p>
+<p>//游戏舞台<br>image_stage_background = new Image(new Texture(Gdx.files.internal(“data/background.jpg”)));<br>Gdx.input.setInputProcessor(stage);<br>Person p = new Person(100,170);<br>stage.addActor(image_stage_background);<br>stage.addActor(p);<br>stage.addActor(p.btn_L);<br>stage.addActor(p.btn_R);<br>&nbsp;</p>
+<p>至此，整个程序就算完成了。下面贴出整个例子的源码：(下一页)</p>
+<!--nextpage-->
+<p>例子源码：使用到的(Person类请见 7 演员类的使用 Actor 类)</p>
+<p>&nbsp;</p>
+<p><pre class="lang:java decode:true">package com.qsuron;</pre></p>
+<p>import com.badlogic.gdx.ApplicationListener;<br>import com.badlogic.gdx.Gdx;<br>import com.badlogic.gdx.graphics.GL10;<br>import com.badlogic.gdx.graphics.Texture;<br>import com.badlogic.gdx.graphics.g2d.SpriteBatch;<br>import com.badlogic.gdx.graphics.g2d.TextureRegion;<br>import com.badlogic.gdx.scenes.scene2d.InputEvent;<br>import com.badlogic.gdx.scenes.scene2d.InputListener;<br>import com.badlogic.gdx.scenes.scene2d.Stage;<br>import com.badlogic.gdx.scenes.scene2d.ui.Image;</p>
+<p>public class MyDemo implements ApplicationListener{<br>public static boolean GameIsRunning = false;<br>public static boolean ShopIsRunning = false;<br>public static boolean SuccessIsRunning = false;<br>SpriteBatch batch;<br>Image image_stage_background,<br>image_openStage_background,<br>image_openStage_btn_newGame,<br>image_openStage_btn_shop,<br>image_shopStage_background,<br>image_shopStage_btn_heart,<br>image_shopStage_btn_coin,<br>image_shopStage_btn_close,<br>image_successStage_success;<br>Stage stage,<br>openStage,<br>shopStage,<br>successStage;</p>
+<p>@Override<br>public void create() {<br>batch = new SpriteBatch();<br>stage = new Stage(800, 480, false, batch);<br>openStage = new Stage(800, 480, false, batch);<br>shopStage = new Stage(800, 480, false, batch);<br>successStage = new Stage(800, 480, false, batch);</p>
+<p>//开始游戏舞台<br>Texture texture_open = new Texture(Gdx.files.internal(“data/open.png”));<br>Texture texture_button = new Texture(Gdx.files.internal(“data/btn_newgame.png”));<br>Texture texture_button2 = new Texture(Gdx.files.internal(“data/btn_shop.png”));<br>image_openStage_background = new Image(new TextureRegion(texture_open,800,480));<br>image_openStage_background.setPosition(0,0);<br>image_openStage_btn_newGame = new Image(texture_button);<br>image_openStage_btn_newGame.setPosition(80,380);<br>image_openStage_btn_shop = new Image(texture_button2);<br>image_openStage_btn_shop.setPosition(80,80);<br>openStage.addActor(image_openStage_background);<br>openStage.addActor(image_openStage_btn_newGame);<br>openStage.addActor(image_openStage_btn_shop);</p>
+<p>//商店舞台<br>Texture texture_shop = new Texture(Gdx.files.internal(“data/shop.png”));<br>image_shopStage_background = new Image(new TextureRegion(texture_shop,0,85,512,350));<br>image_shopStage_btn_heart = new Image(new TextureRegion(texture_shop,0,0,102,85));<br>image_shopStage_btn_coin = new Image(new TextureRegion(texture_shop,102,0,102,85));<br>image_shopStage_btn_close = new Image(new TextureRegion(texture_shop,300,10,50,40));<br>image_shopStage_background.setPosition(0, 0);<br>image_shopStage_background.setSize(480,320);<br>image_shopStage_btn_heart.setPosition(190,50);<br>image_shopStage_btn_coin.setPosition(50,50);<br>image_shopStage_btn_close.setPosition(400,275);<br>shopStage.addActor(image_shopStage_background);<br>shopStage.addActor(image_shopStage_btn_heart);<br>shopStage.addActor(image_shopStage_btn_coin);<br>shopStage.addActor(image_shopStage_btn_close);</p>
+<p>//购买舞台<br>image_successStage_success = new Image(new TextureRegion(texture_shop,512,0,255,255));<br>image_successStage_success.setPosition(100,100);<br>successStage.addActor(image_successStage_success);</p>
+<p>//游戏舞台<br>image_stage_background = new Image(new Texture(Gdx.files.internal(“data/background.jpg”)));<br>Gdx.input.setInputProcessor(stage);<br>Person p = new Person(100,170);<br>stage.addActor(image_stage_background);<br>stage.addActor(p);<br>stage.addActor(p.btn_L);<br>stage.addActor(p.btn_R);</p>
+<p>//设置监听<br>this.setListener();<br>}</p>
+<p>public void setListener() {<br>image_openStage_btn_newGame.addListener(new InputListener(){<br>@Override<br>public boolean touchDown(InputEvent event, float x, float y,<br>int pointer, int button) {<br>GameIsRunning = true;<br>return true;<br>}<br>});<br>image_openStage_btn_shop.addListener(new InputListener(){<br>@Override<br>public boolean touchDown(InputEvent event, float x, float y,<br>int pointer, int button) {<br>ShopIsRunning = true;<br>return true;<br>}<br>});<br>image_shopStage_btn_heart.addListener(new InputListener() {<br>           @Override<br>           public boolean touchDown(InputEvent event, float x, float y,<br>                   int pointer, int button) {<br>               SuccessIsRunning = true;<br>               return true;<br>           }<br>});<br>image_shopStage_btn_coin.addListener(new InputListener() {<br>           @Override<br>           public boolean touchDown(InputEvent event, float x, float y,<br>                   int pointer, int button) {<br>               SuccessIsRunning = true;<br>               return true;<br>           }<br>       });<br>image_shopStage_btn_close.addListener(new InputListener(){<br>@Override<br>           public boolean touchDown(InputEvent event, float x, float y,<br>                   int pointer, int button) {<br>               ShopIsRunning = false;<br>               return true;<br>           }<br>});<br>image_successStage_success.addListener(new InputListener(){<br>@Override<br>           public boolean touchDown(InputEvent event, float x, float y,<br>                   int pointer, int button) {<br>               SuccessIsRunning = false;<br>               return true;<br>           }<br>});<br>}</p>
+<p>//重置舞台监听<br>public void setStage(){<br>if(GameIsRunning){<br>Gdx.input.setInputProcessor(stage);<br>}else{<br>Gdx.input.setInputProcessor(openStage);<br>if(ShopIsRunning){<br>Gdx.input.setInputProcessor(shopStage);<br>if(SuccessIsRunning){<br>Gdx.input.setInputProcessor(successStage);<br>}<br>}<br>}<br>}</p>
+<p>//重置舞台绘制<br>public void stageRender(){<br>if(GameIsRunning){<br>stage.act();<br>stage.draw();<br>}else{<br>openStage.act();<br>openStage.draw();<br>if(ShopIsRunning){<br>shopStage.act();<br>shopStage.draw();<br>if(SuccessIsRunning){<br>successStage.act();<br>successStage.draw();<br>}<br>}<br>}<br>}</p>
+<p>@Override<br>public void dispose() {<br>batch.dispose();<br>stage.dispose();<br>openStage.dispose();<br>shopStage.dispose();<br>successStage.dispose();<br>}</p>
+<p>@Override<br>public void render() {<br>Gdx.gl.glClearColor(0,0,0, 0);<br>Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);<br>this.stageRender();<br>this.setStage();<br>}</p>
+<p>@Override<br>public void resize(int width, int height) {<br>}</p>
+<p>@Override<br>public void pause() {<br>}</p>
+<p>@Override<br>public void resume() {<br>}</p>
+<p>}<br>&nbsp;</p>
+<p>这个例子，只是比较简单的舞台切换，当然了，正常游戏中是不这样设置舞台切换的，</p>
+<p>这里只是拿最浅显易懂的东西来给大家说明，Stage类的使用和简单的切换，大家千万别以为游戏中就要这么使用。</p>
+<p>希望大家通过简单的代码能理解Stage类的使用，能明白他的原理就可以了。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/stage/" rel="tag">#stage</a>
+          
+            <a href="/tags/舞台/" rel="tag">#舞台</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/03/18/actor/" rel="next" title="LibGDX游戏引擎-7-演员类的使用(Actor)">
+                <i class="fa fa-chevron-left"></i> LibGDX游戏引擎-7-演员类的使用(Actor)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/03/19/audio/" rel="prev" title="LibGDX游戏引擎-9-游戏音乐(Audio)">
+                LibGDX游戏引擎-9-游戏音乐(Audio) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/03/19/stage/"
+     data-title="LibGDX游戏引擎-8舞台类的使用(Stage)"
+     data-content=""
+     data-url="http://yoursite.com/2014/03/19/stage/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/03/19/stage/"
+           data-title="LibGDX游戏引擎-8舞台类的使用(Stage)" data-url="http://yoursite.com/2014/03/19/stage/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

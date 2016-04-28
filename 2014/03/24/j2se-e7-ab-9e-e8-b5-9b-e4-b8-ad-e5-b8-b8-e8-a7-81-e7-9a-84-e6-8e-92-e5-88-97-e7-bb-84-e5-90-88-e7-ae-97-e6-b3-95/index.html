@@ -1,0 +1,788 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="竞赛,排列,算法,组合," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本篇主要讲述以下组合和排列的算法，作为众多高级算法的基层算法，对它的优化和理解是十分重要的，这也是在很多的J2SE算法的竞赛中必出的一种题目。组合算法实现从m个数里面取n个数的算法。最容易理解的就是递归，但是其效率太低。组合算法本程序的思路是开一个数组，其下标表示1到m个数，数组元素的值为1表示其下标
+
+代表的数被选中，为0则没选中。
+
+首先初始化，将数组前n个元素置1，表示第一个组合为前n个数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="J2SE 竞赛中常见的排列组合算法 ">
+<meta property="og:url" content="http://yoursite.com/2014/03/24/j2se-e7-ab-9e-e8-b5-9b-e4-b8-ad-e5-b8-b8-e8-a7-81-e7-9a-84-e6-8e-92-e5-88-97-e7-bb-84-e5-90-88-e7-ae-97-e6-b3-95/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="本篇主要讲述以下组合和排列的算法，作为众多高级算法的基层算法，对它的优化和理解是十分重要的，这也是在很多的J2SE算法的竞赛中必出的一种题目。组合算法实现从m个数里面取n个数的算法。最容易理解的就是递归，但是其效率太低。组合算法本程序的思路是开一个数组，其下标表示1到m个数，数组元素的值为1表示其下标
+
+代表的数被选中，为0则没选中。
+
+首先初始化，将数组前n个元素置1，表示第一个组合为前n个数">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.751Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="J2SE 竞赛中常见的排列组合算法 ">
+<meta name="twitter:description" content="本篇主要讲述以下组合和排列的算法，作为众多高级算法的基层算法，对它的优化和理解是十分重要的，这也是在很多的J2SE算法的竞赛中必出的一种题目。组合算法实现从m个数里面取n个数的算法。最容易理解的就是递归，但是其效率太低。组合算法本程序的思路是开一个数组，其下标表示1到m个数，数组元素的值为1表示其下标
+
+代表的数被选中，为0则没选中。
+
+首先初始化，将数组前n个元素置1，表示第一个组合为前n个数">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> J2SE 竞赛中常见的排列组合算法  | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                J2SE 竞赛中常见的排列组合算法 
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-03-24T22:14:30+08:00" content="2014-03-24">
+              2014-03-24
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 1,420</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 7分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java-SE/" itemprop="url" rel="index">
+                    <span itemprop="name">Java SE</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/03/24/j2se-e7-ab-9e-e8-b5-9b-e4-b8-ad-e5-b8-b8-e8-a7-81-e7-9a-84-e6-8e-92-e5-88-97-e7-bb-84-e5-90-88-e7-ae-97-e6-b3-95/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/24/j2se-e7-ab-9e-e8-b5-9b-e4-b8-ad-e5-b8-b8-e8-a7-81-e7-9a-84-e6-8e-92-e5-88-97-e7-bb-84-e5-90-88-e7-ae-97-e6-b3-95/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本篇主要讲述以下组合和排列的算法，作为众多高级算法的基层算法，对它的优化和理解是十分重要的，这也是在很多的J2SE算法的竞赛中必出的一种题目。<br><strong>组合算法实现</strong><br><span style="color: #3366ff;">从m个数里面取n个数的算法。最容易理解的就是递归，但是其效率太低。</span><br>组合算法<br><span style="color: #3366ff;">本程序的思路是开一个数组，其下标表示1到m个数，数组元素的值为1表示其下标</span></p>
+</blockquote>
+<p>代表的数被选中，为0则没选中。</p>
+<ol>
+<li>首先初始化，将数组前n个元素置1，表示第一个组合为前n个数。</li>
+<li>然后从左到右扫描数组元素值的“10”组合，找到第一个“10”组合后将其变为</li>
+<li>“01”组合，同时将其左边的所有“1”全部移动到数组的最左端。</li>
+<li>当第一个“1”移动到数组的m-n的位置，即n个“1”全部移动到最右端时，就得</li>
+<li>到了最后一个组合。</li>
+<li>例如求5中选3的组合<blockquote>
+<p>// 1 1 1 0 0 //1,2,3</p>
+<p>// 1 1 0 1 0 //1,2,4</p>
+<p>// 1 0 1 1 0 //1,3,4</p>
+<p>// 0 1 1 1 0 //2,3,4</p>
+<p>// 1 1 0 0 1 //1,2,5</p>
+<p>// 1 0 1 0 1 //1,3,5</p>
+<p>// 0 1 1 0 1 //2,3,5</p>
+<p>// 1 0 0 1 1 //1,4,5</p>
+<p>// 0 1 0 1 1 //2,4,5</p>
+<p>// 0 0 1 1 1 //3,4,5<br><pre class="lang:java decode:true">import java.util.ArrayList;<br>import java.util.List;   </pre></p>
+</blockquote>
+</li>
+</ol>
+<p>/**  </p>
+<ul>
+<li>面试中遇到的问题，在网上查找资料，加上自己的总结， java 代码实现组合的算法  </li>
+<li>从n个数里取出m个数的组合是n<em>(n-1)</em>…<em>(n-m+1)/m</em>(m-1)<em>…2</em>1 该方法比较好理解，但具体算法的分析却有难度。  </li>
+<li></li>
+<li>@date </li>
+<li>@author </li>
+<li>*/<br>class Zuhe1 {   </li>
+</ul>
+<p>/**  </p>
+<ul>
+<li>@param a:组合数组  </li>
+<li>@param k:生成组合个数  </li>
+<li><p>@return :所有可能的组合数组列表<br>*/<br>private List zuhe(int[] a, int m) {<br> Zuhe1 zuhe = new Zuhe1();<br> List list = new ArrayList();<br> int n = a.length;   </p>
+<p> boolean flag = false; // 是否是最后一种组合的标记   </p>
+<p> // 生成辅助数组。首先初始化，将数组前n个元素置1，表示第一个组合为前n个数。<br> int[] tempNum = new int[n];<br> for (int i = 0; i &lt; n; i++) {<br>  if (i &lt; m) {<br>   tempNum[i] = 1;   </p>
+<p>  } else {<br>   tempNum[i] = 0;<br>  }<br>  System.out.print(tempNum[i]);<br> }<br> print(tempNum);// 打印辅助数组   </p>
+<p> list.add(zuhe.createResult(a, tempNum, m));// 打印第一中默认组合   </p>
+<p> do {<br>  int pose = 0; // 记录改变的位置<br>  int sum = 0; // 记录改变位置 左侧 1 的个数<br>  // 然后从左到右扫描数组元素值的“10”组合，找到第一个“10”组合后将其变为“01”<br>  for (int i = 0; i &lt; (n - 1); i++) {<br>   if (tempNum[i] == 1 &amp;&amp; tempNum[i + 1] == 0) {   </p>
+<pre><code>tempNum[i] = 0;   
+tempNum[i + 1] = 1;   
+pose = i;   
+break;   
+</code></pre><p>   }<br>  }<br>  print(tempNum);// 打印辅助数组<br>  list.add(zuhe.createResult(a, tempNum, m));// 打印第一中默认组合   </p>
+<p>  // 同时将其左边的所有“1”全部移动到数组的最左端。   </p>
+<p>  for (int i = 0; i &lt; pose; i++) {<br>   if (tempNum[i] == 1)   </p>
+<pre><code>sum++;   
+</code></pre><p>  }   </p>
+<p>  for (int i = 0; i &lt; pose; i++) {<br>   if (i &lt; sum)   </p>
+<pre><code>tempNum[i] = 1;   
+</code></pre><p>   else   </p>
+<pre><code>tempNum[i] = 0;   
+</code></pre><p>  }   </p>
+<p>  // 判断是否为最后一个组合：当第一个“1”移动到数组的m-n的位置，即n个“1”全部移动到最右端时，就得到了最后一个组合。<br>  flag = false;<br>  for (int i = n - m; i &lt; n; i++) {   </p>
+<p>   if (tempNum[i] == 0)   </p>
+<pre><code>flag = true;   
+</code></pre><p>  }<br> } while (flag);   </p>
+<p> return list;<br>}   </p>
+</li>
+</ul>
+<p>// 根据辅助数组和原始数组生成 结果数组<br>public int[] createResult(int[] a, int[] temp, int m) {<br>   int[] result = new int[m];   </p>
+<p>   int j = 0;<br>   for (int i = 0; i &lt; a.length; i++) {   </p>
+<pre><code>if (temp[i] == 1) {   
+ result[j] = a[i];   
+ System.out.println(&quot;result[&quot; + j + &quot;]:&quot; + result[j]);   
+ j++;   
+
+}   
+</code></pre><p>   }   </p>
+<p>   return result;<br>}   </p>
+<p>// 打印<br>public void print1(List list) {   </p>
+<p>   for (int i = 0; i &lt; list.size(); i++) {<br>    System.out.println();<br>    int[] temp = (int[]) list.get(i);<br>    for (int j = 0; j &lt; temp.length; j++) {<br>     System.out.print(temp[j] + “ “);<br>    }<br>   }<br>}   </p>
+<p>// 打印整数数组的方法<br>public void print(int[] a) {<br>   System.out.println(“生成的辅助数组为：”);<br>   for (int i = 0; i &lt; a.length; i++) {<br>    System.out.print(a[i]);<br>   }<br>   System.out.println();<br>}   </p>
+<p>public static void main(String[] args) {<br>   int[] a = { 1, 2, 3, 4, 5 }; // 整数数组<br>   int m = 3; // 待取出组合的个数<br>   Zuhe1 zuhe = new Zuhe1();<br>   List list = zuhe.zuhe(a, m);<br>   zuhe.print1(list);   </p>
+<p>}<br>}<br><strong>实现方法二：使用递归算法，但比较难于理解，摘自网上，慢慢消化</strong></p>
+<p>&nbsp;</p>
+<p><pre class="lang:java decode:true">    /**  </pre></p>
+<pre><code>* 从n个数里取出m个数的组合是n*(n-1)*...*(n-m+1)/m*(m-1)*...2*1  
+*/   
+import java.io.*;   
+
+public class Test1 {   
+
+public static void main(String[] args) {   
+   select(2);   
+}   
+
+private static void select(int k) {   
+   char[] result = new char[k];   
+   subselect(0, 1, result, k);   
+
+}   
+
+private static void subselect(int head, int index, char[] r, int k) {   
+   for (int i = head; i &amp;lt; a.length + index - k; i++) {   
+    if (index &amp;lt; k) {   
+     r[index - 1] = a[i];   
+     System.out.println(&quot;i=&quot;+(i)+&quot;;index=&quot;+(index));   
+     subselect(i + 1, index + 1, r, k);   
+    } else if (index == k) {   
+     r[index - 1] = a[i];   
+     System.out.println(&quot;;i=&quot;+(i)+&quot;;index=&quot;+(index)+&quot;;index==k:&quot;+(index==k));   
+     System.out.print(i+&quot;===&quot;);   
+     System.out.println(r);   
+     subselect(i + 1, index + 1, r, k);   
+    } else {   
+     System.out.println(&quot;++&quot;);   
+     return;//返回到何处？奇怪   
+    }   
+
+   }   
+}   
+
+private static char[] a = { &apos;a&apos;, &apos;b&apos;, &apos;c&apos; };   
+}&lt;/pre&gt;
+</code></pre><p>其实还有更多的利用java已经封装了的类来实现这些算法的方法，但是归根究地还是离不开这么一种思想 ， 所以多余的就不贴上来了。够用了。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/竞赛/" rel="tag">#竞赛</a>
+          
+            <a href="/tags/排列/" rel="tag">#排列</a>
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
+          
+            <a href="/tags/组合/" rel="tag">#组合</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/03/23/tiledmap/" rel="next" title="LibGDX游戏引擎-10-游戏地图(TiledMap)">
+                <i class="fa fa-chevron-left"></i> LibGDX游戏引擎-10-游戏地图(TiledMap)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/03/25/baidu-seo/" rel="prev" title="百度收录掉3天，总算恢复了！">
+                百度收录掉3天，总算恢复了！ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/03/24/j2se-e7-ab-9e-e8-b5-9b-e4-b8-ad-e5-b8-b8-e8-a7-81-e7-9a-84-e6-8e-92-e5-88-97-e7-bb-84-e5-90-88-e7-ae-97-e6-b3-95/"
+     data-title="J2SE 竞赛中常见的排列组合算法 "
+     data-content=""
+     data-url="http://yoursite.com/2014/03/24/j2se-e7-ab-9e-e8-b5-9b-e4-b8-ad-e5-b8-b8-e8-a7-81-e7-9a-84-e6-8e-92-e5-88-97-e7-bb-84-e5-90-88-e7-ae-97-e6-b3-95/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/03/24/j2se-e7-ab-9e-e8-b5-9b-e4-b8-ad-e5-b8-b8-e8-a7-81-e7-9a-84-e6-8e-92-e5-88-97-e7-bb-84-e5-90-88-e7-ae-97-e6-b3-95/"
+           data-title="J2SE 竞赛中常见的排列组合算法 " data-url="http://yoursite.com/2014/03/24/j2se-e7-ab-9e-e8-b5-9b-e4-b8-ad-e5-b8-b8-e8-a7-81-e7-9a-84-e6-8e-92-e5-88-97-e7-bb-84-e5-90-88-e7-ae-97-e6-b3-95/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

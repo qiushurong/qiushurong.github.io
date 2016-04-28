@@ -1,0 +1,690 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="QQ提示,源码," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp;利用java swing 实现如QQ提示消息的效果：效果图：
+
+&amp;nbsp;
+java代码调用实例：
+
+&amp;nbsp;
+源代码：
+&amp;nbsp;
+import java.awt.BorderLayout;import java.awt.Color;import java.awt.Cursor;import java.awt.Dimension;import java.awt.FlowLay">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java实现屏幕右下角弹出类QQ提示消息">
+<meta property="og:url" content="http://yoursite.com/2014/02/18/java-qq-prompt-message/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="&amp;nbsp;利用java swing 实现如QQ提示消息的效果：效果图：
+
+&amp;nbsp;
+java代码调用实例：
+
+&amp;nbsp;
+源代码：
+&amp;nbsp;
+import java.awt.BorderLayout;import java.awt.Color;import java.awt.Cursor;import java.awt.Dimension;import java.awt.FlowLay">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/02/qq-msg-util-1-300x253.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/02/qq-msg-util-2-300x245.jpg">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.749Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java实现屏幕右下角弹出类QQ提示消息">
+<meta name="twitter:description" content="&amp;nbsp;利用java swing 实现如QQ提示消息的效果：效果图：
+
+&amp;nbsp;
+java代码调用实例：
+
+&amp;nbsp;
+源代码：
+&amp;nbsp;
+import java.awt.BorderLayout;import java.awt.Color;import java.awt.Cursor;import java.awt.Dimension;import java.awt.FlowLay">
+<meta name="twitter:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/02/qq-msg-util-1-300x253.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> Java实现屏幕右下角弹出类QQ提示消息 | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Java实现屏幕右下角弹出类QQ提示消息
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-02-18T23:57:31+08:00" content="2014-02-18">
+              2014-02-18
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 1,498</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 8分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java-SE/" itemprop="url" rel="index">
+                    <span itemprop="name">Java SE</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/02/18/java-qq-prompt-message/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/02/18/java-qq-prompt-message/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;<br>利用java swing 实现如QQ提示消息的效果：<br>效果图：</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/02/qq-msg-util-1.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/02/qq-msg-util-1-300x253.jpg" alt="qq-msg-util-1"></a></p>
+<p>&nbsp;</p>
+<p>java代码调用实例：</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/02/qq-msg-util-2.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/02/qq-msg-util-2-300x245.jpg" alt="qq-msg-util-2"></a></p>
+<p>&nbsp;</p>
+<p>源代码：</p>
+<p>&nbsp;</p>
+<div id="scid:f32c3428-b7e9-4f15-a8ea-c502c7ff2e88:a5b71b4a-5460-4acf-aa14-dcde6b2275da" class="wlWriterEditableSmartContent" style="margin: 0px; display: inline; float: none; padding: 0px;"><br><pre class="brush: java;collapse:true;">import java.awt.BorderLayout;<br>import java.awt.Color;<br>import java.awt.Cursor;<br>import java.awt.Dimension;<br>import java.awt.FlowLayout;<br>import java.awt.Font;<br>import java.awt.Point;<br>import java.awt.event.MouseAdapter;<br>import java.awt.event.MouseEvent;<br>import java.awt.event.MouseMotionAdapter;<br>import java.text.SimpleDateFormat;<br>import java.util.Date;<br>import javax.swing.BorderFactory;<br>import javax.swing.ImageIcon;<br>import javax.swing.JLabel;<br>import javax.swing.JOptionPane;<br>import javax.swing.JPanel;<br>import javax.swing.JScrollPane;<br>import javax.swing.JTextArea;<br>import javax.swing.SwingConstants;<br>import java.awt.Insets;<br>import java.awt.Toolkit;<br>import javax.swing.JDialog;<br><br>/<em>*
+ </em> @author Administrator<br> <em>    此工具类用法：实例化出对象，调用 void show(“标题”,”内容”) 方法.
+ </em>    InfoUtil tool = new InfoUtil();<br> <em>    tool.show(“标题”,”内容”)
+ </em>/<br>public class InfoUtil {<br>    private Point oldP;                                        // 上一次坐标,拖动窗口时用<br>    private TipWindow tw = null;                            // 提示框<br>    private ImageIcon img = null;                            // 图像组件<br>    private JLabel imgLabel = null;                         // 背景图片标签<br>    private JPanel headPan = null;<br>    private JPanel feaPan = null;<br>    private JPanel btnPan = null;<br>    private JLabel title = null;                            // 栏目名称<br>    private JLabel head = null;                                // 蓝色标题<br>    private JLabel close = null;                            // 关闭按钮<br>    private JTextArea feature = null;                        // 内容<br>    private JScrollPane jfeaPan = null;<br>    private JLabel releaseLabel = null;                        //发布时间<br>    private JLabel sure = null;<br>    private String titleT = null;<br>    private String word = null;<br>    private String time = null;<br>    private SimpleDateFormat sdf =<br>            new SimpleDateFormat(“yyyy-MM-dd HH:mm:ss”);<br><br>    public void init() {<br>        // 新建300x220的消息提示框<br>        tw = new TipWindow(300, 220);<br>        img = new ImageIcon(“background.gif”);<br>        imgLabel = new JLabel(img);<br>        // 设置各个面板的布局以及面板中控件的边界<br>        headPan = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));<br>        feaPan = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));<br>        btnPan = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));<br>        title = new JLabel(“欢迎使用本系统”);<br>        head = new JLabel(titleT);<br>        close = new JLabel(“ x”);<br>        feature = new JTextArea(word);<br>        jfeaPan = new JScrollPane(feature);<br>        releaseLabel = new JLabel(“发布于  “ + time);<br>        sure = new JLabel(“确定”);<br>        sure.setHorizontalAlignment(SwingConstants.CENTER);<br><br>        // 将各个面板设置为透明，否则看不到背景图片<br>        ((JPanel) tw.getContentPane()).setOpaque(false);<br>        headPan.setOpaque(false);<br>        feaPan.setOpaque(false);<br>        btnPan.setOpaque(false);<br><br>        // 设置JDialog的整个背景图片<br>        tw.getLayeredPane().add(imgLabel, new Integer(Integer.MIN_VALUE));<br>        imgLabel.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());<br>        headPan.setPreferredSize(new Dimension(300, 60));<br><br>        // 设置提示框的边框,宽度和颜色<br>        tw.getRootPane().setBorder(<br>                BorderFactory.createMatteBorder(1, 1, 1, 1, Color.gray));<br>        title.setPreferredSize(new Dimension(260, 26));<br>        title.setVerticalTextPosition(JLabel.CENTER);<br>        title.setHorizontalTextPosition(JLabel.CENTER);<br>        title.setFont(new Font(“宋体”, Font.PLAIN, 12));<br>        title.setForeground(Color.black);<br><br>        close.setFont(new Font(“Arial”, Font.BOLD, 15));<br>        close.setPreferredSize(new Dimension(20, 20));<br>        close.setVerticalTextPosition(JLabel.CENTER);<br>        close.setHorizontalTextPosition(JLabel.CENTER);<br>        close.setCursor(new Cursor(12));<br>        close.setToolTipText(“关闭”);<br><br>        head.setPreferredSize(new Dimension(250, 35));<br>        head.setVerticalTextPosition(JLabel.CENTER);<br>        head.setHorizontalTextPosition(JLabel.CENTER);<br>        head.setFont(new Font(“宋体”, Font.PLAIN, 12));<br>        head.setForeground(Color.blue);<br><br>        feature.setEditable(false);<br>        feature.setForeground(Color.red);<br>        feature.setFont(new Font(“宋体”, Font.PLAIN, 13));<br>        feature.setBackground(new Color(184, 230, 172));<br>        // 设置文本域自动换行<br>        feature.setLineWrap(true);<br><br>        jfeaPan.setPreferredSize(new Dimension(250, 80));<br>        jfeaPan.setBorder(null);<br>        jfeaPan.setBackground(Color.black);<br><br>        releaseLabel.setForeground(Color.DARK_GRAY);<br>        releaseLabel.setFont(new Font(“宋体”, Font.PLAIN, 12));<br><br>        // 为了隐藏文本域，加个空的JLabel将他挤到下面去<br>        JLabel jsp = new JLabel();<br>        jsp.setPreferredSize(new Dimension(300, 25));<br><br>        sure.setPreferredSize(new Dimension(110, 30));<br>        // 设置标签鼠标手形<br>        sure.setCursor(new Cursor(12));<br><br>        headPan.add(title);<br>        headPan.add(close);<br>        headPan.add(head);<br><br>        feaPan.add(jsp);<br>        feaPan.add(jfeaPan);<br>        feaPan.add(releaseLabel);<br><br>        btnPan.add(sure);<br><br>        tw.add(headPan, BorderLayout.NORTH);<br>        tw.add(feaPan, BorderLayout.CENTER);<br>        tw.add(btnPan, BorderLayout.SOUTH);<br>    }<br><br>    public void handle() {<br>        // 为更新按钮增加相应的事件<br>        sure.addMouseListener(new MouseAdapter() {<br>            public void mouseClicked(MouseEvent e) {<br>                JOptionPane.showMessageDialog(tw, “谢谢，再见”);<br>                tw.close();<br>            }<br>            public void mouseEntered(MouseEvent e) {<br>                sure.setBorder(BorderFactory.createLineBorder(Color.gray));<br>            }<br>            public void mouseExited(MouseEvent e) {<br>                sure.setBorder(null);<br>            }<br>        });<br>        // 增加鼠标拖动事件<br>        title.addMouseMotionListener(new MouseMotionAdapter() {<br>            public void mouseDragged(MouseEvent e) {<br>                // TODO Auto-generated method stub<br>                Point newP = new Point(e.getXOnScreen(), e.getYOnScreen());<br>                int x = tw.getX() + (newP.x - oldP.x);<br>                int y = tw.getY() + (newP.y - oldP.y);<br>                tw.setLocation(x, y);<br>                oldP = newP;<br>            }<br>        });<br>        // 鼠标按下时初始坐标,供拖动时计算用<br>        title.addMouseListener(new MouseAdapter() {<br>            public void mousePressed(MouseEvent e) {<br>                oldP = new Point(e.getXOnScreen(), e.getYOnScreen());<br>            }<br>        });<br>        // 右上角关闭按钮事件<br>        close.addMouseListener(new MouseAdapter() {<br>            public void mouseClicked(MouseEvent e) {<br>                tw.close();<br>            }<br>            public void mouseEntered(MouseEvent e) {<br>                close.setBorder(BorderFactory.createLineBorder(Color.gray));<br>            }<br>            public void mouseExited(MouseEvent e) {<br>                close.setBorder(null);<br>            }<br>        });<br>    }<br><br>    public void show(String titleT,String word){<br>        this.titleT = titleT;<br>        this.word = word;<br>        time = sdf.format(new Date());<br>        init();<br>        handle();<br>        tw.setAlwaysOnTop(true);<br>        tw.setUndecorated(true);<br>        tw.setResizable(false);<br>        tw.setVisible(true);<br>        tw.run();<br>    }<br>}<br><br>class TipWindow extends JDialog {<br>    private static final long serialVersionUID = 8541659783234673950L;<br>    private static Dimension dim;<br>    private int x, y;<br>    private int width, height;<br>    private static Insets screenInsets;<br><br>    public TipWindow(int width, int height) {<br>        this.width = width;<br>        this.height = height;<br>        dim = Toolkit.getDefaultToolkit().getScreenSize();<br>        screenInsets = Toolkit.getDefaultToolkit().getScreenInsets(<br>                this.getGraphicsConfiguration());<br>        x = (int) (dim.getWidth() - width - 3);<br>        y = (int) (dim.getHeight() - screenInsets.bottom - 3);<br>        initComponents();<br>    }<br><br>    public void run() {<br>        for (int i = 0; i &lt;= height; i += 10) {<br>            try {<br>                this.setLocation(x, y - i);<br>                Thread.sleep(5);<br>            } catch (InterruptedException ex) {<br>            }<br>        }<br>        // 此处代码用来实现让消息提示框5秒后自动消失<br>        try {<br>            Thread.sleep(5000);<br>        } catch (InterruptedException e) {<br>            e.printStackTrace();<br>        }<br>        close();<br>    }<br><br>    private void initComponents() {<br>        this.setSize(width, height);<br>        this.setLocation(x, y);<br>        this.setBackground(Color.black);<br>    }<br><br>    public void close() {<br>        x = this.getX();<br>        y = this.getY();<br>        int ybottom = (int) dim.getHeight() - screenInsets.bottom;<br>        for (int i = 0; i &lt;= ybottom - y; i += 10) {<br>            try {<br>                setLocation(x, y + i);<br>                Thread.sleep(5);<br>            } catch (InterruptedException ex) {<br>            }<br>        }<br>        dispose();<br>    }<br><br>    public static void main(String args[]){<br>        InfoUtil tool = new InfoUtil();<br>        tool.show(<br>                “ QQ提示消息工具类 - Develop By qsuron”,<br>                “1.博客:blog.csdn.net/qsuronn” +”2.博主:qsuronn” +”3.开发相关:Eclipse + Javan” +”4.数据库类型:无 5.1n” +”5.开发人员:小树n” +”6.联系方式:QQ 280970160”<br>                );<br>    }<br>}</pre><br></div>
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/QQ提示/" rel="tag">#QQ提示</a>
+          
+            <a href="/tags/源码/" rel="tag">#源码</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/02/18/wp-syntax/" rel="next" title="修改wp-syntax代码自动换行">
+                <i class="fa fa-chevron-left"></i> 修改wp-syntax代码自动换行
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/02/19/java-swing-drog/" rel="prev" title="java-swing文件拖拽路径识别">
+                java-swing文件拖拽路径识别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/02/18/java-qq-prompt-message/"
+     data-title="Java实现屏幕右下角弹出类QQ提示消息"
+     data-content=""
+     data-url="http://yoursite.com/2014/02/18/java-qq-prompt-message/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/02/18/java-qq-prompt-message/"
+           data-title="Java实现屏幕右下角弹出类QQ提示消息" data-url="http://yoursite.com/2014/02/18/java-qq-prompt-message/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

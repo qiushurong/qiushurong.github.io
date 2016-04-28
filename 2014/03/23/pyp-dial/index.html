@@ -1,0 +1,1405 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="工具,拨号,电信,番职院," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="番职院电信拨号工具 v3.2.2 Beta软件主要实现了位于校园网并使用电信天翼作为网络接入商的用户的电信拨号，撇去每次开机都需要在浏览器中输入网址进行拨号的步骤，只要设置为开机启动即可。
+软件采用 java语言编写，EXE可执行程序采用VB语言编写，在VB语言中调用自带的精简JRE运行jar程序，打包程序使用Actual Installer。
+涉及的java知识：
+
+swing界面编程，thre">
+<meta property="og:type" content="article">
+<meta property="og:title" content="番职院电信拨号工具 v3.2.2 Beta (附源代码)">
+<meta property="og:url" content="http://yoursite.com/2014/03/23/pyp-dial/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="番职院电信拨号工具 v3.2.2 Beta软件主要实现了位于校园网并使用电信天翼作为网络接入商的用户的电信拨号，撇去每次开机都需要在浏览器中输入网址进行拨号的步骤，只要设置为开机启动即可。
+软件采用 java语言编写，EXE可执行程序采用VB语言编写，在VB语言中调用自带的精简JRE运行jar程序，打包程序使用Actual Installer。
+涉及的java知识：
+
+swing界面编程，thre">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_1.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_2-300x231.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_3-300x231.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_15-300x175.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_4-300x231.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_5-300x255.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_11.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_10.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_8.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_7.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_9-300x55.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_6-300x39.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_13-300x81.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_12-300x174.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_16-247x300.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_17.jpg">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.751Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="番职院电信拨号工具 v3.2.2 Beta (附源代码)">
+<meta name="twitter:description" content="番职院电信拨号工具 v3.2.2 Beta软件主要实现了位于校园网并使用电信天翼作为网络接入商的用户的电信拨号，撇去每次开机都需要在浏览器中输入网址进行拨号的步骤，只要设置为开机启动即可。
+软件采用 java语言编写，EXE可执行程序采用VB语言编写，在VB语言中调用自带的精简JRE运行jar程序，打包程序使用Actual Installer。
+涉及的java知识：
+
+swing界面编程，thre">
+<meta name="twitter:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> 番职院电信拨号工具 v3.2.2 Beta (附源代码) | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                番职院电信拨号工具 v3.2.2 Beta (附源代码)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-03-23T00:50:45+08:00" content="2014-03-23">
+              2014-03-23
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 5,733</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 31分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java-SE/" itemprop="url" rel="index">
+                    <span itemprop="name">Java SE</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/03/23/pyp-dial/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/23/pyp-dial/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="番职院电信拨号工具-v3-2-2-Beta"><a href="#番职院电信拨号工具-v3-2-2-Beta" class="headerlink" title="番职院电信拨号工具 v3.2.2 Beta"></a>番职院电信拨号工具 v3.2.2 Beta</h1><p><span style="color: #3366ff;">软件主要实现了位于校园网并使用电信天翼作为网络接入商的用户的电信拨号，撇去每次开机都需要在浏览器中输入网址进行拨号的步骤，只要设置为开机启动即可。</span></p>
+<p>软件采用 java语言编写，EXE可执行程序采用VB语言编写，在VB语言中调用自带的精简JRE运行jar程序，打包程序使用Actual Installer。</p>
+<p><span style="color: #3366ff;">涉及的java知识：</span></p>
+<blockquote>
+<p>swing界面编程，thread多线程，MVC设计模式，IO流，REGEX正则表达式，Serializable序列化相关，HTTP网络编程。</p>
+</blockquote>
+<p><span style="color: #3366ff;">文章目录：</span></p>
+<blockquote>
+<p>一、安装包        二、安装向导      三、软件简介      四、软件源码简析          五、声明</p>
+</blockquote>
+<h2 id="一、安装包"><a href="#一、安装包" class="headerlink" title="一、安装包"></a>一、安装包</h2><p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_1.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_1.jpg" alt="pyp_util_1"></a></p>
+<p><span style="color: #3366ff;">下载地址：</span></p>
+<blockquote>
+<p><a href="http://pan.baidu.com/s/1eQ7Tcye" target="_blank" rel="external">百度网盘下载</a>(11.38 MB)<br><span style="color: #3366ff;">病毒扫描报告：</span><br>(virscan查毒) ：<a href="http://r.virscan.org/report/d7d8498bacbfc412f5b56fdb04d86871.html" target="_blank" rel="external">查看报告</a></p>
+<p>(火眼查毒)：<a href="http://fireeye.ijinshan.com/analyse.html?md5=4f715a2c9717c2e46939823ce7d845db&amp;sha1=a793cec1aaa5bb491b3da7cf00fa30da0d363529&amp;type=1#full" target="_blank" rel="external">查看报告</a></p>
+</blockquote>
+<h2 id="二、安装向导"><a href="#二、安装向导" class="headerlink" title="二、安装向导"></a>二、安装向导</h2><p>&nbsp;</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_2.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_2-300x231.jpg" alt="pyp_util_2"></a></p>
+<p>开始安装，点击下一步</p>
+<p>&nbsp;</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_3.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_3-300x231.jpg" alt="pyp_util_3"></a></p>
+<p>阅读自述信息，点击下一步</p>
+<p>&nbsp;</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_15.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_15-300x175.jpg" alt="pyp_util_15"></a></p>
+<p>设置路径或者使用默认路径进行安装，点击下一步</p>
+<p>&nbsp;</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_4.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_4-300x231.jpg" alt="pyp_util_4"></a></p>
+<p>安装完成</p>
+<p>&nbsp;</p>
+<h2 id="三、软件简介"><a href="#三、软件简介" class="headerlink" title="三、软件简介"></a>三、软件简介</h2><p>&nbsp;</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_5.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_5-300x255.jpg" alt="pyp_util_5"></a></p>
+<p>软件主界面</p>
+<p>&nbsp;</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_11.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_11.jpg" alt="pyp_util_11"></a></p>
+<p>帐号输入框</p>
+<p>&nbsp;</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_10.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_10.jpg" alt="pyp_util_10"></a></p>
+<p>记住密码</p>
+<p>&nbsp;</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_8.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_8.jpg" alt="pyp_util_8"></a></p>
+<p>自动拨号</p>
+<p>&nbsp;</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_7.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_7.jpg" alt="pyp_util_7"></a></p>
+<p>自动关闭</p>
+<p>&nbsp;</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_9.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_9-300x55.jpg" alt="pyp_util_9"></a></p>
+<p>开机启动</p>
+<p>&nbsp;</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_6.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_6-300x39.jpg" alt="pyp_util_6"></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>设置开机启动方法</p>
+<p>&nbsp;</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_13.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_13-300x81.jpg" alt="pyp_util_13"></a></p>
+<p>作者联系信息</p>
+<p>&nbsp;</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_12.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_12-300x174.jpg" alt="pyp_util_12"></a></p>
+<p>IP设置</p>
+<p>&nbsp;</p>
+<h2 id="四、软件源码简析"><a href="#四、软件源码简析" class="headerlink" title="四、软件源码简析"></a>四、软件源码简析</h2><p>&nbsp;</p>
+<p>源码下载：</p>
+<blockquote>
+<p><a href="http://pan.baidu.com/s/1qW0NcXu" target="_blank" rel="external">百度网盘下载</a> (76 KB)<br>代码结构:</p>
+</blockquote>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_16.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_16-247x300.jpg" alt="pyp_util_16"></a></p>
+<p><span style="background-color: #ff0000;">详细代码请看下一页</span></p>
+<p>&nbsp;</p>
+<h2 id="五、声明"><a href="#五、声明" class="headerlink" title="五、声明"></a>五、声明</h2><p><span style="color: #ff0000;">作者小树，未通过作者允许，不准用于商业行为，但可作为学习或生活使用</span>，使用源码请注明原创作者：小树技术博客(www.qiushurong.cn)，本站保留版权和其他一切权利，有任何问题可以在博客评论或联系我的邮箱(admin@qiushurong.cn). 更多功能请期待…谢谢！</p>
+<p>&nbsp;</p>
+<blockquote>
+<p>如果双击之后没打开程序，没反应的话，(一般XP系统都会如此)，原因是没有安装VC运行库</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_17.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/03/pyp_util_17.jpg" alt="pyp_util_17"></a></p>
+<p>下载后安装即可，地址：</p>
+<p>32位 <a href="http://www.xiazaiba.com/html/1547.html" target="_blank" rel="external">http://www.xiazaiba.com/html/1547.html</a></p>
+<p>64位 <a href="http://www.xiazaiba.com/html/3589.html" target="_blank" rel="external">http://www.xiazaiba.com/html/3589.html</a></p>
+<p>或者自己百度 VC2010运行库下载</p>
+<p>本软件仅限 广州番禺职业技术学院使用，其他地区GET方式不同，暂时不考虑。<br>作者：广州番禺职业技术学院 - 信息工程学院 - 12软件技术 - 小树</p>
+</blockquote>
+<p>&nbsp;</p>
+<p>下一页：源码</p>
+<!--nextpage-->
+<p>Mian，程序入口类</p>
+<p><pre class="lang:java decode:true">import com.qsuron.action.PypController;<br>import com.qsuron.business.Data;<br>import com.qsuron.model.Conf;<br>import com.qsuron.view.PypFrame;</pre></p>
+<p>/**</p>
+<ul>
+<li>Main类</li>
+<li>@author admin@qiushurong.cn<br><em>/<br>public class Main {<br> /*</em><ul>
+<li>程序主入口</li>
+<li>@param args<br>*/<br>public static void main(String[] args) {<br> PypFrame.InitLookAndFeel();<br> PypFrame view = new PypFrame();<br> Conf model = Data.recover();<br> @SuppressWarnings(“unused”)<br> PypController control = new PypController(view, model);<br> //control.getView().messageBox(“hello”);<br> //System.out.println(control.getView().showIpDial());<br>}<br>}<br>&nbsp;</li>
+</ul>
+</li>
+</ul>
+<p>控制类</p>
+<p>&nbsp;</p>
+<p><pre class="lang:java decode:true">package com.qsuron.action;</pre></p>
+<p>import com.qsuron.util.Util;</p>
+<p>import java.awt.event.ActionEvent;<br>import java.awt.event.ActionListener;<br>import java.awt.event.WindowAdapter;<br>import java.awt.event.WindowEvent;<br>import java.io.IOException;<br>import java.util.Timer;<br>import java.util.TimerTask;</p>
+<p>import javax.swing.JOptionPane;</p>
+<p>import com.qsuron.business.Data;<br>import com.qsuron.model.Conf;<br>import com.qsuron.view.PypFrame;</p>
+<p>/**</p>
+<ul>
+<li>控制类</li>
+<li><p>@author admin@qiushurong.cn<br>*/<br>public class PypController {<br> private PypFrame view;//视图<br> private Conf model;//模型<br> private Timer timer=new Timer();//计时器</p>
+<p> public PypController(PypFrame view,Conf model){</p>
+<pre><code>this.view = view;
+this.model = model;
+this.updateView();
+this.setBtnListener();
+this.setWindowsClose();
+this.initLogin();
+</code></pre><p> }</p>
+<p> /**</p>
+<ul>
+<li><p>检查是否自动拨号<br>*/<br>private void initLogin() {<br> Runnable runnable = new Runnable(){</p>
+<pre><code>@Override
+public void run() {
+    if(model.isRemConn() &amp;amp;&amp;amp; !model.getPassword().equals(&quot;&quot;)){
+        updateModel();
+        login();
+    }
+}
+</code></pre><p> };<br> new Thread(runnable).start();<br>}</p>
+<p>/**</p>
+</li>
+<li><p>拨号<br>*/<br>public void login(){<br> Runnable runnable = new Runnable(){</p>
+<pre><code>private int timedelay = 0;
+@Override
+public void run() {
+    //System.out.println(&quot;Thread-login&quot;);
+    String flag = Util.launch(model);
+    //System.out.println(&quot;+++&quot;+flag);
+    if(flag.equals(&quot;登录成功&quot;)){
+        if(model.isRemClose()){
+            view.getjProgressBar1().setText(&quot;登录成功！3秒后退出程序...&quot;);
+            Data.backup(model);
+            try {
+                Thread.sleep(3500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            updateModel();
+            Data.backup(model);
+            System.exit(0);
+        }else{
+            view.getjProgressBar1().setText(&quot;登录成功！&quot;);
+        }
+    }else if(flag.equals(&quot;密码错误&quot;)){
+        view.getjProgressBar1().setText(&quot;密码错误！请重新输入密码...&quot;);
+        view.getjTextField2().setText(&quot;&quot;);
+        view.getjTextField2().requestFocus();
+    }else if(flag.equals(&quot;帐号不存在&quot;)){
+        view.getjProgressBar1().setText(&quot;帐号不存在！请重新输入...&quot;);
+        view.getjTextField1().setText(&quot;&quot;);
+        view.getjTextField2().setText(&quot;&quot;);
+        view.getjTextField1().requestFocus();
+    }else if(flag.equals(&quot;网络异常&quot;)||flag.equals(&quot;IP异常&quot;)||flag.equals(&quot;登录频繁&quot;)){
+        timedelay=3000;
+        if(flag.equals(&quot;IP异常&quot;)){
+            view.getjProgressBar1().setText(&quot;IP异常！请检查锐捷是否开启！重新拨号中...&quot;);
+        }else if(flag.equals(&quot;登录频繁&quot;)){
+            view.getjProgressBar1().setText(&quot;登录频繁，15秒后自动重试，请无视之，等待即可!&quot;);
+            timedelay=16000;
+        }else{
+            view.getjProgressBar1().setText(&quot;未知返回值,请手动检查能否上网，或联系作者...&quot;);
+        }
+        timer.schedule(new TimerTask(){
+            public void run(){
+                if((model.getCountAnd())&amp;gt;60){
+                    view.messageBox(&quot;本地网络错误，请先检查锐捷是否开启。\n或者手动设置IP!&quot;);
+                    model.setIp(&quot;&quot;);
+                    Data.backup(model);
+                    System.exit(0);
+                }
+                login();
+                this.cancel();
+            }
+        },timedelay);//五秒
+    }
+}
+</code></pre><p> };<br> new Thread(runnable).start();<br>}</p>
+<p>//关闭按钮响应<br>private void setWindowsClose() {<br> view.addWindowListener(new WindowAdapter(){</p>
+<pre><code>@Override
+public void windowClosing(WindowEvent e) {
+    int option = view.showCloseDial();
+    if (option == JOptionPane.YES_OPTION) {
+        updateModel();//更新model
+        Data.backup(model);//备份model
+        System.exit(0);//退出程序
+    }else{
+        return;
+    }
+}
+</code></pre><p> });<br>}</p>
+<p>/**</p>
+</li>
+<li><p>设置按键监听<br>*/<br>private void setBtnListener() {<br> //拨号连接<br> view.getjButton1().addActionListener(new ActionListener() {</p>
+<pre><code>@Override
+public void actionPerformed(ActionEvent e) {
+    updateModel();//更新model
+    login();
+}
+</code></pre><p> });</p>
+<p> //拨号连接<br> view.getjTextField1().addActionListener(new ActionListener() {</p>
+<pre><code>@Override
+public void actionPerformed(ActionEvent e) {
+    updateModel();//更新model
+    login();
+}
+</code></pre><p> });</p>
+<p> //手动设置IP<br> view.getjRadioButton1().addActionListener(new ActionListener() {</p>
+<pre><code>@Override
+public void actionPerformed(ActionEvent e) {
+    String ip = view.showIpDial();
+    if(ip != null){
+        model.setIp(ip);
+        view.messageBox(&quot;设置IP[&quot; + model.getIp() + &quot;]成功! 请尝试拨号！&quot;);
+        view.getjTabbedPane1().setSelectedIndex(0);
+    }
+}
+</code></pre><p> });</p>
+<p> //访问小树技术博客(www.qiushurong.cn)<br> view.getjRadioButton2().addActionListener(new ActionListener() {</p>
+<pre><code>@Override
+public void actionPerformed(ActionEvent e) {
+    //判断当前系统是否支持Java AWT Desktop扩展
+    if(java.awt.Desktop.isDesktopSupported()){
+        try {
+            //创建一个URI实例
+            java.net.URI uri = java.net.URI.create(&quot;http://www.qiushurong.cn/&quot;);
+            //获取当前系统桌面扩展
+            java.awt.Desktop dp = java.awt.Desktop.getDesktop();
+            //判断系统桌面是否支持要执行的功能
+            if(dp.isSupported(java.awt.Desktop.Action.BROWSE)){
+                //获取系统默认浏览器打开链接
+                dp.browse(uri);   
+            }
+        } catch(java.lang.NullPointerException ee){
+        } catch (java.io.IOException ee) {
+            view.messageBox(&quot;无法打开默认浏览器,请手动访问：www.qiushurong.cn ！谢谢！&quot;);
+        }            
+    }
+}
+</code></pre><p> });</p>
+<p> //自动关闭<br> view.getjCheckBox3().addActionListener(new ActionListener() {</p>
+<pre><code>@Override
+public void actionPerformed(ActionEvent e) {
+    if(view.getjCheckBox3().isSelected()){
+        view.getjProgressBar1().setText(&quot;下次拨号成功后自动退出程序...&quot;);
+    }else{
+        view.getjProgressBar1().setText(&quot;取消拨号成功后自动退出程序...&quot;);
+    }
+}
+</code></pre><p> });</p>
+<p> //自动拨号</p>
+<pre><code>view.getjCheckBox2().addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(view.getjCheckBox2().isSelected()){
+            view.getjProgressBar1().setText(&quot;下次打开后自动开始拨号...&quot;);
+        }else{
+            view.getjProgressBar1().setText(&quot;取消打开后自动开始拨号...&quot;);
+        }
+    }
+});
+</code></pre><p> //开机启动<br> view.getjCheckBox4().addActionListener(new ActionListener() {</p>
+<pre><code>@Override
+public void actionPerformed(ActionEvent e) {
+    view.messageBox(&quot;方法一：运行[设置为开机启动.bat](杀毒拦截的话要放行)，方法二：把[快捷方式]拖动到[开始]-[程序]-[启动]中&quot;);
+    try {
+        String[] cmd = new String[4];
+        String url = Data.LOCATION+&quot;/设置为开机启动.bat&quot;;
+        url = url.replace(&quot;/&quot;, &quot;\\&quot;);
+        //System.out.println(url);
+        cmd[0] = &quot;Explorer&quot;;
+        cmd[1] = &quot;/select&quot;;
+        cmd[2] = &quot;,&quot;;
+        cmd[3] = url;
+        //cmd[4] = url;
+        Runtime.getRuntime().exec(cmd);
+    } catch (IOException ee) {
+        ee.printStackTrace();
+    }
+}
+</code></pre><p> });</p>
+<p> //开机启动<br> view.getjRadioButton3().addActionListener(new ActionListener() {</p>
+<pre><code>@Override
+public void actionPerformed(ActionEvent e) {
+    view.messageBox(&quot;方法一：运行[设置为开机启动.bat](杀毒拦截的话要放行)，方法二：把[快捷方式]拖动到[开始]-[程序]-[启动]中&quot;);
+    try {
+        String[] cmd = new String[4];
+        String url = Data.LOCATION+&quot;/设置为开机启动.bat&quot;;
+        url = url.replace(&quot;/&quot;, &quot;\\&quot;);
+        //System.out.println(url);
+        cmd[0] = &quot;Explorer&quot;;
+        cmd[1] = &quot;/select&quot;;
+        cmd[2] = &quot;,&quot;;
+        cmd[3] = url;
+        //cmd[4] = url;
+        Runtime.getRuntime().exec(cmd);
+    } catch (IOException ee) {
+        ee.printStackTrace();
+    }
+}
+</code></pre><p> });</p>
+<p> //软件漏洞<br> view.getjRadioButton4().addActionListener(new ActionListener() {</p>
+<pre><code>@Override
+public void actionPerformed(ActionEvent e) {
+    view.messageBox(&quot;[QQ] 280970160  [邮箱] admin@qiushurong.cn  [个人网站] www.qiushurong.cn&quot;);
+}
+</code></pre><p> });</p>
+<p>}</p>
+<p>/**</p>
+</li>
+<li><p>更新视图<br>*/<br>private void updateView() {<br> view.getjTextField1().setText(model.getAccount());<br> view.getjCheckBox1().setSelected(model.isRemPassword());<br> if(model.isRemPassword() &amp;&amp; !model.getPassword().equals(“”)){</p>
+<pre><code>view.getjTextField2().setText(model.getPassword());
+view.getjButton1().requestFocus();
+</code></pre><p> }else{</p>
+<pre><code>view.getjTextField2().requestFocus();
+</code></pre><p> }<br> view.getjCheckBox2().setSelected(model.isRemConn());<br> view.getjCheckBox3().setSelected(model.isRemClose());<br> view.getjCheckBox4().setSelected(model.isRemStart());<br>}</p>
+<p>/**</p>
+</li>
+<li>更新视图</li>
+<li>@param model</li>
+<li><p>@param view<br>*/<br>public void updateModel(){<br> model.setAccount(view.getjTextField1().getText());<br> model.setPassword(new String(view.getjTextField2().getPassword()));<br> model.setCount(model.getCount()+1);<br> model.setRemClose(view.getjCheckBox3().isSelected());<br> model.setRemConn(view.getjCheckBox2().isSelected());<br> model.setRemPassword(view.getjCheckBox1().isSelected());<br> model.setRemStart(view.getjCheckBox4().isSelected());<br>}</p>
+<p>public PypFrame getView() {<br> return view;<br>}</p>
+<p>public Conf getModel() {<br> return model;<br>}<br>}<br>&nbsp;</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>缓存数据处理类</p>
+<p>&nbsp;</p>
+<p><pre class="lang:java decode:true">package com.qsuron.business;</pre></p>
+<p>import java.io.File;<br>import java.io.FileInputStream;<br>import java.io.FileOutputStream;<br>import java.io.IOException;<br>import java.io.ObjectInputStream;<br>import java.io.ObjectOutputStream;<br>import java.io.UnsupportedEncodingException;<br>import java.net.URLDecoder;</p>
+<p>import com.qsuron.model.Conf;</p>
+<p>/**</p>
+<ul>
+<li>缓存数据处理类(序列化Model类)</li>
+<li><p>@author admin@qiushurong.cn<br>*/<br>public class Data {<br> public static String LOCATION;//序列化文件所在位置</p>
+<p> //静态代码段，获取主程序的路径<br> static {</p>
+<pre><code>try {
+    LOCATION = URLDecoder.decode(Data.class.getProtectionDomain().getCodeSource().getLocation().getFile(),&quot;UTF-8&quot;);
+    LOCATION = LOCATION.substring(1,LOCATION.lastIndexOf(&apos;/&apos;));
+} catch (UnsupportedEncodingException e) {
+    LOCATION = &quot;&quot;;
+}
+</code></pre><p> }</p>
+<p> public static void main(String[] args) {</p>
+<pre><code>/*
+Conf model = Data.recover();
+System.out.println(model.getAccount());
+*/
+
+/*
+Conf model = new Conf();
+model.setAccount(&quot;qsuron&quot;);
+model.setRemClose(true);
+backup(model);
+*/
+</code></pre><p> }</p>
+<p> /**</p>
+<ul>
+<li>配置文件序列化恢复</li>
+<li><p>@return Conf<br>*/<br>public static Conf recover() {<br> File file = new File(LOCATION+”\jre\Conf”);<br> Conf model = new Conf();<br> System.out.println(file.getAbsolutePath()+” exist:”+file.exists());<br> if(file.exists()){</p>
+<pre><code>ObjectInputStream ois = null;
+try{
+    ois = new ObjectInputStream(new FileInputStream(file));
+    model = (Conf)ois.readObject();
+    ois.close();
+}catch(Exception e){
+    e.printStackTrace();
+}finally{
+    try {
+        ois.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+</code></pre><p> }<br> return model;<br>}</p>
+<p>/**</p>
+</li>
+<li>配置文件序列化备份</li>
+<li>@param model<br>*/<br>public static void backup(Conf model) {<br> File file = new File(LOCATION+”\jre\Conf”);<br> ObjectOutputStream oos = null;<br> try{<pre><code>oos = new ObjectOutputStream(new FileOutputStream(file));
+oos.writeObject(model);
+oos.close();
+</code></pre> }catch(Exception e){<pre><code>e.printStackTrace();
+</code></pre> }finally{<pre><code>try {
+    oos.close();
+} catch (IOException e1) {
+    e1.printStackTrace();
+}
+</code></pre> }<br>}<br>}<br>&nbsp;</li>
+</ul>
+</li>
+</ul>
+<p>Model类  存储各种配置信息</p>
+<p><pre class="lang:java decode:true">package com.qsuron.model;</pre></p>
+<p>import java.io.Serializable;</p>
+<p>/**</p>
+<ul>
+<li>Model 存储各种配置信息</li>
+<li><p>@author admin@qiushurong.cn<br>*/<br>public class Conf implements Serializable{<br> private static final long serialVersionUID = 8233781718173174500L;</p>
+<p> private String account,password;</p>
+<p> private String ip = “”;</p>
+<p> private boolean remPassword,remConn,remClose,remStart;</p>
+<p> private int count = 0;</p>
+<p> public String getIp() {</p>
+<pre><code>if(this.ip == null)
+    return &quot;&quot;;
+return ip;
+</code></pre><p> }</p>
+<p> public void setIp(String ip) {</p>
+<pre><code>this.ip = ip;
+</code></pre><p> }</p>
+<p> public int getCount() {</p>
+<pre><code>return count;
+</code></pre><p> }</p>
+<p> public int getCountAnd() {</p>
+<pre><code>this.count++;
+return count;
+</code></pre><p> }</p>
+<p> public void setCount(int count) {</p>
+<pre><code>this.count = count;
+</code></pre><p> }</p>
+<p> public String getAccount() {</p>
+<pre><code>return account;
+</code></pre><p> }</p>
+<p> public void setAccount(String account) {</p>
+<pre><code>this.account = account;
+</code></pre><p> }</p>
+<p> public String getPassword() {</p>
+<pre><code>return password;
+</code></pre><p> }</p>
+<p> public void setPassword(String password) {</p>
+<pre><code>this.password = password;
+</code></pre><p> }</p>
+<p> public boolean isRemPassword() {</p>
+<pre><code>return remPassword;
+</code></pre><p> }</p>
+<p> public void setRemPassword(boolean remPassword) {</p>
+<pre><code>this.remPassword = remPassword;
+</code></pre><p> }</p>
+<p> public boolean isRemConn() {</p>
+<pre><code>return remConn;
+</code></pre><p> }</p>
+<p> public void setRemConn(boolean remConn) {</p>
+<pre><code>this.remConn = remConn;
+</code></pre><p> }</p>
+<p> public boolean isRemClose() {</p>
+<pre><code>return remClose;
+</code></pre><p> }</p>
+<p> public void setRemClose(boolean remClose) {</p>
+<pre><code>this.remClose = remClose;
+</code></pre><p> }</p>
+<p> public boolean isRemStart() {</p>
+<pre><code>return remStart;
+</code></pre><p> }</p>
+<p> public void setRemStart(boolean remStart) {</p>
+<pre><code>this.remStart = remStart;
+</code></pre><p> }</p>
+</li>
+</ul>
+<p>}<br>&nbsp;</p>
+<p>拨号工具类</p>
+<p>&nbsp;</p>
+<p><pre class="lang:java decode:true">package com.qsuron.util;<br>import java.io.BufferedReader;<br>import java.io.InputStreamReader;<br>import java.net.URL;<br>import java.util.Scanner;</pre></p>
+<p>import com.qsuron.model.Conf;</p>
+<p>/**</p>
+<ul>
+<li>拨号工具类</li>
+<li><p>@author admin@qiushurong.cn<br>*/<br>public class Util {</p>
+<p> /**</p>
+<ul>
+<li>@param account 帐号</li>
+<li>@param password 密码</li>
+<li>@return</li>
+<li>IP异常</li>
+<li>登录成功</li>
+<li>登录频繁</li>
+<li>密码错误</li>
+<li>帐号不存在</li>
+<li><p>网络异常<br>*/<br>public static String launch(Conf model){<br> String flag=”网络异常”;<br> String ip = model.getIp();<br> String hostip=””;<br> BufferedReader br = null;<br> Process p = null;</p>
+<p> if(!ip.matches(“192\.168\.\d{1,3}\.\d{1,3}”)) {</p>
+<pre><code>try {
+    hostip = java.net.InetAddress.getLocalHost().getHostAddress();
+    ip = hostip.substring(0,hostip.lastIndexOf(&apos;.&apos;))+&quot;.1&quot;;
+    p = Runtime.getRuntime().exec(&quot;ping &quot;+ip+&quot; -n 1&quot;);
+    br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+    String line = null;
+    StringBuilder sb=new StringBuilder();
+    while ((line = br.readLine()) != null) {
+        sb.append(line+&quot;\n&quot;);
+    }
+    if(sb.toString().contains(&quot;丢失 = 0&quot;)){
+        flag=&quot;网络异常&quot;;
+    }else{
+        flag=&quot;IP异常&quot;;
+    }
+} catch (Exception e) {
+}
+System.out.println(&quot;ip.1-&quot;+ip);
+if(!ip.matches(&quot;192\\.168\\.\\d{1,3}\\.\\d{1,3}&quot;) || flag.equals(&quot;IP异常&quot;)) {
+    flag = &quot;IP异常&quot;;
+    return flag;
+}
+model.setIp(hostip);
+</code></pre><p> }else{</p>
+<pre><code>hostip = ip;
+</code></pre><p> }</p>
+<p> try {</p>
+<pre><code>flag = &quot;网络异常&quot;;
+String command = &quot;http://219.136.125.139/portalAuthAction.do?wlanacIp=121.33.224.66&amp;amp;auth_type=PAP&amp;amp;wlanacname=pyzyxy&amp;amp;wlanuserip=&quot;
++ hostip + &quot;&amp;amp;bank_acct=bank_acct&amp;amp;userid=&quot;
++ model.getAccount() + &quot;@PYZYXY.GZ&amp;amp;passwd=&quot;
++ model.getPassword();
+URL url=new URL(command);
+//System.out.println(&quot;new URL(address)&quot;);
+Scanner s = new Scanner(url.openStream());
+//System.out.println(&quot;url.openStream()&quot;);
+String temp = new String();;
+while(s.hasNextLine()){
+    temp = new String(s.nextLine().getBytes(&quot;gb2312&quot;),&quot;GBK&quot;);
+    System.out.println(temp);
+    if(temp.contains(&quot;我要下线&quot;)) {
+        flag = &quot;登录成功&quot;;
+        break;
+    } else if(temp.contains(&quot;Please in 15 seconds after the restart!&quot;)) {
+        flag=&quot;登录频繁&quot;;
+        break;
+    } else if(temp.contains(&quot;Error 1002&quot;)) {
+        flag = &quot;密码错误&quot;;
+        break;
+    } else if(temp.contains(&quot;Error 1001&quot;)) {
+        flag = &quot;帐号不存在&quot;;
+        break;
+    }
+}
+s.close();
+</code></pre><p> } catch (Exception ex) {</p>
+<pre><code>ex.printStackTrace();
+flag = &quot;网络异常&quot;;
+</code></pre><p> }<br> return flag;<br>}</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>}<br>界面类</p>
+<p>&nbsp;</p>
+<p><pre class="lang:java decode:true">package com.qsuron.view;</pre></p>
+<p>import java.awt.BorderLayout;<br>import java.awt.Color;<br>import java.awt.Container;<br>import java.awt.Dimension;<br>import java.awt.Toolkit;</p>
+<p>import javax.swing.GroupLayout;<br>import javax.swing.JButton;<br>import javax.swing.JCheckBox;<br>import javax.swing.JDialog;<br>import javax.swing.JFrame;<br>import javax.swing.JLabel;<br>import javax.swing.JOptionPane;<br>import javax.swing.JPanel;<br>import javax.swing.JPasswordField;<br>import javax.swing.JRadioButton;<br>import javax.swing.JTabbedPane;<br>import javax.swing.JTextField;<br>import javax.swing.LayoutStyle;<br>import javax.swing.SwingConstants;<br>import javax.swing.UIManager;</p>
+<p>/**</p>
+<ul>
+<li>界面类</li>
+<li><p>@author admin@qiushurong.cn<br>*/<br>public class PypFrame extends JFrame{<br> private static final long serialVersionUID = -1;</p>
+<p> private static final String TITLE = “电信拨号工具 - v3.2.2 Beta”;</p>
+<p> private JButton jButton1 = new JButton(“拨号连接”);            // 拨号连接<br> private JCheckBox jCheckBox1 = new JCheckBox(“记住密码”);    // 记住密码<br> private JCheckBox jCheckBox2 = new JCheckBox(“自动拨号”);    // 自动拨号<br> private JCheckBox jCheckBox3 = new JCheckBox(“自动关闭”);    // 自动关闭<br> private JCheckBox jCheckBox4 = new JCheckBox(“开机自启”);    // 开机自启<br> private JLabel jLabel1 = new JLabel();//帐号<br> private JLabel jLabel2 = new JLabel();//密码<br> private JLabel jLabel3 = new JLabel();//@PYZYXY.GZ<br> private JPanel jPanel1 = new JPanel();// 面板 - 拨号工具<br> private JPanel jPanel2 = new JPanel();// 面板 - 设置帮助<br> private JLabel jProgressBar1 = new JLabel();// 提示信息</p>
+<p> private JRadioButton jRadioButton1 = new JRadioButton();<br> private JRadioButton jRadioButton2 = new JRadioButton();<br> private JRadioButton jRadioButton3 = new JRadioButton();<br> private JRadioButton jRadioButton4 = new JRadioButton();<br> private JRadioButton jRadioButton5 = new JRadioButton();<br> private JTabbedPane jTabbedPane1 = new JTabbedPane();<br> private JTextField jTextField1 = new JTextField();// 账号框<br> private JPasswordField jTextField2 = new JPasswordField ();// 密码框<br> private int width,height;</p>
+<p> public PypFrame(){</p>
+<pre><code>initComponents();
+</code></pre><p> }</p>
+<p> /**</p>
+<ul>
+<li><p>界面初始化<br>*/<br>private void initComponents() {</p>
+<p> this.InitText();</p>
+<p> this.InitToolTipText();</p>
+<p> jPanel1.setPreferredSize(new Dimension(260, 180));<br> jTextField1.setColumns(10);<br> jTextField2.setColumns(10);<br> jTextField2.setEchoChar(‘*’);</p>
+<p> //this.InitMenu(jMenuBar1);</p>
+<p> this.InitLayout(jPanel1, jPanel2, getContentPane());</p>
+<p> this.InitTab(jTabbedPane1, jPanel1, jPanel2);</p>
+<p> this.pack();</p>
+<p> // 定义工具包,获取屏幕的尺寸,使窗口位于正中央<br> Toolkit kit = Toolkit.getDefaultToolkit();<br> width = kit.getScreenSize().width/2-this.getWidth()/2;<br> height = kit.getScreenSize().height/2-this.getHeight()/2;<br> this.setLocation(width,height);<br> this.setResizable(false);<br> this.setTitle(TITLE);<br> this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);</p>
+<p> jProgressBar1.setBackground(Color.GRAY);<br> jProgressBar1.setForeground(Color.RED);</p>
+<p> // 使得帐号框取得焦点<br> jTextField1.requestFocus();</p>
+<p> this.setVisible(true);<br>}</p>
+<p>/<em> Set the Tab Panel </em>/<br>private void InitTab(JTabbedPane jTabbedPane1,JPanel jPanel1,JPanel jPanel2) {<br> jTabbedPane1.addTab(“拨号工具”, jPanel1);<br> jTabbedPane1.addTab(“设置帮助”, jPanel2);<br> jTabbedPane1.setSelectedIndex(0);<br> jTabbedPane1.setSelectedComponent(jPanel1);<br>}</p>
+<p>/<em> Set all the Text </em>/<br>private void InitText() {<br> jLabel1.setText(“帐号”);<br> jLabel2.setText(“密码”);<br> jLabel3.setText(“ @PYZYXY.GZ”);<br> jProgressBar1.setText(“已就绪!”);<br> jRadioButton1.setText(“手动设置IP地址 [解决多网卡的IP异常]”);<br> jRadioButton2.setText(“访问 小树技术博客 [www.qiushurong.cn]”);<br> jRadioButton3.setText(“设置开机自启方法”);<br> jRadioButton4.setText(“软件漏洞：请联系作者，不甚感激!”);<br> jRadioButton5.setText(“作者：番职院 信工 12软测 小树 2013 09 01”);<br>}</p>
+<p>/<em> Set All ToolTip Text </em>/<br>private void InitToolTipText() {<br> jTextField1.setToolTipText(“请输入宽带帐号：学号/手机号(需开通)”);<br> jTextField2.setToolTipText(“请输入宽带密码(8位以上)”);<br> jCheckBox3.setToolTipText(“拨号成功后自动退出程序释放内存”);<br> jCheckBox4.setToolTipText(“配合‘锐捷开机自启’可以在开机后完全自动拨号上网”);<br> jCheckBox2.setToolTipText(“下次启动程序后自动开始拨号连接”);<br> jCheckBox1.setToolTipText(“记住密码,下次启动程序无需输入密码”);<br> jProgressBar1.setToolTipText(“提示栏”);<br>}</p>
+<p>/<em> Set the JPanel’s Layout </em>/<br>private void InitLayout(JPanel jPanel1, JPanel jPanel2, Container contentPanel) {</p>
+<p> GroupLayout jPanel1Layout = new GroupLayout(jPanel1);<br> GroupLayout jPanel2Layout = new GroupLayout(jPanel2);<br> GroupLayout layout = new GroupLayout(contentPanel);<br> jPanel1.setLayout(jPanel1Layout);<br> jPanel2.setLayout(jPanel2Layout);<br> contentPanel.setLayout(layout);</p>
+<p> jPanel1Layout.setHorizontalGroup(</p>
+<pre><code>jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+.addGroup(jPanel1Layout.createSequentialGroup()
+.addContainerGap()
+.addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+.addGroup(jPanel1Layout.createSequentialGroup()
+.addComponent(jCheckBox2)
+.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+.addComponent(jCheckBox3)
+.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+.addComponent(jCheckBox4)
+.addGap(8, 8, 8))
+.addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+.addComponent(jButton1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+.addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+.addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+.addComponent(jLabel1)
+.addComponent(jLabel2))
+.addGap(18, 18, 18)
+.addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+.addComponent(jTextField1)
+.addGroup(jPanel1Layout.createSequentialGroup()
+.addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+.addGap(0, 0, Short.MAX_VALUE)))
+.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+.addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+.addComponent(jLabel3)
+.addComponent(jCheckBox1)))))
+.addGap(72, 72, 72))
+</code></pre><p> );<br> jPanel1Layout.setVerticalGroup(</p>
+<pre><code>jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+    .addGroup(jPanel1Layout.createSequentialGroup()
+    .addContainerGap()
+    .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+    .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+    .addComponent(jLabel1)
+    .addComponent(jLabel3))
+    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+    .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+    .addComponent(jLabel2)
+    .addComponent(jCheckBox1)
+    .addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+    .addGap(2, 2, 2)
+    .addComponent(jButton1)
+    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+    .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+    .addComponent(jCheckBox3)
+    .addComponent(jCheckBox2)
+    .addComponent(jCheckBox4))
+    .addContainerGap(13, Short.MAX_VALUE))
+</code></pre><p> );</p>
+<p> jPanel2Layout.setHorizontalGroup(</p>
+<pre><code>jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+    .addGroup(jPanel2Layout.createSequentialGroup()
+    .addContainerGap()
+    .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+    .addComponent(jRadioButton3)
+    .addComponent(jRadioButton1)
+    .addComponent(jRadioButton2)
+    .addComponent(jRadioButton4)
+    .addComponent(jRadioButton5))
+    .addContainerGap(20, Short.MAX_VALUE))
+);
+</code></pre><p> jPanel2Layout.setVerticalGroup(</p>
+<pre><code>jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+    .addGroup(jPanel2Layout.createSequentialGroup()
+    .addContainerGap()
+    .addComponent(jRadioButton3)
+    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+    .addComponent(jRadioButton1)
+    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+    .addComponent(jRadioButton2)
+    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+    .addComponent(jRadioButton4)
+    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    .addComponent(jRadioButton5))
+);
+</code></pre><p> layout.setHorizontalGroup(</p>
+<pre><code>layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+    .addGroup(layout.createSequentialGroup()
+    .addContainerGap()
+    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+    .addComponent(jTabbedPane1, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)
+    .addComponent(jProgressBar1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+);
+</code></pre><p> layout.setVerticalGroup(</p>
+<pre><code>layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+    .addGroup(layout.createSequentialGroup()
+    .addContainerGap()
+    .addComponent(jTabbedPane1, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+    .addComponent(jProgressBar1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+);
+</code></pre><p>}</p>
+<p>/<em> Set the Nimbus look and feel </em>/<br>public static void InitLookAndFeel(){<br> try {</p>
+<pre><code>for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+    if (&quot;Nimbus&quot;.equals(info.getName())) {
+        UIManager.setLookAndFeel(info.getClassName());
+        break;
+    }
+}
+</code></pre><p> } catch (Exception e) {</p>
+<pre><code>e.printStackTrace();
+</code></pre><p> }<br>}</p>
+<p>/<em> Main </em>/<br>public static void main(String[] args) {</p>
+<p>}</p>
+<p>public JButton getjButton1() {<br> return jButton1;<br>}</p>
+<p>public JCheckBox getjCheckBox1() {<br> return jCheckBox1;<br>}</p>
+<p>public JCheckBox getjCheckBox2() {<br> return jCheckBox2;<br>}</p>
+<p>public JCheckBox getjCheckBox3() {<br> return jCheckBox3;<br>}</p>
+<p>public JCheckBox getjCheckBox4() {<br> return jCheckBox4;<br>}</p>
+<p>public JTextField getjTextField1() {<br> return jTextField1;<br>}</p>
+<p>public JPasswordField getjTextField2() {<br> return jTextField2;<br>}</p>
+<p>public JLabel getjProgressBar1() {<br> return jProgressBar1;<br>}</p>
+<p>public JRadioButton getjRadioButton1() {<br> return jRadioButton1;<br>}</p>
+<p>public JRadioButton getjRadioButton2() {<br> return jRadioButton2;<br>}</p>
+<p>public JRadioButton getjRadioButton3() {<br> return jRadioButton3;<br>}</p>
+<p>public JRadioButton getjRadioButton4() {<br> return jRadioButton4;<br>}</p>
+<p>public JRadioButton getjRadioButton5() {<br> return jRadioButton5;<br>}</p>
+<p>public JTabbedPane getjTabbedPane1() {<br> return jTabbedPane1;<br>}</p>
+<p>/**</p>
+</li>
+<li>关闭程序提示框</li>
+<li><p>@return<br>*/<br>public int showCloseDial() {<br> return JOptionPane.showConfirmDialog(this, “是否完全退出软件？”,</p>
+<pre><code>&quot;系统提示&quot;, JOptionPane.YES_NO_OPTION,
+JOptionPane.QUESTION_MESSAGE);
+</code></pre><p>}</p>
+<p>/**</p>
+</li>
+<li>IP设置输入框</li>
+<li><p>@return<br>*/<br>public String showIpDial() {<br> return JOptionPane.showInputDialog(“输入您的IP地址： 192.168.???.??? .”);<br>}</p>
+<p>// Build MsgBox<br>public void messageBox(String s){<br> JDialog dialog = new JDialog(this,true);<br> dialog.setTitle(“提示信息”);</p>
+<p> dialog.add(new JLabel(“ “),BorderLayout.NORTH);<br> dialog.add(new JLabel(“    “+s+”    “,SwingConstants.CENTER),BorderLayout.CENTER);<br> dialog.add(new JLabel(“ “),BorderLayout.SOUTH);<br> dialog.setLocation(width+10,height+50);<br> dialog.setResizable(false);<br> dialog.pack();<br> dialog.setVisible(true);<br>}<br>}<br>&nbsp;</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>源码下载地址在上一页中已经给出。</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/工具/" rel="tag">#工具</a>
+          
+            <a href="/tags/拨号/" rel="tag">#拨号</a>
+          
+            <a href="/tags/电信/" rel="tag">#电信</a>
+          
+            <a href="/tags/番职院/" rel="tag">#番职院</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/03/21/mind-control/" rel="next" title="最近尤为发觉自己的情绪控制能力实在太差了">
+                <i class="fa fa-chevron-left"></i> 最近尤为发觉自己的情绪控制能力实在太差了
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/03/23/e6-99-9a-e5-ae-89-ef-bc-8c-e5-b9-bf-e5-b7-9e-ef-bc-81/" rel="prev" title="晚安，广州！">
+                晚安，广州！ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/03/23/pyp-dial/"
+     data-title="番职院电信拨号工具 v3.2.2 Beta (附源代码)"
+     data-content=""
+     data-url="http://yoursite.com/2014/03/23/pyp-dial/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/03/23/pyp-dial/"
+           data-title="番职院电信拨号工具 v3.2.2 Beta (附源代码)" data-url="http://yoursite.com/2014/03/23/pyp-dial/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#番职院电信拨号工具-v3-2-2-Beta"><span class="nav-number">1.</span> <span class="nav-text">番职院电信拨号工具 v3.2.2 Beta</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装包"><span class="nav-number">1.1.</span> <span class="nav-text">一、安装包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、安装向导"><span class="nav-number">1.2.</span> <span class="nav-text">二、安装向导</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、软件简介"><span class="nav-number">1.3.</span> <span class="nav-text">三、软件简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、软件源码简析"><span class="nav-number">1.4.</span> <span class="nav-text">四、软件源码简析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、声明"><span class="nav-number">1.5.</span> <span class="nav-text">五、声明</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

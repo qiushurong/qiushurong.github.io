@@ -1,0 +1,691 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="i18b,struts,中英文,国际化,语言," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="最近在项目中，需要去做一个页面的中英文切换，因此用到了struts自带的国际化 i18n 包，由于我所在的项目是 struts 1.x ，但是网上大多都是 struts 2 因此我把两个都一起记录下来了，基本的操作是一样的。i18n（其来源是英文单词 internationalization 的首末字符i和n，18为中间的字符数）是“国际化”的简称。在资讯领域，国际化(i18n)指让产品（出版物">
+<meta property="og:type" content="article">
+<meta property="og:title" content="J2EE-网页语言切换之国际化i18n">
+<meta property="og:url" content="http://yoursite.com/2014/08/28/struts-i18n/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="最近在项目中，需要去做一个页面的中英文切换，因此用到了struts自带的国际化 i18n 包，由于我所在的项目是 struts 1.x ，但是网上大多都是 struts 2 因此我把两个都一起记录下来了，基本的操作是一样的。i18n（其来源是英文单词 internationalization 的首末字符i和n，18为中间的字符数）是“国际化”的简称。在资讯领域，国际化(i18n)指让产品（出版物">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.753Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="J2EE-网页语言切换之国际化i18n">
+<meta name="twitter:description" content="最近在项目中，需要去做一个页面的中英文切换，因此用到了struts自带的国际化 i18n 包，由于我所在的项目是 struts 1.x ，但是网上大多都是 struts 2 因此我把两个都一起记录下来了，基本的操作是一样的。i18n（其来源是英文单词 internationalization 的首末字符i和n，18为中间的字符数）是“国际化”的简称。在资讯领域，国际化(i18n)指让产品（出版物">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> J2EE-网页语言切换之国际化i18n | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                J2EE-网页语言切换之国际化i18n
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-08-28T17:46:45+08:00" content="2014-08-28">
+              2014-08-28
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 2,447</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 12分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java-EE/" itemprop="url" rel="index">
+                    <span itemprop="name">Java EE</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/08/28/struts-i18n/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/08/28/struts-i18n/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>最近在项目中，需要去做一个页面的中英文切换，因此用到了struts自带的国际化 i18n 包，由于我所在的项目是 struts 1.x ，但是网上大多都是 struts 2 因此我把两个都一起记录下来了，基本的操作是一样的。<br><span style="text-transform: none; background-color: #ffffff; text-indent: 28px; display: inline !important; font: 14px/24px arial, 宋体, sans-serif; white-space: normal; float: none; letter-spacing: normal; color: #333333; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><strong>i18n</strong>（<strong>其来源是英文单词 <span style="color: #ff0000;">i</span>nternationalizatio<span style="color: #ff0000;">n</span> 的首末字符i和n，18为中间的字符数</strong>）是“国际化”的简称。在资讯领域，国际化(i18n)指让产品（出版物，软件，硬件等）无需做大的改变就能够适应不同的语言和地区的需要。对程序来说，在不修改内部代码的情况下，能根据不同语言及地区显示相应的界面。 在全球化的时代，国际化尤为重要，因为产品的潜在用户可能来自世界的各个角落。</span></p>
+</blockquote>
+<h1 id="一，struts-1-x"><a href="#一，struts-1-x" class="headerlink" title="一，struts 1.x"></a>一，struts 1.x</h1><div id="cnblogs_post_body"><br><br>## 1，基本的国际化<br><br>### 步骤1：配置struts国际化<br><br>在struts-config.xml中配置message-resources标签<br><br>&lt;message-resource parameter=”MessageResource”/&gt;<br><br>其中的参数是国际化配置文件MessageResource.properties的文件名。<br><br>### 步骤2：提供国际化配置文件<br><br>中文：MessageResource_zh_cn.properties<br><br>英文：MessageResource_en_us.properties<br><br>源文件：resource.properties表示中文信息<br><br>在源文件resource.properties中硬编码中文信息<br>user.title=用户登录<br>user.username=用户<br>user.password=密码<br>user.button.login=登录<br><br>然后用java中提供的工具把这些信息转换为unicode放到相应国际化文件中。<br><br>MessageResource_zh_cn.properties文件中<br><br>user.title=\u7528\u6237\u767b\u5f55<br>user.username=\u7528\u6237<br>user.password=\u5bc6\u7801<br>user.button.login=\u767b\u5f55<br><br>MessageResource_en_us.properties文件中<br><br>user.title=User Login<br>user.username=User Name<br>user.password=Password<br>user.button.login=Login<br><br>### 步骤3：在jsp页面上用struts标签&lt;bean：message&gt;来读取国际化消息文本<br><br>引入标签：<br><br>&lt;%@ taglib prefix=”bean” uri=”<a href="http://struts.apache.org/tags-bean&quot;%" target="_blank" rel="external">http://struts.apache.org/tags-bean”%</a>&gt;<br><br>&lt;form action=”login.do” method=”post”&gt;<br>  &lt;bean:message key=”user.username”/&gt;：&lt;input type=”text” name=”username”&gt;&lt;br&gt;<br>  &lt;bean:message key=”user.password”/&gt;：&lt;input type=”password” name=”password”&gt;&lt;br&gt;<br>  &lt;input type=”submit” value=”&lt;bean:message key=”user.button.login”/&gt;”&gt;<br> &lt;/form&gt;<br><br>bean：message中的属性key指的是国际化文件中的键。<br><br>一个local对应一个session<br><br>## 二，国际化的切换<br><br>jsp页面：<br><br>  &lt;a href=”changelang.do?lang=zh”&gt;中文&lt;/a&gt;&amp;nbsp&amp;nbsp&amp;nbsp&lt;a href=”changelang.do?lang=en”&gt;英文&lt;/a&gt;<br><br>添加一个Action：<br><br>public ActionForward execute(ActionMapping mapping, ActionForm form,<br>   HttpServletRequest request, HttpServletResponse response)<br>   throws Exception {<br>  String lang = request.getParameter(“lang”);<br><br>//得到Locale<br>  Locale currentLocale = Locale.getDefault();<br>  if (“zh”.equals(lang)) {<br><br>       //自定义Locale<br>   currentLocale = new Locale(“zh”, “CN”);<br>  }else if(“en”.equals(lang)) {<br>   currentLocale = new Locale(“en”, “US”);<br>  }<br><br>  //自己设置Locale<br>  //request.getSession().setAttribute(Globals.LOCALE_KEY, currentLocale);<br>  //调用struts中提供的方法设置Locale<br>  this.setLocale(request, currentLocale);<br>  return mapping.findForward(“index”);<br> }<br><br> 配置国际化action：<br><br>&lt;action path=”/changelang”<br>    type=”com.bjsxt.struts.ChangeLanguageAction”<br>  &gt;<br>   &lt;forward name=”index” path=”/index.jsp”/&gt;<br>  &lt;/action&gt;<br><br> &lt;message-resources parameter=”res.MessageResources” /&gt;<br><br>res.MessageResources表示的是res包下的MessageResources文件。<br><br>## 三，动态信息的国际化<br><br>如果是与后台交互的数据，那么在国际化文件中就用占位符进行配置<br><br>resource.properties源文件：<br><br>user.login.success={0},登录成功<br>user.not.found=用户不能找到，用户名称=[{0}]<br>user.password.error=密码错误<br>user.login.error=登录失败<br><br>MessageResource_zh_cn.properties文件：<br><br>user.login.success={0},\u767b\u5f55\u6210\u529f<br>user.not.found=\u7528\u6237\u4e0d\u80fd\u627e\u5230\uff0c\u7528\u6237\u540d\u79f0=[{0}]<br>user.password.error=\u5bc6\u7801\u9519\u8bef<br>user.login.error=\u767b\u5f55\u5931\u8d25MessageResource_en_us.properties文件：<br><br>user.login.success={0},Login Success<br>user.not.found=User Not Found,UserName[{0}]<br>user.password.error=Password Error<br>user.login.error=Login Error<br><br>Action中的代码：<br><br>package com.bjsxt.struts;<br><br>import javax.servlet.http.HttpServletRequest;<br>import javax.servlet.http.HttpServletResponse;<br><br>import org.apache.struts.action.Action;<br>import org.apache.struts.action.ActionForm;<br>import org.apache.struts.action.ActionForward;<br>import org.apache.struts.action.ActionMapping;<br>import org.apache.struts.action.ActionMessage;<br>import org.apache.struts.action.ActionMessages;<br><br>/<em>*  
+ </em> 用户登录的Action<br> <em> @author Administrator
+ </em><br> */<br>public class LoginAction extends Action {<br><br> public ActionForward execute(ActionMapping mapping, ActionForm form,<br>   HttpServletRequest request, HttpServletResponse response)<br>   throws Exception {<br>  LoginActionForm laf = (LoginActionForm)form;<br>  String username = laf.getUsername();<br>  String password = laf.getPassword();<br><br>  ActionMessages messages = new ActionMessages();<br>  try {<br>   UserManager.getInstance().login(username, password);<br><br>   //创建国际化消息文本<br>   ActionMessage message = new ActionMessage(“user.login.success”, username);<br>   //ActionMessage message = new ActionMessage(“user.login.success”, new Object[]{username});//其中Object数组表示的是占位符<br>   messages.add(“loginSuccess1”, message);<br><br>   ActionMessage message1 = new ActionMessage(“user.login.success”, username);<br>   messages.add(“loginSuccess2”, message1);<br><br>   //传递国际化消息文本<br>   this.saveMessages(request, messages);<br>   return mapping.findForward(“success”);<br>  }catch(UserNotFoundException unfe) {<br>   unfe.printStackTrace();<br><br>   //创建国际化消息文本<br>   ActionMessage message = new ActionMessage(“user.not.found”, username);<br>   messages.add(“error1”, message);<br><br>   //传递国际化消息文本<br>   this.saveErrors(request, messages);<br>  }catch(PasswordErrorException pee) {<br>   pee.printStackTrace();<br>   //创建国际化消息文本<br>   ActionMessage message = new ActionMessage(“user.password.error”);<br>   messages.add(“error2”, message);<br><br>   //传递国际化消息文本<br>   this.saveErrors(request, messages);<br>  }<br>  return mapping.findForward(“error”);<br> }<br><br>}<br><br>一个ActionMessage表示一条国际化信息。<br><br>Action配置：<br><br>&lt;message-resources parameter=”res.MessageResources” /&gt;<br><br>&nbsp;<br><br>&nbsp;<br><br></div>
+
+<h1 id="二，struts-2"><a href="#二，struts-2" class="headerlink" title="二，struts 2"></a>二，struts 2</h1><p>&nbsp;</p>
+<h2 id="1-首先在struts-properties文件中加入以下内容"><a href="#1-首先在struts-properties文件中加入以下内容" class="headerlink" title="1.首先在struts.properties文件中加入以下内容:"></a>1.首先在struts.properties文件中加入以下内容:</h2><p>struts.custom.i18n.resources=messageResource<br>或在struts.xml中加入<br>&lt;constant name=”struts.custom.i18n.resources” value=”messageResource”&gt;&lt;/constant&gt;</p>
+<h2 id="2-资源文件的命名格式"><a href="#2-资源文件的命名格式" class="headerlink" title="2.资源文件的命名格式:"></a>2.资源文件的命名格式:</h2><p>名称<em>语言代码</em>国家代码. Properties<br>如果创建中文和英语国际化,那么资源文件名称为<br>messageResource_zh_CN.properties和messageResource_en_US.properties</p>
+<h2 id="3-jsp页面的国际化"><a href="#3-jsp页面的国际化" class="headerlink" title="3. jsp页面的国际化"></a>3. jsp页面的国际化</h2><p><span class="Apple-converted-space"> </span><br>通过使用标签&lt;s:text name=”label.helloWorld”/&gt;输出国际化<br>label.helloWorld为资源文件中定义的key</p>
+<p>在messageResource_en_US.properties加入以下内容<br>label.hello=hello {0}<br>label.helloWorld=hello,world</p>
+<p>在messageResource_zh_CN.properties加入以下内容<br>label.hello=你好 {0}<br>label.helloWorld=你好,世界</p>
+<p>(1). &lt;s:text name=”label.helloWorld”/&gt;<br>&lt;s:property value=”%{getText(‘label.helloWorld’)}”/&gt;<br>上面两个都为输出一个hello word的两种表示</p>
+<p>&lt;s:textfield name=”name” key=”label.helloWorld”/&gt;<br>&lt;s:textfield name=”name” label=”%{getText(‘label.helloWorld’)}”/&gt;<br>显示一个文本框,文本框的标题进行国际化</p>
+<p>(2). 使用&lt;s:i18n&gt;标签指定从某个特定的资源文件中取数据<br>&lt;s:i18n name=”messageResource”&gt;<br>   &lt;s:text name=”label.helloWorld”&gt;&lt;/s:text&gt;<br>&lt;/s:i18n&gt;<br>指定在从messageResource取资源</p>
+<p>(3).<br>&lt;s:text name=”label.hello”&gt;<br>   &lt;s:param&gt;callan&lt;/s:param&gt;<br>&lt;/s:text&gt;<br>使用带参数的资源.&lt;s:param&gt;可以替换label.hello=hello {0}中的{0}</p>
+<h2 id="4-Action的国际化"><a href="#4-Action的国际化" class="headerlink" title="4. Action的国际化"></a>4. Action的国际化</h2><p>Action的国际化主要是通过getText(String key)方法实现的</p>
+<p><span style="text-align: left; text-transform: none; background-color: #f8f8f8; text-indent: 0px; margin: 0px; font: 12px/18px Consolas, 'Courier New', Courier, mono, serif; white-space: normal; letter-spacing: normal; color: black; word-spacing: 0px; -webkit-text-stroke-width: 0px; padding: 0px;">String str1 = getText(</span><span class="string" style="text-align: left; text-transform: none; background-color: #f8f8f8; text-indent: 0px; margin: 0px; font: 12px/18px Consolas, 'Courier New', Courier, mono, serif; white-space: normal; letter-spacing: normal; color: blue; word-spacing: 0px; -webkit-text-stroke-width: 0px; padding: 0px;"><span style="margin: 0px; color: #0000ff; padding: 0px;">“label.helloWorld”</span></span><span style="text-align: left; text-transform: none; background-color: #f8f8f8; text-indent: 0px; margin: 0px; font: 12px/18px Consolas, 'Courier New', Courier, mono, serif; white-space: normal; letter-spacing: normal; color: black; word-spacing: 0px; -webkit-text-stroke-width: 0px; padding: 0px;">);<span class="Apple-converted-space"> </span></span></p>
+<h2 id="5-参数化国际化"><a href="#5-参数化国际化" class="headerlink" title="5. 参数化国际化"></a>5. 参数化国际化</h2><p>在messageResource_en_US.properties加入以下内容<br>userName=userName<br>userName.required=${getText(‘userName’)} is required</p>
+<p>在messageResource_zh_CN.properties加入以下内容<br>userName=用户名<br>userName.required=${getText(‘userName’)} 不能为空</p>
+<p>在Action中<br>String str4 = getText(“userName.required”);<br>System.out.println(str4);</p>
+<p>userName.required=${getText(‘userName’)}会取国际化的用户名</p>
+<h2 id="6-使用校验框价时-提示信息可以国际化"><a href="#6-使用校验框价时-提示信息可以国际化" class="headerlink" title="6. 使用校验框价时,提示信息可以国际化"></a>6. 使用校验框价时,提示信息可以国际化</h2><p>   &lt;field name=”userName”&gt;<br>   &lt;field-validator type=”requiredstring”&gt;<br>    &lt;message key=”userName.required”&gt; &lt;/message&gt;<br>   &lt;/field-validator&gt;<br>&lt;/field&gt;</p>
+<p>&nbsp;</p>
+<h1 id="三，项目解决方案"><a href="#三，项目解决方案" class="headerlink" title="三，项目解决方案:"></a>三，项目解决方案:</h1><p> 由于老板的需求，是要在配置文件里面进行单一性质的修改，所以我的解决方案如下：</p>
+<p>修改struts配置文件web.xml<br>添加/WEB-INF/language.xml分支</p>
+<p>/WEB-INF/language.xml设置要读取的字库</p>
+<p>读取<br>config/Language_Chinese.properties<br>config/Language_English.properties</p>
+<p>JSP页面</p>
+<p>包含struts-lib<br>&lt;%@ taglib prefix=”bean” uri=”<a href="http://struts.apache.org/tags-bean&quot;%" target="_blank" rel="external">http://struts.apache.org/tags-bean”%</a>&gt;</p>
+<p>使用标签<br>&lt;bean:message key=”hello”/&gt;</p>
+<p>切换语言方法：找到 WEB_INF/language.xml 按照注释内容进行修改</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/i18b/" rel="tag">#i18b</a>
+          
+            <a href="/tags/struts/" rel="tag">#struts</a>
+          
+            <a href="/tags/中英文/" rel="tag">#中英文</a>
+          
+            <a href="/tags/国际化/" rel="tag">#国际化</a>
+          
+            <a href="/tags/语言/" rel="tag">#语言</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/08/27/pulltorefresh/" rel="next" title="Android-开源项目-下拉刷新PullToRefresh使用心得">
+                <i class="fa fa-chevron-left"></i> Android-开源项目-下拉刷新PullToRefresh使用心得
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/09/17/ibm-jts-qm-import/" rel="prev" title="IBM-JazzTeamServer-rqm中EXCEL测试用例的导入">
+                IBM-JazzTeamServer-rqm中EXCEL测试用例的导入 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/08/28/struts-i18n/"
+     data-title="J2EE-网页语言切换之国际化i18n"
+     data-content=""
+     data-url="http://yoursite.com/2014/08/28/struts-i18n/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/08/28/struts-i18n/"
+           data-title="J2EE-网页语言切换之国际化i18n" data-url="http://yoursite.com/2014/08/28/struts-i18n/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一，struts-1-x"><span class="nav-number">1.</span> <span class="nav-text">一，struts 1.x</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二，struts-2"><span class="nav-number">2.</span> <span class="nav-text">二，struts 2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-首先在struts-properties文件中加入以下内容"><span class="nav-number">2.1.</span> <span class="nav-text">1.首先在struts.properties文件中加入以下内容:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-资源文件的命名格式"><span class="nav-number">2.2.</span> <span class="nav-text">2.资源文件的命名格式:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-jsp页面的国际化"><span class="nav-number">2.3.</span> <span class="nav-text">3. jsp页面的国际化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Action的国际化"><span class="nav-number">2.4.</span> <span class="nav-text">4. Action的国际化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-参数化国际化"><span class="nav-number">2.5.</span> <span class="nav-text">5. 参数化国际化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-使用校验框价时-提示信息可以国际化"><span class="nav-number">2.6.</span> <span class="nav-text">6. 使用校验框价时,提示信息可以国际化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三，项目解决方案"><span class="nav-number">3.</span> <span class="nav-text">三，项目解决方案:</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

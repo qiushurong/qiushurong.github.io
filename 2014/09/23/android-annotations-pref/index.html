@@ -1,0 +1,805 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="AndroidAnnotations,开源,框架,pref,Preferences," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="AndroidAnnotations是一个能够让你快速进行Android开发的开源框架，它能让你专注于真正重要的地方。使代码更加精简，使项目更加容易维护，它的目标就是“Fast Android Development.Easy maintainance”.&amp;nbsp;
+
+&amp;nbsp;
+希望此篇能帮到大家，本系列教程目录：转载请链接并注明：转自 小树技术博客 .
+
+AndroidAnnotatio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AndroidAnnotations注解框架之@Pref(二)">
+<meta property="og:url" content="http://yoursite.com/2014/09/23/android-annotations-pref/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="AndroidAnnotations是一个能够让你快速进行Android开发的开源框架，它能让你专注于真正重要的地方。使代码更加精简，使项目更加容易维护，它的目标就是“Fast Android Development.Easy maintainance”.&amp;nbsp;
+
+&amp;nbsp;
+希望此篇能帮到大家，本系列教程目录：转载请链接并注明：转自 小树技术博客 .
+
+AndroidAnnotatio">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.753Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AndroidAnnotations注解框架之@Pref(二)">
+<meta name="twitter:description" content="AndroidAnnotations是一个能够让你快速进行Android开发的开源框架，它能让你专注于真正重要的地方。使代码更加精简，使项目更加容易维护，它的目标就是“Fast Android Development.Easy maintainance”.&amp;nbsp;
+
+&amp;nbsp;
+希望此篇能帮到大家，本系列教程目录：转载请链接并注明：转自 小树技术博客 .
+
+AndroidAnnotatio">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> AndroidAnnotations注解框架之@Pref(二) | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                AndroidAnnotations注解框架之@Pref(二)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-09-23T11:21:00+08:00" content="2014-09-23">
+              2014-09-23
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 1,534</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 8分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Android开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/09/23/android-annotations-pref/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/09/23/android-annotations-pref/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>AndroidAnnotations是一个能够让你快速进行Android开发的开源框架，它能让你专注于真正重要的地方。使代码更加精简，使项目更加容易维护，它的目标就是“Fast Android Development.Easy maintainance”.<br>&nbsp;</p>
+</blockquote>
+<p>&nbsp;</p>
+<p>希望此篇能帮到大家，本系列教程目录：<span style="color: #ff0000;">转载请链接并注明：转自 <a href="http://www.qiushurong.cn" title="小树技术博客" target="_blank" rel="external">小树技术博客</a> .</span></p>
+<blockquote>
+<p>AndroidAnnotations注解框架之介绍+配置(一)   <a href="http://www.qiushurong.cn/2014/09/22/android-annotations-introduce/" title="AndroidAnnotations注解框架之介绍+配置(一)" target="_blank" rel="external">(飞机票)</a><br>&nbsp;</p>
+</blockquote>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="color: #3366ff;">Anno 提供了一种类型安全的方式，让你可以去调用Android<span class="Apple-converted-space"> </span><a href="http://developer.android.com/guide/topics/data/data-storage.html#pref" target="_blank" rel="external">SharedPreferences</a> ， 下面带来一些Preferences常用的操作，并在最后附上一个项目的Demo片段</span></p>
+<p>&nbsp;</p>
+<h2 id="1-定义Preferences"><a href="#1-定义Preferences" class="headerlink" title="1.定义Preferences"></a>1.定义Preferences</h2><p>&nbsp;</p>
+<p>首先,你应该创建一个以@SharedPref定义的接口，作为一个 SharedPreferences</p>
+<p><pre class="lang:java decode:true " title="@SharedPref">@SharedPref<br>public interface MyPrefs {</pre></p>
+<pre><code>// The field name will have default value &quot;John&quot;
+@DefaultString(&quot;John&quot;)
+String name();
+
+// The field age will have default value 42
+@DefaultInt(42)
+int age();
+
+// The field lastUpdated will have default value 0
+long lastUpdated();
+</code></pre><p>}<br><span id="tran_0" class="copied" data-aligning="#tran_0,#src_0">基于这个操作, </span><span id="tran_1" class="copied" data-aligning="#tran_1,#src_1">AndroidAnnotations框架将会自动构建一个SharedPreferences子类，在你的原类名基础上</span><span id="tran_2" class="copied" data-aligning="#tran_2,#src_2">加上下划线<em>，如MyPref</em>，</span><span id="tran_3" class="copied" data-aligning="#tran_3,#src_3">你可以通过<span id="tran_6" class="copied" data-aligning="#tran_6,#src_6">@Pref注释</span>得到这个</span><span id="tran_4" class="copied" data-aligning="#tran_4,#src_4">实例</span></p>
+<p><strong><span style="font-family: Helvetica;">注意:</span></strong><span class="Apple-converted-space"> 实例的类型必须以新生成的类为类型</span></p>
+<p><pre class="lang:java decode:true " title="@Pref">@EActivity<br>public class MyActivity extends Activity {</pre></p>
+<pre><code>@Pref
+MyPrefs_ myPrefs;
+
+// ...
+</code></pre><p>}<br>其中，定义值目前有：</p>
+<blockquote>
+<p>@DefaultBoolean</p>
+<p>@DefaultFloat</p>
+<p>@DefaultInt</p>
+<p>@DefaultLong</p>
+<p>@DefaultString</p>
+<p>@DefaultStringSet</p>
+<p>@DefaultRes<br>&nbsp;</p>
+</blockquote>
+<p>&nbsp;</p>
+<h2 id="2-使用pref"><a href="#2-使用pref" class="headerlink" title="2.使用pref"></a>2.使用pref</h2><p>&nbsp;</p>
+<p><pre class="lang:java decode:true ">// Simple edit<br>myPrefs.name().put(“John”);</pre></p>
+<p>// Batch edit<br>myPrefs.edit()<br>  .name()<br>  .put(“John”)<br>  .age()<br>  .put(42)<br>  .apply();</p>
+<p>// Preference clearing:<br>myPrefs.clear();</p>
+<p>// Check if a value exists:<br>boolean nameExists = myPrefs.name().exists();</p>
+<p>// Reading a value<br>long lastUpdated = myPrefs.lastUpdated().get();</p>
+<p>// Reading a value and providing a fallback default value<br>long now = System.currentTimeMillis();<br>long lastUpdated = myPrefs.lastUpdated().getOr(now);<br>&nbsp;</p>
+<h2 id="3-设置默认值"><a href="#3-设置默认值" class="headerlink" title="3.设置默认值"></a>3.设置默认值</h2><p>&nbsp;</p>
+<p>注意： anno 3.0 版本之后才有这个功能</p>
+<p><pre class="lang:java decode:true">@SharedPref<br>public interface MyPrefs {<br>    @DefaultInt(0)<br>    int versionCode();</pre></p>
+<pre><code>@DefaultString(&quot;无&quot;)
+String widgetBackground();
+
+@DefaultBoolean(false)
+boolean classTableAsFirstScreen();}&lt;/pre&gt;
+</code></pre><p>&nbsp;</p>
+<h2 id="4-使用String-资源"><a href="#4-使用String-资源" class="headerlink" title="4.使用String 资源"></a>4.使用String 资源</h2><p>&nbsp;</p>
+<p>注意：anno 3.1 后才有此功能</p>
+<p><pre class="lang:java decode:true " title="@DefaultString">@SharedPref<br>public interface MyPrefs {<br>    @DefaultString(value = “John”, keyRes = R.string.myPrefKey)<br>    String name();</pre></p>
+<pre><code>@DefaultRes
+String defaultPrefAge(keyRes = R.string.myOtherPrefKey);
+</code></pre><p>}<br>&nbsp;</p>
+<h2 id="5-作用域"><a href="#5-作用域" class="headerlink" title="5.作用域"></a>5.作用域</h2><p>&nbsp;</p>
+<p>你还可以通过设置value来设定pref的作用域</p>
+<p>例如：</p>
+<ul>
+<li><blockquote>
+<p><code>ACTIVITY ：</code>名为：<code>MyActivity_MyPrefs 的pref</code></p>
+</blockquote>
+</li>
+<li><blockquote>
+<p><code>ACTIVITY_DEFAULT</code> <span style="font-family: Courier New;">：</span> 名为 <span class="Apple-converted-space"> </span><code>MyActivity 的 pref</code><br>(<span class="Apple-converted-space"> 可以通过 </span><code>activity.getPreferences() 获取到</code>);</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p><code>APPLICATION_DEFAULT &lt;span style=&quot;font-family: Courier New;&quot;&gt;：&lt;/span&gt;</code> 使用默认的单例名称<br>&nbsp;</p>
+</blockquote>
+</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span id="tran_4" class="copied" data-aligning="#tran_4,#src_4">因此,</span><span id="tran_5" class="copied" data-aligning="#tran_5,#src_5">如果一个<span style="font-size: medium;"><span style="font-family: Consolas;">SharedPreference</span></span></span><span id="tran_7" class="copied" data-aligning="#tran_7,#src_7">接口的定义是给一个应用程序application下所有activity所使用的话，</span><span id="tran_11" class="copied" data-aligning="#tran_11,#src_11">应该使用以下作用域:</span></p>
+<p><pre class="lang:java decode:true " title="SharedPref.Scope.UNIQUE">@SharedPref(value=SharedPref.Scope.UNIQUE)<br>public interface MyPrefs {<br>…</pre><br>&nbsp;</p>
+<h2 id="6-在PreferenceActivity中使用它"><a href="#6-在PreferenceActivity中使用它" class="headerlink" title="6.在PreferenceActivity中使用它"></a>6.在PreferenceActivity中使用它</h2><p>&nbsp;</p>
+<p>同样地，使用 Android<span class="Apple-converted-space"> </span><code>PreferenceActivity</code><span class="Apple-converted-space"> 也</span>能够改写任何已用@SharedPref注解的SharedPref</p>
+<p><pre class="lang:java decode:true " title="@SharedPref()">@SharedPref()<br>public interface MyPrefs {<br>…<br>}</pre><br>&nbsp;</p>
+<p><pre class="lang:java decode:true " title="PrefsActivity ">public class PrefsActivity extends PreferenceActivity {</pre></p>
+<pre><code>public static String PREF_NAME = &quot;MyPrefs&quot;;
+
+@Override
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+            // Using your MyPrefs values 
+    this.getPreferenceManager().setSharedPreferencesName(PREF_NAME);
+
+            // Opening the layout 
+    addPreferencesFromResource(R.xml.prefs);
+}
+</code></pre><p>}<br>&nbsp;</p>
+<h2 id="7-实际项目demo片段"><a href="#7-实际项目demo片段" class="headerlink" title="7.实际项目demo片段"></a>7.实际项目demo片段</h2><p>&nbsp;</p>
+<p>SharedPref</p>
+<p><pre class="lang:java decode:true ">**</pre></p>
+<ul>
+<li>@Title:应用程序配置文件AppConfig</li>
+<li>@Description: 使用SharedPref储存本地数据</li>
+<li>@author qsuron</li>
+<li>@date 2014-9-23</li>
+<li><p>@email admin@qiushurong.cn<br>*/<br>@SharedPref( value = SharedPref.Scope.UNIQUE)<br>public interface AppConfig {</p>
+<p> @DefaultInt(0)<br> int versionCode();     // 当前的versionCode</p>
+<p> @DefaultString(“”)<br> String userName();     // 用户</p>
+<p> @DefaultString(“”)<br> String password();     // 密码<br>}<br>片段1<br><pre class="lang:java decode:true "> config = new cn.scau.scautreasure.AppConfig_(context);</pre></p>
+<pre><code>RingerMode duringMode = RingerMode.getModeByValue(config.duringClassRingerMode().get());
+RingerMode afterMode = RingerMode.getModeByValue(config.afterClassRingerMode().get());
+</code></pre><p><br>片段2<br><pre class="lang:java decode:true">@Pref        cn.scau.scautreasure.AppConfig_  config;</pre></p>
+<p>/**</p>
+<ul>
+<li><p>切换到加载所有课程模式;<br>*/<br>@OptionsItem<br>void menu_load_classtable_all(){<br> config.classTableShowMode().put(MODE_ALL);<br> showClassTable();<br>}</p>
+<p>/**</p>
+</li>
+<li>切换到智能加载课程模式;<br>*/<br>@OptionsItem<br>void menu_load_classtable_with_params(MenuItem item){<br> config.classTableShowMode().put(MODE_PARAMS);<br> showClassTable();<br>}<br>&nbsp;</li>
+</ul>
+</li>
+</ul>
+<p>&nbsp;</p>
+<p>Edit by 小树</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AndroidAnnotations/" rel="tag">#AndroidAnnotations</a>
+          
+            <a href="/tags/开源/" rel="tag">#开源</a>
+          
+            <a href="/tags/框架/" rel="tag">#框架</a>
+          
+            <a href="/tags/pref/" rel="tag">#pref</a>
+          
+            <a href="/tags/Preferences/" rel="tag">#Preferences</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/09/22/android-annotations-introduce/" rel="next" title="AndroidAnnotations注解框架之介绍+配置(一)">
+                <i class="fa fa-chevron-left"></i> AndroidAnnotations注解框架之介绍+配置(一)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/10/03/android-activity/" rel="prev" title="Android的应用程序组件-Activity详解">
+                Android的应用程序组件-Activity详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/09/23/android-annotations-pref/"
+     data-title="AndroidAnnotations注解框架之@Pref(二)"
+     data-content=""
+     data-url="http://yoursite.com/2014/09/23/android-annotations-pref/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/09/23/android-annotations-pref/"
+           data-title="AndroidAnnotations注解框架之@Pref(二)" data-url="http://yoursite.com/2014/09/23/android-annotations-pref/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-定义Preferences"><span class="nav-number">1.</span> <span class="nav-text">1.定义Preferences</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-使用pref"><span class="nav-number">2.</span> <span class="nav-text">2.使用pref</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-设置默认值"><span class="nav-number">3.</span> <span class="nav-text">3.设置默认值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-使用String-资源"><span class="nav-number">4.</span> <span class="nav-text">4.使用String 资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-作用域"><span class="nav-number">5.</span> <span class="nav-text">5.作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-在PreferenceActivity中使用它"><span class="nav-number">6.</span> <span class="nav-text">6.在PreferenceActivity中使用它</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-实际项目demo片段"><span class="nav-number">7.</span> <span class="nav-text">7.实际项目demo片段</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

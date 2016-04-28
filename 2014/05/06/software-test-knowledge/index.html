@@ -1,0 +1,675 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="知识点,整理," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="此篇文章专门用于整理各种软件测试基础知识
+为了发现程序中的错误而执行程序的过程&amp;nbsp;
+首先，测试并不仅仅是为了要找出错误。通过分析错误产生的原因和错误的分布特征，可以帮助项目管理者发现当前所采用的软件过程的缺陷，以便改进。同时，这种分析也能帮助我们设计出有针对性地检测方法，改善测试的有效性。其次，没有发现错误的测试也是有价值的，完整的测试是评定测试质量的一种方法。详细而严谨的可靠性增长模型可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件测试基础知识点整理">
+<meta property="og:url" content="http://yoursite.com/2014/05/06/software-test-knowledge/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="此篇文章专门用于整理各种软件测试基础知识
+为了发现程序中的错误而执行程序的过程&amp;nbsp;
+首先，测试并不仅仅是为了要找出错误。通过分析错误产生的原因和错误的分布特征，可以帮助项目管理者发现当前所采用的软件过程的缺陷，以便改进。同时，这种分析也能帮助我们设计出有针对性地检测方法，改善测试的有效性。其次，没有发现错误的测试也是有价值的，完整的测试是评定测试质量的一种方法。详细而严谨的可靠性增长模型可">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.752Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件测试基础知识点整理">
+<meta name="twitter:description" content="此篇文章专门用于整理各种软件测试基础知识
+为了发现程序中的错误而执行程序的过程&amp;nbsp;
+首先，测试并不仅仅是为了要找出错误。通过分析错误产生的原因和错误的分布特征，可以帮助项目管理者发现当前所采用的软件过程的缺陷，以便改进。同时，这种分析也能帮助我们设计出有针对性地检测方法，改善测试的有效性。其次，没有发现错误的测试也是有价值的，完整的测试是评定测试质量的一种方法。详细而严谨的可靠性增长模型可">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> 软件测试基础知识点整理 | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                软件测试基础知识点整理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-05-06T22:44:36+08:00" content="2014-05-06">
+              2014-05-06
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 1,987</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 7分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/软件测试/" itemprop="url" rel="index">
+                    <span itemprop="name">软件测试</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/05/06/software-test-knowledge/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/06/software-test-knowledge/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>此篇文章专门用于整理各种软件测试基础知识</p>
+<p><pre class="lang:java decode:true" title="1\. 什么是软件测试？">为了发现程序中的错误而执行程序的过程</pre><br>&nbsp;</p>
+<p><pre class="lang:java decode:true" title="2\. 软件测试的目的？">首先，测试并不仅仅是为了要找出错误。通过分析错误产生的原因和错误的分布特征，<br>可以帮助项目管理者发现当前所采用的软件过程的缺陷，以便改进。<br>同时，这种分析也能帮助我们设计出有针对性地检测方法，改善测试的有效性。<br>其次，没有发现错误的测试也是有价值的，完整的测试是评定测试质量的一种方法。<br>详细而严谨的可靠性增长模型可以证明这一点。<br>测试的目的是按照用户所需软件的质量，检查开发软件过程出现的bug, 使得开发人员及时修改，<br>可以避免在开发结束的时候发现软件存在质量问题，避免公司不必要的损失。<br>赢得用户对公司产品的认可。</pre></p>
+<p>测试的目的是以最少人力、物力和时间找出软件中潜在各种错误和缺陷，通过修正种<br>错误和缺陷提高软件质量，回避软件发布后由于潜在的软件缺陷和错误造成的隐患带来的商业风险。<br>测试的附带收获是，它能够证明软件的功能和性能与需求说明相符合。<br>实施测试收集到的测试结果数据为可靠性分析提供了依据。<br>测试不能表明软件中不存在错误，它只能说明软件中存在错误。<br>&nbsp;</p>
+<p><pre class="lang:java decode:true" title="3\. 软件测试的目标">发现尽可能多的错误,测试是一个为了寻找错误而运行程序的过程。<br>一个好的测试案例是指很可能找到迄今为止尚未发现的错误的用例。<br>一个成功的测试是指揭示了迄今为止尚未发现的错误的测试。</pre><br>&nbsp;</p>
+<p><pre class="lang:java decode:true" title="4\. 软件测试的原则">1) 应当把”尽早地和不断地进行软件测试”作为软件开发者的座右铭。<br>2) 测试用例应由测试输入数据和对应的预期输出结果这两部分组成。<br>3) 程序员应避免检查自己的程序。<br>4) 在设计测试用例时，应包括合理的输入条件和不合理的输入条件。<br>5) 软件测试的原则<br>6) 充分注意测试中的群集现象。<br>   经验表明，测试后程序中残存的错误数目与该程序中已发现的错误数目成正比。<br>7) 严格执行测试计划，排除测试的随意性。<br>8) 应当对每一个测试结果做全面检查。<br>9) 妥善保存测试计划，测试用例，出错统计和最终分析报告，为维护提供方便。</pre><br>&nbsp;</p>
+<p><pre class="lang:java decode:true" title="5\. 测试的职责">测试经理：<br>1、制定测试计划。<br>2、确保测试过程正常进行。</pre></p>
+<p>测试工程师<br>1、编写测试用例<br>2、搭建测试环境<br>3、执行测试<br>&nbsp;</p>
+<p><pre class="lang:java decode:true" title="6\. 软件都有多少种分类？">答：根据功能的不同，电脑软件可以粗略地分成四个层次：<br>最贴近电脑硬件的是一些小巧的软件。它们实现一些最基本的功能，通常”固化”在只读存储器芯片中，因此称为固件。<br>系统软件包括操作系统和编译器软件等。系统软件和硬件一起提供一个”平台”。它们管理和优化电脑硬件资源的使用。<br>支持软件。包括图形用户界面、软件开发工具、软件评测工具、数据库管理系统、中间件等。<br>应用软件种类最多，包括办公软件、电子商务软件、通信软件、行业软件，游戏软件等等。</pre><br>&nbsp;</p>
+<p><pre class="lang:java decode:true" title="7\. 软件的分类">none</pre><br>&nbsp;</p>
+<p><pre class="lang:java decode:true" title="8\. 测试的主要方面">答：<br>A、功能测试：a、链接测试b、表单测试c、Cookies 测试d、设计语言测试e、数据库测试<br>B、性能测试：a、连接速度测试b、负载测试c、压力测试<br>C、接口测试：a、服务器接口b、外部接口c、错误处理<br>D、可用性测试: a、导航测试b、图形测试c、内容测试d、整体界面测试<br>E、兼容性测试：a、平台测试b、浏览器测试c、视频测试d、Modem/连接速率测试f、打印机测试g、组合测试<br>F、安全测试：a、目录设置b、登录c、Session d、日志文件e、加密f、安全漏洞<br>G、代码合法性测试：a、程序代码合法性检查b、显示代码合法性检查<br>H、文档测试：</pre><br>&nbsp;</p>
+<p><pre class="lang:java decode:true" title="9\. 软件测试的对象">答：软件测试并不等于程序测试。软件测试应贯穿于软件定义与开发的整个期间。<br>需求分析、概要设计、详细设计以及程序编码等各阶段所得到的文档，包括需求规格<br>说明、概要设计规格说明、详细设计规格说明以及源程序，都应成为软件测试的对象</pre><br>&nbsp;</p>
+<p><pre class="lang:java decode:true" title="10\. 什么是测试案例">答：测试案例是一份文档，它描述了一个输入、反应、或者是与其相应的预期的响应，以便<br>来判断应用软件的工作是否正常。测试案例应当包括测试标识、测试案例的名称、目标、测<br>试条件/设置、输入数据要求、步骤、以及预期的结果。<br>注：开发一个应用软件的测试案例的过程，需要全面、深入地考虑该软件的操作，所以有助<br>于发现在其需求或设计里面的问题。因此，如果有可能，在开发周期中应当尽早准备测试案例。</pre><br>&nbsp;</p>
+<p><pre class="lang:java decode:true" title="11\. 怎么编写案例？">答：案例的编写与测试阶段的定义有很大的关系。系统测试和unit 测试的案例可能不同。<br>总体而言测试案例根据系统的需求而定。</pre><br>&nbsp;</p>
+<p><pre class="lang:java decode:true" title="12\. 软件测试的两种方法">答：黑盒测试和白盒测试<br>黑盒：这种方法是把测试对象看做一个黑盒子，测试人员完全不考虑程序内部的逻辑<br>结构和内部特性，只依据程序的需求规格说明书，检查程序的功能是否符合它的功能说明。<br>黑盒测试又叫做功能测试或数据驱动测试。</pre></p>
+<p>白盒：此方法把测试对象看做一个透明的盒子，它允许测试人员利用程序内部的逻辑<br>结构及有关信息，设计或选择测试用例，对程序所有逻辑路径进行测试。</p>
+<p>通过在不同点检查程序的状态，确定实际的状态是否与预期的状态一致。因此白盒测<br>试又称为结构测试或逻辑驱动测试。<br>&nbsp;</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/知识点/" rel="tag">#知识点</a>
+          
+            <a href="/tags/整理/" rel="tag">#整理</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/05/01/51-music/" rel="next" title="51空寂没人陪，放置个背景音乐盒自己聆听">
+                <i class="fa fa-chevron-left"></i> 51空寂没人陪，放置个背景音乐盒自己聆听
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/05/14/github-wiki/" rel="prev" title="初次使用GitHub,作个入门记录Wiki">
+                初次使用GitHub,作个入门记录Wiki <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/05/06/software-test-knowledge/"
+     data-title="软件测试基础知识点整理"
+     data-content=""
+     data-url="http://yoursite.com/2014/05/06/software-test-knowledge/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/05/06/software-test-knowledge/"
+           data-title="软件测试基础知识点整理" data-url="http://yoursite.com/2014/05/06/software-test-knowledge/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

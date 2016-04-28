@@ -1,0 +1,680 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="jsp,mysql,乱码,字符集," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp;
+jsp乱码问题-java与mysql的字符集统一&amp;nbsp;
+&amp;nbsp;
+1、在jsp中，字符集由&amp;lt;%@ page language=”java” contentType=”text/html;charset=GBK”%&amp;gt;来指定，如果处理中文，需指定为gbk。所以提交的数据全部都使用gbk编码；2、在java中，从jsp提交过来的数据是gbk编码的，而java默认的处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jsp乱码问题-java与mysql的字符集统一">
+<meta property="og:url" content="http://yoursite.com/2014/02/17/jsp-mysql-code/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="&amp;nbsp;
+jsp乱码问题-java与mysql的字符集统一&amp;nbsp;
+&amp;nbsp;
+1、在jsp中，字符集由&amp;lt;%@ page language=”java” contentType=”text/html;charset=GBK”%&amp;gt;来指定，如果处理中文，需指定为gbk。所以提交的数据全部都使用gbk编码；2、在java中，从jsp提交过来的数据是gbk编码的，而java默认的处理">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.749Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jsp乱码问题-java与mysql的字符集统一">
+<meta name="twitter:description" content="&amp;nbsp;
+jsp乱码问题-java与mysql的字符集统一&amp;nbsp;
+&amp;nbsp;
+1、在jsp中，字符集由&amp;lt;%@ page language=”java” contentType=”text/html;charset=GBK”%&amp;gt;来指定，如果处理中文，需指定为gbk。所以提交的数据全部都使用gbk编码；2、在java中，从jsp提交过来的数据是gbk编码的，而java默认的处理">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> jsp乱码问题-java与mysql的字符集统一 | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                jsp乱码问题-java与mysql的字符集统一
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-02-17T22:33:38+08:00" content="2014-02-17">
+              2014-02-17
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 1,408</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 7分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java-EE/" itemprop="url" rel="index">
+                    <span itemprop="name">Java EE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java-EE/通用开发技术/" itemprop="url" rel="index">
+                    <span itemprop="name">通用开发技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/02/17/jsp-mysql-code/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/02/17/jsp-mysql-code/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;</p>
+<h1 id="jsp乱码问题-java与mysql的字符集统一"><a href="#jsp乱码问题-java与mysql的字符集统一" class="headerlink" title="jsp乱码问题-java与mysql的字符集统一"></a>jsp乱码问题-java与mysql的字符集统一</h1><p>&nbsp;</p>
+<p>&nbsp;</p>
+<div style="font-size: 14px; line-height: 26px; word-wrap: break-word; color: #666666; font-family: 宋体, Arial;"><br><br>1、在jsp中，字符集由&lt;%@ page language=”java” contentType=”text/html;charset=GBK”%&gt;来指定，如果处理中文，需指定为gbk。所以提交的数据全部都使用gbk编码；<br><br>2、在java中，从jsp提交过来的数据是gbk编码的，而java默认的处理方式是使用ISO-8859-1编码，所以若在java中能显示jsp提交过来的gbk编码方式的数据，就要进行一个转换：将gbk转换为ISO-8859-1，这样数据就可正常显示。<br><br>3、如果要将jsp提交的数据经过java后台处理，然后放入数据库中，就又多了一个数据编码方式：数据库的数据编码方式。以mysql为例，默认字符集为latin，所以若将gbk的数据放入，必然出现乱码，所以首先应改变数据库的编码方式为gbk。<br><br></div><br><div style="font-size: 14px; line-height: 26px; word-wrap: break-word; color: #666666; font-family: 宋体, Arial;">综上，简单的设置方法如下：</div><br><div style="font-size: 14px; line-height: 26px; word-wrap: break-word; color: #666666; font-family: 宋体, Arial;"><br><br>jsp(gbk) —-&gt;java(ISO-8859-1) —&gt; mysql(gbk)<br><br>还有一种情况会出现乱码：当你在jsp端提交一个id号，然后在java处理端通过id号得到数据库中的gbk（汉字）数据，这是就会出现乱码，因为java处理的是ISO-8859-1，你在java到mysql中有了一个ISO-8859-1到gbk的转换，而这些数据本身就是ISO-8859-1,所以转换后就出现问题了。<br><br>解决办法：将在java中处理的gbk数据转换为ISO-8859-1即可。<br><br></div><br><div style="font-size: 14px; line-height: 26px; word-wrap: break-word; color: #666666; font-family: 宋体, Arial;">总之：在jsp，java，mysql三者之间的编码方式必须统一，不能错误的转换或者不转换。</div><br><div style="font-size: 14px; line-height: 26px; word-wrap: break-word; color: #666666; font-family: 宋体, Arial;">一些相关转换函数：</div><br><div style="font-size: 14px; line-height: 26px; word-wrap: break-word; color: #666666; font-family: 宋体, Arial;"><span style="color: #009900; word-wrap: break-word;">1、String 到 Unicode</span></div><br><div><br><pre class="brush:java">public static String toUTF(String inPara){<br>//将字符串转换成Unicode编码<br>char temChr;<br>int ascChr;<br>int i;<br>String rtStr=new String(“”);<br>if(inPara==null){<br>inPara=””;<br>}<br>for(i=0;i&lt;inPara.length();i++){<br>temChr=inPara.charAt(i);<br>ascChr=temChr+0;<br>String z=””;<br>String hex=Integer.toHexString(ascChr);<br>//   ————如果不够四位则高位补零——————<br>for(int j=0;j&lt;4-hex.length();j++)<br>{<br>z+=”0”;<br>}<br>//System.out.println(ascChr);<br>//System.out.println(Integer.toBinaryString(ascChr));<br>rtStr=rtStr+”&amp;#x”+z+hex+”;”;<br>}<br>return rtStr;<br>}</pre><br><span style="color: #009900; word-wrap: break-word;">2、String 到 ISO-8859-1</span><br><br></div><br><pre class="brush:java">public static String to8859(String s){<br>String str=s;<br>try{<br>byte b[]=str.getBytes(“ISO-8859-1”);<br>str=new String(b);<br>return str;<br>}<br>catch(Exception e){return null;}<br>}</pre><br><div style="font-size: 14px; line-height: 26px; word-wrap: break-word; color: #666666; font-family: 宋体, Arial;"></div><br><div style="font-size: 14px; line-height: 26px; word-wrap: break-word; color: #666666; font-family: 宋体, Arial;"><span style="color: #009900; word-wrap: break-word;">3、gbk 到 latin1</span></div><br><pre class="brush:java">public  static  String  tolatin1(String  strChinese)<br>{<br>try<br>{<br>return  new String(strChinese.getBytes(“gbk”),”latin1”);<br>}catch(  Exception  e)<br>{<br>return  “”;<br>}<br>}</pre><br>解决方法一:(最重要的一种方法)<br>你看下my.ini，有无<br><pre class="brush:java">[mysql]<br><br>default-character-set=utf8<br><br>[client]<br>default-character-set=utf8<br><br>[mysqld]<br>default-character-set=utf8</pre><br>然后建立表时，也要用（比如）<br><pre class="brush:java">DROP   TABLE   IF   EXISTS   <code>Company</code>;<br>CREATE   TABLE   IF   NOT   EXISTS   <code>Company</code><br>(<br><code>Cname</code>   VARCHAR(10)   NOT   NULL,<br><code>Caddr</code>   VARCHAR(100),<br><code>Ctel</code>     VARCHAR(16)<br>)ENGINE=InnoDB   DEFAULT   CHARSET=UTF8;</pre><br>这样就没问题。<br><br>如果是jsp要声明：<br><pre class="brush:java">contentType=”text/html;charset=gb2312”</pre><br>解决方法二：<br><br>连接mysql时(无论在从mysql读还是取数据的情况)，指定使用的编码方式为utf-8，具体代码如下<br><pre class="brush:java">//装载mysql-jdbc驱动<br><br>Class.forName(“com.mysql.jdbc.Driver”).newInstance();<br><br>//连接数据库<br><br>Connection sqlCon = DriverManager.getConnection( “jdbc:mysql://localhost:3306/test?                         user=root&amp;password=1&amp;useUnicode=true&amp;characterEncoding=utf-8” );</pre><br>解决方法三：<br><br>如果方法一不行那么在方法一的基础上对读入的字符串进行强制编码方式转换。<br><br>代码示例如下：<br><pre class="brush:java">String name = rst.getString(“name”);<br>name= new String(name.getBytes(“ISO-8859-1”),”utf-8”);</pre><br>注：代码也可以为：<br><pre class="brush:java">String name =new String( rst.getString(“name”).getBytes(“ISO-8859-1”),”utf-8”));</pre><br>其中rst为返回的resultset,ISO-8859-1为mysql默认的编码方式，代码的目的是把以ISO-8859-1的编码转换为gb2312编码方式，这样强制转换，可以解决一部分问题，如果结合方法一，应该可以解决中文乱码问题。<br><br>解决方法四：<br><br>这个方法在有些文章里是首推的，我首先也是试了这个方法，但是好像不行。这里还是说一下，不知是不是我操作错误。还是先贴原文吧：<br><br>“如果数据库中有中文的话而mysql默认的语言不是中文时要在配置文件C:winntmy.ini 中的 [mysqld] 里添加一行：<br><pre class="brush:java">default-character-set=utf-8</pre><br>然后重起mysql<br><div><br><br>可以在你的loginservlet.java中加入<br><pre class="brush:java">request.setCharacterEncoding(“gb2312”);</pre><br>或者：<br><pre class="brush:java">String sUserName = new String(request.getParameter(“txtUserName”).getBytes(“ISO-8859-1”),”gb2312”);</pre><br></div>
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jsp/" rel="tag">#jsp</a>
+          
+            <a href="/tags/mysql/" rel="tag">#mysql</a>
+          
+            <a href="/tags/乱码/" rel="tag">#乱码</a>
+          
+            <a href="/tags/字符集/" rel="tag">#字符集</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/02/17/regular-expressions/" rel="next" title="常用万能正则表达式整理">
+                <i class="fa fa-chevron-left"></i> 常用万能正则表达式整理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/02/17/about-me/" rel="prev" title="关于">
+                关于 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/02/17/jsp-mysql-code/"
+     data-title="jsp乱码问题-java与mysql的字符集统一"
+     data-content=""
+     data-url="http://yoursite.com/2014/02/17/jsp-mysql-code/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/02/17/jsp-mysql-code/"
+           data-title="jsp乱码问题-java与mysql的字符集统一" data-url="http://yoursite.com/2014/02/17/jsp-mysql-code/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#jsp乱码问题-java与mysql的字符集统一"><span class="nav-number">1.</span> <span class="nav-text">jsp乱码问题-java与mysql的字符集统一</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

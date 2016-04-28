@@ -1,0 +1,827 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="github,PullToRefresh,下拉刷新,开源项目," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp;
+
+在许许多多的android项目中，下拉刷新是必不可少的一个小模块，最近的一个项目中，很多模块都需要实现这么一个功能，最后采用的是Github上很火的开源项目，PullToRefresh，下面，简单说一下PullToRefresh的使用方法和个人的心得。开源项目地址：https://github.com/johannilsson/android-pulltorefresh
+
+1 使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android-开源项目-下拉刷新PullToRefresh使用心得">
+<meta property="og:url" content="http://yoursite.com/2014/08/27/pulltorefresh/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="&amp;nbsp;
+
+在许许多多的android项目中，下拉刷新是必不可少的一个小模块，最近的一个项目中，很多模块都需要实现这么一个功能，最后采用的是Github上很火的开源项目，PullToRefresh，下面，简单说一下PullToRefresh的使用方法和个人的心得。开源项目地址：https://github.com/johannilsson/android-pulltorefresh
+
+1 使用">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/08/pulltorefresh-1-300x220.jpg">
+<meta property="og:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/08/pulltorefresh-2-300x211.jpg">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.753Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android-开源项目-下拉刷新PullToRefresh使用心得">
+<meta name="twitter:description" content="&amp;nbsp;
+
+在许许多多的android项目中，下拉刷新是必不可少的一个小模块，最近的一个项目中，很多模块都需要实现这么一个功能，最后采用的是Github上很火的开源项目，PullToRefresh，下面，简单说一下PullToRefresh的使用方法和个人的心得。开源项目地址：https://github.com/johannilsson/android-pulltorefresh
+
+1 使用">
+<meta name="twitter:image" content="http://www.qiushurong.cn/wp-content/uploads/2014/08/pulltorefresh-1-300x220.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> Android-开源项目-下拉刷新PullToRefresh使用心得 | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android-开源项目-下拉刷新PullToRefresh使用心得
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-08-27T22:27:44+08:00" content="2014-08-27">
+              2014-08-27
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 1,833</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 8分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Android开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/08/27/pulltorefresh/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/08/27/pulltorefresh/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;</p>
+<blockquote>
+<p>在许许多多的android项目中，下拉刷新是必不可少的一个小模块，最近的一个项目中，很多模块都需要实现这么一个功能，最后采用的是Github上很火的开源项目，PullToRefresh，下面，简单说一下PullToRefresh的使用方法和个人的心得。<br>开源项目地址：<a href="https://github.com/johannilsson/android-pulltorefresh" target="_blank" rel="external">https://github.com/johannilsson/android-pulltorefresh</a></p>
+</blockquote>
+<h2 id="1-使用方法"><a href="#1-使用方法" class="headerlink" title="1 使用方法"></a>1 使用方法</h2><h3 id="1-1-导入lib项目，设置项目关联"><a href="#1-1-导入lib项目，设置项目关联" class="headerlink" title="1.1 导入lib项目，设置项目关联"></a>1.1 导入lib项目，设置项目关联</h3><p>到开源项目的官网下载整个项目，导入到eclipse中，到你的主项目，右键，项目属性，选择android，在最下面，把刚刚导入进来的pulltorefresh项目add成为一个lib引用。如图：点击放大</p>
+<p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/08/pulltorefresh-1.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/08/pulltorefresh-1-300x220.jpg" alt="pulltorefresh-1"></a></p>
+<h3 id="1-2-在需要使用下拉刷新的layout中，添加下拉刷新list-或者其他类型-，如图-点击放大"><a href="#1-2-在需要使用下拉刷新的layout中，添加下拉刷新list-或者其他类型-，如图-点击放大" class="headerlink" title="1.2 在需要使用下拉刷新的layout中，添加下拉刷新list(或者其他类型)，如图:点击放大"></a>1.2 在需要使用下拉刷新的layout中，添加下拉刷新list(或者其他类型)，如图:点击放大</h3><p><a href="http://www.qiushurong.cn/wp-content/uploads/2014/08/pulltorefresh-2.jpg" target="_blank" rel="external"><img src="http://www.qiushurong.cn/wp-content/uploads/2014/08/pulltorefresh-2-300x211.jpg" alt="pulltorefresh-2"></a></p>
+<p>附上代码以及解释：</p>
+<pre class="lang:java decode:true" title="下拉刷新 XML">   &lt;!-- 带下拉刷新的ListView --&gt;
+   &lt;com.handmark.pulltorefresh.library.PullToRefreshListView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/pull_refresh_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:cacheColorHint="#00000000"
+        android:divider="#19000000"
+        android:dividerHeight="4dp"
+        android:fadingEdge="none"
+        android:fastScrollEnabled="false"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
+        android:smoothScrollbar="true"
+        ptr:ptrAnimationStyle="rotate" //下拉时，图标的动画，rotate是旋转
+        ptr:ptrHeaderBackground="#FFF8F8F8" //下拉时，滑出的下拉块背景颜色
+        ptr:ptrMode="both" //下拉刷新的模式,both是上拉和下拉
+    ptr:ptrDrawable="@drawable/loading4"&gt; //下拉时候的图标</pre>
+
+<h3 id="1-3-在代码中对下拉刷新进行更详细的配置"><a href="#1-3-在代码中对下拉刷新进行更详细的配置" class="headerlink" title="1.3 在代码中对下拉刷新进行更详细的配置"></a>1.3 在代码中对下拉刷新进行更详细的配置</h3><p>首先是获取实例</p>
+<pre class="lang:java decode:true">mPullRefreshListView = (PullToRefreshListView) 
+    parentView.findViewById(R.id.pull_refresh_list);</pre>
+ 设置音效
+<pre class="lang:java decode:true " title="设置刷新音效">        SoundPullEventListener&lt;ListView&gt; soundListener = new SoundPullEventListener&lt;ListView&gt;(parentActivity);
+        soundListener.addSoundEvent(State.PULL_TO_REFRESH, R.raw.pull_event);
+        soundListener.addSoundEvent(State.RESET, R.raw.reset_sound);
+        soundListener.addSoundEvent(State.REFRESHING, R.raw.refreshing_sound);
+        mPullRefreshListView.setOnPullEventListener(soundListener);</pre>
+ 设置提示文字
+<pre class="lang:java decode:true">//设置提示信息
+ILoadingLayout startLabels = mPullRefreshListView
+        .getLoadingLayoutProxy();
+startLabels.setPullLabel("向下拉刷新...");// 刚下拉时，显示的提示
+startLabels.setRefreshingLabel("松开刷新...");// 刷新时
+startLabels.setReleaseLabel("正在加载中...");// 下来达到一定距离时</pre>
+关于设置提示文字的，有一个地方要说的是， 
+
+mPullRefreshListView.getLoadingLayoutProxy(参数，参数);
+
+这一句，不传参数的话，默认是同时设置 下拉刷新 和 上拉加载更多 的文本。
+
+添加参数：true,false 是设置 下拉刷新 的文本。
+
+添加参数：false,true 是设置 上拉加载更多 的文本。
+
+ 例如：
+<pre class="lang:java decode:true ">        //设置 下拉刷新 提示信息
+        ILoadingLayout startLabels = mPullRefreshListView.getLoadingLayoutProxy(true,false);
+        startLabels.setPullLabel("下拉重新刷新...");// 刚下拉时，显示的提示
+        startLabels.setRefreshingLabel("不要命刷新中...");// 刷新时
+        startLabels.setReleaseLabel("松开重新刷新...");// 下来达到一定距离时
+        //设置 加载更多 提示信息
+        ILoadingLayout endLabels = mPullRefreshListView.getLoadingLayoutProxy(false,true);
+        endLabels.setPullLabel("上拉加载更多...");// 刚下拉时，显示的提示
+        endLabels.setRefreshingLabel("不要命加载中...");// 刷新时
+        endLabels.setReleaseLabel("松开加载更多...");// 下来达到一定距离时</pre>
+ 效果：
+
+[![pulltorefresh-3](http://www.qiushurong.cn/wp-content/uploads/2014/08/pulltorefresh-3-300x191.jpg)](http://www.qiushurong.cn/wp-content/uploads/2014/08/pulltorefresh-3.jpg)
+
+### 1.4 添加一个监听器
+
+<pre class="lang:java decode:true " title="设置刷新监听器">// 设置刷新监听器
+mPullRefreshListView.setOnRefreshListener(new OnRefreshListener&lt;ListView&gt;() {
+    @Override
+    public void onRefresh(PullToRefreshBase&lt;ListView&gt; refreshView) {
+        // 设置最近刷新时间为当前时间
+        String label = DateUtils.formatDateTime(parentActivity.getApplicationContext(), System.currentTimeMillis(),
+                DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+        refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+
+        // 在这这个GetDataTask线程里面进行刷新处理
+        new GetDataTask().execute();
+    }
+});</pre>
+ 这样就完成了一个下拉刷新的操作了
+
+但是我们现在并没有添加任何UI，一般来说，都是利用这个下拉刷新listview本身进行条目UI的操作的。
+
+### 1.5 在PullToRefreshListView中获取我们要的listView
+
+如下：直接获取这个PullToRefreshListView的里面嵌套的listview，来存放我们要显示的内容
+<pre class="lang:java decode:true ">ListView actualListView = mPullRefreshListView.getRefreshableView();
+//这个actualListView 就是我们真正可以用来放数据的视图view
+// 注册视图
+registerForContextMenu(actualListView);
+//实例化一个list，存放我们的数据
+mListItems = new LinkedList&lt;String&gt;();
+mListItems.add("初始化数据");
+//实例化一个适配器，把数据和UI进行关联
+mAdapter = new ArrayAdapter&lt;String&gt;(parentActivity,
+    android.R.layout.simple_list_item_1, mListItems);</pre>
+
+<h3 id="1-6-区分-下拉刷新-和-上拉加载更多-重要"><a href="#1-6-区分-下拉刷新-和-上拉加载更多-重要" class="headerlink" title="1.6 区分  下拉刷新 和 上拉加载更多 [重要]"></a>1.6 区分  下拉刷新 和 上拉加载更多 [重要]</h3><p>既然有 下拉刷新 和 上拉加载更多，但他们都是同一个被调用的方法,那么怎么区分呢？</p>
+<p>方法：修改开源项目，添加对header和footer的判断，通过header和footer的是否显示 来判断是上拉还是下拉</p>
+<p>首先，在我们之前导入的项目中，找到PullToRefreshAdapterViewBase这个类</p>
+<p>添加这么2个方法</p>
+<pre class="lang:java decode:true ">    public boolean isHeaderShown() {
+        return getHeaderLayout().isShown();
+    }  
+
+    public boolean isFooterShown() {  
+        return getFooterLayout().isShown(); 
+    }  
+</pre>
+ 然后clean一下主项目，让他重建一下lib包，之后在主项目的监听器里面，进行判断
+<pre class="lang:java decode:true " title="onRefresh">mPullRefreshListView.setOnRefreshListener(new OnRefreshListener&lt;ListView&gt;() {
+    @Override
+    public void onRefresh(PullToRefreshBase&lt;ListView&gt; refreshView) {
+
+        //这2个方法是我修改了 PullToRefresh 项目后添加进去的，原本开源的项目是没有的。
+
+        //判断是 上拉 还是 下拉
+        if(mPullRefreshListView.isHeaderShown()){
+            String label = DateUtils.formatDateTime(parentActivity.getApplicationContext(), System.currentTimeMillis(),DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+            refreshView.getLoadingLayoutProxy(true,false).setLastUpdatedLabel(label);
+            // 开始下拉刷新
+                    }else if(mPullRefreshListView.isFooterShown()){
+            String label = DateUtils.formatDateTime(parentActivity.getApplicationContext(), System.currentTimeMillis(),DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+            refreshView.getLoadingLayoutProxy(false,true).setLastUpdatedLabel(label);
+            // 开始加载更多
+                    }
+    }
+});</pre>
+ 这样子就初步实现了一个区分的功能了
+
+### 1.7 在list尾端添加监听器
+
+有时候我们需要在用户滑动到list尾端的时候进行一个提示，或者进行数据的加载，那么会用到这个：
+<pre class="lang:java decode:true ">// 在list尾端添加一个监听器
+        mPullRefreshListView.setOnLastItemVisibleListener(new OnLastItemVisibleListener() {
+            @Override
+            public void onLastItemVisible() {
+                Toast.makeText(parentActivity, "到达尾端，上拉可加载更多...", Toast.LENGTH_SHORT).show();
+            }
+        });</pre>
+
+<h2 id="2-使用心得"><a href="#2-使用心得" class="headerlink" title="2 使用心得"></a>2 使用心得</h2><p>(明天再续)</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github/" rel="tag">#github</a>
+          
+            <a href="/tags/PullToRefresh/" rel="tag">#PullToRefresh</a>
+          
+            <a href="/tags/下拉刷新/" rel="tag">#下拉刷新</a>
+          
+            <a href="/tags/开源项目/" rel="tag">#开源项目</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/08/18/busy-but-happy/" rel="next" title="[近况] 忙并快乐着...">
+                <i class="fa fa-chevron-left"></i> [近况] 忙并快乐着...
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/08/28/struts-i18n/" rel="prev" title="J2EE-网页语言切换之国际化i18n">
+                J2EE-网页语言切换之国际化i18n <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/08/27/pulltorefresh/"
+     data-title="Android-开源项目-下拉刷新PullToRefresh使用心得"
+     data-content=""
+     data-url="http://yoursite.com/2014/08/27/pulltorefresh/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/08/27/pulltorefresh/"
+           data-title="Android-开源项目-下拉刷新PullToRefresh使用心得" data-url="http://yoursite.com/2014/08/27/pulltorefresh/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-使用方法"><span class="nav-number">1.</span> <span class="nav-text">1 使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-导入lib项目，设置项目关联"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 导入lib项目，设置项目关联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-在需要使用下拉刷新的layout中，添加下拉刷新list-或者其他类型-，如图-点击放大"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 在需要使用下拉刷新的layout中，添加下拉刷新list(或者其他类型)，如图:点击放大</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-在代码中对下拉刷新进行更详细的配置"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 在代码中对下拉刷新进行更详细的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-区分-下拉刷新-和-上拉加载更多-重要"><span class="nav-number">1.4.</span> <span class="nav-text">1.6 区分  下拉刷新 和 上拉加载更多 [重要]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-使用心得"><span class="nav-number">2.</span> <span class="nav-text">2 使用心得</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

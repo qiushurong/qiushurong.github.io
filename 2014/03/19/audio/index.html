@@ -1,0 +1,721 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Audio," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="一个可玩性高的游戏，必须要有优美的音乐，才能满足用户的需要。游戏中的音乐有许多种，例如：背景音乐、游戏插曲、打击声、按键声等,这些都是游戏必不可少的元素。libgdx引擎同样为我们封装了音频模块（The Audio Module）为了方便我们能更好的开发游戏，今天我们就来详细的介绍下,libgdx中的音频模块的使用方法。libgdx的音频其实真的很简单。你可以使用三种方式来输出你所需要的声音：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LibGDX游戏引擎-9-游戏音乐(Audio)">
+<meta property="og:url" content="http://yoursite.com/2014/03/19/audio/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="一个可玩性高的游戏，必须要有优美的音乐，才能满足用户的需要。游戏中的音乐有许多种，例如：背景音乐、游戏插曲、打击声、按键声等,这些都是游戏必不可少的元素。libgdx引擎同样为我们封装了音频模块（The Audio Module）为了方便我们能更好的开发游戏，今天我们就来详细的介绍下,libgdx中的音频模块的使用方法。libgdx的音频其实真的很简单。你可以使用三种方式来输出你所需要的声音：">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.751Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LibGDX游戏引擎-9-游戏音乐(Audio)">
+<meta name="twitter:description" content="一个可玩性高的游戏，必须要有优美的音乐，才能满足用户的需要。游戏中的音乐有许多种，例如：背景音乐、游戏插曲、打击声、按键声等,这些都是游戏必不可少的元素。libgdx引擎同样为我们封装了音频模块（The Audio Module）为了方便我们能更好的开发游戏，今天我们就来详细的介绍下,libgdx中的音频模块的使用方法。libgdx的音频其实真的很简单。你可以使用三种方式来输出你所需要的声音：">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> LibGDX游戏引擎-9-游戏音乐(Audio) | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                LibGDX游戏引擎-9-游戏音乐(Audio)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-03-19T08:32:42+08:00" content="2014-03-19">
+              2014-03-19
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 1,633</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 7分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/libGDX框架/" itemprop="url" rel="index">
+                    <span itemprop="name">libGDX框架</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/03/19/audio/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/19/audio/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>一个可玩性高的游戏，必须要有优美的音乐，才能满足用户的需要。游戏中的音乐有许多种，例如：背景音乐、游戏插曲、打击声、按键声等,这些都是游戏必不可少的元素。libgdx引擎同样为我们封装了<span style="color: #ff0000;"><strong>音频模块</strong></span><span style="color: #000000;">（The Audio Module）为了方便我们能更好的开发游戏，今天我们就来详细的介绍下,libgdx中的音频模块的使用方法。</span><br>libgdx的音频其实真的很简单。你可以使用三种方式来输出你所需要的声音：</p>
+</blockquote>
+<ul>
+<li>第一种情况像枪声、按键声、转屏声等这些都可以使用Sound来实现。</li>
+<li>第二种就是类似于背景音乐、人物对话等比较长的音乐可以使用Music来实现，</li>
+<li>第三种就是你直接写PCM数据AudioDevice。libgdx封装了这3种类型的声音输出作为接口，<blockquote>
+<p><span style="color: #ff0000;">Audio 接口</span></p>
+<pre class="lang:java decode:true ">public interface Audio {
+
+   public Sound newSound(FileHandle fileHandle);
+
+   public Music newMusic(FileHandle file);
+
+   public AudioDevice newAudioDevice(boolean isMono);
+
+}</pre>
+
+<p>&nbsp;<br><span style="color: #3366ff;">他们被称为：声音、AudioDevice、音乐。声音和应用都是系统资源。如果图形资源一样，你必须在它们不再被使用的时候，通过调用Sound.dispose()和Music.dispose()方法释放它们。Libgdx支持mp3,Ogg以及Wave文件格式，我建议你在大多数情况下使用Ogg格式。如果你需要对音频设备更多的控制，那么你可以使用AudioDevice和AudioRecorder类，这两个类可以从Audio接口得到。这些类允许你从物理音频设备输出PCM音频样本，也允许你使用麦克风记录PCM样本。不要忘记清理它们。</span></p>
+</blockquote>
+</li>
+</ul>
+<p><span style="color: #3366ff;">支持格式：mp3、ogg、wav等。</span></p>
+<blockquote>
+<p>大家可以看到，接口中包含2个方法，都可以通过检索文件的方式来获取我们所要使用的资源，当你创建一个新的AudioDevice时候，可以指定是否设置单声道或立体声。如果不设置的话，libgdx默认设置为44100Hz采样率，这样方便我们使用音频接口。</p>
+<p><pre class="lang:java decode:true">Sound  sound = Gdx.audio.newSound(Gdx.files.internal(“sound.wav”));<br>Music music = Gdx.audio.newMusic(Gdx.files.internal(“xxx.ogg”));</pre><br>&nbsp;</p>
+</blockquote>
+<p>下面介绍Sound类</p>
+<!--nextpage-->
+<p>下面介绍Sound类</p>
+<p>&nbsp;</p>
+<blockquote>
+<p><span style="color: #ff0000;">Sound 类</span><br>Sound（声音）类旨在播放声音效果。通常你从一个文件中加载声音效果，根据某些事件，例如僵尸脑袋爆炸，调用Sound.play()方法播放它。声音通常很短，在几秒钟的范围内。他们会在内存中加载和解码。如果它们长时间的运行，很可能会占据很大的一些内存。<br><span style="color: #3366ff;">API定义：</span></p>
+</blockquote>
+<p>一段短音频的剪辑，可以在实现多次播放。它是完全加载到内存的，并且只负责加载小的音频文件。当该生硬使用结束后，调用dispose方法来销毁。</p>
+<p><span style="color: #3366ff;">支持格式：</span></p>
+<p>支持wav格式，不支持ogg格式。</p>
+<p><span style="color: #3366ff;">使用方法：</span></p>
+<p>首先是声明变量，由于需要加载如文件，这样就需要用到内部载入命令如何加入，前面的教程我们已经学习了，不清楚的同学可以去看一下，复习一下。随后我们是通过audio接口来创建新的newSound,而不是创建一段声音。代码如下：</p>
+<p><pre class="lang:java decode:true">Sound  sound = Gdx.audio.newSound(Gdx.files.internal(“sound.wav”));</pre><br><span style="color: #3366ff;">方法介绍：</span></p>
+<ul>
+<li>（1）设置循环播放：在Sound类中自带了一个setLooping（boolean 参数）方法，将括号的参数 真 是设置循环播放，</li>
+<li>假 是仅播放一次。</li>
+<li>（2）设置播放：声音当然要有播放的方法了，我们通过 play（）方法来实现声音的播放。</li>
+<li>（3）设置音量大小：通过 setVolume（int i）方法来这只音量大小，在括号内传入整形参数，就可以设置播放音量大小了。<br>&nbsp;</li>
+</ul>
+<p><span style="color: #3366ff;">播放代码如下：</span></p>
+<p><pre class="lang:java decode:true">sound.setLooping(true);<br>sound.play();<br>sound.setVolume(15);</pre><br>&nbsp;</p>
+<p>下面介绍Music类</p>
+<!--nextpage-->
+<p>下面介绍Music类</p>
+<blockquote>
+<p><span style="color: #ff0000;">Music 类</span><br>Music（音乐）是你所想要使用的为了播放很长事件的声音（或者，好吧，就是音乐）的类。音乐是流的形式，那意味它仅仅是部分被装载进入了内存，根据文件格式解码，然后输出到音频设备中。</p>
+</blockquote>
+<p><span style="color: #3366ff;">API定义：</span></p>
+<p>一段长音频的剪辑，可以在实现多次播放。它是完全加载到内存的，并且只负责加载大的音频文件。当该声音使用结束后，调用dispose方法来销毁。</p>
+<p><span style="color: #3366ff;">支持格式：</span></p>
+<p>支持MP3 OGG WAV等格式。</p>
+<p><span style="color: #3366ff;">使用方法：</span></p>
+<p>首先是声明变量，由于需要加载如文件，这样就需要用到内部载入命令如何加入，随后我们是通过audio接口来创建新的newSound，而不是创建一段声音。</p>
+<p><span style="color: #3366ff;">代码如下：</span></p>
+<p><pre class="lang:java decode:true">Music music = Gdx.audio.newMusic(Gdx.files.internal(“xxx.ogg”));</pre><br><span style="color: #3366ff;">方法介绍：</span></p>
+<ul>
+<li>（1）设置循环播放：在music类中自带了一个setLooping（boolean 参数）方法，将括号的参数 真 是设置循环播放，假是仅播放一次。</li>
+<li>（2）设置播放：声音当然要有播放的方法了，我们通过 play（）方法来实现声音的播放。</li>
+<li>（3）设置音量大小：通过 setVolume（int i）方法来这只音量大小，在括号内传入整形参数，就可以设置播放音量大小了。</li>
+<li>（4）设置播放：通过play（）方法来实现开始播放。</li>
+<li>(5)设置暂停：通过pasue（）方法来实现暂停。<br><span style="color: #3366ff;">播放代码如下：</span><br><pre class="lang:java decode:true">music.setLooping(true);<br>music.play();<br>music.setVolume(15);</pre><br>&nbsp;</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Audio/" rel="tag">#Audio</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/03/19/stage/" rel="next" title="LibGDX游戏引擎-8舞台类的使用(Stage)">
+                <i class="fa fa-chevron-left"></i> LibGDX游戏引擎-8舞台类的使用(Stage)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/03/21/mind-control/" rel="prev" title="最近尤为发觉自己的情绪控制能力实在太差了">
+                最近尤为发觉自己的情绪控制能力实在太差了 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/03/19/audio/"
+     data-title="LibGDX游戏引擎-9-游戏音乐(Audio)"
+     data-content=""
+     data-url="http://yoursite.com/2014/03/19/audio/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/03/19/audio/"
+           data-title="LibGDX游戏引擎-9-游戏音乐(Audio)" data-url="http://yoursite.com/2014/03/19/audio/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

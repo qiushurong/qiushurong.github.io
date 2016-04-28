@@ -1,0 +1,841 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="map,tiledmap,地图," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/head.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="要做游戏地图，在libgdx中我们使用到的工具是TiledMap Editor,官方网址是：链接
+
+Tiled 地图编辑器是一种用于通用目的的编辑器。特点是比较好用，风格类似mini版的photoshop。它可以用于制作多种类型的游戏引擎需要，而且支持使用插件读写map、增加用于引擎的map格式。地图编辑 :
+
+使用图层、图块以及对象层的方式进行地图的编辑。以“.tmx”格式保存。
+
+地图：
+所谓">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LibGDX游戏引擎-10-游戏地图(TiledMap)">
+<meta property="og:url" content="http://yoursite.com/2014/03/23/tiledmap/index.html">
+<meta property="og:site_name" content="小树技术博客">
+<meta property="og:description" content="要做游戏地图，在libgdx中我们使用到的工具是TiledMap Editor,官方网址是：链接
+
+Tiled 地图编辑器是一种用于通用目的的编辑器。特点是比较好用，风格类似mini版的photoshop。它可以用于制作多种类型的游戏引擎需要，而且支持使用插件读写map、增加用于引擎的map格式。地图编辑 :
+
+使用图层、图块以及对象层的方式进行地图的编辑。以“.tmx”格式保存。
+
+地图：
+所谓">
+<meta property="og:updated_time" content="2016-04-28T14:05:28.751Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LibGDX游戏引擎-10-游戏地图(TiledMap)">
+<meta name="twitter:description" content="要做游戏地图，在libgdx中我们使用到的工具是TiledMap Editor,官方网址是：链接
+
+Tiled 地图编辑器是一种用于通用目的的编辑器。特点是比较好用，风格类似mini版的photoshop。它可以用于制作多种类型的游戏引擎需要，而且支持使用插件读写map、增加用于引擎的map格式。地图编辑 :
+
+使用图层、图块以及对象层的方式进行地图的编辑。以“.tmx”格式保存。
+
+地图：
+所谓">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5322878,
+      author: '小树'
+    }
+  };
+</script>
+
+  <title> LibGDX游戏引擎-10-游戏地图(TiledMap) | 小树技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小树技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">用文字留住时间、用博客记录生命</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                LibGDX游戏引擎-10-游戏地图(TiledMap)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-03-23T20:35:24+08:00" content="2014-03-23">
+              2014-03-23
+            </time>
+          </span>
+
+<span class="post-count">&nbsp; | &nbsp;字数 4,981</span>
+<span class="post-count">&nbsp; | &nbsp;预计阅读 24分钟</span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/libGDX框架/" itemprop="url" rel="index">
+                    <span itemprop="name">libGDX框架</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/03/23/tiledmap/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/23/tiledmap/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><span style="color: #00ccff;">要做游戏地图，在libgdx中我们使用到的工具是TiledMap Editor,官方网址是：<a href="http://www.mapeditor.org/" target="_blank" rel="external"><span style="color: #00ccff;">链接</span></a></span></p>
+<blockquote>
+<p>Tiled 地图编辑器是一种用于通用目的的编辑器。特点是比较好用，风格类似mini版的photoshop。它可以用于制作多种类型的游戏引擎需要，而且支持使用插件读写map、增加用于引擎的map格式。<br><span style="color: #00ccff;">地图编辑 :</span></p>
+</blockquote>
+<p><span style="color: #000000;">使用图层、图块以及对象层的方式进行地图的编辑。以“.tmx”格式保存。</span></p>
+<hr>
+<p><span style="color: #00ccff;">地图：</span></p>
+<p><span style="color: #00ccff;"><span style="color: #000000;">所谓的地图，特别是使用 Tiledmap 制作的地图，其实就是一张背景图片，</span></span></p>
+<p><span style="color: #000000;">加上tiledmap地图编辑起来的一些图块所构成，这也是许多安卓和苹果应用所使用的技巧，</span></p>
+<h2 id="这样不仅可以节省游戏资源同时可以方便代码的实现。"><a href="#这样不仅可以节省游戏资源同时可以方便代码的实现。" class="headerlink" title="这样不仅可以节省游戏资源同时可以方便代码的实现。"></a><span style="color: #000000;">这样不仅可以节省游戏资源同时可以方便代码的实现。</span></h2><p><span style="color: #00ccff;">地图图块：</span></p>
+<p><span style="color: #00ccff;"><span style="color: #000000;">负责做一些碰撞检测等的而背景中的蓝天、白云这些其实就是一张JPG的图片，就是为了是游戏更加好看、美观。</span></span></p>
+<hr>
+<p><strong><span style="color: #00ccff;">1.TiledMap软件的使用</span></strong></p>
+<p>TiledMap编辑器中，可以分为3个部分，第一个是图层、第二个是图块、第三个是对象层</p>
+<p><span style="color: #00ccff;">(1) 图层介绍</span></p>
+<p>游戏中一般要使用许多个图层，根据功能的不同，这里我将图层分为2种，<br>一种是作为碰撞检测的图层（即检测图层），另一种是作为美观装饰的图层（即装饰图层）。</p>
+<p><span style="color: #00ccff;">检测图层：</span><br>一个作为碰撞检测的图层，就是负责游戏中不能穿过的图层。一般常作为地面、砖墙、障碍物等方面，游戏中必须使用到的。</p>
+<p><span style="color: #00ccff;">装饰图层：</span><br>一个作为美观装饰的图层，就是负责装饰的，在地图中不作为碰撞检测，仅仅起到美观的作用，<br>可有可无，但是为了游戏体验，一般还是加入一个美观的图层，也可以被背景图片替代。</p>
+<p><span style="color: #00ccff;">对象层：</span><br>一个作为创建对象而是用的图层，该层和其他2种不同，他是负责创建对象而是用的。<br>例如，超级玛丽中玛丽在地图的哪个点出生，金币在哪个点出生，怪物的设置点说的通俗点就是游戏中可以动的元素</p>
+<hr>
+<p><span style="color: #00ccff;">层的高低</span></p>
+<ul>
+<li>对象层</li>
+<li>装饰层</li>
+<li>障碍层(全透明)</li>
+<li>背景层(地板层)</li>
+</ul>
+<hr>
+<p><span style="color: #00ccff;">地形</span></p>
+<p>瓦片地图中有许多方式来实现瓦片与瓦片之间地形的过渡，</p>
+<p>但Tiled里的地形工具支持对地形的四角完好定义的瓦片图素过渡，这也是最常见的方式。</p>
+<p>这个图块有4个不同地形种类。传统的编辑地图方式意味着你不得不小心地连接正确的过渡，来避免把接缝边缘玩坏掉。</p>
+<p>但是我们现在会从图块中定义地形信息，地形工具会自动识别和放置地形间正确的过渡。</p>
+<p><em><strong><span style="color: #00ccff;">方法：</span></strong></em></p>
+<p><span style="color: #00ccff;">1 在图块上点击</span>小按钮“编辑地形信息”</p>
+<p><span style="color: #00ccff;">2 出现对话框</span>，并允许你标记属于各地形种类的瓦片衔接处的拐角。</p>
+<p>我们现在开始。先添加4种地形种类。最快的方法是，在最准确代表某一地形的瓦片上右键点击，</p>
+<p>选择“增加地形类型”。这将自动设置这瓦片作为此地形的图片。</p>
+<p><span style="color: #00ccff;">3 起一个合适的名字</span>。然后在图块上标记这个地形应当有的所有拐角。</p>
+<p><span style="color: #00ccff;">4如果中途涂错了</span>，可以撤销或用清除工具擦掉错误的拐角。如此对4种地形每个都进行定义。</p>
+<p>最终你标记完所有每个特定地形的所有瓦片部件。</p>
+<p><span style="color: #00ccff;">5 关闭对话框</span>，可以开始试着使用地形工具啦。使用地形工具编辑</p>
+<p><span style="color: #00ccff;">6 切换到地形窗口</span>。你会见到4种地形。点击沙地开始画，你会立即发现并没有什么特别的事情发生。<br>这是因为此时还没有其他瓦片在地图上，所以地形工具不知道如何提供帮助（因为我们图块种没有与“空”地形的过渡）<br>既然这样，那么此时我们最好先把整个地图用沙地填满。先暂时切回“图块”窗口，选择沙地瓦片然后使用“填充”工具。</p>
+<p><span style="color: #00ccff;">7 切回地形窗口</span>，来画一些地形。现在你可以看到效果啦！</p>
+<p>在绘图的时候按住Command键，会减小绘图区域（默认是九宫格，减小后绘制4格）</p>
+<p>到最接近光标位置的一个角落，可用来进行细微调整工作。</p>
+<p><span style="color: #00ccff;">8 你会发现</span>，当在“尘土”地形里面画鹅卵石的时候，因为没有“尘土”地形与“鹅卵石”地形的直接过渡，地形工具在两者之间插入了沙地地形过渡。很棒。</p>
+<p><span style="color: #00ccff;">9 写在最后</span></p>
+<p><span style="color: #00ccff;">现在你应该对地形工具在你自己项目中的运用有了很好的想法。这里还有几件事需要铭记在心：</span></p>
+<ul>
+<li><p>目前这个工具需要所有地形种类的各个瓦片在同一个图块里。你可以有许多带地形的图块，但该工具不能自动跨图块提供地形的过渡。这意味着通常你需要把几个图块合并到一张图里。</p>
+</li>
+<li><p>目前通过Tiled的“添加外部图块”加入的图块包含的地形信息是不可编辑的。如需编辑，可以先导入图块，编辑后再重新导出。</p>
+</li>
+<li><p>地形工具同样适用于等角地图（不能用于交错等角地图），但是，“编辑地形信息”对话框目前对其瓦片不能正确渲染覆盖指示。需要脑补：左上角会应用到上，右上角应用到右，依此类推。有疑问可参考example目录下的“isometric_grass_and_water.tmx”文件。</p>
+</li>
+<li><p>该工具会处理任意数量的地形种类，且每个瓦片拐角都可以有不同种类的地形。针对此工具不能处理的过渡，仍然还有其他方法来解决。还有，同时编辑多图层是不可行的。要寻求关于自动放置瓦片的更加灵活且却更复杂的方法，请查阅“Automapping”。</p>
+</li>
+</ul>
+<p>Tiled在OpenGameArt.org上维护着一些瓦片地图图块，它们包含过渡且与此工具兼容。</p>
+<p><span style="color: #00ccff;">以上内容英文原始资料来自《Using the Terrain tool》</span></p>
+<hr>
+<h2 id="地图使用"><a href="#地图使用" class="headerlink" title="地图使用 :"></a>地图使用 :</h2><p>步骤简述:</p>
+<ul>
+<li>1 读取地图</li>
+<li>2 设置地图渲染</li>
+<li>3 新建相机</li>
+<li>4 设置相机</li>
+<li>5 图层处理</li>
+<li>5.1 遍历图层</li>
+<li>5.2 遍历图层对象</li>
+<li>5.3 读取图层对象属性</li>
+<li>5.4 设置障碍标识</li>
+<li>6 设置舞台</li>
+<li>6.1 新建演员</li>
+<li>6.2 添加监听</li>
+<li>6.3 添加音乐</li>
+<li>7 渲染</li>
+<li>7.1 清屏</li>
+<li>7.2 舞台渲染</li>
+<li>7.2.1 相机更新</li>
+<li>7.2.2 地图渲染关联相机</li>
+<li>7.2.3 地图渲染</li>
+<li>7.2.4 舞台行动</li>
+<li>7.2.5 舞台绘制</li>
+<li>7.2.6 其他画板绘制</li>
+<li>7.3 舞台监听重置</li>
+<li>8销毁资源<br>&nbsp;</li>
+</ul>
+<p>&nbsp;</p>
+<blockquote>
+<p><span style="color: #ff0000;">地图渲染 OrthogonalTiledMapRenderer 类</span><br>&nbsp;</p>
+<p><pre class="lang:java decode:true">OrthogonalTiledMapRenderer renderer = new OrthogonalTiledMapRenderer(map,1/20f);<br>map 是 map = new TmxMapLoader().load(“map/map1.tmx”)</pre><br>1/20f 是焦距</p>
+</blockquote>
+<p>&nbsp;</p>
+<p><pre class="lang:java decode:true">renderer.setView(camera)</pre><br>绘制指定图层。传的是数组，例如绘制0,2图层：</p>
+<p><pre class="lang:java decode:true">int[] layers = {0,2};<br>render(layers);</pre></p>
+<h2 id="render-OrthographicCamera-cam-方法：渲染是传入相机。"><a href="#render-OrthographicCamera-cam-方法：渲染是传入相机。" class="headerlink" title="render(OrthographicCamera cam)方法：渲染是传入相机。"></a>render(OrthographicCamera cam)方法：渲染是传入相机。</h2><blockquote>
+<p><span style="color: #ff0000;">相机 OrthographicCamera 类</span></p>
+<p><pre class="lang:java decode:true">OrthographicCamera camera = new OrthographicCamera();<br>camera.setToOrtho(false, 40, 24);<br>camera.update();<br>renderer.setView(camera);<br>renderer.render();<br>//相机监听<br>CameraInputController cameraController = new CameraInputController(camera);<br>Gdx.input.setInputProcessor(cameraController);</pre><br>&nbsp;</p>
+</blockquote>
+<p>例子代码：</p>
+<p><pre class="lang:java decode:true">package com.qsuron11.barriers;</pre></p>
+<p>import com.badlogic.gdx.ApplicationListener;<br>import com.badlogic.gdx.Gdx;<br>import com.badlogic.gdx.audio.Music;<br>import com.badlogic.gdx.audio.Sound;<br>import com.badlogic.gdx.graphics.Color;<br>import com.badlogic.gdx.graphics.GL10;<br>import com.badlogic.gdx.graphics.OrthographicCamera;<br>import com.badlogic.gdx.graphics.Texture;<br>import com.badlogic.gdx.graphics.g2d.BitmapFont;<br>import com.badlogic.gdx.graphics.g2d.SpriteBatch;<br>import com.badlogic.gdx.graphics.g2d.TextureRegion;<br>import com.badlogic.gdx.maps.MapLayer;<br>import com.badlogic.gdx.maps.MapLayers;<br>import com.badlogic.gdx.maps.MapObject;<br>import com.badlogic.gdx.maps.MapObjects;<br>import com.badlogic.gdx.maps.objects.RectangleMapObject;<br>import com.badlogic.gdx.maps.tiled.TiledMap;<br>import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;<br>import com.badlogic.gdx.maps.tiled.TmxMapLoader;<br>import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;<br>import com.badlogic.gdx.math.MathUtils;<br>import com.badlogic.gdx.scenes.scene2d.InputEvent;<br>import com.badlogic.gdx.scenes.scene2d.InputListener;<br>import com.badlogic.gdx.scenes.scene2d.Stage;<br>import com.badlogic.gdx.scenes.scene2d.ui.Image;<br>import com.qsuron11.barriers.Person;</p>
+<p>public class MyDemo extends Gdx implements ApplicationListener {<br>public static final int WIDTH = 800;<br>//窗口宽度<br>public static final int HEIGHT = 480;<br>//窗口高度<br>public static final int MAP_PIC = 20;<br>//瓷砖大小<br>public static final int MAP_WIDTH = 40;<br>//瓷砖横向个数<br>public static final int MAP_HEIGHT = 24;<br>//瓷砖纵向个数</p>
+<p>private static boolean GameIsRunning;<br>//主游戏界面是否运行<br>private static boolean ShopIsRunning;<br>//商店界面是否运行<br>private static boolean SuccessIsRunning;<br>//购买成功界面是否运行<br>private static int[][] barriers;<br>//障碍标识(24行40列)</p>
+<p>private TiledMap map;<br>//地图<br>private BitmapFont font;<br>//标题字体<br>private SpriteBatch batch;<br>//画板<br>private OrthographicCamera camera;<br>//相机<br>private OrthogonalTiledMapRenderer renderer;<br>//图层渲染<br>private float p_x , p_y;<br>//人物坐标</p>
+<p>private Image image_openStage_background,<br>//开始游戏背景<br>image_openStage_btn_newGame,<br>//新游戏按钮<br>image_openStage_btn_shop,<br>//商店按钮<br>image_shopStage_background,<br>//商店背景<br>image_shopStage_btn_heart,<br>//商店商品hreat<br>image_shopStage_btn_coin,<br>//商店商品coin<br>image_shopStage_btn_close,<br>//商店关闭按钮<br>image_successStage_success;<br>//购买成功<br>private Stage stage,<br>//游戏舞台<br>openStage,  //开始舞台<br>shopStage,  //商店舞台<br>successStage;  //购买成功舞台<br>private Sound sound_openStage_btn_newGame;<br>//新游戏按钮声音<br>private Music music_openStage_background,<br>//开始游戏音乐<br>music_stage_background;<br>//主游戏音乐</p>
+<p>static{<br>barriers = new int[MAP_HEIGHT][MAP_WIDTH];<br>GameIsRunning = false;<br>ShopIsRunning = false;<br>SuccessIsRunning = false;<br>}</p>
+<p>@Override<br>public void create() {</p>
+<p>batch = new SpriteBatch();<br>stage = new Stage(WIDTH, HEIGHT, false, batch);<br>openStage = new Stage(WIDTH, HEIGHT, false, batch);<br>shopStage = new Stage(WIDTH, HEIGHT, false, batch);<br>successStage = new Stage(WIDTH, HEIGHT, false, batch);</p>
+<p>//地图<br>map = new TmxMapLoader().load(“map/map1.tmx”);<br>   renderer = new OrthogonalTiledMapRenderer(map,1f/MAP_PIC);</p>
+<p>   //相机<br>   camera = new OrthographicCamera();<br>   camera.setToOrtho(false, MAP_WIDTH, MAP_HEIGHT);</p>
+<p>//图层处理<br>   this.setLayer();</p>
+<p>//设置舞台<br>this.setStage();</p>
+<p>//设置监听<br>this.setListener();</p>
+<p>//设置音乐<br>this.setSound();<br>}</p>
+<p>//判断是否能够移动<br>public static boolean passEnable(float x, float y){<br>//+0.5使四舍五入<br>int col = MathUtils.round(y/MAP_PIC);<br>int row = MathUtils.round(x/MAP_PIC);<br>boolean flag = barriers[col][row] == 0;<br>System.out.println(“往↑第” + col + “行,往→第” + row + “列 –&gt; “ + flag);<br>return flag;<br>}</p>
+<p>//判断是否能够下掉<br>public static boolean downEnable(float x, float y) {<br>//+0.5使四舍五入<br>boolean flag = barriers[(int) ((y/MAP_PIC-0.1f))][(int) (x/MAP_PIC+0.5f)] == 0;<br>//System.out.println(“往↑第” +  ((y/MAP_PIC-0.1f)) + “行,往→第” +  (x/MAP_PIC+0.5f) + “列 –&gt; “ + flag);<br>return flag;<br>}</p>
+<p>//图层处理<br>private void setLayer(){<br>   MapLayers layers = map.getLayers();</p>
+<p>for(int i=0;i&lt;layers.getCount();i++){<br>System.out.println(“第” + i + “层:” + layers.get(i).getName());<br>}</p>
+<p>for(MapLayer layer : layers){//遍历图层</p>
+<p>if(layer.getName().equals(“object”)){//找到对象层<br>MapObjects objs = layer.getObjects();<br>for(MapObject obj : objs){//遍历图层内容<br>if(obj.getName().equals(“person”)){//找到人物图块<br>RectangleMapObject rmobj = (RectangleMapObject) obj;<br>p_x = rmobj.getRectangle().x;<br>p_y = rmobj.getRectangle().y;<br>break;<br>}<br>}<br>}</p>
+<p>if(layer.getName().equals(“barriers”)){//找到障碍层<br>if(layer instanceof TiledMapTileLayer){//类型转换判断<br>TiledMapTileLayer tlayer = (TiledMapTileLayer) layer;<br>for(int x=0;x&lt;MAP_HEIGHT;x++){<br>for(int y=0;y&lt;MAP_WIDTH;y++){<br>if(tlayer.getCell(y, x) != null){<br>barriers[x][y] = 1;<br>}<br>}<br>}<br>}<br>}<br>}</p>
+<p>for(int x=0;x&lt;MAP_HEIGHT;x++){<br>for(int y=0;y&lt;MAP_WIDTH;y++){<br>System.out.print(barriers[x][y]+” “);<br>}<br>System.out.println(“”);<br>}<br>}</p>
+<p>//设置舞台<br>private void setStage(){<br>//开始游戏舞台<br>Texture texture_open = new Texture(Gdx.files.internal(“data/open.png”));<br>Texture texture_button = new Texture(Gdx.files.internal(“data/btn_newgame.png”));<br>Texture texture_button2 = new Texture(Gdx.files.internal(“data/btn_shop.png”));<br>image_openStage_background = new Image(new TextureRegion(texture_open,798,480));<br>image_openStage_background.setPosition(0,0);<br>image_openStage_btn_newGame = new Image(texture_button);<br>image_openStage_btn_newGame.setPosition(80,380);<br>image_openStage_btn_shop = new Image(texture_button2);<br>image_openStage_btn_shop.setPosition(80,80);<br>openStage.addActor(image_openStage_background);<br>openStage.addActor(image_openStage_btn_newGame);<br>openStage.addActor(image_openStage_btn_shop);</p>
+<p>//商店舞台<br>Texture texture_shop = new Texture(Gdx.files.internal(“data/shop.png”));<br>image_shopStage_background = new Image(new TextureRegion(texture_shop,0,85,512,350));<br>image_shopStage_btn_heart = new Image(new TextureRegion(texture_shop,0,0,102,85));<br>image_shopStage_btn_coin = new Image(new TextureRegion(texture_shop,102,0,102,85));<br>image_shopStage_btn_close = new Image(new TextureRegion(texture_shop,300,10,50,40));<br>image_shopStage_background.setPosition(0, 0);<br>image_shopStage_background.setSize(480,320);<br>image_shopStage_btn_heart.setPosition(190,50);<br>image_shopStage_btn_coin.setPosition(50,50);<br>image_shopStage_btn_close.setPosition(400,275);<br>shopStage.addActor(image_shopStage_background);<br>shopStage.addActor(image_shopStage_btn_heart);<br>shopStage.addActor(image_shopStage_btn_coin);<br>shopStage.addActor(image_shopStage_btn_close);</p>
+<p>//购买舞台<br>image_successStage_success = new Image(new TextureRegion(texture_shop,512,0,255,255));<br>image_successStage_success.setPosition(100,100);<br>successStage.addActor(image_successStage_success);</p>
+<p>//游戏舞台<br>//背景<br>//image_stage_background = new Image(new Texture(Gdx.files.internal(“data/background.jpg”)));<br>//标题<br>font = new BitmapFont(Gdx.files.internal(“font/title.fnt”),<br>Gdx.files.internal(“font/title.png”),false);<br>font.setColor(Color.BLACK);<br>Gdx.input.setInputProcessor(stage);<br>Person p = new Person(p_x,p_y);<br>stage.addActor(p);<br>stage.addActor(p.btn_L);<br>stage.addActor(p.btn_R);<br>}</p>
+<p>//设置声音<br>private void setSound() {<br>sound_openStage_btn_newGame = Gdx.audio.newSound(Gdx.files.internal(“music/openStage_btn_newGame.ogg”));<br>music_openStage_background = Gdx.audio.newMusic(Gdx.files.internal(“music/stage.ogg”));<br>music_stage_background = Gdx.audio.newMusic(Gdx.files.internal(“music/openStage.ogg”));<br>music_openStage_background.setLooping(true);<br>music_stage_background.setLooping(true);<br>//播放主页面音乐<br>music_openStage_background.play();<br>}</p>
+<p>//设置监听<br>private void setListener() {<br>image_openStage_btn_newGame.addListener(new InputListener(){<br>@Override<br>public boolean touchDown(InputEvent event, float x, float y,<br>int pointer, int button) {<br>GameIsRunning = true;<br>music_openStage_background.stop();<br>music_stage_background.play();<br>return true;<br>}<br>});<br>image_openStage_btn_shop.addListener(new InputListener(){<br>@Override<br>public boolean touchDown(InputEvent event, float x, float y,<br>int pointer, int button) {<br>ShopIsRunning = true;<br>return true;<br>}<br>});<br>image_shopStage_btn_heart.addListener(new InputListener() {<br>           @Override<br>           public boolean touchDown(InputEvent event, float x, float y,<br>                   int pointer, int button) {<br>               SuccessIsRunning = true;<br>               sound_openStage_btn_newGame.play(1);<br>               return true;<br>           }<br>});<br>image_shopStage_btn_coin.addListener(new InputListener() {<br>           @Override<br>           public boolean touchDown(InputEvent event, float x, float y,<br>                   int pointer, int button) {<br>               SuccessIsRunning = true;<br>               sound_openStage_btn_newGame.play();<br>               return true;<br>           }<br>       });<br>image_shopStage_btn_close.addListener(new InputListener(){<br>@Override<br>           public boolean touchDown(InputEvent event, float x, float y,<br>                   int pointer, int button) {<br>               ShopIsRunning = false;<br>               return true;<br>           }<br>});<br>image_successStage_success.addListener(new InputListener(){<br>@Override<br>           public boolean touchDown(InputEvent event, float x, float y,<br>                   int pointer, int button) {<br>               SuccessIsRunning = false;<br>               return true;<br>           }<br>});<br>}</p>
+<p>//重置舞台监听<br>private void updateStage(){<br>if(GameIsRunning){<br>Gdx.input.setInputProcessor(stage);<br>}else{<br>Gdx.input.setInputProcessor(openStage);<br>if(ShopIsRunning){<br>Gdx.input.setInputProcessor(shopStage);<br>if(SuccessIsRunning){<br>Gdx.input.setInputProcessor(successStage);<br>}<br>}<br>}<br>}</p>
+<p>//重置舞台绘制<br>private void stageRender(){<br>if(GameIsRunning){<br>camera.update();<br>renderer.setView(camera);<br>   renderer.render();<br>stage.act();<br>stage.draw();<br>batch.begin();<br>font.draw(batch,”小树LibGDX游戏引擎开发”, 240, 450);//普通绘制<br>batch.end();<br>}else{<br>openStage.act();<br>openStage.draw();<br>if(ShopIsRunning){<br>shopStage.act();<br>shopStage.draw();<br>if(SuccessIsRunning){<br>successStage.act();<br>successStage.draw();<br>}<br>}<br>}<br>} </p>
+<p>@Override<br>public void render() {</p>
+<p>Gdx.gl.glClearColor(0,0,0, 0);<br>Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);<br>this.stageRender();<br>this.updateStage();<br>}</p>
+<p>@Override<br>public void dispose() {<br>batch.dispose();<br>stage.dispose();<br>openStage.dispose();<br>shopStage.dispose();<br>successStage.dispose();<br>map.dispose();<br>}</p>
+<p>@Override<br>public void resize(int width, int height) {<br>}</p>
+<p>@Override<br>public void pause() {<br>}</p>
+<p>@Override<br>public void resume() {<br>}</p>
+<p>}<br>第二个类</p>
+<p><pre class="lang:java decode:true">package com.qsuron11.barriers;</pre></p>
+<p>import com.badlogic.gdx.Gdx;<br>import com.badlogic.gdx.graphics.Texture;<br>import com.badlogic.gdx.graphics.g2d.Animation;<br>import com.badlogic.gdx.graphics.g2d.SpriteBatch;<br>import com.badlogic.gdx.graphics.g2d.TextureRegion;<br>import com.badlogic.gdx.scenes.scene2d.Actor;<br>import com.badlogic.gdx.scenes.scene2d.InputEvent;<br>import com.badlogic.gdx.scenes.scene2d.InputListener;<br>import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;<br>import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;</p>
+<p>public class Person extends Actor {<br>public static final int MAP_PIC = MyDemo.MAP_PIC;<br>public float x;<br>public float y;<br>public float statetime;</p>
+<p>//按钮<br>ImageButton  btn_L;<br>ImageButton  btn_R;</p>
+<p>//人物当前状态(枚举类)<br>STATE state;</p>
+<p>//对应的动画<br>Animation animation_left;<br>Animation animation_right;<br>Animation animation_idle;</p>
+<p>//实时动画<br>TextureRegion currentFrame;</p>
+<p>public Person(float x, float y) {<br>super();<br>this.x = x;<br>this.y = y;<br>this.statetime = 0;<br>this.show();<br>state = STATE.I;<br>}</p>
+<p>public void show() {</p>
+<p>//分割动画<br>Texture animation_file = new Texture(Gdx.files.internal(“data/animation2-2.png”));<br>TextureRegion[][] animation_split_right = TextureRegion.split(animation_file,42,51);<br>TextureRegion[][] animation_split_left = TextureRegion.split(animation_file,42,51);<br>Texture animation_file2 = new Texture(Gdx.files.internal(“data/idle.png”));<br>TextureRegion[][] animation_split_idle = TextureRegion.split(animation_file2,42,51);</p>
+<p>//实例化动画图片组<br>TextureRegion[] textureRegion_right = new TextureRegion[30];<br>TextureRegion[] textureRegion_left = new TextureRegion[30];<br>TextureRegion[] textureRegion_idle = new TextureRegion[1];</p>
+<p>//向右动画图片组<br>int i = 0;<br>for(TextureRegion[] animation_split_right_split:animation_split_right){<br>for(TextureRegion animation_pic:animation_split_right_split){<br>textureRegion_right[i] = animation_pic;<br>i++;<br>}<br>}</p>
+<p>//向左动画图片组<br>i = 0;<br>for(TextureRegion[] animation_split_left_split:animation_split_left){<br>for(TextureRegion animation_pic:animation_split_left_split){<br>textureRegion_left[i] = animation_pic;<br>textureRegion_left[i].flip(true,false);<br>i++;<br>}<br>}</p>
+<p>//原地动画图片组<br>textureRegion_idle[0] = animation_split_idle[0][0];</p>
+<p>//合成动画<br>animation_right = new Animation(0.05f,textureRegion_right);<br>animation_right.setPlayMode(Animation.LOOP);<br>animation_left = new Animation(0.05f,textureRegion_left);<br>animation_left.setPlayMode(Animation.LOOP);<br>animation_idle = new Animation(1f,textureRegion_idle);<br>animation_idle.setPlayMode(Animation.LOOP);</p>
+<p>//按钮图片读取<br>Texture button_file = new Texture(Gdx.files.internal(“data/button.png”));<br>TextureRegion[][] button_split = TextureRegion.split(button_file,100,100);</p>
+<p>//按钮实例化<br>btn_R = new ImageButton(<br>new TextureRegionDrawable(button_split[0][0]),<br>new TextureRegionDrawable(button_split[0][1]));<br>btn_L = new ImageButton(<br>new TextureRegionDrawable(button_split[0][2]),<br>new TextureRegionDrawable(button_split[0][3]));</p>
+<p>//按钮位置<br>btn_R.setPosition(150,20);<br>btn_L.setPosition(20,20);</p>
+<p>//按钮监听<br>btn_R.addListener(new InputListener(){<br>@Override<br>public boolean touchDown(InputEvent event, float x, float y,<br>int pointer, int button) {<br>state = STATE.R;<br>return true;<br>}<br>@Override<br>public void touchUp(InputEvent event, float x, float y,<br>int pointer, int button) {<br>state = STATE.I;<br>super.touchUp(event, x, y, pointer, button);<br>}<br>});</p>
+<p>btn_L.addListener(new InputListener(){<br>@Override<br>public boolean touchDown(InputEvent event, float x, float y,<br>int pointer, int button) {<br>state = STATE.L;<br>return true;<br>}<br>@Override<br>public void touchUp(InputEvent event, float x, float y,<br>int pointer, int button) {<br>state = STATE.I;<br>super.touchUp(event, x, y, pointer, button);<br>}<br>});<br>}</p>
+<p>//状态控制与动画选择<br>public void check() {<br>if(this.state==STATE.L){<br>currentFrame = animation_left.getKeyFrame(statetime,true);<br>}else if(this.state==STATE.R){<br>currentFrame = animation_right.getKeyFrame(statetime,true);<br>}else if(this.state==STATE.I){<br>currentFrame = animation_idle.getKeyFrame(statetime,true);<br>}<br>}</p>
+<p>//人物移动<br>public void update(){<br>//验证间隔一个瓷砖(x,y是左端点，因此偏移多半块瓷砖)<br>if(state==STATE.L &amp;&amp;<br>MyDemo.passEnable(this.x - MAP_PIC<em>0.5f, this.y)){<br>this.x -= 2f;<br>}else if(state==STATE.R &amp;&amp;<br>MyDemo.passEnable(this.x + MAP_PIC</em>1.5f, this.y)){<br>this.x += 2f;<br>}<br>if(MyDemo.downEnable(this.x, this.y)){<br>this.y -= 2f;<br>}<br>}</p>
+<p>@Override<br>public void act(float delta) {<br>statetime += delta;<br>this.update();<br>this.check();<br>super.act(delta);<br>}</p>
+<p>@Override<br>public void draw(SpriteBatch batch, float parentAlpha) {<br>batch.draw(currentFrame, x, y);<br>}</p>
+<p>enum STATE {<br>L,R,I;<br>};</p>
+<p>}<br>&nbsp;</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/map/" rel="tag">#map</a>
+          
+            <a href="/tags/tiledmap/" rel="tag">#tiledmap</a>
+          
+            <a href="/tags/地图/" rel="tag">#地图</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/03/23/e6-99-9a-e5-ae-89-ef-bc-8c-e5-b9-bf-e5-b7-9e-ef-bc-81/" rel="next" title="晚安，广州！">
+                <i class="fa fa-chevron-left"></i> 晚安，广州！
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/03/24/j2se-e7-ab-9e-e8-b5-9b-e4-b8-ad-e5-b8-b8-e8-a7-81-e7-9a-84-e6-8e-92-e5-88-97-e7-bb-84-e5-90-88-e7-ae-97-e6-b3-95/" rel="prev" title="J2SE 竞赛中常见的排列组合算法 ">
+                J2SE 竞赛中常见的排列组合算法  <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/03/23/tiledmap/"
+     data-title="LibGDX游戏引擎-10-游戏地图(TiledMap)"
+     data-content=""
+     data-url="http://yoursite.com/2014/03/23/tiledmap/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/03/23/tiledmap/"
+           data-title="LibGDX游戏引擎-10-游戏地图(TiledMap)" data-url="http://yoursite.com/2014/03/23/tiledmap/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head.jpg"
+               alt="邱树荣" />
+          <p class="site-author-name" itemprop="name">邱树荣</p>
+          <p class="site-description motion-element" itemprop="description">致力于计算机程式开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">195</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#这样不仅可以节省游戏资源同时可以方便代码的实现。"><span class="nav-number">1.</span> <span class="nav-text">这样不仅可以节省游戏资源同时可以方便代码的实现。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#地图使用"><span class="nav-number">2.</span> <span class="nav-text">地图使用 :</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#render-OrthographicCamera-cam-方法：渲染是传入相机。"><span class="nav-number">3.</span> <span class="nav-text">render(OrthographicCamera cam)方法：渲染是传入相机。</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="powered-by" >
+  
+  <span itemprop="copyrightYear">&copy;2016 - 2026</span>
+
+  <a style="" class="theme-link" href="https://qiushurong.github.io">
+    小树技术博客
+  </a>
+
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  粤ICP备<a class="theme-link" href="https://qiushurong.github.io">
+    15021480
+  </a>号
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <!--qsuron20160418 返回顶部更换为火箭
+    div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div-->
+
+    <a id="rocket" href="#top" class=""></a>
+
+
+  </div>
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qsuron"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
