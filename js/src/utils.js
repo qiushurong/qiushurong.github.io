@@ -43,32 +43,27 @@ NexT.utils = NexT.$u = {
   registerBackToTop: function () {
     var THRESHOLD = 50;
 
-    var $top = $('.back-to-top');
+    var $rocket = $("#rocket");
     var $sidebar = $('.sidebar');
+
+    //qsuron20160418 滚动显示返回顶部、处理右边的顶部背景
     $(window).on('scroll', function () {
       $sidebar.toggleClass('sidebar-on', window.pageYOffset > 90);
-      //if(window.pageYOffset<=90){
-      //$sidebar.css('box-shadow', 'inset 0 '+((1-(90-window.pageYOffset)/90)*document.body.clientHeight)+'px 0px #f5f5f5');
-		//  }else{
-		//  	$sidebar.css('box-shadow', 'inset 0 0px 0px #f5f5f5');
-		//  }
-      $top.toggleClass('back-to-top-on', window.pageYOffset > THRESHOLD);
-      //console.log($sildbar);
+      $rocket.toggleClass('show', window.pageYOffset > THRESHOLD);
+	  //到达顶部时候移除火箭luanch效果
+	  if(window.pageYOffset == 0){
+		$rocket.removeClass('launch');
+	  }
+	 
     });
-/*	qsuron20160428 
-	修改主题2右边导航栏，在滚动的时候不要头部的颜色
-	需要添加一个 sildbar-on 样式
-	var $top = $('.back-to-top');
-	$(window).on('scroll', function () {
-	  $top.toggleClass('back-to-top-on', window.pageYOffset > THRESHOLD);
+
+
+	$("#rocket").click(function() {
+	    $("#rocket").addClass("launch");
+	    $('body').velocity('scroll');
+	    return false;
 	});
-  */
 
-
-
-    $top.on('click', function () {
-      $('body').velocity('scroll');
-    });
   },
 
   /**

@@ -191,7 +191,7 @@ $(document).ready(function () {
 
 
       NexT.utils.isDesktop() && $('body').velocity('stop').velocity({paddingRight: 0});
-	NexT.utils.isDesktop() && $('.sidebar-toggle').velocity('stop').velocity({right: 0});
+	  NexT.utils.isDesktop() && $('.sidebar-toggle').velocity('stop').velocity({right: 0});
 
       this.sidebarEl.find('.motion-element').velocity('stop').css('display', 'none');
       this.sidebarEl.velocity('stop').velocity({width: 0}, {display: 'none'});
